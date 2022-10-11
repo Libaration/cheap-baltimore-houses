@@ -94,7 +94,7 @@ index ae1448f..40d1170 100644
        </Main>
      </Layout>
 diff --git a/node_modules/@strapi/admin/admin/src/pages/SettingsPage/pages/ApplicationInfosPage/index.js b/node_modules/@strapi/admin/admin/src/pages/SettingsPage/pages/ApplicationInfosPage/index.js
-index 1adc22f..290c41c 100644
+index 1adc22f..3d5429d 100644
 --- a/node_modules/@strapi/admin/admin/src/pages/SettingsPage/pages/ApplicationInfosPage/index.js
 +++ b/node_modules/@strapi/admin/admin/src/pages/SettingsPage/pages/ApplicationInfosPage/index.js
 @@ -116,11 +116,7 @@ const ApplicationInfosPage = () => {
@@ -110,7 +110,15 @@ index 1adc22f..290c41c 100644
                        isExternal
                        endIcon={<ExternalLink />}
                      >
-@@ -148,35 +144,6 @@ const ApplicationInfosPage = () => {
+@@ -141,42 +137,13 @@ const ApplicationInfosPage = () => {
+                       {formatMessage({
+                         id: currentPlan,
+                         defaultMessage: `${
+-                          appInfos.communityEdition ? 'Community Edition' : 'Enterprise Edition'
++                          appInfos.communityEdition ? 'One time payment. No contracted support. Review Terms sent.' : 'One time payment. No contracted support. Review Terms sent.'
+                         }`,
+                       })}
+                     </Typography>
                    </GridItem>
                  </Grid>
  
@@ -147,7 +155,7 @@ index 1adc22f..290c41c 100644
                    <Typography variant="sigma" textColor="neutral600">
                      {formatMessage({
 diff --git a/node_modules/@strapi/admin/admin/src/translations/en.json b/node_modules/@strapi/admin/admin/src/translations/en.json
-index 52320df..c104fc9 100644
+index 52320df..ada6141 100644
 --- a/node_modules/@strapi/admin/admin/src/translations/en.json
 +++ b/node_modules/@strapi/admin/admin/src/translations/en.json
 @@ -115,8 +115,8 @@
@@ -170,3 +178,14 @@ index 52320df..c104fc9 100644
    "app.components.LeftMenu.navbrand.workplace": "Workplace",
    "app.components.LeftMenuFooter.help": "Help",
    "app.components.LeftMenuFooter.poweredBy": "Powered by ",
+@@ -391,8 +391,8 @@
+   "app.components.ToggleCheckbox.on-label": "True",
+   "app.components.UpgradePlanModal.button": "Learn more",
+   "app.components.UpgradePlanModal.limit-reached": "You have reached the limit",
+-  "app.components.UpgradePlanModal.text-ce": "Community Edition",
+-  "app.components.UpgradePlanModal.text-ee": "Enterprise Edition",
++  "app.components.UpgradePlanModal.text-ce": "One time payment. No contracted support. Review Terms sent.",
++  "app.components.UpgradePlanModal.text-ee": "One time payment. No contracted support. Review Terms sent.",
+   "app.components.UpgradePlanModal.text-power": "Unlock the full power of Strapi by upgrading your plan to the Enterprise Edition",
+   "app.components.UpgradePlanModal.text-strapi": "of Strapi by upgrading your plan to the",
+   "app.components.Users.MagicLink.connect": "Copy and share this link to give access to this user",
