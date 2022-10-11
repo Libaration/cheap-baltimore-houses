@@ -11,6 +11,7 @@ import {
   Card,
   useMantineTheme,
 } from "@mantine/core";
+import Image from "next/image";
 import styles from "../styles/Index.module.css";
 import NavSections from "../components/NavSections";
 console.log(styles);
@@ -94,9 +95,16 @@ export default function Index(props) {
           </Navbar>
         }
       >
-        <Card shadow="sm" pb="lg" radius="md">
+        {/* <Card shadow="sm" pb="lg" radius="md">
           <RecentHomes homes={props.data} />
-        </Card>
+        </Card> */}
+        <Image
+          src="https://wallpaper.dog/large/10989205.jpg"
+          layout="fill"
+          sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+        />
       </AppShell>
     </>
   );
