@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "Oakes";
+  src: url("../public/static/fonts/Oakes\ Grotesk\ Regular.ttf");
+  src: url("../public/static/fonts/Oakes\ Grotesk\ SemiBold.ttf");
+  src: url("../public/static/fonts/Oakes\ Grotesk\ Bold.ttf");
+  src: url("../public/static/fonts/Oakes\ Grotesk\ Medium.ttf");
+  font-style: normal;
+}
+.topNav {
+  background-color: #252526;
+}
+
+.topNav :global(.headerText) {
+  color: #bfb087;
+  font-size: x-large;
+  font-weight: 500;
+  font-family: Oakes, Helvetica, Arial, sans-serif;
+}

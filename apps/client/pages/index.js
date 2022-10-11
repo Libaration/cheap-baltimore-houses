@@ -12,17 +12,19 @@ import {
   Burger,
   useMantineTheme,
 } from "@mantine/core";
-export default function Home(props) {
+import styles from "../styles/Index.module.css";
+console.log(styles);
+export default function Index(props) {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   return (
     <>
       <Headroom>
-        <Header height={70} p="md" className="top-nav">
+        <Header height={70} p="md" className={styles.topNav}>
           <div
             style={{ display: "flex", alignItems: "center", height: "100%" }}
           >
-            <Text>CheapBaltimoreHouses</Text>
+            <Text className="headerText">CheapBaltimoreHouses</Text>
           </div>
         </Header>
       </Headroom>
