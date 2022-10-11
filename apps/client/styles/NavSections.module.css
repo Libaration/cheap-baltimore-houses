@@ -1,0 +1,15 @@
+.navLinkText {
+  flex: 1;
+  text-align: center;
+  text-shadow: 0.5px 0.5px 3px #000000;
+  color: rgb(225, 225, 225);
+}
+.navLinkText ul {
+  list-style: none;
+}
+.navLinkText ul,
+.navLinkText li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

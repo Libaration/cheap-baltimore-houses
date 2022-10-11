@@ -5,20 +5,19 @@ import {
   AppShell,
   Navbar,
   Header,
-  Footer,
-  Aside,
   Text,
   MediaQuery,
   Burger,
-  Group,
   Card,
   useMantineTheme,
 } from "@mantine/core";
 import styles from "../styles/Index.module.css";
+import NavSections from "../components/NavSections";
 console.log(styles);
 export default function Index(props) {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
+  const [sideNavOpened, setSideNavOpened] = useState(false);
   return (
     <>
       <Headroom>
@@ -37,7 +36,7 @@ export default function Index(props) {
                   paddingBottom: "0.7rem",
                 }}
                 opened={opened}
-                onClick={() => setOpened((o) => !o)}
+                onClick={() => setSideNavOpened((o) => !o)}
               />
             </MediaQuery>
 
@@ -66,21 +65,7 @@ export default function Index(props) {
               }}
               className={styles.navLinks}
             >
-              <Navbar.Section className={styles.navLinkText}>
-                <Text transform="uppercase">1Find a Home</Text>
-              </Navbar.Section>
-              <Navbar.Section className={styles.navLinkText}>
-                <Text transform="uppercase">2Sell a Home</Text>
-              </Navbar.Section>
-              <Navbar.Section className={styles.navLinkText}>
-                <Text transform="uppercase">3Sell a Home</Text>
-              </Navbar.Section>
-              <Navbar.Section className={styles.navLinkText}>
-                <Text transform="uppercase">4Sell a Home</Text>
-              </Navbar.Section>
-              <Navbar.Section className={styles.navLinkText}>
-                <Text transform="uppercase">5Sell a Home</Text>
-              </Navbar.Section>
+              <NavSections />
             </Navbar>
           </div>
         </Header>
@@ -95,11 +80,23 @@ export default function Index(props) {
           },
         }}
         className={styles.appShellMain}
+        navbar={
+          <Navbar
+            p="md"
+            hiddenBreakpoint="sm"
+            hidden={!sideNavOpened}
+            className={styles.sideNav}
+            style={{
+              display: sideNavOpened ? "flex" : "none",
+            }}
+          >
+            <NavSections />
+          </Navbar>
+        }
       >
-        <Card shadow="sm" pb="lg" radius="md" withBorder background="red">
+        <Card shadow="sm" pb="lg" radius="md">
           <RecentHomes homes={props.data} />
         </Card>
-        <Text>JDWKSDJKSDHKSDKSDKSKKDSH</Text>
       </AppShell>
     </>
   );

@@ -20,15 +20,11 @@
   font-family: Oakes, Helvetica, Arial, sans-serif;
   padding-left: 0.5rem;
 }
-
 .navLinks {
   color: white;
   font-size: small;
 }
-.navLinkText {
-  flex: 1;
-  text-align: center;
-}
+
 .appShellMain :global(main) {
   flex: 1;
   width: 100vw;
@@ -37,4 +33,31 @@
   padding-top: 1.5rem;
   padding-left: 1.5rem;
   background: #f8f9fa;
+}
+
+.sideNav {
+  background-color: #252526;
+  border: none;
+  padding-top: 5rem;
+  justify-content: space-between;
+}
+.sideNav li:before {
+  content: "";
+  display: inline-block;
+  margin-right: 1rem;
+  /* Height of the list image*/
+  height: 12px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* Width of the list image*/
+  width: 12px;
+  margin-top: 4px;
+  background-image: url("https://cdn-icons-png.flaticon.com/128/1761/1761840.png");
+}
+
+.sideNav li {
+  display: flex;
+  justify-content: center;
+  font-size: small;
+  font-style: italic;
 }
