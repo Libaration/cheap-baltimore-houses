@@ -1,13 +1,43 @@
-import { Button, Container, Row, Col, UncontrolledTooltip } from "reactstrap";
-import HomeCard from "../components/HomeCard";
 import RecentHomes from "../components/RecentHomes";
+import { useState } from "react";
+import Headroom from "react-headroom";
+import {
+  AppShell,
+  Navbar,
+  Header,
+  Footer,
+  Aside,
+  Text,
+  MediaQuery,
+  Burger,
+  useMantineTheme,
+} from "@mantine/core";
 export default function Home(props) {
+  const theme = useMantineTheme();
+  const [opened, setOpened] = useState(false);
   return (
     <>
-      <div>
-        okok<div>ok</div>
-      </div>
-      <RecentHomes homes={props.data} />
+      <Headroom>
+        <Header height={70} p="md">
+          <div
+            style={{ display: "flex", alignItems: "center", height: "100%" }}
+          >
+            <Text>Application header</Text>
+          </div>
+        </Header>
+      </Headroom>
+      <AppShell
+        styles={{
+          main: {
+            background:
+              theme.colorScheme === "dark"
+                ? theme.colors.dark[8]
+                : theme.colors.gray[0],
+          },
+        }}
+      >
+        <RecentHomes homes={props.data} />
+      </AppShell>
     </>
   );
 }
