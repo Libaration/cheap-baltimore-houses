@@ -1,0 +1,43 @@
+diff --git a/node_modules/@strapi/admin/admin/src/pages/HomePage/HomeHeader.js b/node_modules/@strapi/admin/admin/src/pages/HomePage/HomeHeader.js
+index a846220..2fa2112 100644
+--- a/node_modules/@strapi/admin/admin/src/pages/HomePage/HomeHeader.js
++++ b/node_modules/@strapi/admin/admin/src/pages/HomePage/HomeHeader.js
+@@ -28,33 +28,24 @@ const HomeHeader = ({ hasCreatedContentType, onCreateCT }) => {
+             {hasCreatedContentType
+               ? formatMessage({
+                   id: 'app.components.HomePage.welcome.again',
+-                  defaultMessage: 'Welcome 👋',
++                  defaultMessage: 'Welcome to the CheapBaltimoreHouses Admin Panel👋',
+                 })
+               : formatMessage({
+                   id: 'app.components.HomePage.welcome',
+-                  defaultMessage: 'Welcome on board!',
++                  defaultMessage: 'Welcome to the CheapBaltimoreHouses Admin Panel👋',
+                 })}
+           </Typography>
+           <WordWrap textColor="neutral600" variant="epsilon">
+             {hasCreatedContentType
+-              ? formatMessage({
+-                  id: 'app.components.HomePage.welcomeBlock.content.again',
+-                  defaultMessage:
+-                    'We hope you are making progress on your project! Feel free to read the latest news about Strapi. We are giving our best to improve the product based on your feedback.',
+-                })
++              ? ''
+               : formatMessage({
+                   id: 'app.components.HomePage.welcomeBlock.content',
+                   defaultMessage:
+-                    'Congrats! You are logged as the first administrator. To discover the powerful features provided by Strapi, we recommend you to create your first Content type!',
++                    'Congrats! You are logged as the first administrator. We recommend you to create your first Content type!',
+                 })}
+           </WordWrap>
+           {hasCreatedContentType ? (
+-            <Link isExternal href="https://strapi.io/blog">
+-              {formatMessage({
+-                id: 'app.components.HomePage.button.blog',
+-                defaultMessage: 'See more on the blog',
+-              })}
+-            </Link>
++            ''
+           ) : (
+             <Button size="L" onClick={onCreateCT} endIcon={<ArrowRight />}>
+               {formatMessage({
