@@ -16,16 +16,20 @@
       "type": "richtext"
     },
     "street": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "street_2": {
       "type": "string"
     },
     "zip": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "state": {
-      "type": "string"
+      "type": "string",
+      "default": "MD",
+      "required": true
     },
     "additional_images": {
       "type": "media",
@@ -36,7 +40,8 @@
       ]
     },
     "price": {
-      "type": "integer"
+      "type": "integer",
+      "required": false
     },
     "bidders": {
       "type": "relation",
@@ -45,12 +50,17 @@
       "inversedBy": "bids"
     },
     "cover_image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "city": {
+      "type": "string",
+      "required": true,
+      "default": "Baltimore"
     }
   }
 }

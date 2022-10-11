@@ -6,7 +6,7 @@ import Link from "next/link";
 const HomeCard = (props) => {
   const { home } = props;
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder>
+    <Card shadow="sm" pb="lg" radius="md" withBorder>
       <Link href={`/homes/${encodeURIComponent(home.id)}`} passHref>
         <Card.Section>
           <Center>
@@ -17,7 +17,7 @@ const HomeCard = (props) => {
               height={300}
               width={400}
               alt="house image"
-              fit="cover"
+              fit="contain"
               style={{ cursor: "pointer" }}
             />
           </Center>
@@ -35,11 +35,11 @@ const HomeCard = (props) => {
           </Badge>
         </Group>
       </Link>
-      <Text size="xs" color="dimmed" lineClamp={4}>
+      {/* <Text size="xs" color="dimmed" lineClamp={4}>
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
           {home.attributes.description}
         </ReactMarkdown>
-      </Text>
+      </Text> */}
 
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
         Make an Offer

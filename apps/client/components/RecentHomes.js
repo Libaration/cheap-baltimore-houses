@@ -7,7 +7,7 @@ const RecentHomes = (props) => {
   return (
     <SimpleGrid
       cols={4}
-      spacing="lg"
+      spacing="xs"
       breakpoints={[
         { maxWidth: 980, cols: 3, spacing: "md" },
         { maxWidth: 755, cols: 2, spacing: "sm" },
