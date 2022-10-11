@@ -6,12 +6,13 @@ const renderHomes = (homes) => {
 const RecentHomes = (props) => {
   return (
     <SimpleGrid
-      cols={3}
+      cols={4}
       spacing="xs"
       breakpoints={[
-        { maxWidth: 1400, cols: 3, spacing: "md" },
-        { maxWidth: 1300, cols: 2, spacing: "sm" },
-        { maxWidth: 900, cols: 1, spacing: "sm" },
+        { maxWidth: 1200, cols: 3, spacing: "lg" },
+        { maxWidth: 992, cols: 2, spacing: "md" },
+        { maxWidth: 768, cols: 2, spacing: "sm" },
+        { maxWidth: 576, cols: 1, spacing: "xs" },
       ]}
     >
       {renderHomes(props.homes)}

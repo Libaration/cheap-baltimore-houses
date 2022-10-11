@@ -33,10 +33,11 @@ export default function Index(props) {
             >
               CheapBaltimoreHouses
             </Text>
-
             <Navbar
+              hiddenBreakpoint="sm"
+              hidden={!opened}
+              width={{ sm: 576, md: 768, lg: 992, xl: 1200 }}
               height="auto"
-              width="100%"
               style={{
                 backgroundColor: "inherit",
                 flexDirection: "row",
@@ -45,19 +46,19 @@ export default function Index(props) {
               className={styles.navLinks}
             >
               <Navbar.Section className={styles.navLinkText}>
-                <Text transform="uppercase">Find a Home</Text>
+                <Text transform="uppercase">1Find a Home</Text>
               </Navbar.Section>
               <Navbar.Section className={styles.navLinkText}>
-                <Text transform="uppercase">Sell a Home</Text>
+                <Text transform="uppercase">2Sell a Home</Text>
               </Navbar.Section>
               <Navbar.Section className={styles.navLinkText}>
-                <Text transform="uppercase">Sell a Home</Text>
+                <Text transform="uppercase">3Sell a Home</Text>
               </Navbar.Section>
               <Navbar.Section className={styles.navLinkText}>
-                <Text transform="uppercase">Sell a Home</Text>
+                <Text transform="uppercase">4Sell a Home</Text>
               </Navbar.Section>
               <Navbar.Section className={styles.navLinkText}>
-                <Text transform="uppercase">Sell a Home</Text>
+                <Text transform="uppercase">5Sell a Home</Text>
               </Navbar.Section>
             </Navbar>
           </div>
