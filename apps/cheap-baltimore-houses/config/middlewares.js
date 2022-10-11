@@ -25,6 +25,7 @@ module.exports = [
             "s3.amazonaws.com",
             "blob:",
             "res.cloudinary.com",
+            ["*"],
           ],
           "media-src": ["'self'", "data:", "blob:", "res.cloudinary.com"],
         },
