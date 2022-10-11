@@ -8,9 +8,10 @@
     "turbo": "^1.5.6"
   },
   "scripts": {
-    "build": "turbo run build",
+    "build": "yarn dbbackup && turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
+    "dbbackup": "cp apps/cheap-baltimore-houses/.tmp/data.db ~/Desktop/db",
     "dev": "turbo run dev --parallel --no-cache",
     "postinstall": "patch-package",
     "clean": "rm -rf apps/cheap-baltimore-houses/.cache && rm -rf apps/cheap-baltimore-houses/build && yarn cache clean && yarn && yarn build --no-cache"
