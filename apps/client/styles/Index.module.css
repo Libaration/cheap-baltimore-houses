@@ -10,6 +10,7 @@
 .topNav {
   background-color: #252526;
   border: none;
+  width: 100%;
 }
 
 .topNav :global(.headerText) {

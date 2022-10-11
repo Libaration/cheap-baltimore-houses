@@ -26,13 +26,34 @@ export default function Index(props) {
           <div
             style={{ display: "flex", alignItems: "center", height: "100%" }}
           >
-            <Text
-              variant="gradient"
-              gradient={{ from: "#bfb087", to: "#9a7650" }}
-              className="headerText"
+            <MediaQuery
+              largerThan="sm"
+              styles={{ display: "none", textAlign: "left" }}
             >
-              CheapBaltimoreHouses
-            </Text>
+              <Burger
+                size="lg"
+                color="#bfb087"
+                style={{
+                  paddingBottom: "0.7rem",
+                }}
+                opened={opened}
+                onClick={() => setOpened((o) => !o)}
+              />
+            </MediaQuery>
+
+            <MediaQuery
+              smallerThan="sm"
+              styles={{ flex: 1, textAlign: "center" }}
+            >
+              <Text
+                variant="gradient"
+                gradient={{ from: "#bfb087", to: "#9a7650" }}
+                className="headerText"
+              >
+                CheapBaltimoreHouses
+              </Text>
+            </MediaQuery>
+
             <Navbar
               hiddenBreakpoint="sm"
               hidden={!opened}
