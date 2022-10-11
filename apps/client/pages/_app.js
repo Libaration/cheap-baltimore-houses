@@ -1,6 +1,4 @@
-import "../styles/argon-design-system-react.css";
-import "../styles/nucleo/css/nucleo.css";
-import "../styles/font-awesome/css/font-awesome.min.css";
+import "../styles/index.css";
 import { MantineProvider } from "@mantine/core";
 function MyApp({ Component, pageProps }) {
   return (

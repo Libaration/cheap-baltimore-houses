@@ -9,12 +9,7 @@ export default class _Document extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <link
-            href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=optional"
-            rel="stylesheet"
-          />
-        </Head>
+        <Head></Head>
         <body>
           <Main />
           <NextScript />

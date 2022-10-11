@@ -18,11 +18,11 @@ export default function Home(props) {
   return (
     <>
       <Headroom>
-        <Header height={70} p="md">
+        <Header height={70} p="md" className="top-nav">
           <div
             style={{ display: "flex", alignItems: "center", height: "100%" }}
           >
-            <Text>Application header</Text>
+            <Text>CheapBaltimoreHouses</Text>
           </div>
         </Header>
       </Headroom>
@@ -36,7 +36,8 @@ export default function Home(props) {
           },
         }}
       >
-        <RecentHomes homes={props.data} />
+        {/* <RecentHomes homes={props.data} /> */}
+        <Text>JDWKSDJKSDHKSDKSDKSKKDSH</Text>
       </AppShell>
     </>
   );
