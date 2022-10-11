@@ -9,7 +9,7 @@ const RecentHomes = (props) => {
       cols={4}
       spacing="xs"
       breakpoints={[
-        { maxWidth: 1200, cols: 3, spacing: "lg" },
+        { maxWidth: 1250, cols: 3, spacing: "lg" },
         { maxWidth: 992, cols: 2, spacing: "md" },
         { maxWidth: 868, cols: 2, spacing: "sm" },
         { maxWidth: 676, cols: 1, spacing: "xs" },
