@@ -1,3 +1,16 @@
+diff --git a/node_modules/@strapi/admin/admin/src/components/LeftMenu/index.js b/node_modules/@strapi/admin/admin/src/components/LeftMenu/index.js
+index 23b936b..30c79a8 100644
+--- a/node_modules/@strapi/admin/admin/src/components/LeftMenu/index.js
++++ b/node_modules/@strapi/admin/admin/src/components/LeftMenu/index.js
+@@ -84,7 +84,7 @@ const LeftMenu = ({ generalSectionLinks, pluginsSectionLinks }) => {
+ 
+   const menuTitle = formatMessage({
+     id: 'app.components.LeftMenu.navbrand.title',
+-    defaultMessage: 'Strapi Dashboard',
++    defaultMessage: 'CheapBaltimoreHouses Dashboard',
+   });
+ 
+   return (
 diff --git a/node_modules/@strapi/admin/admin/src/hooks/useMenu/reducer.js b/node_modules/@strapi/admin/admin/src/hooks/useMenu/reducer.js
 index 04f5e6b..1763150 100644
 --- a/node_modules/@strapi/admin/admin/src/hooks/useMenu/reducer.js
@@ -80,3 +93,16 @@ index ae1448f..40d1170 100644
          </Box>
        </Main>
      </Layout>
+diff --git a/node_modules/@strapi/admin/admin/src/translations/en.json b/node_modules/@strapi/admin/admin/src/translations/en.json
+index 52320df..08a64b5 100644
+--- a/node_modules/@strapi/admin/admin/src/translations/en.json
++++ b/node_modules/@strapi/admin/admin/src/translations/en.json
+@@ -353,7 +353,7 @@
+   "app.components.LeftMenu.logout": "Logout",
+   "app.components.LeftMenu.logo.alt": "Application logo",
+   "app.components.LeftMenu.plugins": "Plugins",
+-  "app.components.LeftMenu.navbrand.title": "Strapi Dashboard",
++  "app.components.LeftMenu.navbrand.title": "CheapBaltimoreHouses Dashboard",
+   "app.components.LeftMenu.navbrand.workplace": "Workplace",
+   "app.components.LeftMenuFooter.help": "Help",
+   "app.components.LeftMenuFooter.poweredBy": "Powered by ",

@@ -13,6 +13,6 @@
     "lint": "turbo run lint",
     "dev": "turbo run dev --parallel --no-cache",
     "postinstall": "patch-package",
-    "clean": "rm -rf apps/cheap-baltimore-houses/.cache && yarn build --no-cache"
+    "clean": "rm -rf node_modules && rm -rf apps/cheap-baltimore-houses/.cache && rm -rf apps/cheap-baltimore-houses/build && yarn cache clean && yarn && yarn build --no-cache"
   }
 }
