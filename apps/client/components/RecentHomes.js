@@ -11,8 +11,8 @@ const RecentHomes = (props) => {
       breakpoints={[
         { maxWidth: 1200, cols: 3, spacing: "lg" },
         { maxWidth: 992, cols: 2, spacing: "md" },
-        { maxWidth: 768, cols: 2, spacing: "sm" },
-        { maxWidth: 576, cols: 1, spacing: "xs" },
+        { maxWidth: 868, cols: 2, spacing: "sm" },
+        { maxWidth: 676, cols: 1, spacing: "xs" },
       ]}
     >
       {renderHomes(props.homes)}
