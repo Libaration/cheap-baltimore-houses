@@ -1,3 +1,23 @@
+diff --git a/node_modules/@strapi/admin/admin/src/hooks/useMenu/reducer.js b/node_modules/@strapi/admin/admin/src/hooks/useMenu/reducer.js
+index 04f5e6b..1763150 100644
+--- a/node_modules/@strapi/admin/admin/src/hooks/useMenu/reducer.js
++++ b/node_modules/@strapi/admin/admin/src/hooks/useMenu/reducer.js
+@@ -16,15 +16,6 @@ const initialState = {
+       to: '/list-plugins',
+       permissions: adminPermissions.marketplace.main,
+     },
+-    {
+-      icon: ShoppingCart,
+-      intlLabel: {
+-        id: 'global.marketplace',
+-        defaultMessage: 'Marketplace',
+-      },
+-      to: '/marketplace',
+-      permissions: adminPermissions.marketplace.main,
+-    },
+     {
+       icon: Cog,
+       intlLabel: {
 diff --git a/node_modules/@strapi/admin/admin/src/pages/HomePage/HomeHeader.js b/node_modules/@strapi/admin/admin/src/pages/HomePage/HomeHeader.js
 index a846220..2fa2112 100644
 --- a/node_modules/@strapi/admin/admin/src/pages/HomePage/HomeHeader.js
