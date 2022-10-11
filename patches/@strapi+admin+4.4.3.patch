@@ -41,3 +41,22 @@ index a846220..2fa2112 100644
            ) : (
              <Button size="L" onClick={onCreateCT} endIcon={<ArrowRight />}>
                {formatMessage({
+diff --git a/node_modules/@strapi/admin/admin/src/pages/HomePage/index.js b/node_modules/@strapi/admin/admin/src/pages/HomePage/index.js
+index ae1448f..40d1170 100644
+--- a/node_modules/@strapi/admin/admin/src/pages/HomePage/index.js
++++ b/node_modules/@strapi/admin/admin/src/pages/HomePage/index.js
+@@ -75,14 +75,6 @@ const HomePage = () => {
+               />
+             </GridItem>
+           </Grid>
+-          <Grid gap={6}>
+-            <GridItem col={8} s={12}>
+-              {showGuidedTour ? <GuidedTourHomepage /> : <ContentBlocks />}
+-            </GridItem>
+-            <GridItem col={4} s={12}>
+-              <SocialLinks />
+-            </GridItem>
+-          </Grid>
+         </Box>
+       </Main>
+     </Layout>
