@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mailings",
+  "info": {
+    "singularName": "mailing",
+    "pluralName": "mailings",
+    "displayName": "Mailing",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true
+    }
+  }
+}

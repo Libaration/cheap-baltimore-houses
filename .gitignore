@@ -1,0 +1,141 @@
+node_modules
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+client/node_modules
+/.pnp
+.pnp.js
+
+# testing
+client/coverage
+
+# next.js
+client/.next/
+client/out/
+
+# production
+client/build
+
+# misc
+client/.DS_Store
+client/*.pem
+
+# debug
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+
+# local env files
+client/.env*.local
+client/.env 
+cheap-baltimore-houses/.env
+# vercel
+client/.vercel
+
+# typescript
+client/*.tsbuildinfo
+client/next-env.d.ts
+
+
+############################
+# OS X
+############################
+
+cheap-baltimore-houses/.DS_Store
+cheap-baltimore-houses/.AppleDouble
+cheap-baltimore-houses/.LSOverride
+cheap-baltimore-houses/Icon
+cheap-baltimore-houses/.Spotlight-V100
+cheap-baltimore-houses/.Trashes
+cheap-baltimore-houses/._*
+
+
+############################
+# Linux
+############################
+
+*~
+
+
+
+############################
+# Packages
+############################
+
+*.7z
+*.csv
+*.dat
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.seed
+*.so
+*.swo
+*.swp
+*.swn
+*.swm
+*.out
+*.pid
+
+
+############################
+# Logs and databases
+############################
+
+cheap-baltimore-houses/.tmp
+cheap-baltimore-houses/*.log
+cheap-baltimore-houses/*.sql
+cheap-baltimore-houses/*.sqlite
+cheap-baltimore-houses/*.sqlite3
+
+
+############################
+# Misc.
+############################
+
+cheap-baltimore-houses/*#
+cheap-baltimore-houses/ssl
+cheap-baltimore-houses/.idea
+cheap-baltimore-houses/nbproject
+cheap-baltimore-houses/public/uploads/*
+cheap-baltimore-houses/!public/uploads/.gitkeep
+
+############################
+# Node.js
+############################
+
+cheap-baltimore-houses/lib-cov
+cheap-baltimore-houses/lcov.info
+cheap-baltimore-houses/pids
+cheap-baltimore-houses/logs
+cheap-baltimore-houses/results
+cheap-baltimore-houses/node_modules
+cheap-baltimore-houses/.node_history
+
+############################
+# Tests
+############################
+
+cheap-baltimore-houses/testApp
+cheap-baltimore-houses/coverage
+
+############################
+# Strapi
+############################
+
+cheap-baltimore-houses/.env
+cheap-baltimore-houses/license.txt
+cheap-baltimore-houses/exports
+cheap-baltimore-houses/*.cache
+cheap-baltimore-houses/build
+cheap-baltimore-houses/.strapi-updater.json
+.DS_Store
