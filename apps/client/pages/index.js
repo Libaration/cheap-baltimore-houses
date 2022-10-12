@@ -108,6 +108,7 @@ export default function Index(props) {
               (max-width: 1200px) 50vw,
               33vw"
           alt="whocares"
+          className={styles.pageOneBgImage}
         />
       </AppShell>
     </>

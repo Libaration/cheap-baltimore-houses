@@ -28,13 +28,17 @@
 .appShellMain :global(main) {
   flex: 1;
   width: 100vw;
+  min-height: 0;
   box-sizing: border-box;
-  min-height: 100vh;
+  height: 1px;
   padding-top: 1.5rem;
   padding-left: 1.5rem;
   background: #f8f9fa;
 }
-
+.pageOneBgImage {
+  filter: blur(2px);
+  filter: brightness(0.7);
+}
 .sideNav {
   background-color: #252526;
   border: none;
