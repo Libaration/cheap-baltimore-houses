@@ -10,6 +10,7 @@ import {
   Burger,
   Card,
   useMantineTheme,
+  Container,
 } from "@mantine/core";
 import Image from "next/image";
 import styles from "../styles/Index.module.css";
@@ -21,7 +22,7 @@ export default function Index(props) {
   const [sideNavOpened, setSideNavOpened] = useState(false);
   return (
     <>
-      <Headroom>
+      <Headroom style={{ zIndex: 2 }}>
         <Header height={80} p="md" className={styles.topNav}>
           <div
             style={{ display: "flex", alignItems: "center", height: "100%" }}
@@ -95,15 +96,18 @@ export default function Index(props) {
           </Navbar>
         }
       >
-        {/* <Card shadow="sm" pb="lg" radius="md">
-          <RecentHomes homes={props.data} />
-        </Card> */}
+        <Container py="lg" px="lg" size="lg">
+          <Card shadow="sm" pb="lg" radius="md" style={{ zIndex: 1 }}>
+            <RecentHomes homes={props.data} />
+          </Card>
+        </Container>
         <Image
           src="https://wallpaper.dog/large/10989205.jpg"
           layout="fill"
           sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
+          alt="whocares"
         />
       </AppShell>
     </>
