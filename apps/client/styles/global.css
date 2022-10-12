@@ -1,3 +1,7 @@
 :root {
   --topNav-height: 80px;
 }
+
+body {
+  overscroll-behavior-y: none;
+}

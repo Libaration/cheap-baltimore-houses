@@ -102,12 +102,6 @@ export default function Index(props) {
           </Card>
         </Container>
         <div className={styles.imageContainer}>
-          sdsdsdsdssdsd
-          <p />
-          sdsdsdsdssdsd
-          <p />
-          sdsdsdsdsdss
-          <p />
           <Image
             src="https://wallpaper.dog/large/10989205.jpg"
             layout="fill"
