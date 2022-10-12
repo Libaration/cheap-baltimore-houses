@@ -36,8 +36,10 @@
   background: #f8f9fa;
 }
 .pageOneBgImage {
-  filter: blur(2px);
-  filter: brightness(0.7);
+  filter: brightness(0.7) blur(1px);
+}
+.imageContainer img {
+  position: fixed !important;
 }
 .sideNav {
   background-color: #252526;

@@ -101,15 +101,23 @@ export default function Index(props) {
             <RecentHomes homes={props.data} />
           </Card>
         </Container>
-        <Image
-          src="https://wallpaper.dog/large/10989205.jpg"
-          layout="fill"
-          sizes="(max-width: 768px) 100vw,
+        <div className={styles.imageContainer}>
+          sdsdsdsdssdsd
+          <p />
+          sdsdsdsdssdsd
+          <p />
+          sdsdsdsdsdss
+          <p />
+          <Image
+            src="https://wallpaper.dog/large/10989205.jpg"
+            layout="fill"
+            sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
-          alt="whocares"
-          className={styles.pageOneBgImage}
-        />
+            alt="whocares"
+            className={styles.pageOneBgImage}
+          />
+        </div>
       </AppShell>
     </>
   );
