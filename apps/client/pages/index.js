@@ -153,20 +153,26 @@ export default function Index(props) {
             </Card>
           </Grid.Col>
         </Grid>
-        <div className={styles.sideImageContainer}>
-          <motion.div style={{ x: y }}>
+
+        <motion.div style={{ x: y }}>
+          <MediaQuery smallerThan="md" styles={{ display: "none" }}>
             <Image
               src="/cloud.png"
               height={100}
               width={120}
-              style={{ position: "relative", zIndex: 1, top: "7.5rem" }}
+              style={{ position: "relative", zIndex: 1, top: "9rem" }}
               ref={cloudRef}
+              alt=""
             />
-          </motion.div>
+          </MediaQuery>
+        </motion.div>
+        <MediaQuery smallerThan="md" styles={{ display: "none" }}>
           <Image
             src="https://www.pngmart.com/files/16/Vector-Modern-House-PNG-Transparent-Image.png"
             height={400}
             width={400}
+            objectFit="contain"
+            alt=""
             style={{
               marginTop: "-2rem",
               paddingBottom: "5rem",
@@ -176,22 +182,24 @@ export default function Index(props) {
               left: "-6rem",
             }}
           />
-        </div>
+        </MediaQuery>
       </AppShell>
-      <div style={{ backgroundColor: "white", height: "100%" }}>
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <Container py="lg" px="lg" size="lg">
-            <Card shadow="sm" pb="lg" radius="md">
-              <RecentHomes homes={props.data} max={4} />
-            </Card>
-          </Container>
-        </motion.div>
-      </div>
+      <MediaQuery smallerThan="sm" styles={{ marginTop: "1.5rem" }}>
+        <div style={{ backgroundColor: "white", height: "100%" }}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <Container py="lg" px="lg" size="lg">
+              <Card shadow="sm" pb="lg" radius="md">
+                <RecentHomes homes={props.data} max={4} />
+              </Card>
+            </Container>
+          </motion.div>
+        </div>
+      </MediaQuery>
     </>
   );
 }
