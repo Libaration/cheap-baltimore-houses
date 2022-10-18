@@ -4,6 +4,10 @@
 
 body {
   overscroll-behavior-y: none;
+  font-family: "Oakes" !important;
+}
+html {
+  font-family: "Oakes" !important;
 }
 
 .homeCard {

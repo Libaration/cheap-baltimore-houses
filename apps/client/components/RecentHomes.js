@@ -1,4 +1,4 @@
-import { SimpleGrid } from "@mantine/core";
+import { SimpleGrid, Indicator } from "@mantine/core";
 import HomeCard from "./HomeCard";
 const renderHomes = (homes, count) => {
   let total = 0;
@@ -12,18 +12,30 @@ const renderHomes = (homes, count) => {
 };
 const RecentHomes = (props) => {
   return (
-    <SimpleGrid
-      cols={4}
-      spacing="xs"
-      breakpoints={[
-        { maxWidth: 1250, cols: 3, spacing: "lg" },
-        { maxWidth: 992, cols: 2, spacing: "md" },
-        { maxWidth: 868, cols: 2, spacing: "sm" },
-        { maxWidth: 676, cols: 1, spacing: "xs" },
-      ]}
+    <Indicator
+      inline
+      label="Recent Homes"
+      size={34}
+      mt="0.5rem"
+      pt="0.5rem"
+      position="top-center"
+      color="dark"
+      radius="xs"
+      className="recent-homes-indicator"
     >
-      {renderHomes(props.homes, props.max)}
-    </SimpleGrid>
+      <SimpleGrid
+        cols={4}
+        spacing="xs"
+        breakpoints={[
+          { maxWidth: 1250, cols: 3, spacing: "lg" },
+          { maxWidth: 992, cols: 2, spacing: "md" },
+          { maxWidth: 868, cols: 2, spacing: "sm" },
+          { maxWidth: 676, cols: 1, spacing: "xs" },
+        ]}
+      >
+        {renderHomes(props.homes, props.max)}
+      </SimpleGrid>
+    </Indicator>
   );
 };
 

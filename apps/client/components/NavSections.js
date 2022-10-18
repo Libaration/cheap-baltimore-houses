@@ -5,27 +5,37 @@ const NavSections = () => {
     <>
       <Navbar.Section className={styles.navLinkText}>
         <li>
-          <Text transform="uppercase">1Find a Home</Text>
+          <Text transform="uppercase" style={{ fontFamily: "Oakes" }}>
+            1Find a Home
+          </Text>
         </li>
       </Navbar.Section>
       <Navbar.Section className={styles.navLinkText}>
         <li>
-          <Text transform="uppercase">2Sell a Home</Text>
+          <Text transform="uppercase" style={{ fontFamily: "Oakes" }}>
+            2Sell a Home
+          </Text>
         </li>
       </Navbar.Section>
       <Navbar.Section className={styles.navLinkText}>
         <li>
-          <Text transform="uppercase">3Sell a Home</Text>
+          <Text transform="uppercase" style={{ fontFamily: "Oakes" }}>
+            3Sell a Home
+          </Text>
         </li>
       </Navbar.Section>
       <Navbar.Section className={styles.navLinkText}>
         <li>
-          <Text transform="uppercase">4Sell a Home</Text>
+          <Text transform="uppercase" style={{ fontFamily: "Oakes" }}>
+            4Sell a Home
+          </Text>
         </li>
       </Navbar.Section>
       <Navbar.Section className={styles.navLinkText}>
         <li>
-          <Text transform="uppercase">5Sell a Home</Text>
+          <Text transform="uppercase" style={{ fontFamily: "Oakes" }}>
+            5Sell a Home
+          </Text>
         </li>
       </Navbar.Section>
     </>

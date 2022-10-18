@@ -11,10 +11,13 @@ import {
   Card,
   useMantineTheme,
   Container,
+  Grid,
+  Box,
 } from "@mantine/core";
 import Image from "next/image";
 import styles from "../styles/Index.module.css";
 import NavSections from "../components/NavSections";
+import TimelineSection from "../components/TimelineSection";
 console.log(styles);
 export default function Index(props) {
   const theme = useMantineTheme();
@@ -120,6 +123,30 @@ export default function Index(props) {
             We pay all closing costs! Here is how it works
           </span>
         </Card>
+        <Grid mt="1rem" pl={"1rem"} style={{ width: "100%" }}>
+          <Grid.Col md={6} lg={4}>
+            <Card>
+              lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+              tincidunt, nisl eget aliquam tincidunt, nisl nisl aliquam nisl,
+              nec aliquam nisl nisl sit amet nisl. Donec tincidunt, nisl eget
+              aliquam
+            </Card>
+          </Grid.Col>
+          <Grid.Col md={6} lg={4}>
+            <Card>
+              <TimelineSection />
+            </Card>
+          </Grid.Col>
+          <Grid.Col md={6} lg={4}>
+            <Card>
+              lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+              tincidunt, nisl eget aliquam tincidunt, nisl nisl aliquam nisl,
+              nec aliquam nisl nisl sit amet nisl. Donec tincidunt, nisl eget
+              aliquam
+            </Card>
+          </Grid.Col>
+        </Grid>
+
         <Container py="lg" px="lg" size="lg">
           <Card shadow="sm" pb="lg" radius="md" style={{ zIndex: 1 }}>
             <RecentHomes homes={props.data} max={4} />
