@@ -33,11 +33,12 @@
   height: 1px;
   padding: 0;
   margin: 0;
-  background: #f8f9fa;
+  background: #f8f9fa00;
   height: 100vh;
 }
 .pageOneBgImage {
-  filter: brightness(0.7) blur(1px);
+  filter: brightness(0.3) blur(1px);
+  z-index: -1;
 }
 
 .pageTwoBgImage {

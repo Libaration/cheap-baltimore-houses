@@ -1,6 +1,7 @@
 import RecentHomes from "../components/RecentHomes";
 import { useState } from "react";
 import Headroom from "react-headroom";
+import { motion, useScroll } from "framer-motion";
 import {
   AppShell,
   Navbar,
@@ -13,6 +14,7 @@ import {
   Container,
   Grid,
   Box,
+  Center,
 } from "@mantine/core";
 import Image from "next/image";
 import styles from "../styles/Index.module.css";
@@ -20,6 +22,7 @@ import NavSections from "../components/NavSections";
 import TimelineSection from "../components/TimelineSection";
 console.log(styles);
 export default function Index(props) {
+  const { scrollYProgress } = useScroll();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   const [sideNavOpened, setSideNavOpened] = useState(false);
@@ -146,13 +149,21 @@ export default function Index(props) {
             </Card>
           </Grid.Col>
         </Grid>
-
-        <Container py="lg" px="lg" size="lg">
-          <Card shadow="sm" pb="lg" radius="md" style={{ zIndex: 1 }}>
-            <RecentHomes homes={props.data} max={4} />
-          </Card>
-        </Container>
       </AppShell>
+      <div style={{ backgroundColor: "white", height: "100%" }}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <Container py="lg" px="lg" size="lg">
+            <Card shadow="sm" pb="lg" radius="md">
+              <RecentHomes homes={props.data} max={4} />
+            </Card>
+          </Container>
+        </motion.div>
+      </div>
     </>
   );
 }
