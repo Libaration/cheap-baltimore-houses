@@ -15,6 +15,7 @@ import {
   Grid,
   Box,
   Title,
+  Group,
 } from "@mantine/core";
 import Image from "next/future/image";
 import styles from "../styles/Index.module.css";
@@ -132,7 +133,7 @@ export default function Index(props) {
         <Grid
           pb={"2rem"}
           mt={"0.5rem"}
-          style={{ width: "100vw", height: "100vh" }}
+          style={{ width: "100%", height: "100vh", paddingLeft: "1rem" }}
         >
           <Grid.Col md={6} lg={4}>
             <Card>
@@ -155,45 +156,52 @@ export default function Index(props) {
               aliquam
             </Card>
           </Grid.Col>
-
-          <motion.div style={{ x: y }}>
-            <MediaQuery smallerThan="md" styles={{ display: "none" }}>
-              <Image
-                src="/cloud.png"
-                height={100}
-                width={120}
-                style={{ position: "relative", zIndex: 1, top: "9rem" }}
-                alt=""
-              />
-            </MediaQuery>
-          </motion.div>
-          <MediaQuery smallerThan="md" styles={{ display: "none" }}>
-            <Image
-              src="https://www.pngmart.com/files/16/Vector-Modern-House-PNG-Transparent-Image.png"
-              height={400}
-              width={400}
-              objectFit="contain"
-              alt=""
-              style={{
-                marginTop: "1rem",
-
-                position: "relative",
-                zIndex: -1,
-                left: "-6rem",
-              }}
-            />
-          </MediaQuery>
           <div
             style={{
-              alignSelf: "center",
+              width: "100%",
+              overflow: "hidden",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            <Title
-              mt={"10rem"}
-              style={{ fontSize: "12rem", color: "white", fontFamily: "Oakes" }}
+            <motion.div style={{ x: y }}>
+              <MediaQuery smallerThan="md" styles={{ display: "none" }}>
+                <Image
+                  src="/cloud.png"
+                  height={100}
+                  width={120}
+                  style={{ position: "relative", zIndex: 1, top: "9rem" }}
+                  alt=""
+                />
+              </MediaQuery>
+            </motion.div>
+            <MediaQuery smallerThan="md" styles={{ display: "none" }}>
+              <Image
+                src="https://www.pngmart.com/files/16/Vector-Modern-House-PNG-Transparent-Image.png"
+                height={400}
+                width={400}
+                objectFit="contain"
+                alt=""
+                style={{
+                  marginTop: "1rem",
+
+                  position: "relative",
+                  zIndex: -1,
+                  left: "-6rem",
+                }}
+              />
+            </MediaQuery>
+            <div
+              style={{
+                width: "50%",
+                height: "auto",
+                marginRight: "6rem",
+                textAlign: "right",
+                alignSelf: "center",
+              }}
             >
-              Take a tour!
-            </Title>
+              <img src="/cloud.png" alt="" />
+            </div>
           </div>
         </Grid>
       </AppShell>
