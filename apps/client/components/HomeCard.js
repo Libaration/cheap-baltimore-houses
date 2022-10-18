@@ -6,7 +6,7 @@ import Link from "next/link";
 const HomeCard = (props) => {
   const { home } = props;
   return (
-    <Card shadow="sm" pb="lg" radius="md" withBorder>
+    <Card shadow="sm" pb="lg" radius="md" withBorder className="homeCard">
       <Link href={`/homes/${encodeURIComponent(home.id)}`} passHref>
         <Card.Section>
           <Center>
@@ -27,7 +27,7 @@ const HomeCard = (props) => {
         <Group position="apart" mt="md" mb="xs" style={{ cursor: "pointer" }}>
           <Text weight={500}>{home.attributes.street}</Text>
 
-          <Badge color="green" variant="light">
+          <Badge color="green" variant="light" size="xs">
             {new Intl.NumberFormat("en-us", {
               style: "currency",
               currency: "USD",
@@ -41,7 +41,14 @@ const HomeCard = (props) => {
         </ReactMarkdown>
       </Text> */}
 
-      <Button variant="light" color="blue" fullWidth mt="md" radius="md">
+      <Button
+        variant="light"
+        color="blue"
+        fullWidth
+        mt="md"
+        radius="md"
+        className="offer-button"
+      >
         Make an Offer
       </Button>
     </Card>

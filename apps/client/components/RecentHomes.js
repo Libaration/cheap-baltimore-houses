@@ -1,7 +1,14 @@
 import { SimpleGrid } from "@mantine/core";
 import HomeCard from "./HomeCard";
-const renderHomes = (homes) => {
-  return homes.map((home) => <HomeCard key={home.id} home={home} />);
+const renderHomes = (homes, count) => {
+  let total = 0;
+  return homes.map((home) => {
+    total = total + 1;
+    if (total > count) {
+      return;
+    }
+    return <HomeCard key={home.id} home={home} />;
+  });
 };
 const RecentHomes = (props) => {
   return (
@@ -15,7 +22,7 @@ const RecentHomes = (props) => {
         { maxWidth: 676, cols: 1, spacing: "xs" },
       ]}
     >
-      {renderHomes(props.homes)}
+      {renderHomes(props.homes, props.max)}
     </SimpleGrid>
   );
 };

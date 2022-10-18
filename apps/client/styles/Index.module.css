@@ -31,12 +31,23 @@
   min-height: 0;
   box-sizing: border-box;
   height: 1px;
-  padding-top: 1.5rem;
-  padding-left: 1.5rem;
+  padding: 0;
+  margin: 0;
   background: #f8f9fa;
+  height: 100vh;
 }
 .pageOneBgImage {
   filter: brightness(0.7) blur(1px);
+}
+
+.pageTwoBgImage {
+  background-color: #f8f9fa;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-image: url("https://i.postimg.cc/wxp9nFyX/crop.jpg");
+  background-position: left;
+  background-repeat: no-repeat;
 }
 .imageContainer img {
   position: fixed !important;

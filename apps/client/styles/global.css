@@ -5,3 +5,28 @@
 body {
   overscroll-behavior-y: none;
 }
+
+.homeCard {
+  transition: transform 0.3s;
+}
+.homeCard:hover {
+  background-color: #bfb0879a;
+  color: white;
+  transform: scale(1.05);
+}
+.homeCard:hover .offer-button {
+  background-color: #bfb087;
+  color: white;
+  opacity: 0.9;
+}
+.homeCard:hover .offer-button:hover {
+  background-color: black;
+  color: white;
+  opacity: 0.9;
+}
+.offer-button {
+  background-color: rgb(232, 232, 232);
+  color: black;
+  opacity: 0.9;
+  transition: background-color 0.3s;
+}

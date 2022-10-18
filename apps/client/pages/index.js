@@ -22,6 +22,17 @@ export default function Index(props) {
   const [sideNavOpened, setSideNavOpened] = useState(false);
   return (
     <>
+      <div className={styles.imageContainer}>
+        <Image
+          src="https://wallpaper.dog/large/10989205.jpg"
+          layout="fill"
+          sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+          alt="whocares"
+          className={styles.pageOneBgImage}
+        />
+      </div>
       <Headroom style={{ zIndex: 2 }}>
         <Header height={80} p="md" className={styles.topNav}>
           <div
@@ -96,22 +107,24 @@ export default function Index(props) {
           </Navbar>
         }
       >
+        <Card
+          shadow="sm"
+          style={{
+            zIndex: 1,
+            backgroundColor: "black",
+            opacity: 0.8,
+            borderRadius: "0px",
+          }}
+        >
+          <span style={{ color: "white" }}>
+            We pay all closing costs! Here is how it works
+          </span>
+        </Card>
         <Container py="lg" px="lg" size="lg">
           <Card shadow="sm" pb="lg" radius="md" style={{ zIndex: 1 }}>
-            <RecentHomes homes={props.data} />
+            <RecentHomes homes={props.data} max={4} />
           </Card>
         </Container>
-        <div className={styles.imageContainer}>
-          <Image
-            src="https://wallpaper.dog/large/10989205.jpg"
-            layout="fill"
-            sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
-            alt="whocares"
-            className={styles.pageOneBgImage}
-          />
-        </div>
       </AppShell>
     </>
   );
