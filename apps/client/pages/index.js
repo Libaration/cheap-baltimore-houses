@@ -1,7 +1,7 @@
 import RecentHomes from "../components/RecentHomes";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Headroom from "react-headroom";
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import {
   AppShell,
   Navbar,
@@ -16,13 +16,16 @@ import {
   Box,
   Center,
 } from "@mantine/core";
-import Image from "next/image";
+import Image from "next/future/image";
 import styles from "../styles/Index.module.css";
 import NavSections from "../components/NavSections";
 import TimelineSection from "../components/TimelineSection";
 console.log(styles);
 export default function Index(props) {
-  const { scrollYProgress } = useScroll();
+  const cloudRef = useRef();
+  const { scrollY } = useScroll();
+  const ySpring = useSpring(scrollY, { stiffness: 300, damping: 200 });
+  const y = useTransform(ySpring, [0, 1000], [0, 500]);
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   const [sideNavOpened, setSideNavOpened] = useState(false);
@@ -31,7 +34,8 @@ export default function Index(props) {
       <div className={styles.imageContainer}>
         <Image
           src="https://wallpaper.dog/large/10989205.jpg"
-          layout="fill"
+          style={{ zIndex: -3 }}
+          fill
           sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
@@ -149,6 +153,30 @@ export default function Index(props) {
             </Card>
           </Grid.Col>
         </Grid>
+        <div className={styles.sideImageContainer}>
+          <motion.div style={{ x: y }}>
+            <Image
+              src="/cloud.png"
+              height={100}
+              width={120}
+              style={{ position: "relative", zIndex: -3, top: "6.5rem" }}
+              ref={cloudRef}
+            />
+          </motion.div>
+          <Image
+            src="https://www.pngmart.com/files/16/Vector-Modern-House-PNG-Transparent-Image.png"
+            height={400}
+            width={400}
+            style={{
+              marginTop: "-2rem",
+              paddingBottom: "5rem",
+              paddingLeft: "4rem",
+              position: "relative",
+              zIndex: -1,
+              left: "-6rem",
+            }}
+          />
+        </div>
       </AppShell>
       <div style={{ backgroundColor: "white", height: "100%" }}>
         <motion.div
