@@ -1,5 +1,5 @@
 import RecentHomes from "../components/RecentHomes";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Headroom from "react-headroom";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import {
@@ -14,15 +14,13 @@ import {
   Container,
   Grid,
   Box,
-  Center,
+  Title,
 } from "@mantine/core";
 import Image from "next/future/image";
 import styles from "../styles/Index.module.css";
 import NavSections from "../components/NavSections";
 import TimelineSection from "../components/TimelineSection";
-console.log(styles);
 export default function Index(props) {
-  const cloudRef = useRef();
   const { scrollY } = useScroll();
   const ySpring = useSpring(scrollY, { stiffness: 300, damping: 200 });
   const y = useTransform(ySpring, [0, 1000], [0, 500]);
@@ -130,7 +128,12 @@ export default function Index(props) {
             We pay all closing costs! Here is how it works
           </span>
         </Card>
-        <Grid mt="1rem" pl={"1rem"} style={{ width: "100%" }}>
+
+        <Grid
+          pb={"2rem"}
+          mt={"0.5rem"}
+          style={{ width: "100vw", height: "100vh" }}
+        >
           <Grid.Col md={6} lg={4}>
             <Card>
               lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
@@ -152,38 +155,49 @@ export default function Index(props) {
               aliquam
             </Card>
           </Grid.Col>
-        </Grid>
 
-        <motion.div style={{ x: y }}>
+          <motion.div style={{ x: y }}>
+            <MediaQuery smallerThan="md" styles={{ display: "none" }}>
+              <Image
+                src="/cloud.png"
+                height={100}
+                width={120}
+                style={{ position: "relative", zIndex: 1, top: "9rem" }}
+                alt=""
+              />
+            </MediaQuery>
+          </motion.div>
           <MediaQuery smallerThan="md" styles={{ display: "none" }}>
             <Image
-              src="/cloud.png"
-              height={100}
-              width={120}
-              style={{ position: "relative", zIndex: 1, top: "9rem" }}
-              ref={cloudRef}
+              src="https://www.pngmart.com/files/16/Vector-Modern-House-PNG-Transparent-Image.png"
+              height={400}
+              width={400}
+              objectFit="contain"
               alt=""
+              style={{
+                marginTop: "1rem",
+
+                position: "relative",
+                zIndex: -1,
+                left: "-6rem",
+              }}
             />
           </MediaQuery>
-        </motion.div>
-        <MediaQuery smallerThan="md" styles={{ display: "none" }}>
-          <Image
-            src="https://www.pngmart.com/files/16/Vector-Modern-House-PNG-Transparent-Image.png"
-            height={400}
-            width={400}
-            objectFit="contain"
-            alt=""
+          <div
             style={{
-              marginTop: "-2rem",
-              paddingBottom: "5rem",
-              paddingLeft: "4rem",
-              position: "relative",
-              zIndex: -1,
-              left: "-6rem",
+              alignSelf: "center",
             }}
-          />
-        </MediaQuery>
+          >
+            <Title
+              mt={"10rem"}
+              style={{ fontSize: "12rem", color: "white", fontFamily: "Oakes" }}
+            >
+              Take a tour!
+            </Title>
+          </div>
+        </Grid>
       </AppShell>
+
       <MediaQuery smallerThan="sm" styles={{ marginTop: "1.5rem" }}>
         <div style={{ backgroundColor: "white", height: "100%" }}>
           <motion.div
