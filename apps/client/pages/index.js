@@ -159,7 +159,7 @@ export default function Index(props) {
               src="/cloud.png"
               height={100}
               width={120}
-              style={{ position: "relative", zIndex: -3, top: "6.5rem" }}
+              style={{ position: "relative", zIndex: 1, top: "7.5rem" }}
               ref={cloudRef}
             />
           </motion.div>
