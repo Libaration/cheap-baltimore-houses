@@ -3,8 +3,14 @@ export default function Index(props) {
   return (
     <div className="main">
       <div className="backgroundHero">
+        <div className="text-center">
+          <h4 className="smallHeroText">Cheap Baltimore Houses </h4>
+          <h1 className="heroText">Cheap</h1>
+          <h1 className="heroText">Baltimore</h1>
+          <h1 className="heroText">Houses</h1>
+        </div>
+
         <NavBar />
-        <div>abcdefg</div>
       </div>
     </div>
   );
