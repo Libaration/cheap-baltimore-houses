@@ -135,7 +135,7 @@ body {
   color: #666;
   font-size: 20px;
   line-height: 32px;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 html {
   font-family: Lato, sans-serif;
@@ -145,16 +145,16 @@ html {
   display: block;
 }
 .main {
-  overflow: hidden !important;
+  overflow-x: hidden !important;
   height: auto;
   width: 100%;
 }
-.backgroundHero {
+.section {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 125vh;
+  height: 110vh;
   padding-right: 4%;
   padding-left: 4%;
   -webkit-box-orient: vertical;
@@ -170,7 +170,7 @@ html {
   -webkit-align-items: stretch;
   -ms-flex-align: stretch;
   align-items: stretch;
-  height: 110vh;
+  /* height: 110vh; */
   overflow: hidden;
 
   /* background-image: -webkit-gradient(linear,left top,left bottom,from(#151623),color-stop(40%,transparent)),-webkit-gradient(linear,left top,left bottom,from(transparent),color-stop(95%,#151623)),-webkit-gradient(linear,left top,left bottom,from(transparent),to(transparent)),url("https://assets.website-files.com/5ee8e894dfcfd4765c67b3cc/5f3178e90188e73d09f78318_pexels-alex-azabache-4039921%20(1).jpg"); */
@@ -182,33 +182,25 @@ html {
   background-position: 0 0, 0 0, 0 0, 50% 50%;
   background-size: auto, auto, auto, cover;
 }
-@media screen and (max-width: 991px) {
-  blockquote,
-  body,
-  p {
-    font-size: 16px;
-    line-height: 28px;
-  }
-}
 
 @media screen and (max-width: 479px) {
-  .backgroundHero {
+  .section {
     padding-top: 2em;
   }
 }
 @media screen and (max-width: 767px) {
-  .backgroundHero {
+  .section {
     padding-right: 2%;
     padding-left: 2%;
   }
 }
 @media screen and (max-width: 991px) {
-  .backgroundHero {
+  .section {
     padding-top: 4em;
     padding-bottom: 4em;
   }
 }
-.backgroundHero {
+.section {
   position: relative;
   padding: 4em 4%;
   background-color: #fff;
@@ -219,7 +211,7 @@ html {
   color: white;
   font-size: 40px;
   line-height: 40px;
-  word-break: break-all;
+  overflow-wrap: break-word;
 }
 .smallHeroText {
   font-family: "Karla", sans-serif;
@@ -229,5 +221,84 @@ html {
   font-weight: 700;
   letter-spacing: 0.5em;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 3vw;
+}
+@media screen and (min-width: 300px) {
+  .heroText {
+    font-size: 4vh;
+    line-height: 4vh;
+  }
+}
+.seeOurPropertiesButton {
+  font-size: small;
+  height: auto;
+  width: 15vh;
+  padding: 1px !important;
+}
+.seeOurPropertiesButton span {
+  font-size: 1.5vh;
+}
+.sky {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 110vh;
+  padding-right: 4%;
+  padding-left: 4%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  /* height: 110vh; */
+  overflow: hidden;
+  background-position: 0 0, 0 0, 0 0, 50% 50%;
+  background-size: auto, auto, auto, cover;
+  left: 0;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  object-fit: cover;
+  z-index: 1;
+}
+.city {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 110vh;
+  padding-right: 4%;
+  padding-left: 4%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  /* height: 110vh; */
+  overflow: hidden;
+  background-position: 0 0, 0 0, 0 0, 50% 50%;
+  background-size: auto, auto, auto, cover;
+  left: 0;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  object-fit: cover;
+  z-index: 1;
 }
