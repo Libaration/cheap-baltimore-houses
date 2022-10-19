@@ -1,0 +1,27 @@
+.NavMain {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: auto;
+  /* display: -webkit-box; */
+  /* display: -webkit-flex; */
+  display: -ms-flexbox;
+  display: flex;
+  width: 94%;
+  /* height: 78px; */
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+  -webkit-box-pack: justify;
+  /* -webkit-justify-content: space-between; */
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  /* -webkit-align-self: center; */
+  -ms-flex-item-align: center;
+  align-self: center;
+  -webkit-box-flex: 0;
+  /* -webkit-flex: 0 0 auto; */
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}

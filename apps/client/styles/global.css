@@ -1,36 +1,211 @@
-:root {
-  --topNav-height: 80px;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
-
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
 body {
-  overscroll-behavior-y: none;
-  font-family: "Oakes" !important;
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: #fff;
+  font-family: Lato, sans-serif;
+  color: #666;
+  font-size: 20px;
+  line-height: 32px;
 }
 html {
-  font-family: "Oakes" !important;
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  height: 100%;
+  display: block;
 }
+.main {
+  overflow: hidden;
+  height: auto;
+  width: 100%;
+}
+@media screen and (max-width: 991px) {
+  blockquote,
+  body,
+  p {
+    font-size: 16px;
+    line-height: 28px;
+  }
+}
+.backgroundHero {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 125vh;
+  padding-right: 4%;
+  padding-left: 4%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  height: 110vh;
 
-.homeCard {
-  transition: transform 0.3s;
+  /* background-image: -webkit-gradient(linear,left top,left bottom,from(#151623),color-stop(40%,transparent)),-webkit-gradient(linear,left top,left bottom,from(transparent),color-stop(95%,#151623)),-webkit-gradient(linear,left top,left bottom,from(transparent),to(transparent)),url("https://assets.website-files.com/5ee8e894dfcfd4765c67b3cc/5f3178e90188e73d09f78318_pexels-alex-azabache-4039921%20(1).jpg"); */
+  background-image: linear-gradient(180deg, #151623, transparent 40%),
+    linear-gradient(180deg, transparent, #151623 95%),
+    linear-gradient(180deg, transparent, transparent),
+    url("https://assets.website-files.com/5ee8e894dfcfd4765c67b3cc/5f3178e90188e73d09f78318_pexels-alex-azabache-4039921%20(1).jpg");
+
+  background-position: 0 0, 0 0, 0 0, 50% 50%;
+  background-size: auto, auto, auto, cover;
 }
-.homeCard:hover {
-  background-color: #bfb0879a;
-  color: white;
-  transform: scale(1.05);
+@media screen and (max-width: 479px) {
+  .backgroundHero {
+    padding-top: 2em;
+  }
 }
-.homeCard:hover .offer-button {
-  background-color: #bfb087;
-  color: white;
-  opacity: 0.9;
+@media screen and (max-width: 767px) {
+  .backgroundHero {
+    padding-right: 2%;
+    padding-left: 2%;
+  }
 }
-.homeCard:hover .offer-button:hover {
-  background-color: black;
-  color: white;
-  opacity: 0.9;
+@media screen and (max-width: 991px) {
+  .backgroundHero {
+    padding-top: 4em;
+    padding-bottom: 4em;
+  }
 }
-.offer-button {
-  background-color: rgb(232, 232, 232);
-  color: black;
-  opacity: 0.9;
-  transition: background-color 0.3s;
+.backgroundHero {
+  position: relative;
+  padding: 4em 4%;
+  background-color: #fff;
 }
