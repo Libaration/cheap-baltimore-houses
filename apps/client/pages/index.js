@@ -180,11 +180,10 @@ export default function Index(props) {
                 src="https://www.pngmart.com/files/16/Vector-Modern-House-PNG-Transparent-Image.png"
                 height={400}
                 width={400}
-                objectFit="contain"
                 alt=""
                 style={{
                   marginTop: "1rem",
-
+                  objectFit: "contain",
                   position: "relative",
                   zIndex: -1,
                   left: "-6rem",
@@ -214,11 +213,7 @@ export default function Index(props) {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <Container py="lg" px="lg" size="lg">
-              <Card shadow="sm" pb="lg" radius="md">
-                <RecentHomes homes={props.data} max={4} />
-              </Card>
-            </Container>
+            <RecentHomes homes={props.data} max={3} />
           </motion.div>
         </div>
       </MediaQuery>

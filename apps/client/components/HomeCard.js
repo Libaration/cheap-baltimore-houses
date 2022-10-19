@@ -1,4 +1,5 @@
-import { Card, Image, Text, Badge, Button, Group, Center } from "@mantine/core";
+import { Card, Col, Row, Button, Text, Grid, Badge } from "@nextui-org/react";
+import { Center } from "@mantine/core";
 import ReactMarkdown from "react-markdown";
 import { getStrapiMedia } from "../lib/media";
 import remarkGfm from "remark-gfm";
@@ -6,52 +7,96 @@ import Link from "next/link";
 const HomeCard = (props) => {
   const { home } = props;
   return (
-    <Card shadow="sm" pb="lg" radius="md" withBorder className="homeCard">
-      <Link href={`/homes/${encodeURIComponent(home.id)}`} passHref>
-        <Card.Section>
-          <Center>
-            <Image
-              src={
-                home.attributes.cover_image.data.attributes.formats.medium.url
-              }
-              height={300}
-              width={400}
-              alt="house image"
-              fit="contain"
-              style={{ cursor: "pointer" }}
-            />
-          </Center>
-        </Card.Section>
-      </Link>
-      <Link href={`/homes/${encodeURIComponent(home.id)}`} passHref>
-        <Group position="apart" mt="md" mb="xs" style={{ cursor: "pointer" }}>
-          <Text weight={500}>{home.attributes.street}</Text>
+    //src={home.attributes.cover_image.data.attributes.formats.medium.url}
+    // {home.attributes.street}
+    /* 
+     {new Intl.NumberFormat("en-us", {
+            style: "currency",
+            currency: "USD",
+          }).format(home.attributes.price)}
+          */
 
-          <Badge color="green" variant="light" size="xs">
-            {new Intl.NumberFormat("en-us", {
-              style: "currency",
-              currency: "USD",
-            }).format(home.attributes.price)}
-          </Badge>
-        </Group>
-      </Link>
-      {/* <Text size="xs" color="dimmed" lineClamp={4}>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-          {home.attributes.description}
-        </ReactMarkdown>
-      </Text> */}
+    <Grid xs={4}>
+      <Card css={{ w: "460px", h: "430px" }} isHoverable isPressable>
+        <Card.Header
+          style={{
+            backgroundColor: "#252526",
+            opacity: 0.9,
+            height: "3.5rem",
+            boxShadow:
+              "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+          }}
+        >
+          <Col>
+            <Text color="#d1d1d1" size={12}>
+              {home.attributes.street}
+            </Text>
+          </Col>
 
-      <Button
-        variant="light"
-        color="blue"
-        fullWidth
-        mt="md"
-        radius="md"
-        className="offer-button"
-      >
-        Make an Offer
-      </Button>
-    </Card>
+          <Col>
+            <Row justify="flex-end">
+              <Badge
+                size="xs"
+                color="success"
+                style={{
+                  border: "none",
+                  fontFamily: "Oakes",
+                  padding: "8px",
+                  fontWeight: "lighter",
+                  paddingTop: "0.6rem",
+                }}
+              >
+                {new Intl.NumberFormat("en-us", {
+                  style: "currency",
+                  currency: "USD",
+                }).format(home.attributes.price)}
+              </Badge>
+            </Row>
+          </Col>
+        </Card.Header>
+        <Card.Body css={{ p: 0 }}>
+          <Card.Image
+            src={home.attributes.cover_image.data.attributes.formats.medium.url}
+            objectFit="cover"
+            width="100%"
+            height="100%"
+            alt=""
+          />
+        </Card.Body>
+
+        <Card.Footer
+          isBlurred
+          css={{
+            position: "absolute",
+            bgBlur: "#25252699 ",
+            borderTop: "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
+            bottom: 0,
+            zIndex: 1,
+          }}
+        >
+          <Row>
+            <Col>
+              <Row>
+                <Col></Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row justify="flex-end">
+            <Button flat auto rounded css={{ color: "#ffff", bg: "#252526" }}>
+              <Text
+                css={{ color: "inherit" }}
+                size={12}
+                weight="bold"
+                transform="uppercase"
+                style={{ fontFamily: "Oakes" }}
+              >
+                Make an Offer
+              </Text>
+            </Button>
+          </Row>
+        </Card.Footer>
+      </Card>
+    </Grid>
   );
 };
 

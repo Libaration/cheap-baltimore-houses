@@ -18,6 +18,7 @@
     "@mantine/next": "^5.5.4",
     "@mantine/notifications": "^5.5.4",
     "@mantine/rte": "^5.5.4",
+    "@nextui-org/react": "^1.0.0-beta.10",
     "bootstrap": "^5.2.2",
     "dayjs": "^1.11.5",
     "framer-motion": "^7.6.1",

@@ -1,6 +1,8 @@
-import { SimpleGrid, Indicator } from "@mantine/core";
+import { SimpleGrid, Indicator, Center } from "@mantine/core";
+import { Grid } from "@nextui-org/react";
 import HomeCard from "./HomeCard";
 import { motion } from "framer-motion";
+
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -35,8 +37,6 @@ const RecentHomes = (props) => {
       inline
       label="Recent Homes"
       size={34}
-      mt="0.5rem"
-      pt="0.5rem"
       position="top-center"
       color="dark"
       radius="xs"
@@ -49,7 +49,7 @@ const RecentHomes = (props) => {
         whileInView={"show"}
         viewport={{ once: true }}
       >
-        <SimpleGrid
+        {/* <SimpleGrid
           cols={4}
           spacing="xs"
           breakpoints={[
@@ -58,9 +58,17 @@ const RecentHomes = (props) => {
             { maxWidth: 868, cols: 2, spacing: "sm" },
             { maxWidth: 676, cols: 1, spacing: "xs" },
           ]}
+        > */}
+
+        <Grid.Container
+          gap={1}
+          justify="center"
+          style={{ width: "100vw", marginTop: "1rem" }}
         >
           {renderHomes(props.homes, props.max)}
-        </SimpleGrid>
+        </Grid.Container>
+
+        {/* </SimpleGrid> */}
       </motion.div>
     </Indicator>
   );
