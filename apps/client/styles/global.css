@@ -233,7 +233,10 @@ html {
   font-size: small;
   height: auto;
   width: 15vh;
+  margin-top: 0.3rem !important;
   padding: 1px !important;
+  background: none !important;
+  border-color: #e3af5b !important;
 }
 .seeOurPropertiesButton span {
   font-size: 1.5vh;
@@ -301,4 +304,9 @@ html {
   margin: 0;
   object-fit: cover;
   z-index: 1;
+  opacity: 0;
+}
+.homesSection {
+  background-color: #fff;
+  background-image: none;
 }
