@@ -272,6 +272,7 @@ html {
   margin: 0;
   object-fit: cover;
   z-index: 1;
+  width: 100%;
 }
 .city {
   display: -webkit-box;
@@ -281,6 +282,7 @@ html {
   height: 110vh;
   padding-right: 4%;
   padding-left: 4%;
+  width: 100%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -303,9 +305,10 @@ html {
   padding: 0;
   margin: 0;
   object-fit: cover;
-  z-index: 1;
+  z-index: 3;
   opacity: 0;
 }
+
 .homesSection {
   background-color: #fff;
   background-image: none;
