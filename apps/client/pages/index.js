@@ -1,5 +1,6 @@
 import NavBar from "../components/NavBar";
 import { Button } from "primereact/button";
+import { InputText } from "primereact/inputtext";
 import { useRef } from "react";
 import { useParallax, Parallax } from "react-scroll-parallax";
 import Image from "next/future/image";
@@ -91,6 +92,36 @@ export default function Index(props) {
         </div>
 
         <div className="section homesSection" id="#next" ref={page2Ref}>
+          <div className="signUpWrapper">
+            <div className="surface-0 text-700 text-center">
+              <div className="text-900 font-bold text-5xl mb-3">
+                Join Our Community
+              </div>
+              <div className="text-700 text-2xl mb-5">
+                Get access to listings as soon as they are posted!
+              </div>
+
+              <InputText value="" />
+              <br />
+
+              <Button
+                label="Join Now"
+                icon="pi pi-envelope"
+                style={{ marginTop: "1rem" }}
+              />
+            </div>
+          </div>
+          lorem ipsum <br />
+          lorem ipsum <br />
+          lorem ipsum <br />
+          more text <br /> lorem ipsum <br />
+          lorem ipsum <br />
+          lorem ipsum <br />
+          more text <br />
+          lorem ipsum <br />
+          lorem ipsum <br />
+          lorem ipsum <br />
+          more text <br />
           <h1>MORE STUFF I GUESS</h1>
           <ul>
             <li>1</li>
