@@ -3,7 +3,7 @@ services:
     name: cbh-api
     env: node
 
-    plan: starter
+    plan: free
     region: ohio
     buildCommand: yarn install && yarn build
     startCommand: yarn start
