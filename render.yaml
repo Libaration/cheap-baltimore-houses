@@ -11,6 +11,7 @@ services:
     disk:
       name: cbh-api-uploads
       mountPath: /opt/render/project/src/public/uploads
+      sizeMB: 512
     envVars:
       - key: NODE_VERSION
         value: 16.14
