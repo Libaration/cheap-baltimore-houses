@@ -49,6 +49,19 @@ export default function Index(props) {
   //   // shouldAlwaysCompleteAnimation: true,
   //   // target: target.current,
   // });
+  const createSubscription = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const res = await fetch("/api/create-subscription", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+  };
 
   return (
     <>
@@ -108,6 +121,7 @@ export default function Index(props) {
                 label="Join Now"
                 icon="pi pi-envelope"
                 style={{ marginTop: "1rem" }}
+                onClick={createSubscription}
               />
             </div>
           </div>
@@ -142,7 +156,9 @@ export default function Index(props) {
   );
 }
 export async function getServerSideProps(context) {
-  const fetchHomes = await fetch("http://localhost:1337/api/homes?populate=*");
+  const fetchHomes = await fetch(
+    "http://localhost:1337/api/homes?populate=*&pagination[pageSize]=4&sort=id:DESC"
+  );
   const response = await fetchHomes.json();
   const { data } = response;
   return { props: { data } };
