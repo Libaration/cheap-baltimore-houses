@@ -50,6 +50,21 @@ export default function Index(props) {
   //   // target: target.current,
   // });
 
+  const createSubscription = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const res = await fetch("/api/create-subscription", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+  };
+  console.log(props);
+
   return (
     <>
       <div className="main">
@@ -108,26 +123,10 @@ export default function Index(props) {
                 label="Join Now"
                 icon="pi pi-envelope"
                 style={{ marginTop: "1rem" }}
+                onClick={createSubscription}
               />
             </div>
           </div>
-          lorem ipsum <br />
-          lorem ipsum <br />
-          lorem ipsum <br />
-          more text <br /> lorem ipsum <br />
-          lorem ipsum <br />
-          lorem ipsum <br />
-          more text <br />
-          lorem ipsum <br />
-          lorem ipsum <br />
-          lorem ipsum <br />
-          more text <br />
-          <h1>MORE STUFF I GUESS</h1>
-          <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-          </ul>
         </div>
         <div className="section" id="#next">
           <h1>MORE STUFF I GUESS</h1>
@@ -142,7 +141,9 @@ export default function Index(props) {
   );
 }
 export async function getServerSideProps(context) {
-  const fetchHomes = await fetch("http://localhost:1337/api/homes?populate=*");
+  const fetchHomes = await fetch(
+    "http://localhost:1337/api/homes?populate=*&pagination[pageSize]=4&sort=id:DESC"
+  );
   const response = await fetchHomes.json();
   const { data } = response;
   return { props: { data } };
