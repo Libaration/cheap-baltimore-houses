@@ -11,6 +11,20 @@ const nextConfig = {
       },
     ],
   },
+  // rewrites: async () => {
+  //   return [
+  //     {
+  //       source: "/:path*",
+  //       has: [
+  //         {
+  //           type: "host",
+  //           value: "api.cheapbaltimorehouses.com",
+  //         },
+  //       ],
+  //       destination: "http://localhost:1337/:path*",
+  //     },
+  //   ];
+  // },
 };
 
 module.exports = nextConfig;

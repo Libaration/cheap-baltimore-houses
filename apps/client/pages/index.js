@@ -157,7 +157,7 @@ export default function Index(props) {
 }
 export async function getServerSideProps(context) {
   const fetchHomes = await fetch(
-    "http://localhost:1337/api/homes?populate=*&pagination[pageSize]=4&sort=id:DESC"
+    `${process.env.BASE_URL}/api/homes?populate=*&pagination[pageSize]=4&sort=id:DESC`
   );
   const response = await fetchHomes.json();
   const { data } = response;
