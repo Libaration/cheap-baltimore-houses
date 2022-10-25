@@ -7,6 +7,7 @@ services:
     ports:
       - 1337:1337
     platform: linux/amd64
+    image: cbhregistry.azurecr.io/api:latest
   nextjs:
     depends_on:
       - api
@@ -16,8 +17,10 @@ services:
     environment:
       - BASE_URL=http://api:1337
     platform: linux/amd64
+    image: cbhregistry.azurecr.io/nextjs:latest
   nginx:
     build: ./nginx
     ports:
       - 80:80
     platform: linux/amd64
+    image: cbhregistry.azurecr.io/nginx:latest

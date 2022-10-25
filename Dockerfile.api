@@ -1,14 +1,13 @@
 FROM --platform=linux/amd64 node:16-alpine as server-builder
-RUN apk add --no-cache libc6-compat
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /app
+RUN apk add --no-cache libc6-compat
 COPY . .
 RUN npx turbo prune --scope=cheap-baltimore-houses
-RUN echo "where am I?" && pwd && ls out
 RUN cd out && \
     cp -R ../patches . && \
-    yarn install && \
+    yarn install --network-timeout 1000000 && \
     npx turbo run build --filter=cheap-baltimore-houses && \
     rm -rf node_modules/.cache .yarn/cache apps/cheap-baltimore-houses/.cache
 
@@ -20,5 +19,4 @@ COPY --chown=node:node --from=server-builder /app/out .
 WORKDIR /app/apps/cheap-baltimore-houses
 USER 1000
 EXPOSE 1337
-RUN ls -la
 CMD ["yarn", "start"]

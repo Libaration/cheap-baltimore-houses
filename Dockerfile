@@ -1,10 +1,10 @@
 FROM --platform=linux/amd64 node:16-alpine as server-builder
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
+RUN apk add --no-cache libc6-compat
 COPY . .
 RUN npx turbo prune --scope=client
 RUN cd out && \
-    yarn install && \ 
+    yarn install --network-timeout 1000000 && \ 
     yarn turbo run build --filter=client && \
     yarn install --prod && \
     rm -rf node_modules/.cache .yarn/cache apps/client/.next/cache
