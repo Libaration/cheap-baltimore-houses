@@ -3,7 +3,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { useRef } from "react";
 import { useParallax, Parallax } from "react-scroll-parallax";
-import Image from "next/future/image";
+import Image from "next/image";
 import logo from "../public/logo.png";
 import cityOverlay from "../public/city.png";
 import skyOverlay from "../public/sky.png";
