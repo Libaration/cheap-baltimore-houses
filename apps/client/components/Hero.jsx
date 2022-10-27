@@ -1,7 +1,7 @@
 import { Button } from "primereact/button";
 import { useRef } from "react";
 import { useParallax } from "react-scroll-parallax";
-import Image from "next/image";
+import Image from "next/future/image";
 import cityOverlay from "../public/city.png";
 import skyOverlay from "../public/sky.png";
 import { Builder } from "@builder.io/react";
