@@ -1,11 +1,34 @@
 import { InputText } from "primereact/inputtext";
-import { Builder } from "@builder.io/react";
+import { Builder, builder } from "@builder.io/react";
 import { useState } from "react";
-const Textbox = () => {
+export async function getStaticProps() {
+  const placeholder = await builder
+    .get("placeholder", {
+      // You can use options for queries, sorting, and targeting here
+      // https://github.com/BuilderIO/builder/blob/main/packages/core/docs/interfaces/GetContentOptions.md
+    })
+    .promise();
+
+  return {
+    props: {
+      placeholder: placeholder || null,
+    },
+    revalidate: 5,
+  };
+}
+const Textbox = (props) => {
   const [value, setValue] = useState("");
+  console.log(props);
   const onChange = (e) => setValue(e.target.value);
 
-  return <InputText type="text" value={value} onChange={onChange} />;
+  return (
+    <InputText
+      type="text"
+      value={value}
+      onChange={onChange}
+      placeholder={props.placeholder}
+    />
+  );
 };
 
 export default Textbox;
@@ -15,7 +38,8 @@ Builder.registerComponent(Textbox, {
     {
       name: "placeholder",
       type: "string",
-      defaultValue: "",
+      defaultValue: "Placeholder text",
+      required: true,
     },
   ],
   // Adding defaults is important for easy usability
