@@ -6,13 +6,8 @@ import { BuilderComponent, builder, useIsPreviewing } from "@builder.io/react";
 import Hero from "../components/Hero";
 import Section from "../components/Section";
 import Textbox from "../components/Textbox";
-// Initialize the Builder SDK with your organization's API Key
-// Find the API Key on: https://builder.io/account/settings
-
+import HomeCard from "../components/HomeCard";
 export async function getStaticProps({ params }) {
-  // Fetch the first page from Builder that matches the current URL.
-  // Use the `userAttributes` field for targeting content.
-  // For more, see https://www.builder.io/c/docs/targeting-with-builder
   const page = await builder
     .get("page", {
       userAttributes: {
