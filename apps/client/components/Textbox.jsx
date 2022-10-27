@@ -18,7 +18,6 @@ export async function getStaticProps() {
 }
 const Textbox = (props) => {
   const [value, setValue] = useState("");
-  console.log(props);
   const onChange = (e) => setValue(e.target.value);
 
   return (
