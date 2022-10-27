@@ -5,13 +5,14 @@
     "apps/*"
   ],
   "devDependencies": {
+    "mini-css-extract-plugin": "^2.6.1",
     "turbo": "^1.6.1"
   },
   "scripts": {
     "build": "yarn dbbackup && turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
-    "dbbackup": "cp apps/cheap-baltimore-houses/.tmp/data.db ~/Desktop/db",
+    "dbbackup": "cp apps/cheap-baltimore-houses/.tmp/data.db $HOME/Desktop/db",
     "dev": "turbo run dev --parallel --no-cache",
     "clean": "rm -rf apps/cheap-baltimore-houses/.cache && rm -rf apps/cheap-baltimore-houses/build && yarn cache clean && yarn && yarn build --no-cache",
     "postinstall": "patch-package"
@@ -20,5 +21,6 @@
     "global": "^4.4.0",
     "patch-package": "^6.4.7",
     "postinstall-postinstall": "^2.1.0"
-  }
+  },
+  "packageManager": "yarn@3.2.4"
 }
