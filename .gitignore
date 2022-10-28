@@ -36,7 +36,19 @@ client/.vercel
 client/*.tsbuildinfo
 client/next-env.d.ts
 
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
+_dev
+.next
+node_modules
+
+.env
+.env*.local
 ############################
 # OS X
 ############################
