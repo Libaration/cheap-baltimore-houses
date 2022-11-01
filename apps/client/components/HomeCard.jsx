@@ -2,7 +2,7 @@ import { builder, Builder } from "@builder.io/react";
 import { Card, Text } from "@nextui-org/react";
 export async function getStaticProps() {
   const placeholder = await builder
-    .get("maxWidth", {
+    .get("maxWidth", "minHeight", "width", "address", "description", {
       // You can use options for queries, sorting, and targeting here
       // https://github.com/BuilderIO/builder/blob/main/packages/core/docs/interfaces/GetContentOptions.md
     })
@@ -11,31 +11,54 @@ export async function getStaticProps() {
   return {
     props: {
       maxWidth: maxWidth || null,
+      minHeight: minHeight || null,
+      width: width || null,
     },
     revalidate: 5,
   };
 }
 const HomeCard = (props) => {
   return (
-    <Card css={{ mw: `${props.maxWidth}` }}>
-      <Card.Body>
-        <Text css={{ fontWeight: "bold" }}>{`${props.address}`}</Text>
-        <Text
-          css={{ fontWeight: "normal", fontSize: "small" }}
-        >{`${props.description}`}</Text>
-      </Card.Body>
-    </Card>
+    <div className="home-card">
+      <Card
+        css={{
+          mw: `${props.maxWidth}`,
+          minHeight: `${props.minHeight}`,
+          width: `${props.width} !important`,
+        }}
+      >
+        <Card.Body>
+          <Text css={{ fontWeight: "bold" }}>{`${props.address}`}</Text>
+          <Text
+            css={{ fontWeight: "normal", fontSize: "small" }}
+          >{`${props.description}`}</Text>
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
 
 export default HomeCard;
 Builder.registerComponent(HomeCard, {
   name: "HomeCard",
+  noWrap: true,
   inputs: [
     {
       name: "maxWidth",
       type: "string",
       defaultValue: "400px",
+      required: true,
+    },
+    {
+      name: "minHeight",
+      type: "string",
+      defaultValue: "300px",
+      required: true,
+    },
+    {
+      name: "width",
+      type: "string",
+      defaultValue: "100%",
       required: true,
     },
     {

@@ -6,10 +6,11 @@
   ],
   "devDependencies": {
     "mini-css-extract-plugin": "^2.6.1",
-    "turbo": "^1.6.1"
+    "turbo": "^1.6.2"
   },
   "scripts": {
-    "build": "yarn dbbackup && turbo run build",
+    "start": "turbo run start",
+    "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
     "dbbackup": "cp apps/cheap-baltimore-houses/.tmp/data.db $HOME/Desktop/db",
@@ -18,7 +19,6 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "global": "^4.4.0",
     "patch-package": "^6.4.7",
     "postinstall-postinstall": "^2.1.0"
   },

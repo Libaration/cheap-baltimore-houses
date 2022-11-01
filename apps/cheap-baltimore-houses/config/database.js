@@ -1,6 +1,7 @@
 const path = require("path");
 
 module.exports = ({ env }) => ({
+  defaultConnection: "default",
   connection: {
     client: "mysql",
     connection: {

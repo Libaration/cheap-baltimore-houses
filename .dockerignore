@@ -1,4 +1,4 @@
-node_modules
+.yarn/cache
 .turbo/
 .azure/
 .git/
@@ -6,12 +6,13 @@ node_modules
 .swc/
 .vscode/
 nginx/
-node_modules/
 .dockerignore
 .env.template
 docker-compose.yml
 Dockerfile
+Dockerfile.api
 notes.md
 npm-debug.log
 README.md
-nginx/
+
+node_modules

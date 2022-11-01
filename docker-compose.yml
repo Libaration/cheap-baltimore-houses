@@ -4,9 +4,10 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.api
+    env_file:
+      - apps/cheap-baltimore-houses/.env
     ports:
       - 1337:1337
-    platform: linux/amd64
     image: cbhregistry.azurecr.io/api:latest
   nextjs:
     depends_on:
@@ -16,11 +17,9 @@ services:
       dockerfile: Dockerfile
     environment:
       - BASE_URL=http://api:1337
-    platform: linux/amd64
     image: cbhregistry.azurecr.io/nextjs:latest
   nginx:
     build: ./nginx
     ports:
       - 80:80
-    platform: linux/amd64
     image: cbhregistry.azurecr.io/nginx:latest
