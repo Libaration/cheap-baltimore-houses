@@ -30,17 +30,32 @@ const HomeCard = (props) => {
   const [description, setDescription] = useState(props.description);
   return (
     <div className="home-card p-4">
-      <Image src={props.image} width={400} height={300} alt="home" />
       <Card
         css={{
           mw: `${props.maxWidth}`,
           minHeight: `${props.minHeight}`,
           width: `${props.width} !important`,
+          maxHeight: "500px",
         }}
       >
+        <Card.Header>
+          <Image src={props.image} width={400} height={300} alt="home" />
+        </Card.Header>
         <Card.Body>
-          <Text css={{ fontWeight: "bold" }}>{`${props.address}`}</Text>
-          <Text css={{ fontWeight: "normal", fontSize: "small" }}>
+          <Text
+            css={{
+              fontWeight: "bold",
+            }}
+          >{`${props.address}`}</Text>
+          <Text
+            css={{
+              fontWeight: "normal",
+              fontSize: "small",
+              color: "gray",
+              verticalAlign: "middle",
+              lineHeight: "1.5",
+            }}
+          >
             {description}
           </Text>
         </Card.Body>
