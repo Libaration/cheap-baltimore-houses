@@ -2,9 +2,10 @@ import { builder, Builder } from "@builder.io/react";
 import { Card, Text } from "@nextui-org/react";
 import ReactMarkdown from "react-markdown";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 export async function getStaticProps() {
   const placeholder = await builder
-    .get("maxWidth", "minHeight", "width", "address", "description", {
+    .get("maxWidth", "minHeight", "width", "address", "description", "image", {
       // You can use options for queries, sorting, and targeting here
       // https://github.com/BuilderIO/builder/blob/main/packages/core/docs/interfaces/GetContentOptions.md
     })
@@ -14,8 +15,9 @@ export async function getStaticProps() {
       maxWidth: maxWidth || null,
       minHeight: minHeight || null,
       width: width || null,
-      address: address || null,
-      description: description || null,
+      address: address || "No address",
+      description: description || "No description",
+      image: image || null,
     },
     revalidate: 5,
   };
@@ -28,6 +30,7 @@ const HomeCard = (props) => {
   const [description, setDescription] = useState(props.description);
   return (
     <div className="home-card p-4">
+      <Image src={props.image} width={400} height={300} alt="home" />
       <Card
         css={{
           mw: `${props.maxWidth}`,
@@ -79,6 +82,12 @@ Builder.registerComponent(HomeCard, {
       name: "description",
       type: "string",
       defaultValue: "Home description",
+      required: true,
+    },
+    {
+      name: "image",
+      type: "string",
+      defaultValue: "https://via.placeholder.com/300",
       required: true,
     },
   ],
