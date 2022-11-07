@@ -1,4 +1,4 @@
-FROM node:alpine AS builder
+FROM --platform=linux/x86_64 node:alpine AS builder
 RUN apk add --no-cache libc6-compat
 RUN apk update
 # Set working directory
@@ -7,7 +7,7 @@ RUN yarn global add turbo
 COPY . .
 RUN turbo prune --scope=client --docker
 
-FROM node:alpine AS installer
+FROM --platform=linux/x86_64 node:alpine AS installer
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY .gitignore .gitignore
@@ -22,7 +22,7 @@ RUN rm -rf node_modules
 RUN yarn install --production --frozen-lockfile --ignore-scripts --prefer-offline
 
 
-FROM node:alpine AS runner
+FROM --platform=linux/x86_64 node:alpine AS runner
 WORKDIR /app
 COPY --from=installer /app/apps/client/package.json ./apps/client/package.json
 COPY --from=installer /app/node_modules ./apps/client/node_modules

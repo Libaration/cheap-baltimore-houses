@@ -1,4 +1,4 @@
-FROM node:16-alpine as prune
+FROM --platform=linux/x86_64 node:16-alpine as prune
 # RUN apt-get update && apt-get install -y libc6-dev
 RUN apk update && apk add  build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev
 RUN apk add --no-cache libc6-compat
@@ -29,7 +29,7 @@ ENV NODE_ENV=${NODE_ENV}
 COPY --from=prune /app/out/full .
 RUN yarn turbo run build --filter=cheap-baltimore-houses
 
-FROM alpine as runner
+FROM --platform=linux/x86_64 alpine as runner
 WORKDIR /app
 COPY --from=builder /app . 
 RUN apk add --update nodejs npm

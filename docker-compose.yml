@@ -19,6 +19,9 @@ services:
       - BASE_URL=http://api:1337
     image: cbhregistry.azurecr.io/nextjs:latest
   nginx:
+    depends_on:
+      - nextjs
+      - api
     build: ./nginx
     ports:
       - 80:80
