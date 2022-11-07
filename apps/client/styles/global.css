@@ -334,7 +334,3 @@ html {
   height: auto !important;
   /* background-image: -webkit-gradient(linear,left top,left bottom,from(#151623),color-stop(40%,transparent)),-webkit-gradient(linear,left top,left bottom,from(transparent),color-stop(95%,#151623)),-webkit-gradient(linear,left top,left bottom,from(transparent),to(transparent)),url("https://assets.website-files.com/5ee8e894dfcfd4765c67b3cc/5f3178e90188e73d09f78318_pexels-alex-azabache-4039921%20(1).jpg"); */
 }
-
-.home-card {
-  width: 100% !important;
-}

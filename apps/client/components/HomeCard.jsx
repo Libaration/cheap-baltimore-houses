@@ -19,7 +19,7 @@ export async function getStaticProps() {
 }
 const HomeCard = (props) => {
   return (
-    <div className="home-card">
+    <div className="home-card p-4">
       <Card
         css={{
           mw: `${props.maxWidth}`,
