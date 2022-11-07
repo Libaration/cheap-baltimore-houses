@@ -1,5 +1,7 @@
 import { builder, Builder } from "@builder.io/react";
 import { Card, Text } from "@nextui-org/react";
+import ReactMarkdown from "react-markdown";
+import { useState, useEffect } from "react";
 export async function getStaticProps() {
   const placeholder = await builder
     .get("maxWidth", "minHeight", "width", "address", "description", {
@@ -7,17 +9,23 @@ export async function getStaticProps() {
       // https://github.com/BuilderIO/builder/blob/main/packages/core/docs/interfaces/GetContentOptions.md
     })
     .promise();
-
   return {
     props: {
       maxWidth: maxWidth || null,
       minHeight: minHeight || null,
       width: width || null,
+      address: address || null,
+      description: description || null,
     },
     revalidate: 5,
   };
 }
 const HomeCard = (props) => {
+  useEffect(() => {
+    setDescription(<ReactMarkdown>{props.description}</ReactMarkdown>);
+  }, [props.description]);
+
+  const [description, setDescription] = useState(props.description);
   return (
     <div className="home-card p-4">
       <Card
@@ -29,9 +37,9 @@ const HomeCard = (props) => {
       >
         <Card.Body>
           <Text css={{ fontWeight: "bold" }}>{`${props.address}`}</Text>
-          <Text
-            css={{ fontWeight: "normal", fontSize: "small" }}
-          >{`${props.description}`}</Text>
+          <Text css={{ fontWeight: "normal", fontSize: "small" }}>
+            {description}
+          </Text>
         </Card.Body>
       </Card>
     </div>
