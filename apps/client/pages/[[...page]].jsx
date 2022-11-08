@@ -7,6 +7,7 @@ import Hero from "../components/Hero";
 import Section from "../components/Section";
 import Textbox from "../components/Textbox";
 import HomeCard from "../components/HomeCard";
+import Home from "../components/Home";
 export async function getStaticProps({ params }) {
   const page = await builder
     .get("page", {
