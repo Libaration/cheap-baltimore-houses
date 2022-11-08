@@ -22,6 +22,11 @@ export async function getStaticProps() {
     revalidate: 5,
   };
 }
+const cloudinaryLoader = ({ src, width, quality }) => {
+  return `https://res.cloudinary.com/libaration/image/upload/w_${width},q_${
+    quality || 75
+  }/${src}`;
+};
 const HomeCard = (props) => {
   useEffect(() => {
     setDescription(<ReactMarkdown>{props.description}</ReactMarkdown>);
@@ -39,7 +44,13 @@ const HomeCard = (props) => {
         }}
       >
         <Card.Header>
-          <Image src={props.image} width={400} height={300} alt="home" />
+          <Image
+            loader={cloudinaryLoader}
+            src={`${props.image}`}
+            width={400}
+            height={300}
+            alt="home"
+          />
         </Card.Header>
         <Card.Body>
           <Text

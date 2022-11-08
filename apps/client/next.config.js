@@ -2,14 +2,21 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+
   images: {
-    loader: "default",
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**",
-      },
-    ],
+    domains: ["res.cloudinary.com"],
+    // remotePatterns: [
+    //   {
+    //     protocol: "https",
+    //     hostname: "res.cloudinary.com",
+    //   },
+    // ],
+    // remotePatterns: [
+    //   {
+    //     protocol: "https",
+    //     hostname: "**",
+    //   },
+    // ],
   },
   // rewrites: async () => {
   //   return [
