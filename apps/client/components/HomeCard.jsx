@@ -2,7 +2,7 @@ import { builder, Builder } from "@builder.io/react";
 import { Card, Text } from "@nextui-org/react";
 import ReactMarkdown from "react-markdown";
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import Image from "next/future/image";
 export async function getStaticProps() {
   const placeholder = await builder
     .get("maxWidth", "minHeight", "width", "address", "description", "image", {
