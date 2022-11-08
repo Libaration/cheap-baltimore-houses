@@ -3,12 +3,23 @@ import { Card, Text } from "@nextui-org/react";
 import ReactMarkdown from "react-markdown";
 import { useState, useEffect } from "react";
 import Image from "next/future/image";
+import { Button } from "primereact/button";
+import Link from "next/link";
 export async function getStaticProps() {
   const placeholder = await builder
-    .get("maxWidth", "minHeight", "width", "address", "description", "image", {
-      // You can use options for queries, sorting, and targeting here
-      // https://github.com/BuilderIO/builder/blob/main/packages/core/docs/interfaces/GetContentOptions.md
-    })
+    .get(
+      "maxWidth",
+      "minHeight",
+      "width",
+      "address",
+      "description",
+      "image",
+      "homeId",
+      {
+        // You can use options for queries, sorting, and targeting here
+        // https://github.com/BuilderIO/builder/blob/main/packages/core/docs/interfaces/GetContentOptions.md
+      }
+    )
     .promise();
   return {
     props: {
@@ -18,6 +29,7 @@ export async function getStaticProps() {
       address: address || "No address",
       description: description || "No description",
       image: image || null,
+      homeId: homeId || null,
     },
     revalidate: 5,
   };
@@ -31,10 +43,9 @@ const HomeCard = (props) => {
   useEffect(() => {
     setDescription(<ReactMarkdown>{props.description}</ReactMarkdown>);
   }, [props.description]);
-
   const [description, setDescription] = useState(props.description);
   return (
-    <div className="home-card p-4">
+    <div className="home-card p-3">
       <Card
         css={{
           mw: `${props.maxWidth}`,
@@ -44,13 +55,16 @@ const HomeCard = (props) => {
         }}
       >
         <Card.Header>
-          <Image
-            loader={cloudinaryLoader}
-            src={`${props.image}`}
-            width={400}
-            height={300}
-            alt="home"
-          />
+          <Link href={`/homes/${encodeURIComponent(props.homeId)}`} passHref>
+            <Image
+              loader={cloudinaryLoader}
+              src={`${props.image}`}
+              width={400}
+              height={300}
+              alt="home"
+              style={{ cursor: "pointer" }}
+            />
+          </Link>
         </Card.Header>
         <Card.Body>
           <Text
@@ -59,6 +73,7 @@ const HomeCard = (props) => {
             }}
           >{`${props.address}`}</Text>
           <Text
+            className="line-clamp"
             css={{
               fontWeight: "normal",
               fontSize: "small",
@@ -70,6 +85,11 @@ const HomeCard = (props) => {
             {description}
           </Text>
         </Card.Body>
+        <Card.Footer css={{ justifyContent: "center" }}>
+          <Link href={`/homes/${encodeURIComponent(props.homeId)}`} passHref>
+            <Button className="make-an-offer-button">Make an Offer</Button>
+          </Link>
+        </Card.Footer>
       </Card>
     </div>
   );
@@ -114,6 +134,11 @@ Builder.registerComponent(HomeCard, {
       name: "image",
       type: "string",
       defaultValue: "https://via.placeholder.com/300",
+      required: true,
+    },
+    {
+      name: "homeId",
+      type: "string",
       required: true,
     },
   ],

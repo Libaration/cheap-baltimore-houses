@@ -334,3 +334,18 @@ html {
   height: auto !important;
   /* background-image: -webkit-gradient(linear,left top,left bottom,from(#151623),color-stop(40%,transparent)),-webkit-gradient(linear,left top,left bottom,from(transparent),color-stop(95%,#151623)),-webkit-gradient(linear,left top,left bottom,from(transparent),to(transparent)),url("https://assets.website-files.com/5ee8e894dfcfd4765c67b3cc/5f3178e90188e73d09f78318_pexels-alex-azabache-4039921%20(1).jpg"); */
 }
+.make-an-offer-button {
+  font-size: small !important;
+  margin-bottom: 10px !important;
+  font-family: Karla, sans-serif !important;
+  background-color: #8b949a !important;
+
+  border: none !important;
+}
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
