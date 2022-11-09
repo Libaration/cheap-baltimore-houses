@@ -349,3 +349,35 @@ html {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.grid-container {
+  display: grid;
+  gap: 20px;
+  grid-template-areas:
+    "home-hero"
+    "home-content";
+}
+.home-hero {
+  grid-area: home-hero;
+  min-height: 400px;
+  min-width: 300px;
+  position: relative;
+  z-index: 2;
+}
+.home-content {
+  grid-area: home-content;
+  font-family: "Karla", sans-serif;
+  height: auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "home-hero home-content" "home-hero home-content";
+  }
+  .home-hero {
+    min-height: 100vh;
+    min-width: 3m0rem;
+  }
+}
