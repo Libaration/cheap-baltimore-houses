@@ -36,7 +36,12 @@ export async function getStaticPaths() {
   });
 
   return {
-    paths: pages.map((page) => `${page.data?.url}`),
+    paths: pages
+      .map((page) => `${page.data?.url}`)
+      .filter((url) => url != "/homes/**"),
+    /* 
+    kind of a hack to get rid of the homes/** route because it trying to fetch a home without providing an id but there's probably a better way to do this
+    */
     fallback: true,
   };
 }

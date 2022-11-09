@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Image from "next/future/image";
 import { Button } from "primereact/button";
 import Link from "next/link";
+import { cloudinaryLoader } from "../lib/cloudinaryLoader";
 export async function getStaticProps() {
   const placeholder = await builder
     .get(
@@ -34,11 +35,7 @@ export async function getStaticProps() {
     revalidate: 5,
   };
 }
-const cloudinaryLoader = ({ src, width, quality }) => {
-  return `https://res.cloudinary.com/libaration/image/upload/w_${width},q_${
-    quality || 75
-  }/${src}`;
-};
+
 const HomeCard = (props) => {
   useEffect(() => {
     setDescription(<ReactMarkdown>{props.description}</ReactMarkdown>);
