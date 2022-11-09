@@ -30,6 +30,8 @@ COPY --from=prune /app/out/full .
 RUN yarn turbo run build --filter=cheap-baltimore-houses
 
 FROM --platform=linux/x86_64 alpine as runner
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
 WORKDIR /app
 COPY --from=builder /app . 
 RUN apk add --update nodejs npm
