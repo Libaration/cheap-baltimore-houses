@@ -6744,6 +6744,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"computed-style@npm:~0.1.3":
+  version: 0.1.4
+  resolution: "computed-style@npm:0.1.4"
+  checksum: 18957a36c96abf1ea6ad97241d6c88a70b192076a9d176d489a2e6d5e5d93968bb9fbb51a70a8399c4de5ec87e4465a737718cf9106bf1fb8037f0433b8fb255
+  languageName: node
+  linkType: hard
+
 "concat-map@npm:0.0.1":
   version: 0.0.1
   resolution: "concat-map@npm:0.0.1"
@@ -11881,6 +11888,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"line-height@npm:0.3.1":
+  version: 0.3.1
+  resolution: "line-height@npm:0.3.1"
+  dependencies:
+    computed-style: ~0.1.3
+  checksum: 99acec832fd29fe50bea7c5dd2fb56c53b9e60c8da93384f6e1780d68018440b952c62578f34168e78bacdd9c6c3fd4fb3b8989c7b9976b3d74c16563c9182a3
+  languageName: node
+  linkType: hard
+
 "lines-and-columns@npm:^1.1.6":
   version: 1.2.4
   resolution: "lines-and-columns@npm:1.2.4"
@@ -12539,7 +12555,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"memoize-one@npm:>=3.1.1 <6, memoize-one@npm:^5.0.0":
+"memoize-one@npm:>=3.1.1 <6, memoize-one@npm:^5.0.0, memoize-one@npm:^5.1.1":
   version: 5.2.1
   resolution: "memoize-one@npm:5.2.1"
   checksum: a3cba7b824ebcf24cdfcd234aa7f86f3ad6394b8d9be4c96ff756dafb8b51c7f71320785fbc2304f1af48a0467cbbd2a409efc9333025700ed523f254cb52e3d
@@ -15685,6 +15701,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-truncate-markup@npm:^5.1.2":
+  version: 5.1.2
+  resolution: "react-truncate-markup@npm:5.1.2"
+  dependencies:
+    line-height: 0.3.1
+    memoize-one: ^5.1.1
+    prop-types: ^15.6.0
+    resize-observer-polyfill: 1.5.x
+  peerDependencies:
+    react: ">=16.3"
+  checksum: 1ba0e66fe93e5b6736fc36744d72b428793980311c418325e7b7a0c1e4f717032adbd89c2a5579cae675f7a7c43def1225703600a568f9b00cb8ff95c1a3121e
+  languageName: node
+  linkType: hard
+
 "react-window@npm:1.8.7":
   version: 1.8.7
   resolution: "react-window@npm:1.8.7"
@@ -16126,7 +16156,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resize-observer-polyfill@npm:^1.5.0":
+"resize-observer-polyfill@npm:1.5.x, resize-observer-polyfill@npm:^1.5.0":
   version: 1.5.1
   resolution: "resize-observer-polyfill@npm:1.5.1"
   checksum: 57e7f79489867b00ba43c9c051524a5c8f162a61d5547e99333549afc23e15c44fd43f2f318ea0261ea98c0eb3158cca261e6f48d66e1ed1cd1f340a43977094
@@ -16365,6 +16395,7 @@ __metadata:
     mini-css-extract-plugin: ^2.6.1
     patch-package: ^6.4.7
     postinstall-postinstall: ^2.1.0
+    react-truncate-markup: ^5.1.2
     turbo: ^1.6.2
   languageName: unknown
   linkType: soft

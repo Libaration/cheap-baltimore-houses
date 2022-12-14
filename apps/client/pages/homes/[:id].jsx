@@ -1,5 +1,5 @@
 import { builder, Builder, BuilderComponent } from "@builder.io/react";
-import HomeShow from "../../components/Home";
+import HomeShow from "../../components/homes/Home";
 export async function getStaticPaths() {
   //  Fetch all published pages for the current model.
   //  Using the `fields` option will limit the size of the response
