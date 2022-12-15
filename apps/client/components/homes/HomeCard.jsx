@@ -26,6 +26,8 @@ const HomeCard = ({ home }) => {
           <Text
             css={{
               fontWeight: "bold",
+              margin: "auto",
+              fontSize: "medium",
             }}
           >
             {address}
