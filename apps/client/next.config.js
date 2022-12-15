@@ -34,6 +34,16 @@ const nextConfig = {
   // },
   staticPageGenerationTimeout: 1000,
   // experimental: { appDir: true },
+
+  publicRuntimeConfig: {
+    // Will be available on both server and client
+    staticFolder: "/static",
+    API_URL: process.env.API_URL,
+    BASE_URL: process.env.BASE_URL,
+  },
+  serverRuntimeConfig: {
+    NEXT_SHARP_PATH: "/tmp/node_modules/sharp",
+  },
 };
 
 module.exports = nextConfig;

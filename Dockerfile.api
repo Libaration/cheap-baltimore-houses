@@ -1,10 +1,8 @@
-FROM --platform=linux/x86_64 node:16-alpine as prune
+FROM --platform=linux/amd64 node:16-alpine as prune
 # RUN apt-get update && apt-get install -y libc6-dev
 RUN apk update && apk add  build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev
 RUN apk add --no-cache libc6-compat
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
-
+ENV NODE_ENV=production
 
 WORKDIR /app
 COPY package.json yarn.lock turbo.json .yarnrc.yml ./
@@ -18,27 +16,18 @@ FROM prune as installer
 WORKDIR /app
 COPY --from=prune /app/patches patches/
 COPY --from=prune /app/out/json .
-COPY --from=prune /app/out/yarn.lock ./yarn.lock
-RUN --mount=type=cache sharing=locked target=/usr/local/share/.cache/yarn/v6 id=yarncache
+RUN SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm_config_arch=x64 npm_config_platform=linux yarn add sharp
 RUN yarn install
 
 FROM installer as builder
 WORKDIR /app
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+ENV NODE_ENV=production
 COPY --from=prune /app/out/full .
 RUN yarn turbo run build --filter=cheap-baltimore-houses
 
-FROM --platform=linux/x86_64 alpine as runner
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+FROM --platform=linux/amd64 node:16-alpine as runner
+ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=builder /app . 
-RUN apk add --update nodejs npm
-RUN npm -g install yarn
 EXPOSE 1337
 CMD ["yarn", "--cwd", "apps/cheap-baltimore-houses", "start"]
-
-
-
-

@@ -1,6 +1,7 @@
 version: '3'
 services:
   api:
+    platform: linux/amd64
     build:
       context: ./
       dockerfile: Dockerfile.api
@@ -9,19 +10,27 @@ services:
     ports:
       - 1337:1337
     image: cbhregistry.azurecr.io/api:latest
+    restart: always
+
   nextjs:
     depends_on:
       - api
+    platform: linux/amd64
     build:
       context: ./
       dockerfile: Dockerfile
     environment:
       - BASE_URL=http://api:1337
+      - API_URL=http://api:1337
+      - NEXT_SHARP_PATH=/tmp/node_modules/sharp
     image: cbhregistry.azurecr.io/nextjs:latest
+    restart: always
+
   nginx:
     depends_on:
       - nextjs
       - api
+    platform: linux/amd64
     build: ./nginx
     ports:
       - 80:80

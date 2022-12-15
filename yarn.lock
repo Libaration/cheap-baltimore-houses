@@ -6410,6 +6410,7 @@ __metadata:
     mysql: ^2.18.1
     react-select: ^5.4.0
     react-select-animated: ^1.3.2
+    sharp: ^0.31.2
     strapi-plugin-email-designer: ^2.1.1
     strapi-provider-email-sendinblue: ^4.0.0
   languageName: unknown
@@ -6627,7 +6628,7 @@ __metadata:
     react-markdown: ^8.0.3
     react-scroll-parallax: ^3.3.1
     remark-gfm: ^3.0.1
-    sharp: ^0.31.1
+    sharp: ^0.31.2
     tailwindcss: ^3.2.0
     three: ^0.147.0
     webpack: latest
@@ -17232,7 +17233,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:^0.31.1":
+"sharp@npm:^0.31.2":
   version: 0.31.2
   resolution: "sharp@npm:0.31.2"
   dependencies:

@@ -14,5 +14,5 @@ Dockerfile.api
 notes.md
 npm-debug.log
 README.md
-
+.env.local
 node_modules
