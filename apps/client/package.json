@@ -14,7 +14,10 @@
     "@emotion/react": "11.10.5",
     "@emotion/server": "^11.10.0",
     "@nextui-org/react": "^1.0.0-beta.10",
+    "@react-three/drei": "^9.46.5",
+    "@react-three/fiber": "^8.9.1",
     "dayjs": "^1.11.5",
+    "lodash": "^4.17.21",
     "next": "^12.2.6",
     "primeicons": "^6.0.1",
     "primereact": "8.7.0",
@@ -22,10 +25,12 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-headroom": "^3.2.1",
+    "react-lottie": "^1.2.3",
     "react-markdown": "^8.0.3",
     "react-scroll-parallax": "^3.3.1",
     "remark-gfm": "^3.0.1",
     "sharp": "^0.31.1",
+    "three": "^0.147.0",
     "webpack": "latest"
   },
   "devDependencies": {
