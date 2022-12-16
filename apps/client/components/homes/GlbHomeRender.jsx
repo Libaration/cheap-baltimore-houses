@@ -29,7 +29,7 @@ const GlbHomeRender = () => {
           overflow: "visible",
           height: "100vh",
           backgroundColor: "transparent",
-          bottom: "32vh",
+          bottom: "30vh",
         }}
       >
         <Canvas

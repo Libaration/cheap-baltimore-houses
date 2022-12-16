@@ -158,6 +158,9 @@ body {
   color: #666;
   font-size: 20px;
   line-height: 32px;
+}
+body,
+html {
   height: var(--app-height);
 }
 html {
@@ -175,7 +178,7 @@ html {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 110vh;
+  height: 100vh;
   padding-right: 4%;
   padding-left: 4%;
   -webkit-box-orient: vertical;
@@ -267,7 +270,7 @@ html {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 110vh;
+  height: 100vh;
   padding-right: 4%;
   padding-left: 4%;
   -webkit-box-orient: vertical;
@@ -300,7 +303,7 @@ html {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 110vh;
+  height: 100vh;
   padding-right: 4%;
   padding-left: 4%;
   width: 100%;
@@ -457,7 +460,10 @@ html {
 .newsletter-container {
   display: grid;
   grid-template-columns: 1fr 3fr;
-  grid-template-areas: "newsletter-icon newsletter-text";
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "newsletter-icon newsletter-text"
+    "newsletter-sign-up-form newsletter-sign-up-form";
 
   margin-top: 20px;
   margin-bottom: 20px;
@@ -466,24 +472,38 @@ html {
 /* Small devices (portrait phones, less than 576px) */
 @media only screen and (max-width: 575px) {
   .newsletter-container {
-    grid-template-columns: 1fr;
-    grid-template-areas: "newsletter-icon" "newsletter-text";
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
   }
 }
 
 /* Medium devices (landscape phones, 576px and up) */
-@media only screen and (min-width: 576px) and (max-width: 767px) {
+/* @media only screen and (min-width: 576px) and (max-width: 767px) {
   .newsletter-container {
+    display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: "newsletter-icon" "newsletter-text";
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "newsletter-icon"
+      "newsletter-text"
+      "newsletter-sign-up-form";
+    max-width: 50px !important;
+    margin: 0 auto;
   }
-}
+  .newsletter-container > * {
+    max-width: 50px;
+  }
+} */
 
 /* Large devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .newsletter-container {
     grid-template-columns: 1fr 3fr;
-    grid-template-areas: "newsletter-icon newsletter-text";
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "newsletter-icon newsletter-text"
+      "newsletter-sign-up-form newsletter-sign-up-form";
   }
 }
 
@@ -491,7 +511,10 @@ html {
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .newsletter-container {
     grid-template-columns: 1fr 3fr;
-    grid-template-areas: "newsletter-icon newsletter-text";
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "newsletter-icon newsletter-text"
+      "newsletter-sign-up-form newsletter-sign-up-form";
   }
 }
 
@@ -499,7 +522,10 @@ html {
 @media only screen and (min-width: 1200px) {
   .newsletter-container {
     grid-template-columns: 1fr 3fr;
-    grid-template-areas: "newsletter-icon newsletter-text";
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "newsletter-icon newsletter-text"
+      "newsletter-sign-up-form newsletter-sign-up-form";
   }
 }
 
@@ -512,12 +538,15 @@ html {
   margin: auto;
   text-align: center;
 }
+.newsletter-sign-up-form {
+  grid-area: newsletter-sign-up-form;
+}
 .scale-up-center {
   animation: scale-up-center 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 .scale-out {
   opacity: 0;
-  animation: scale-out-center 0.5s;
+  animation: scale-out-center 0.2s;
 }
 .scale-in {
   opacity: 1;

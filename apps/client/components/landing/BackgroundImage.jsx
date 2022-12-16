@@ -17,7 +17,7 @@ const BackgroundImage = (props) => {
         bottom: 0,
         zIndex: -1,
       }}
-    ></div>
+    />
   );
 };
 

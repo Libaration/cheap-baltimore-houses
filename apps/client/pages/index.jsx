@@ -16,7 +16,7 @@ const GlbHomeRender = dynamic(() =>
 );
 const Index = (props) => {
   const { ref: newsletterRef, isVisible: newsletterVisible } =
-    useInViewStateAndEffect(1);
+    useInViewStateAndEffect(0.1);
 
   useResizeEffect();
 
