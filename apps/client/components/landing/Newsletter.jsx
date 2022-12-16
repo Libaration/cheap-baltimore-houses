@@ -1,39 +1,14 @@
 import Lottie from "react-lottie";
-import { useRef, useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-const Newsletter = (props) => {
+import { useRef, useEffect, forwardRef } from "react";
+const Newsletter = (props, ref) => {
   const lottieRef = useRef(null);
-  useEffect(() => {
-    const playLottie = () => {
-      if (
-        window &&
-        window.matchMedia("(hover: none)").matches &&
-        lottieRef.current
-      )
-        lottieRef.current.play();
-    };
-    const handleResize = () => {
-      if (window) {
-        let vh = window.innerHeight;
-        document.documentElement.style.setProperty("--app-height", `${vh}px`);
-      }
-    };
-    handleResize();
-    playLottie();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
   return (
-    <div
-      className="newsletter-container scale-up-center"
-      onMouseEnter={() => {
-        if (lottieRef.current) lottieRef.current.play();
-      }}
-      onMouseLeave={() => {
-        if (lottieRef.current) lottieRef.current.stop();
-      }}
-    >
-      <div className="newsletter-icon">
+    <div ref={ref} className="newsletter-container">
+      <div
+        className={`newsletter-icon ${
+          props.visible ? "scale-in" : "scale-out"
+        }`}
+      >
         <Lottie
           options={{
             animationData: props.animationData,
@@ -42,7 +17,10 @@ const Newsletter = (props) => {
           }}
           isClickToPauseDisabled={true}
           ref={lottieRef}
-          style={{ height: "200px", width: "200px" }}
+          style={{
+            height: "200px",
+            width: "200px",
+          }}
         />
       </div>
       <div className="newsletter-text p-5 text-white">
@@ -52,4 +30,4 @@ const Newsletter = (props) => {
   );
 };
 
-export default Newsletter;
+export default forwardRef(Newsletter);

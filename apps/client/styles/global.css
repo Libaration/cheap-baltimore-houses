@@ -1,3 +1,26 @@
+@supports (padding: max(0px)) {
+  body,
+  header,
+  footer {
+    padding-left: min(0vmin, env(safe-area-inset-left));
+    padding-right: min(0vmin, env(safe-area-inset-right));
+  }
+}
+@media only screen and (orientation: portrait) {
+  body .shrink {
+    width: 95%;
+  }
+}
+@media only screen and (orientation: landscape) {
+  body .shrink {
+    width: 90%;
+  }
+}
+.center-safe {
+  text-align: center;
+  margin: 0 auto;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -491,6 +514,14 @@ html {
 }
 .scale-up-center {
   animation: scale-up-center 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+.scale-out {
+  opacity: 0;
+  transition: opacity 1s;
+}
+.scale-in {
+  opacity: 1;
+  animation: scale-up-center 1s;
 }
 @keyframes scale-up-center {
   0% {

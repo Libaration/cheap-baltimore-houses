@@ -6624,6 +6624,7 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
     react-headroom: ^3.2.1
+    react-intersection-observer: ^9.4.1
     react-lottie: ^1.2.3
     react-markdown: ^8.0.3
     react-scroll-parallax: ^3.3.1
@@ -15774,6 +15775,15 @@ __metadata:
   peerDependencies:
     react: ^16.3.0 || ^17.0.0
   checksum: cc3309ddc87446ade742c7d0e88ef089dd8b6981f21506a2bb27daf01a8803ac697f64157c4ffc7e81dfcf3892b54a4072dbc3652fd9addcf6d22dd0b87ab723
+  languageName: node
+  linkType: hard
+
+"react-intersection-observer@npm:^9.4.1":
+  version: 9.4.1
+  resolution: "react-intersection-observer@npm:9.4.1"
+  peerDependencies:
+    react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 13d1c36658470a781d8db8870dbd272c5b4b32329fa69c27ee96424de4e1599526a9bf2a91ea59922c18323c97d6909f0ac120c5af6076d1c01e654b43fb03c1
   languageName: node
   linkType: hard
 

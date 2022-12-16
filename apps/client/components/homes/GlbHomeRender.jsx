@@ -1,12 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import { Model, Instances } from "./GlbHome";
-import {
-  OrbitControls,
-  Stage,
-  ScrollControls,
-  PresentationControls,
-} from "@react-three/drei";
+import { Model } from "./GlbHome";
+import { OrbitControls, Stage } from "@react-three/drei";
 import { useRef, useEffect } from "react";
 const GlbHomeRender = () => {
   const canvasRef = useRef(null);
