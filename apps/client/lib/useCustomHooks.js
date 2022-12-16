@@ -25,7 +25,7 @@ export function useResizeEffect() {
 
 // This code is used to create a custom hook that uses the react-intersection-observer npm package (https://www.npmjs.com/package/react-intersection-observer)
 // to determine if a component is in view or not. It also uses the useEffect hook to set a state variable to true or false depending on if the component is in view.
-export function useInViewStateAndEffect(threshold) {
+export function useInViewStateAndEffect(threshold, name = "null") {
   const { ref, inView } = useInView({
     threshold: threshold,
   });
@@ -36,4 +36,13 @@ export function useInViewStateAndEffect(threshold) {
   }, [inView, setIsVisible]);
 
   return { ref, isVisible };
+}
+
+export function useChangeNotchColor() {
+  const [notchColor, setNotchColor] = useState({
+    theme: "#161724",
+    style: "black-translucent",
+  });
+
+  return { notchColor, setNotchColor };
 }

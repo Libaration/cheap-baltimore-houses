@@ -4,26 +4,57 @@ import { renderRecentHomes } from "../components/homes/utils/renderRecentHomes";
 import dynamic from "next/dynamic";
 import Newsletter from "../components/landing/Newsletter";
 import BackgroundImage from "../components/landing/BackgroundImage";
-import { useState } from "react";
-import { useInView } from "react-intersection-observer";
+import { useState, useEffect, useRef } from "react";
+import { useChangeNotchColor } from "../lib/useCustomHooks";
+import Head from "next/head";
 import {
   useResizeEffect,
-  useNewsletterEffect,
   useInViewStateAndEffect,
 } from "../lib/useCustomHooks";
 const GlbHomeRender = dynamic(() =>
   import("../components/homes/GlbHomeRender")
 );
 const Index = (props) => {
+  const { notchColor, setNotchColor } = useChangeNotchColor();
   const { ref: newsletterRef, isVisible: newsletterVisible } =
-    useInViewStateAndEffect(0.1);
+    useInViewStateAndEffect(0.1, "news");
+  const { ref: heroRef, isVisible: heroVisible } = useInViewStateAndEffect(
+    0.1,
+    "hero"
+  );
+  const { ref: contentRef, isVisible: contentVisible } =
+    useInViewStateAndEffect(0.1, "content");
 
   useResizeEffect();
+  useEffect(() => {
+    if (
+      (!heroVisible && newsletterVisible && contentVisible) ||
+      (heroVisible && !newsletterVisible && !contentVisible)
+    ) {
+      setNotchColor({ theme: "#161724", style: "black-translucent" });
+    }
+    if (
+      (newsletterVisible && !contentVisible && !heroVisible) ||
+      (!newsletterVisible && !contentVisible && !heroVisible)
+    ) {
+      setNotchColor({ theme: "#cb9040", style: "translucent" });
+    }
+  }, [newsletterVisible, heroVisible, contentVisible, setNotchColor]);
 
   return (
     <>
+      <Head>
+        <meta name="theme-color" content={notchColor.theme} />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content={notchColor.style}
+        />
+      </Head>
       <BackgroundImage visible={true} />
-      <Hero />
+      <div ref={heroRef}>
+        <Hero />
+        <div ref={contentRef} style={{ width: "1px", height: "1px" }} />
+      </div>
       <div className="shrink center-safe">
         <Newsletter
           animationData={props.animationData}
