@@ -1,9 +1,14 @@
 import Lottie from "react-lottie";
-import { useRef, useEffect, forwardRef } from "react";
+import { useRef, forwardRef } from "react";
+import { translatedCopy } from "../../lib/util/translatedCopy";
 const Newsletter = (props, ref) => {
   const lottieRef = useRef(null);
   return (
-    <div ref={ref} className="newsletter-container">
+    <div
+      ref={ref}
+      className="newsletter-container"
+      style={{ zIndex: 2, position: "relative" }}
+    >
       <div
         className={`newsletter-icon ${
           props.visible ? "scale-in" : "scale-out"
@@ -23,8 +28,12 @@ const Newsletter = (props, ref) => {
           }}
         />
       </div>
-      <div className="newsletter-text p-5 text-white">
-        Join our newsletter and stay up to date with all of our listings
+      <div
+        className={`newsletter-text p-5 text-white ${
+          props.visible ? "scale-in" : "scale-out"
+        }`}
+      >
+        {translatedCopy("components.landing.newsletter.heading")}
       </div>
     </div>
   );

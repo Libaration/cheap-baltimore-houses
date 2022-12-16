@@ -517,15 +517,15 @@ html {
 }
 .scale-out {
   opacity: 0;
-  transition: opacity 1s;
+  animation: scale-out-center 0.5s;
 }
 .scale-in {
   opacity: 1;
-  animation: scale-up-center 1s;
+  animation: scale-up-center 0.5s;
 }
 @keyframes scale-up-center {
   0% {
-    transform: scale(0.5);
+    transform: scale(0);
   }
   100% {
     transform: scale(1);
@@ -543,5 +543,15 @@ html {
   100% {
     transform: scale(1.25) translateY(-15px);
     transform-origin: top;
+  }
+}
+@keyframes scale-out-center {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 1;
   }
 }
