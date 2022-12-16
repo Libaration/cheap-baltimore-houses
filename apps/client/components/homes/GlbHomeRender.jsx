@@ -12,9 +12,11 @@ const GlbHomeRender = () => {
   const canvasRef = useRef(null);
   useEffect(() => {
     const handleResize = () => {
-      if (canvasRef.current) {
-        canvasRef.current.width = window.innerWidth;
-        // canvasRef.current.height = window.innerHeight;
+      let vh = window.innerHeight;
+      let vw = window.innerWidth;
+      if (window.innerWidth !== vw || window.innerHeight !== vh) {
+        canvasRef.current.width = `${vh}px`;
+        canvasRef.current.height = `${vw}px`;
       }
     };
     handleResize(); // trigger handleResize when the component is first rendered
@@ -37,7 +39,6 @@ const GlbHomeRender = () => {
         dpr={[1, 1.5]}
         camera={{ position: [0, 50, 150], fov: 30, zoom: 0.7 }}
         ref={canvasRef}
-        style={{ width: "100%" }}
       >
         <ambientLight intensity={0.25} />
         <Suspense fallback={null}>
