@@ -7,18 +7,7 @@ import { builder } from "@builder.io/react";
 import "@builder.io/widgets/dist/lib/builder-widgets-async";
 import Head from "next/head";
 builder.init(process.env.NEXT_PUBLIC_BUILDER_KEY);
-import { useEffect } from "react";
 function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    const handleResize = () => {
-      let vh = window.innerHeight;
-
-      document.documentElement.style.setProperty("--app-height", `${vh}px`);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
   return (
     <>
       <Head>
