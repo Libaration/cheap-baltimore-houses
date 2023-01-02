@@ -1,4 +1,3 @@
-import { builder, Builder, BuilderComponent } from "@builder.io/react";
 import { Card, Grid, Text } from "@nextui-org/react";
 import Image from "next/future/image";
 import { cloudinaryLoader } from "../../lib/cloudinaryLoader";
@@ -29,6 +28,3 @@ const HomeShow = ({ builderState }) => {
 };
 
 export default HomeShow;
-Builder.registerComponent(HomeShow, {
-  name: "HomeShow",
-});

@@ -4,7 +4,6 @@ import { useParallax } from "react-scroll-parallax";
 import Image from "next/future/image";
 import cityOverlay from "../public/city.png";
 import skyOverlay from "../public/sky.png";
-import { Builder } from "@builder.io/react";
 export default function Hero({ children }) {
   const page2Ref = useRef(null);
   const target = useRef(null);
@@ -78,6 +77,3 @@ export default function Hero({ children }) {
     </>
   );
 }
-Builder.registerComponent(Hero, {
-  name: "Hero",
-});
