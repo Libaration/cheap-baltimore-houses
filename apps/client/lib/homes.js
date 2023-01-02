@@ -4,4 +4,12 @@ const recentHomes = async (limit) => {
     `/homes?populate=*&pagination[pageSize]=${limit}&sort=id:DESC`
   );
 };
-export const homesCalls = { get: { recentHomes } };
+const allHomes = async () => {
+  return await fetchAPI(`/homes?populate=*&sort=id:DESC`);
+};
+
+const getHome = async (id) => {
+  return await fetchAPI(`/homes/${id}?populate=*`);
+};
+
+export const homesCalls = { get: { recentHomes, allHomes, getHome } };

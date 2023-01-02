@@ -1,6 +1,7 @@
 import Lottie from "react-lottie";
 import { useRef, forwardRef } from "react";
 import { translatedCopy } from "../../lib/util/translatedCopy";
+import SignUpForm from "../newsletter/SignUpForm";
 const Newsletter = (props, ref) => {
   const lottieRef = useRef(null);
   return (
@@ -42,13 +43,7 @@ const Newsletter = (props, ref) => {
         {translatedCopy("components.landing.newsletter.heading")}
       </div>
       <div className="newsletter-sign-up-form">
-        MORE STUFFsdksdskndksndksndksndksndksndksndknskdnskd
-        <br />
-        sdnksdnskdnskdnksndksdnk
-        <br />
-        dfmdkfnkednkndkndns
-        <br />
-        dfnkdfnkdfnkdnfkssdsdsdsdsdsdssds
+        <SignUpForm />
       </div>
     </div>
   );
