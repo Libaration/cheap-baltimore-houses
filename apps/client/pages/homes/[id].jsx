@@ -65,7 +65,7 @@ const HomeShow = ({ home }) => {
               Chris Seaborn • <time>{date}</time>
             </p>
             <h3 class="text-xl font-medium text-gray-900">{address}</h3>
-            <p class="mt-1 text-gray-500 text-xs">{descriptionState}</p>
+            <p class="mt-1 text-gray-700 text-xs">{descriptionState}</p>
             <div class="mt-4 flex gap-2">
               <span class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
                 Available

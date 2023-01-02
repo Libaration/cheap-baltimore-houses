@@ -4520,6 +4520,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/parse5@npm:^6.0.0":
+  version: 6.0.3
+  resolution: "@types/parse5@npm:6.0.3"
+  checksum: ddb59ee4144af5dfcc508a8dcf32f37879d11e12559561e65788756b95b33e6f03ea027d88e1f5408f9b7bfb656bf630ace31a2169edf44151daaf8dd58df1b7
+  languageName: node
+  linkType: hard
+
 "@types/prop-types@npm:*, @types/prop-types@npm:^15.0.0":
   version: 15.7.5
   resolution: "@types/prop-types@npm:15.7.5"
@@ -6387,10 +6394,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"character-entities-html4@npm:^2.0.0":
+  version: 2.1.0
+  resolution: "character-entities-html4@npm:2.1.0"
+  checksum: 7034aa7c7fa90309667f6dd50499c8a760c3d3a6fb159adb4e0bada0107d194551cdbad0714302f62d06ce4ed68565c8c2e15fdef2e8f8764eb63fa92b34b11d
+  languageName: node
+  linkType: hard
+
 "character-entities-legacy@npm:^1.0.0":
   version: 1.1.4
   resolution: "character-entities-legacy@npm:1.1.4"
   checksum: fe03a82c154414da3a0c8ab3188e4237ec68006cbcd681cf23c7cfb9502a0e76cd30ab69a2e50857ca10d984d57de3b307680fff5328ccd427f400e559c3a811
+  languageName: node
+  linkType: hard
+
+"character-entities-legacy@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "character-entities-legacy@npm:3.0.0"
+  checksum: 7582af055cb488b626d364b7d7a4e46b06abd526fb63c0e4eb35bcb9c9799cc4f76b39f34fdccef2d1174ac95e53e9ab355aae83227c1a2505877893fce77731
   languageName: node
   linkType: hard
 
@@ -6655,7 +6676,9 @@ __metadata:
     react-lottie: ^1.2.3
     react-markdown: ^8.0.3
     react-scroll-parallax: ^3.3.1
+    rehype-raw: ^6.1.1
     remark-gfm: ^3.0.1
+    remark-html: ^15.0.1
     sharp: ^0.31.2
     tailwindcss: ^3.2.4
     three: ^0.147.0
@@ -10249,10 +10272,120 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hast-to-hyperscript@npm:^10.0.0":
+  version: 10.0.1
+  resolution: "hast-to-hyperscript@npm:10.0.1"
+  dependencies:
+    "@types/unist": ^2.0.0
+    comma-separated-tokens: ^2.0.0
+    property-information: ^6.0.0
+    space-separated-tokens: ^2.0.0
+    style-to-object: ^0.3.0
+    unist-util-is: ^5.0.0
+    web-namespaces: ^2.0.0
+  checksum: 0ec7a6f873312421c6cfa84f8c842fa00c74e96018c371ace4800fda6590e208db8e31d4e84b09e436fe6b9b87b2fd2968b30c27881ff82fc9fe466a0f59b922
+  languageName: node
+  linkType: hard
+
+"hast-util-from-parse5@npm:^7.0.0":
+  version: 7.1.0
+  resolution: "hast-util-from-parse5@npm:7.1.0"
+  dependencies:
+    "@types/hast": ^2.0.0
+    "@types/parse5": ^6.0.0
+    "@types/unist": ^2.0.0
+    hastscript: ^7.0.0
+    property-information: ^6.0.0
+    vfile: ^5.0.0
+    vfile-location: ^4.0.0
+    web-namespaces: ^2.0.0
+  checksum: 4a774700042e03aeecca6b6977f0e915069eefcf81c30d59ae0e1d2d7170e419065bcd8708504cb7b4d19b05367daee2177ddce47db1b5a654bb7ec19ba8d227
+  languageName: node
+  linkType: hard
+
+"hast-util-is-element@npm:^2.0.0":
+  version: 2.1.2
+  resolution: "hast-util-is-element@npm:2.1.2"
+  dependencies:
+    "@types/hast": ^2.0.0
+    "@types/unist": ^2.0.0
+  checksum: c5fe9f7cde3775d4cbe19a9a55631a80b7a4ea0131fc2e3d097ebe228a35f09b9219f64b788b7a9cf819e6dcb6d1fc7830fd2f10ad536649e436e8c83da41e00
+  languageName: node
+  linkType: hard
+
 "hast-util-parse-selector@npm:^2.0.0":
   version: 2.2.5
   resolution: "hast-util-parse-selector@npm:2.2.5"
   checksum: 22ee4afbd11754562144cb3c4f3ec52524dafba4d90ee52512902d17cf11066d83b38f7bdf6ca571bbc2541f07ba30db0d234657b6ecb8ca4631587466459605
+  languageName: node
+  linkType: hard
+
+"hast-util-parse-selector@npm:^3.0.0":
+  version: 3.1.0
+  resolution: "hast-util-parse-selector@npm:3.1.0"
+  dependencies:
+    "@types/hast": ^2.0.0
+  checksum: 8be1a2334652866b40fde72a8b7d0867a791ce8a70d15fd7bb44b9a4f349913b77999e5add41900466bc9461c6b0fdea391875ef534b33cacf7a2aee9d8e447c
+  languageName: node
+  linkType: hard
+
+"hast-util-raw@npm:^7.2.0":
+  version: 7.2.3
+  resolution: "hast-util-raw@npm:7.2.3"
+  dependencies:
+    "@types/hast": ^2.0.0
+    "@types/parse5": ^6.0.0
+    hast-util-from-parse5: ^7.0.0
+    hast-util-to-parse5: ^7.0.0
+    html-void-elements: ^2.0.0
+    parse5: ^6.0.0
+    unist-util-position: ^4.0.0
+    unist-util-visit: ^4.0.0
+    vfile: ^5.0.0
+    web-namespaces: ^2.0.0
+    zwitch: ^2.0.0
+  checksum: 21857eea3ffb8fd92d2d9be7793b56d0b2c40db03c4cfa14828855ae41d7c584917aa83efb7157220b2e41e25e95f81f24679ac342c35145e5f1c1d39015f81f
+  languageName: node
+  linkType: hard
+
+"hast-util-sanitize@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "hast-util-sanitize@npm:4.0.0"
+  dependencies:
+    "@types/hast": ^2.0.0
+  checksum: 92a2adc3ebf7d00321eac8eb5df5f31f4b4b3fbfef6bf3a91a9319595b61e2309f6e115ca42cba7dbf11ebecd04c012373e001a85dbdc2a5b77a868c12710a8f
+  languageName: node
+  linkType: hard
+
+"hast-util-to-html@npm:^8.0.0":
+  version: 8.0.3
+  resolution: "hast-util-to-html@npm:8.0.3"
+  dependencies:
+    "@types/hast": ^2.0.0
+    ccount: ^2.0.0
+    comma-separated-tokens: ^2.0.0
+    hast-util-is-element: ^2.0.0
+    hast-util-whitespace: ^2.0.0
+    html-void-elements: ^2.0.0
+    property-information: ^6.0.0
+    space-separated-tokens: ^2.0.0
+    stringify-entities: ^4.0.2
+    unist-util-is: ^5.0.0
+  checksum: 128bf69be025a37168c871899c5c3b662fd1754609e83b999406d1c4e81088bf0460cd97a048ec6953753b3c14b192ecb30a66612a17d53e6d6b98a32040f5d3
+  languageName: node
+  linkType: hard
+
+"hast-util-to-parse5@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "hast-util-to-parse5@npm:7.0.0"
+  dependencies:
+    "@types/hast": ^2.0.0
+    "@types/parse5": ^6.0.0
+    hast-to-hyperscript: ^10.0.0
+    property-information: ^6.0.0
+    web-namespaces: ^2.0.0
+    zwitch: ^2.0.0
+  checksum: a30ceaca3f456b0a4c8d8330d782d9bcf7e05abe362b2cf208b204afeaef155d580ed84c959c0ef719edeac413e04759000f3e3318816aea41e7841876e5f890
   languageName: node
   linkType: hard
 
@@ -10273,6 +10406,19 @@ __metadata:
     property-information: ^5.0.0
     space-separated-tokens: ^1.0.0
   checksum: 5e50b85af0d2cb7c17979cb1ddca75d6b96b53019dd999b39e7833192c9004201c3cee6445065620ea05d0087d9ae147a4844e582d64868be5bc6b0232dfe52d
+  languageName: node
+  linkType: hard
+
+"hastscript@npm:^7.0.0":
+  version: 7.1.0
+  resolution: "hastscript@npm:7.1.0"
+  dependencies:
+    "@types/hast": ^2.0.0
+    comma-separated-tokens: ^2.0.0
+    hast-util-parse-selector: ^3.0.0
+    property-information: ^6.0.0
+    space-separated-tokens: ^2.0.0
+  checksum: 5c88419b72379ef4d9e141be5ccd13a91a0ff7b9623396b4f83a88d42987fdada27a1126d7e3efd3f9004eed0942fc0672f83baa923239f4147137852f35f733
   languageName: node
   linkType: hard
 
@@ -10428,6 +10574,13 @@ __metadata:
   bin:
     html-tokenize: bin/cmd.js
   checksum: 4e04078fd22cf274fc1fa430490af3feda1c3bc4dd2fc88880caf6c2e816992d508bc44a7b16721b713a6b98d880f43e10ea4b169529056134cd488403adc8fc
+  languageName: node
+  linkType: hard
+
+"html-void-elements@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "html-void-elements@npm:2.0.1"
+  checksum: 06d41f13b9d5d6e0f39861c4bec9a9196fa4906d56cd5cf6cf54ad2e52a85bf960cca2bf9600026bde16c8331db171bedba5e5a35e2e43630c8f1d497b2fb658
   languageName: node
   linkType: hard
 
@@ -12878,6 +13031,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mdast-util-to-hast@npm:^12.0.0":
+  version: 12.2.5
+  resolution: "mdast-util-to-hast@npm:12.2.5"
+  dependencies:
+    "@types/hast": ^2.0.0
+    "@types/mdast": ^3.0.0
+    mdast-util-definitions: ^5.0.0
+    micromark-util-sanitize-uri: ^1.1.0
+    trim-lines: ^3.0.0
+    unist-builder: ^3.0.0
+    unist-util-generated: ^2.0.0
+    unist-util-position: ^4.0.0
+    unist-util-visit: ^4.0.0
+  checksum: 06337d66b369d9bf16f484cb31943c4e3c0ea9c20138589c256ad3400122fc9d64baf4d087349c042d37074408a24a4856e9ac45cb3356647bbe24d6dcdd42e1
+  languageName: node
+  linkType: hard
+
 "mdast-util-to-hast@npm:^12.1.0":
   version: 12.2.4
   resolution: "mdast-util-to-hast@npm:12.2.4"
@@ -14732,7 +14902,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse5@npm:^6.0.1":
+"parse5@npm:^6.0.0, parse5@npm:^6.0.1":
   version: 6.0.1
   resolution: "parse5@npm:6.0.1"
   checksum: 7d569a176c5460897f7c8f3377eff640d54132b9be51ae8a8fa4979af940830b2b0c296ce75e5bd8f4041520aadde13170dbdec44889975f906098ea0002f4bd
@@ -16487,6 +16657,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rehype-raw@npm:^6.1.1":
+  version: 6.1.1
+  resolution: "rehype-raw@npm:6.1.1"
+  dependencies:
+    "@types/hast": ^2.0.0
+    hast-util-raw: ^7.2.0
+    unified: ^10.0.0
+  checksum: a1f9d309e609f49fb1f1e06e722705f4dd2e569653a89f756eaccb33b612cf1bb511216a81d10a619d11d047afc161e4b3cb99b957df05a8ba8fdbd5843f949a
+  languageName: node
+  linkType: hard
+
 "relateurl@npm:^0.2.7":
   version: 0.2.7
   resolution: "relateurl@npm:0.2.7"
@@ -16503,6 +16684,19 @@ __metadata:
     micromark-extension-gfm: ^2.0.0
     unified: ^10.0.0
   checksum: 02254f74d67b3419c2c9cf62d799ec35f6c6cd74db25c001361751991552a7ce86049a972107bff8122d85d15ae4a8d1a0618f3bc01a7df837af021ae9b2a04e
+  languageName: node
+  linkType: hard
+
+"remark-html@npm:^15.0.1":
+  version: 15.0.1
+  resolution: "remark-html@npm:15.0.1"
+  dependencies:
+    "@types/mdast": ^3.0.0
+    hast-util-sanitize: ^4.0.0
+    hast-util-to-html: ^8.0.0
+    mdast-util-to-hast: ^12.0.0
+    unified: ^10.0.0
+  checksum: da9a7ee71b470d21d4d74eb841fd6c340396ebe3e7488fc70d5471bf25bcaf2cb0a25a5d034ead1f1ac9612df2f703705acfd16e6f6b60696f40b788abf2b174
   languageName: node
   linkType: hard
 
@@ -17899,6 +18093,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"stringify-entities@npm:^4.0.2":
+  version: 4.0.3
+  resolution: "stringify-entities@npm:4.0.3"
+  dependencies:
+    character-entities-html4: ^2.0.0
+    character-entities-legacy: ^3.0.0
+  checksum: 59e8f523b403bf7d415690e72ae52982decd6ea5426bd8b3f5c66225ddde73e766c0c0d91627df082d0794e30b19dd907ffb5864cef3602e4098d6777d7ca3c2
+  languageName: node
+  linkType: hard
+
 "strip-ansi@npm:^3.0.0":
   version: 3.0.1
   resolution: "strip-ansi@npm:3.0.1"
@@ -19211,6 +19415,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vfile-location@npm:^4.0.0":
+  version: 4.0.1
+  resolution: "vfile-location@npm:4.0.1"
+  dependencies:
+    "@types/unist": ^2.0.0
+    vfile: ^5.0.0
+  checksum: cc0df62075c741beee699e651374aeb56c4c1f4333398c0ba924281c2b51d4b7669c69c5b837ea395775626ad030d6f1bd27fd0a7eaf3f9f1bbd55393948ad6c
+  languageName: node
+  linkType: hard
+
 "vfile-message@npm:^3.0.0":
   version: 3.1.3
   resolution: "vfile-message@npm:3.1.3"
@@ -19277,6 +19491,13 @@ __metadata:
   dependencies:
     defaults: ^1.0.3
   checksum: 814e9d1ddcc9798f7377ffa448a5a3892232b9275ebb30a41b529607691c0491de47cba426e917a4d08ded3ee7e9ba2f3fe32e62ee3cd9c7d3bafb7754bd553c
+  languageName: node
+  linkType: hard
+
+"web-namespaces@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "web-namespaces@npm:2.0.1"
+  checksum: b6d9f02f1a43d0ef0848a812d89c83801d5bbad57d8bb61f02eb6d7eb794c3736f6cc2e1191664bb26136594c8218ac609f4069722c6f56d9fc2d808fa9271c6
   languageName: node
   linkType: hard
 
