@@ -3,6 +3,8 @@ import Image from "next/future/image";
 import { cloudinaryLoader } from "../../lib/cloudinaryLoader";
 import { useState, useEffect } from "react";
 import { generateMarkdown } from "../../lib/markDownMaker";
+import Head from "next/head";
+
 const HomeShow = ({ home }) => {
   console.log(home.attributes);
   const coverImage =
@@ -22,6 +24,10 @@ const HomeShow = ({ home }) => {
   }, [description]);
   return (
     <>
+      <Head>
+        <meta name="theme-color" content="#161724" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#161724" />
+      </Head>
       <nav aria-label="breadcrumb" className="p-5">
         <ol class="inline-flex items-center space-x-4 py-2 text-sm font-medium">
           <li class="inline-flex items-center">
@@ -49,39 +55,46 @@ const HomeShow = ({ home }) => {
           </li>
         </ol>
       </nav>
-
-      <div className="text-white h-full flex items-center p-5">
-        <div class="mx-auto max-w-6xl overflow-hidden rounded-lg bg-white shadow">
-          <Image
-            loader={cloudinaryLoader}
-            src={`${coverImage}`}
-            width={512}
-            height={288}
-            alt="home"
-            className="aspect-video w-full"
-          />
-          <div class="p-4">
-            <p class="mb-1 text-sm text-primary-500">
-              Chris Seaborn • <time>{date}</time>
-            </p>
-            <h3 class="text-xl font-medium text-gray-900">{address}</h3>
-            <p class="mt-1 text-gray-700 text-xs">{descriptionState}</p>
-            <div class="mt-4 flex gap-2">
-              <span class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                Available
-              </span>
-              <span class="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
-                Recently Listed
-              </span>
-              <span class="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                3 Beds
-              </span>
-              <span class="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                3 Baths
-              </span>
-              <span class="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                2 Levels
-              </span>
+      <div className="flex items-center justify-center">
+        <div
+          className="text-white h-full p-5 max-w-full"
+          style={{ width: "40em" }}
+        >
+          <div class="mx-auto overflow-hidden rounded-lg bg-white shadow">
+            <div class="relative aspect-video">
+              <Image
+                loader={cloudinaryLoader}
+                src={`${coverImage}`}
+                fill
+                alt="home"
+                className="object-cover"
+              />
+            </div>
+            <div class="p-4">
+              <p class="mb-1 text-sm text-primary-500 text-center">
+                Chris Seaborn • <time>{date}</time>
+              </p>
+              <h3 class="text-xl font-medium text-gray-900 text-center">
+                {address}
+              </h3>
+              <p class="mt-1 text-gray-700 text-xs">{descriptionState}</p>
+              <div class="mt-4 flex gap-2 justify-center">
+                <span class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
+                  Available
+                </span>
+                <span class="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
+                  Recently Listed
+                </span>
+                <span class="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+                  3 Beds
+                </span>
+                <span class="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+                  3 Baths
+                </span>
+                <span class="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+                  2 Levels
+                </span>
+              </div>
             </div>
           </div>
         </div>
