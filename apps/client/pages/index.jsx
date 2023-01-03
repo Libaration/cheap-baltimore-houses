@@ -15,6 +15,7 @@ const GlbHomeRender = dynamic(() =>
   import("../components/homes/GlbHomeRender")
 );
 const Index = (props) => {
+  const recentHomesRef = useRef(null);
   const { notchColor, setNotchColor } = useChangeNotchColor();
   const { ref: newsletterRef, isVisible: newsletterVisible } =
     useInViewStateAndEffect(0.1, "news");
@@ -52,7 +53,7 @@ const Index = (props) => {
       </Head>
       <BackgroundImage visible={true} />
       <div ref={heroRef}>
-        <Hero />
+        <Hero ref={recentHomesRef} />
         <div ref={contentRef} style={{ width: "1px", height: "1px" }} />
       </div>
       <div className="shrink center-safe">
@@ -63,7 +64,9 @@ const Index = (props) => {
         />
         <GlbHomeRender />
 
-        <div className="recent-text">Recent Listings</div>
+        <div className="recent-text" ref={recentHomesRef}>
+          Recent Listings
+        </div>
         <div
           className="pt-5 pb-1"
           style={{ width: "100%", textAlign: "center", margin: "auto" }}

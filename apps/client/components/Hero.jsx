@@ -4,8 +4,8 @@ import { useParallax } from "react-scroll-parallax";
 import Image from "next/future/image";
 import cityOverlay from "../public/city.png";
 import skyOverlay from "../public/sky.png";
-export default function Hero({ children }) {
-  const page2Ref = useRef(null);
+import { forwardRef } from "react";
+const Hero = ({ children }, ref) => {
   const target = useRef(null);
   const text = useParallax({
     speed: 10,
@@ -26,12 +26,6 @@ export default function Hero({ children }) {
     endScroll: 400,
     easing: "easeInOutSine",
   });
-
-  const setStyle = (element, style) => {
-    if (element) {
-      element["el"]["style"][`${style}`] = element.progress * 100 + "%";
-    }
-  };
   return (
     <>
       <div className="main">
@@ -66,7 +60,7 @@ export default function Hero({ children }) {
                 className="seeOurPropertiesButton"
                 label="See our properties"
                 onClick={() => {
-                  page2Ref.current?.scrollIntoView({ behavior: "smooth" });
+                  ref.current?.scrollIntoView({ behavior: "smooth" });
                 }}
               />
             </div>
@@ -76,4 +70,5 @@ export default function Hero({ children }) {
       </div>
     </>
   );
-}
+};
+export default forwardRef(Hero);

@@ -5,8 +5,6 @@ const Breadcrumb = (props) => {
   const paths = router.pathname
     .split("/")
     .map((path) => (path === "[id]" ? router.query.id : path));
-
-  console.log(paths);
   const renderInactive = (path, index) => {
     let href = "/";
     for (let i = 1; i <= index; i++) {
