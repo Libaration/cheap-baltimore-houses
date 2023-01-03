@@ -25,13 +25,15 @@ const Home = ({ home }) => {
         <div className="mx-auto overflow-hidden rounded-lg bg-white shadow">
           <div className="relative aspect-video">
             <Link href={`homes/${home.id}`}>
-              <Image
-                loader={cloudinaryLoader}
-                src={`${coverImage}`}
-                fill
-                alt="home"
-                className="object-cover cursor-pointer"
-              />
+              <a>
+                <Image
+                  loader={cloudinaryLoader}
+                  src={`${coverImage}`}
+                  fill
+                  alt="home"
+                  className="object-cover cursor-pointer"
+                />
+              </a>
             </Link>
           </div>
           <div className="p-4">

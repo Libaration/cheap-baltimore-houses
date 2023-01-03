@@ -8,6 +8,8 @@ export default function Page({ homes }) {
   return (
     <>
       <Breadcrumb />
+      <h4 className="smallHeroText text-center">Cheap Baltimore Houses</h4>
+
       <div className="flex flex-row flex-wrap justify-center">
         {renderHomes(homes)}
       </div>

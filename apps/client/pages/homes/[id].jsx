@@ -29,6 +29,8 @@ const HomeShow = ({ home }) => {
         <meta name="apple-mobile-web-app-status-bar-style" content="#161724" />
       </Head>
       <Breadcrumb customTitle={address} />
+      <h4 className="smallHeroText text-center">Cheap Baltimore Houses</h4>
+      <h1 className="heroText text-center text-lg">{address}</h1>
       <div className="flex items-center justify-center">
         <div
           className="text-white h-full p-5 max-w-full"
@@ -46,7 +48,7 @@ const HomeShow = ({ home }) => {
             </div>
             <div className="p-4">
               <p className="mb-1 text-sm text-primary-500 text-center">
-                Chris Seaborn • <time>{date}</time>
+                Added • <time>{date}</time>
               </p>
               <h3 className="text-xl font-medium text-gray-900 text-center">
                 {address}

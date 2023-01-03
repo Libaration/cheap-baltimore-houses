@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { v4 as uuidv4 } from "uuid";
+import React from "react";
 const Breadcrumb = (props) => {
   const router = useRouter();
   const paths = router.pathname
@@ -12,8 +14,8 @@ const Breadcrumb = (props) => {
     }
 
     return (
-      <>
-        <li className="inline-flex items-center">
+      <React.Fragment key={uuidv4()}>
+        <li className="inline-flex items-center ">
           <Link href={href}>
             <span className="text-secondary-500 hover:text-secondary-300 cursor-pointer">
               {path.charAt(0).toUpperCase() + path.slice(1)}
@@ -21,13 +23,13 @@ const Breadcrumb = (props) => {
           </Link>
         </li>
         {renderCarrot(index)}
-      </>
+      </React.Fragment>
     );
   };
 
   const renderRootCrumb = () => {
     return (
-      <>
+      <React.Fragment key={uuidv4()}>
         <li className="inline-flex items-center">
           <Link href="/">
             <span className="text-secondary-500 hover:text-secondary-300 cursor-pointer">
@@ -36,26 +38,28 @@ const Breadcrumb = (props) => {
           </Link>
         </li>
         {renderCarrot(0)}
-      </>
+      </React.Fragment>
     );
   };
 
   const renderCarrot = (index) => {
     if (index === paths.length - 1) return null;
     return (
-      <svg
-        className="h-6 w-6 text-gray-400"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-        key="svg"
-      >
-        <path
-          fillRule="evenodd"
-          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-          clipRule="evenodd"
-        ></path>
-      </svg>
+      <React.Fragment key={uuidv4()}>
+        <svg
+          className="h-6 w-6 text-gray-400"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+          key="svg"
+        >
+          <path
+            fillRule="evenodd"
+            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+            clipRule="evenodd"
+          ></path>
+        </svg>
+      </React.Fragment>
     );
   };
 
@@ -67,7 +71,7 @@ const Breadcrumb = (props) => {
     }
 
     return (
-      <>
+      <React.Fragment key={uuidv4()}>
         <li className="inline-flex items-center space-x-4" aria-current="page">
           <Link href={href}>
             <span className="text-secondary-100 hover:text-secondary-300 cursor-pointer">
@@ -79,7 +83,7 @@ const Breadcrumb = (props) => {
           </Link>
         </li>
         {renderCarrot(index)}
-      </>
+      </React.Fragment>
     );
   };
   const renderPaths = () => {

@@ -4,8 +4,7 @@ import { useParallax } from "react-scroll-parallax";
 import Image from "next/future/image";
 import cityOverlay from "../public/city.png";
 import skyOverlay from "../public/sky.png";
-import { forwardRef } from "react";
-const Hero = ({ children }, ref) => {
+const Hero = (props) => {
   const target = useRef(null);
   const text = useParallax({
     speed: 10,
@@ -60,15 +59,19 @@ const Hero = ({ children }, ref) => {
                 className="seeOurPropertiesButton"
                 label="See our properties"
                 onClick={() => {
-                  ref.current?.scrollIntoView({ behavior: "smooth" });
+                  if (props.recentHomesRef.current) {
+                    props.recentHomesRef.current.scrollIntoView({
+                      behavior: "smooth",
+                    });
+                  }
                 }}
               />
             </div>
           </div>
         </div>
-        {children}
+        {props.children}
       </div>
     </>
   );
 };
-export default forwardRef(Hero);
+export default Hero;

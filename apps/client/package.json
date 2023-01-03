@@ -17,6 +17,7 @@
     "@react-three/drei": "^9.46.5",
     "@react-three/fiber": "^8.9.1",
     "dayjs": "^1.11.5",
+    "install": "^0.13.0",
     "lodash": "^4.17.21",
     "next": "^12.2.6",
     "primeicons": "^6.0.1",
@@ -34,6 +35,7 @@
     "remark-html": "^15.0.1",
     "sharp": "^0.31.2",
     "three": "^0.147.0",
+    "uuid": "^9.0.0",
     "webpack": "latest"
   },
   "devDependencies": {
