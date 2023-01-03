@@ -2,6 +2,7 @@ import Image from "next/future/image";
 import { cloudinaryLoader } from "../../lib/cloudinaryLoader";
 import { useEffect, useState } from "react";
 import { generateMarkdown } from "../../lib/markDownMaker";
+import Link from "next/link";
 const Home = ({ home }) => {
   const coverImage =
     home.attributes.cover_image.data.attributes.provider_metadata.public_id;
@@ -23,13 +24,15 @@ const Home = ({ home }) => {
       <div className="text-white p-5 max-w-md max-h-fit">
         <div className="mx-auto overflow-hidden rounded-lg bg-white shadow">
           <div className="relative aspect-video">
-            <Image
-              loader={cloudinaryLoader}
-              src={`${coverImage}`}
-              fill
-              alt="home"
-              className="object-cover"
-            />
+            <Link href={`homes/${home.id}`}>
+              <Image
+                loader={cloudinaryLoader}
+                src={`${coverImage}`}
+                fill
+                alt="home"
+                className="object-cover cursor-pointer"
+              />
+            </Link>
           </div>
           <div className="p-4">
             <p className="mb-1 text-sm text-primary-500 text-center">

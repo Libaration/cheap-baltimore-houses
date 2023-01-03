@@ -17,7 +17,6 @@ export default function Page({ homes }) {
 
 export const getStaticProps = async () => {
   const { data } = await homesCalls.get.allHomes();
-  console.log(data);
 
   return {
     props: { homes: data },
