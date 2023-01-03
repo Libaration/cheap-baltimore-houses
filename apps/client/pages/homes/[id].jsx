@@ -6,7 +6,6 @@ import { generateMarkdown } from "../../lib/markDownMaker";
 import Head from "next/head";
 
 const HomeShow = ({ home }) => {
-  console.log(home.attributes);
   const coverImage =
     home.attributes.cover_image.data.attributes.provider_metadata.public_id;
   const date = new Date(home.attributes.createdAt).toLocaleDateString("en-US", {

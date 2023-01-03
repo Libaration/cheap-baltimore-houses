@@ -367,10 +367,8 @@ html {
 }
 .line-clamp {
   display: inline-block;
-  border: 1px solid #cccccc;
-  padding: 9px;
-  width: 150px;
-  height: 45px;
+  width: auto;
+  height: auto;
   -webkit-line-clamp: 2;
   display: -webkit-box;
   line-height: 1.65;
