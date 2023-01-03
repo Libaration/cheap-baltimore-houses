@@ -28,28 +28,31 @@ const HomeShow = ({ home }) => {
         <meta name="theme-color" content="#161724" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#161724" />
       </Head>
-      <nav aria-label="breadcrumb" className="p-5">
-        <ol class="inline-flex items-center space-x-4 py-2 text-sm font-medium">
-          <li class="inline-flex items-center">
-            <a href="#" class="text-secondary-500 hover:text-secondary-600">
+      <nav aria-label="breadcrumb" className="pl-5 pr-5">
+        <ol className="inline-flex items-center space-x-4 py-2 text-sm font-medium">
+          <li className="inline-flex items-center">
+            <a href="#" className="text-secondary-500 hover:text-secondary-600">
               Home
             </a>
           </li>
 
-          <li class="inline-flex items-center space-x-4" aria-current="page">
+          <li
+            className="inline-flex items-center space-x-4"
+            aria-current="page"
+          >
             <svg
-              class="h-6 w-6 text-gray-400"
+              className="h-6 w-6 text-gray-400"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               ></path>
             </svg>
-            <a class="text-secondary-100 hover:text-secondary-700" href="#">
+            <a className="text-secondary-100 hover:text-secondary-700" href="#">
               {address}
             </a>
           </li>
@@ -60,8 +63,8 @@ const HomeShow = ({ home }) => {
           className="text-white h-full p-5 max-w-full"
           style={{ width: "40em" }}
         >
-          <div class="mx-auto overflow-hidden rounded-lg bg-white shadow">
-            <div class="relative aspect-video">
+          <div className="mx-auto overflow-hidden rounded-lg bg-white shadow">
+            <div className="relative aspect-video">
               <Image
                 loader={cloudinaryLoader}
                 src={`${coverImage}`}
@@ -70,28 +73,30 @@ const HomeShow = ({ home }) => {
                 className="object-cover"
               />
             </div>
-            <div class="p-4">
-              <p class="mb-1 text-sm text-primary-500 text-center">
+            <div className="p-4">
+              <p className="mb-1 text-sm text-primary-500 text-center">
                 Chris Seaborn • <time>{date}</time>
               </p>
-              <h3 class="text-xl font-medium text-gray-900 text-center">
+              <h3 className="text-xl font-medium text-gray-900 text-center">
                 {address}
               </h3>
-              <p class="mt-1 text-gray-700 text-xs">{descriptionState}</p>
-              <div class="mt-4 flex gap-2 justify-center">
-                <span class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
+              <div className="mt-1 text-gray-700 text-xs">
+                {descriptionState}
+              </div>
+              <div className="mt-4 flex gap-2 justify-center">
+                <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
                   Available
                 </span>
-                <span class="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
+                <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
                   Recently Listed
                 </span>
-                <span class="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+                <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
                   3 Beds
                 </span>
-                <span class="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+                <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
                   3 Baths
                 </span>
-                <span class="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+                <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
                   2 Levels
                 </span>
               </div>
