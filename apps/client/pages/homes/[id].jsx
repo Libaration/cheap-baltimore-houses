@@ -3,6 +3,7 @@ import Image from "next/future/image";
 import { cloudinaryLoader } from "../../lib/cloudinaryLoader";
 import { useState, useEffect } from "react";
 import { generateMarkdown } from "../../lib/markDownMaker";
+import Breadcrumb from "../../components/Breadcrumb";
 import Head from "next/head";
 
 const HomeShow = ({ home }) => {
@@ -27,36 +28,7 @@ const HomeShow = ({ home }) => {
         <meta name="theme-color" content="#161724" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#161724" />
       </Head>
-      <nav aria-label="breadcrumb" className="pl-5 pr-5">
-        <ol className="inline-flex items-center space-x-4 py-2 text-sm font-medium">
-          <li className="inline-flex items-center">
-            <a href="#" className="text-secondary-500 hover:text-secondary-600">
-              Home
-            </a>
-          </li>
-
-          <li
-            className="inline-flex items-center space-x-4"
-            aria-current="page"
-          >
-            <svg
-              className="h-6 w-6 text-gray-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-            <a className="text-secondary-100 hover:text-secondary-700" href="#">
-              {address}
-            </a>
-          </li>
-        </ol>
-      </nav>
+      <Breadcrumb customTitle={address} />
       <div className="flex items-center justify-center">
         <div
           className="text-white h-full p-5 max-w-full"
