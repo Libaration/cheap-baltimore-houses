@@ -52,7 +52,6 @@ const Index = (props) => {
           content={notchColor.style}
         />
       </Head>
-      <BackgroundImage visible={true} />
       <div ref={heroRef}>
         <Hero recentHomesRef={recentHomesRef} />
         <div ref={contentRef} style={{ width: "1px", height: "1px" }} />

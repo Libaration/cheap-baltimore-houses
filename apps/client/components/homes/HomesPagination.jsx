@@ -1,6 +1,6 @@
 import { Pagination } from "@nextui-org/react";
 import { homesCalls } from "../../lib/homes";
-const HomesPagination = ({ meta, setHomesState }) => {
+const HomesPagination = ({ meta, setHomesState, setMetaState }) => {
   const { page, pageCount } = meta.pagination;
   return (
     <div className="flex items-center mt-10 flex-col">
@@ -16,6 +16,7 @@ const HomesPagination = ({ meta, setHomesState }) => {
             pageSize: 2,
           });
           setHomesState(response.data);
+          setMetaState(response.meta);
         }}
       />
       <span className="text-xs text-primary-100 mt-1">

@@ -1,8 +1,9 @@
 import HomesFilterDropdown from "./HomesFilterDropdown";
+import { Dropdown } from "@nextui-org/react";
 const HomesFilter = ({ meta }) => {
   return (
     <div className="flex justify-center">
-      <details className="group rounded-lg p-6 open:bg-gray-700 w-96" open>
+      <details className="group rounded-lg p-6 open:bg-gray-700 w-96 bg-gray-700">
         <summary className="flex cursor-pointer list-none items-center justify-between text-lg font-medium text-secondary-100">
           Filters
           <div className="text-primary-500">

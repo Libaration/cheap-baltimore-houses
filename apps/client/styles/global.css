@@ -152,15 +152,15 @@ table {
 
 body {
   margin: 0;
-  background-color: #161724;
   font-family: "Karla", sans-serif;
-  color: #666;
+  color: rgb(24, 24, 24);
   font-size: 20px;
   line-height: 32px;
 }
 body,
 html {
   height: var(--app-height);
+  background-color: #fafafa;
 }
 html {
   font-family: "Karla", sans-serif;
@@ -247,11 +247,10 @@ html {
   font-size: 3vw;
 }
 #small-address-hero-text {
-  font-family: "Playfair Display", sans-serif;
-  font-weight: 700;
+  font-weight: 300;
   line-height: 40px;
   overflow-wrap: break-word;
-  color: white;
+  color: rgb(29, 29, 29);
 }
 @media screen and (min-width: 300px) {
   .heroText {

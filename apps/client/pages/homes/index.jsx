@@ -8,7 +8,9 @@ function renderHomes(homes) {
   return homes.map((home) => <Home key={home.id} home={home} />);
 }
 export default function Page({ homes, meta }) {
-  const [homesState, setHomesState] = useState(null);
+  const [homesState, setHomesState] = useState(homes);
+  const [metaState, setMetaState] = useState(meta);
+  const [pageSizeState, setPageSizeState] = useState(meta.pageSize);
   return (
     <>
       <Breadcrumb />
@@ -20,7 +22,11 @@ export default function Page({ homes, meta }) {
       <div className="flex flex-row flex-wrap justify-center">
         {renderHomes(homesState ? homesState : homes)}
       </div>
-      <HomesPagination meta={meta} setHomesState={setHomesState} />
+      <HomesPagination
+        meta={metaState ? metaState : meta}
+        setHomesState={setHomesState}
+        setMetaState={setMetaState}
+      />
     </>
   );
 }

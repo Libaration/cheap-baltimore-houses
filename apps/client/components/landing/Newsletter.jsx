@@ -36,7 +36,7 @@ const Newsletter = (props, ref) => {
         </div>
       </div>
       <div
-        className={`newsletter-text p-5 text-white ${
+        className={`newsletter-text p-5  ${
           props.visible ? "scale-in" : "scale-out"
         }`}
       >

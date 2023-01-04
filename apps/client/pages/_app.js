@@ -6,6 +6,7 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import { builder } from "@builder.io/react";
 import "@builder.io/widgets/dist/lib/builder-widgets-async";
 import Head from "next/head";
+import { NextUIProvider } from "@nextui-org/react";
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -21,7 +22,9 @@ function MyApp({ Component, pageProps }) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
       </Head>
       <ParallaxProvider>
-        <Component {...pageProps} />
+        <NextUIProvider>
+          <Component {...pageProps} />
+        </NextUIProvider>
       </ParallaxProvider>
     </>
   );
