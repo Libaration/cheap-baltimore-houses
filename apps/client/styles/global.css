@@ -592,3 +592,8 @@ html {
     opacity: 1;
   }
 }
+
+.filter-spans {
+  margin-left: 10px;
+  margin-right: 10px;
+}
