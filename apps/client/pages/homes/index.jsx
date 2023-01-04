@@ -1,33 +1,24 @@
-import Home from "../../components/homes/Home";
 import { homesCalls } from "../../lib/homes";
 import Breadcrumb from "../../components/Breadcrumb";
 import HomesFilter from "../../components/homes/HomesFilter";
-import HomesPagination from "../../components/homes/HomesPagination";
-import { useState } from "react";
-function renderHomes(homes) {
-  return homes.map((home) => <Home key={home.id} home={home} />);
-}
-export default function Page({ homes, meta }) {
-  const [homesState, setHomesState] = useState(homes);
-  const [metaState, setMetaState] = useState(meta);
-  const [pageSizeState, setPageSizeState] = useState(meta.pageSize);
+import { SWRConfig } from "swr";
+import dynamic from "next/dynamic";
+const Homes = dynamic(() => import("../../components/homes/allHomes/Homes"), {
+  ssr: false,
+});
+export default function Page({ fallback }) {
+  const { meta } = fallback;
+
   return (
-    <>
+    <SWRConfig value={{ fallbackData: fallback }}>
       <Breadcrumb />
 
       <HomesFilter meta={meta} />
 
       <h4 className="smallHeroText text-center">Cheap Baltimore Houses</h4>
 
-      <div className="flex flex-row flex-wrap justify-center">
-        {renderHomes(homesState ? homesState : homes)}
-      </div>
-      <HomesPagination
-        meta={metaState ? metaState : meta}
-        setHomesState={setHomesState}
-        setMetaState={setMetaState}
-      />
-    </>
+      <Homes />
+    </SWRConfig>
   );
 }
 
@@ -38,7 +29,12 @@ export const getStaticProps = async () => {
   });
 
   return {
-    props: { homes: response.data, meta: response.meta },
+    props: {
+      fallback: {
+        data: response.data,
+        meta: response.meta,
+      },
+    },
     revalidate: 60,
   };
 };

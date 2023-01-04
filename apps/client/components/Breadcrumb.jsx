@@ -74,7 +74,7 @@ const Breadcrumb = (props) => {
       <React.Fragment key={uuidv4()}>
         <li className="inline-flex items-center space-x-4" aria-current="page">
           <Link href={href}>
-            <span className="text-secondary-100 hover:text-secondary-300 cursor-pointer">
+            <span className="text-primary-500 hover:text-secondary-800 cursor-pointer">
               {props.customTitle
                 ? props.customTitle.charAt(0).toUpperCase() +
                   props.customTitle.slice(1)

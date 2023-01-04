@@ -1,26 +1,22 @@
 import { Pagination } from "@nextui-org/react";
 import { homesCalls } from "../../lib/homes";
-const HomesPagination = ({ meta, setHomesState, setMetaState }) => {
-  const { page, pageCount } = meta.pagination;
+import { useSWRAllHomesPaginated } from "../../lib/homes";
+const HomesPagination = ({ meta, setHomes, setMeta }) => {
   return (
     <div className="flex items-center mt-10 flex-col">
       <Pagination
-        total={pageCount}
-        initialPage={page}
+        total={meta.pagination && meta.pagination.pageCount}
+        initialPage={meta.pagination && meta.pagination.page}
         color="warning"
         size="sm"
         controls={false}
         onChange={async (page) => {
-          const response = await homesCalls.get.allHomesPaginated({
-            page: page,
-            pageSize: 2,
-          });
-          setHomesState(response.data);
-          setMetaState(response.meta);
+          setMeta({ ...meta, pagination: { ...meta.pagination, page } });
         }}
       />
-      <span className="text-xs text-primary-100 mt-1">
-        Page {page} of {pageCount}
+      <span className="text-xs mt-1 text-secondary-800">
+        Page {meta.pagination && meta.pagination.page} of{" "}
+        {meta.pagination && meta.pagination.pageCount}
       </span>
     </div>
   );

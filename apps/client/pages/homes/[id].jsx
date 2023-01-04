@@ -1,5 +1,6 @@
 import { homesCalls } from "../../lib/homes";
 import Image from "next/future/image";
+
 import { cloudinaryLoader } from "../../lib/cloudinaryLoader";
 import { useState, useEffect } from "react";
 import { generateMarkdown } from "../../lib/markDownMaker";
@@ -25,8 +26,8 @@ const HomeShow = ({ home }) => {
   return (
     <>
       <Head>
-        <meta name="theme-color" content="#161724" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="#161724" />
+        <meta name="theme-color" content="#fafafa" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#fafafa" />
       </Head>
       <Breadcrumb customTitle={address} />
       <h4 className="smallHeroText text-center">Cheap Baltimore Houses</h4>
@@ -35,7 +36,7 @@ const HomeShow = ({ home }) => {
       </h1>
       <div className="flex items-center justify-center">
         <div
-          className="text-white h-full p-5 max-w-full"
+          className="text-black h-full p-5 max-w-full"
           style={{ width: "40em" }}
         >
           <div className="mx-auto overflow-hidden rounded-lg bg-white shadow">

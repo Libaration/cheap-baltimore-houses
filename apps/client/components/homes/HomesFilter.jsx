@@ -38,8 +38,8 @@ const HomesFilter = ({ meta }) => {
           </div>
         </summary>
         <div className="mt-2 text-secondary-200 text-xs">
+          {/* <HomesFilterDropdown /> */}
           <span className="filter-spans">
-            <HomesFilterDropdown />
             {meta.pagination.pageSize} Per Page
           </span>
         </div>
