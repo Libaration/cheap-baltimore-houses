@@ -246,6 +246,13 @@ html {
   text-transform: uppercase;
   font-size: 3vw;
 }
+#small-address-hero-text {
+  font-family: "Playfair Display", sans-serif;
+  font-weight: 700;
+  line-height: 40px;
+  overflow-wrap: break-word;
+  color: white;
+}
 @media screen and (min-width: 300px) {
   .heroText {
     font-size: 4vh;
@@ -473,25 +480,17 @@ html {
     flex-direction: column;
     width: 100vw;
   }
+  #small-address-hero-text {
+    font-size: 0.8rem;
+  }
 }
 
 /* Medium devices (landscape phones, 576px and up) */
-/* @media only screen and (min-width: 576px) and (max-width: 767px) {
-  .newsletter-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    grid-template-areas:
-      "newsletter-icon"
-      "newsletter-text"
-      "newsletter-sign-up-form";
-    max-width: 50px !important;
-    margin: 0 auto;
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  #small-address-hero-text {
+    font-size: 1rem;
   }
-  .newsletter-container > * {
-    max-width: 50px;
-  }
-} */
+}
 
 /* Large devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -501,6 +500,9 @@ html {
     grid-template-areas:
       "newsletter-icon newsletter-text"
       "newsletter-sign-up-form newsletter-sign-up-form";
+  }
+  #small-address-hero-text {
+    font-size: 1rem;
   }
 }
 
@@ -513,6 +515,9 @@ html {
       "newsletter-icon newsletter-text"
       "newsletter-sign-up-form newsletter-sign-up-form";
   }
+  #small-address-hero-text {
+    font-size: 1rem;
+  }
 }
 
 /* Extra extra large devices (large laptops and desktops, 1200px and up) */
@@ -523,6 +528,9 @@ html {
     grid-template-areas:
       "newsletter-icon newsletter-text"
       "newsletter-sign-up-form newsletter-sign-up-form";
+  }
+  #small-address-hero-text {
+    font-size: 1rem;
   }
 }
 

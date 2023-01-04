@@ -63,7 +63,18 @@ const Index = (props) => {
           ref={newsletterRef}
           visible={newsletterVisible}
         />
-        <GlbHomeRender />
+
+        <div
+          className="w-full overflow-visible"
+          style={{
+            position: "relative",
+            zIndex: 1,
+            height: "600px",
+            marginTop: "-100px",
+          }}
+        >
+          <GlbHomeRender />
+        </div>
 
         <div className="recent-text" ref={recentHomesRef}>
           Recent Listings

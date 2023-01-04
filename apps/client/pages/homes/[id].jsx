@@ -30,7 +30,9 @@ const HomeShow = ({ home }) => {
       </Head>
       <Breadcrumb customTitle={address} />
       <h4 className="smallHeroText text-center">Cheap Baltimore Houses</h4>
-      <h1 className="heroText text-center text-lg">{address}</h1>
+      <h1 id="small-address-hero-text" className="text-center">
+        {address}
+      </h1>
       <div className="flex items-center justify-center">
         <div
           className="text-white h-full p-5 max-w-full"
