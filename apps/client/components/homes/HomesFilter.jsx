@@ -1,5 +1,5 @@
 import HomesFilterDropdown from "./HomesFilterDropdown";
-import { Dropdown } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 const HomesFilter = ({ meta, setMeta }) => {
   return (
     <div className="flex justify-center mt-10">
@@ -40,8 +40,9 @@ const HomesFilter = ({ meta, setMeta }) => {
         <div className="mt-2 text-secondary-200 text-xs">
           <HomesFilterDropdown meta={meta} setMeta={setMeta} />
           <span className="filter-spans inline-block mt-2">
-            {meta.pagination && meta.pagination.pageSize} Per Page
+            {meta && meta.pagination && meta.pagination.pageSize} Per Page
           </span>
+          <Input placeholder="Zipcode" className="bg-black" />
         </div>
       </details>
     </div>

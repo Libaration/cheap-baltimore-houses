@@ -7,8 +7,6 @@ const Homes = dynamic(() => import("../../components/homes/allHomes/Homes"), {
   ssr: false,
 });
 export default function Page({ fallback }) {
-  const { meta } = fallback;
-
   return (
     <SWRConfig value={{ fallbackData: fallback }}>
       <Breadcrumb />

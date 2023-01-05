@@ -33,8 +33,8 @@ const skeleton = () => {
 const Homes = () => {
   const [meta, setMeta] = useState({});
   const { data, isLoading } = homesCalls.getSWR.allHomesPaginated({
-    page: meta.pagination && meta.pagination.page,
-    pageSize: meta.pagination && meta.pagination.pageSize,
+    page: (meta && meta.pagination && meta.pagination.page) || 1,
+    pageSize: (meta && meta.pagination && meta.pagination.pageSize) || 9,
   });
   const renderHomes = useCallback((homes) => {
     return homes.map((home) => <Home key={home.id} home={home} />);

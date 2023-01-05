@@ -6,10 +6,19 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import { builder } from "@builder.io/react";
 import "@builder.io/widgets/dist/lib/builder-widgets-async";
 import Head from "next/head";
-import { NextUIProvider } from "@nextui-org/react";
+import { NextUIProvider, createTheme } from "@nextui-org/react";
+const theme = createTheme({
+  type: "light", // it could be "light" or "dark"
+  theme: {
+    colors: {
+      link: "#ffffff",
+    },
+  },
+});
+
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <NextUIProvider theme={theme}>
       <Head>
         <meta
           name="viewport"
@@ -22,11 +31,9 @@ function MyApp({ Component, pageProps }) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
       </Head>
       <ParallaxProvider>
-        <NextUIProvider>
-          <Component {...pageProps} />
-        </NextUIProvider>
+        <Component {...pageProps} />
       </ParallaxProvider>
-    </>
+    </NextUIProvider>
   );
 }
 
