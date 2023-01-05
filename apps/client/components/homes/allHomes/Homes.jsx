@@ -49,7 +49,9 @@ const Homes = () => {
     <>
       <HomesFilter meta={data.meta} setMeta={setMeta} />
       <div className="flex flex-row flex-wrap justify-center">
-        {isLoading ? skeleton() : renderHomes(data.data)}
+        {isLoading || !data || !data.data
+          ? skeleton()
+          : renderHomes(data && data.data)}
       </div>
       <HomesPagination meta={data.meta} setMeta={setMeta} />
     </>
