@@ -23,19 +23,24 @@ const Home = ({ home }) => {
     <>
       <div className="text-white p-5 max-w-md max-h-fit">
         <div className="mx-auto overflow-hidden rounded-lg bg-white shadow">
-          <div className="relative aspect-video">
-            <Link href={`homes/${home.id}`}>
+          <Link href={`homes/${home.id}`}>
+            <div className="relative aspect-video">
               <a>
                 <Image
+                  src={coverImage}
                   loader={cloudinaryLoader}
-                  src={`${coverImage}`}
                   fill
+                  sizes="(max-width: 576px) 100vw,
+                          (max-width: 768px) 50vw,
+                          (max-width: 992px) 33vw,
+                          (max-width: 1200px) 25vw,
+                          20vw"
                   alt="home"
                   className="object-cover cursor-pointer"
                 />
               </a>
-            </Link>
-          </div>
+            </div>
+          </Link>
           <div className="p-4">
             <p className="mb-1 text-sm text-primary-500 text-center">
               Chris Seaborn • <time>{date}</time>
