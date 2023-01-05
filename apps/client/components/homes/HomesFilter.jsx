@@ -39,7 +39,7 @@ const HomesFilter = ({ meta, setMeta }) => {
         </summary>
         <div className="mt-2 text-secondary-200 text-xs">
           <HomesFilterDropdown meta={meta} setMeta={setMeta} />
-          <span className="filter-spans">
+          <span className="filter-spans inline-block mt-2">
             {meta.pagination && meta.pagination.pageSize} Per Page
           </span>
         </div>
