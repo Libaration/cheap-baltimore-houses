@@ -1,6 +1,12 @@
 import HomesFilterDropdown from "./HomesFilterDropdown";
-import { Input } from "@nextui-org/react";
-const HomesFilter = ({ meta, setMeta }) => {
+import HomesFilterZipcode from "./allHomes/HomesFilterZipcode";
+const HomesFilter = ({
+  meta,
+  setMeta,
+  setShouldFetchByZipcode,
+  setZipcode,
+  zipcode,
+}) => {
   return (
     <div className="flex justify-center mt-10">
       <details className="group rounded-lg p-6 open:bg-gray-700 w-96 bg-gray-700">
@@ -38,11 +44,15 @@ const HomesFilter = ({ meta, setMeta }) => {
           </div>
         </summary>
         <div className="mt-2 text-secondary-200 text-xs">
+          <HomesFilterZipcode
+            setShouldFetchByZipcode={setShouldFetchByZipcode}
+            setZipcode={setZipcode}
+            zipcode = {zipcode}
+          />
           <HomesFilterDropdown meta={meta} setMeta={setMeta} />
           <span className="filter-spans inline-block mt-2">
             {meta && meta.pagination && meta.pagination.pageSize} Per Page
           </span>
-          <Input placeholder="Zipcode" className="bg-black" />
         </div>
       </details>
     </div>

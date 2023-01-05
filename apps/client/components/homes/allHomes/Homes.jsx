@@ -32,28 +32,56 @@ const skeleton = () => {
 };
 const Homes = () => {
   const [meta, setMeta] = useState({});
+  const [shouldFetchByZipcode, setShouldFetchByZipcode] = useState(false);
+  const [zipcode, setZipcode] = useState();
   const { data, isLoading } = homesCalls.getSWR.allHomesPaginated({
     page: (meta && meta.pagination && meta.pagination.page) || 1,
     pageSize: (meta && meta.pagination && meta.pagination.pageSize) || 9,
   });
-  const renderHomes = useCallback((homes) => {
-    return homes.map((home) => <Home key={home.id} home={home} />);
-  }, []);
+  const { data: dataByZipcode, isLoading: isLoadingByZipcode } =
+    homesCalls.getSWR.allHomesByZipcodePaginated({
+      zipcode,
+      page: (meta && meta.pagination && meta.pagination.page) || 1,
+      pageSize: (meta && meta.pagination && meta.pagination.pageSize) || 9,
+      shouldFetch: shouldFetchByZipcode,
+    });
+
+  const renderHomes = useCallback(() => {
+    if (isLoading || isLoadingByZipcode || !data || !data.data) {
+      return skeleton();
+    } else if (shouldFetchByZipcode && dataByZipcode && dataByZipcode.data) {
+      return dataByZipcode.data.map((home) => (
+        <Home key={home.id} home={home} />
+      ));
+    } else if (data && data.data && !shouldFetchByZipcode && !zipcode) {
+      return data.data.map((home) => <Home key={home.id} home={home} />);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, dataByZipcode]);
 
   useEffect(() => {
     setMeta(data.meta);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      <HomesFilter meta={data.meta} setMeta={setMeta} />
+      <HomesFilter
+        meta={meta}
+        setMeta={setMeta}
+        setShouldFetchByZipcode={setShouldFetchByZipcode}
+        setZipcode={setZipcode}
+        zipcode={zipcode}
+      />
       <div className="flex flex-row flex-wrap justify-center">
-        {isLoading || !data || !data.data
-          ? skeleton()
-          : renderHomes(data && data.data)}
+        {renderHomes()}
       </div>
-      <HomesPagination meta={data.meta} setMeta={setMeta} />
+      <HomesPagination
+        meta={shouldFetchByZipcode ? dataByZipcode.meta : data.meta}
+        setMeta={setMeta}
+      />
     </>
   );
 };

@@ -26,6 +26,27 @@ function useSWRAllHomesPaginated({ page, pageSize }) {
     isError: error,
   };
 }
+
+function useSWRAllHomesByZipcodePaginated({
+  zipcode,
+  page,
+  pageSize,
+  shouldFetch,
+}) {
+  const { data, error, isLoading } = useSWR(
+    shouldFetch
+      ? `${getStrapiURL(
+          `/api/homes?populate=cover_image&sort=id:DESC&pagination[page]=${page}&pagination[pageSize]=${pageSize}&filters[zip][$contains]=${zipcode}`
+        )}`
+      : null,
+    fetcher
+  );
+  return {
+    data: data,
+    isLoading,
+    isError: error,
+  };
+}
 const allHomes = async () => {
   return await fetchAPI(`/homes?populate=*&sort=id:DESC`);
 };
@@ -36,5 +57,8 @@ const getHome = async (id) => {
 
 export const homesCalls = {
   get: { recentHomes, allHomes, getHome, allHomesPaginated },
-  getSWR: { allHomesPaginated: useSWRAllHomesPaginated },
+  getSWR: {
+    allHomesPaginated: useSWRAllHomesPaginated,
+    allHomesByZipcodePaginated: useSWRAllHomesByZipcodePaginated,
+  },
 };
