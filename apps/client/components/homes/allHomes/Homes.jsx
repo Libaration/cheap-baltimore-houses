@@ -41,10 +41,11 @@ const Homes = () => {
   const { data: dataByZipcode, isLoading: isLoadingByZipcode } =
     homesCalls.getSWR.allHomesByZipcodePaginated({
       zipcode,
-      page: 1,
+      page: (meta && meta.pagination && meta.pagination.page) || 1,
       pageSize: (meta && meta.pagination && meta.pagination.pageSize) || 9,
       shouldFetch: shouldFetchByZipcode,
     });
+
   const renderHomes = useCallback(() => {
     if (isLoading || isLoadingByZipcode || !data || !data.data) {
       return skeleton();
@@ -57,23 +58,18 @@ const Homes = () => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    data,
-    dataByZipcode,
-    isLoading,
-    isLoadingByZipcode,
-    shouldFetchByZipcode,
-  ]);
+  }, [data, dataByZipcode]);
 
   useEffect(() => {
     setMeta(data.meta);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
       <HomesFilter
-        meta={data.meta}
+        meta={meta}
         setMeta={setMeta}
         setShouldFetchByZipcode={setShouldFetchByZipcode}
         setZipcode={setZipcode}
@@ -82,7 +78,10 @@ const Homes = () => {
       <div className="flex flex-row flex-wrap justify-center">
         {renderHomes()}
       </div>
-      <HomesPagination meta={data.meta} setMeta={setMeta} />
+      <HomesPagination
+        meta={shouldFetchByZipcode ? dataByZipcode.meta : data.meta}
+        setMeta={setMeta}
+      />
     </>
   );
 };
