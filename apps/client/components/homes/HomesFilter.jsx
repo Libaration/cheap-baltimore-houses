@@ -1,8 +1,8 @@
 import HomesFilterDropdown from "./HomesFilterDropdown";
 import { Dropdown } from "@nextui-org/react";
-const HomesFilter = ({ meta }) => {
+const HomesFilter = ({ meta, setMeta }) => {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-10">
       <details className="group rounded-lg p-6 open:bg-gray-700 w-96 bg-gray-700">
         <summary className="flex cursor-pointer list-none items-center justify-between text-lg font-medium text-secondary-100">
           Filters
@@ -38,9 +38,9 @@ const HomesFilter = ({ meta }) => {
           </div>
         </summary>
         <div className="mt-2 text-secondary-200 text-xs">
-          {/* <HomesFilterDropdown /> */}
+          <HomesFilterDropdown meta={meta} setMeta={setMeta} />
           <span className="filter-spans">
-            {meta.pagination.pageSize} Per Page
+            {meta.pagination && meta.pagination.pageSize} Per Page
           </span>
         </div>
       </details>

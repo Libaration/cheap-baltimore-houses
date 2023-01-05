@@ -1,24 +1,34 @@
-import { Dropdown } from "@nextui-org/react";
 import Link from "next/link";
-const HomesFilterDropdown = ({ title, menuItems }) => {
+const HomesFilterDropdown = ({ meta, setMeta }) => {
   return (
-    <div>
-      <Dropdown trigger="longPress">
-        <Dropdown.Button flat>Trigger</Dropdown.Button>
-        <Dropdown.Menu aria-label="Static Actions">
-          <Dropdown.Item key="new">New file</Dropdown.Item>
-          <Dropdown.Item key="copy">Copy link</Dropdown.Item>
-          <Dropdown.Item key="edit">Edit file</Dropdown.Item>
-          <Dropdown.Item key="delete" color="error">
-            Delete file
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-      dropdown glitchy until PR is merged. <br />
-      More information:{" "}
-      <Link href="https://github.com/nextui-org/nextui/pull/965/">
-        <u className="cursor-pointer">Pull Request 965</u>
-      </Link>
+    <div className="flex flex-row">
+      <button
+        type="button"
+        className="rounded-lg border border-primary-500 bg-primary-500 px-3 py-1.5 text-center text-xs font-medium text-white shadow-sm transition-all hover:border-primary-700 hover:bg-primary-700 focus:ring focus:ring-primary-200 disabled:cursor-not-allowed disabled:border-primary-300 disabled:bg-primary-300 ml-2 mr-2"
+        onClick={() =>
+          setMeta({ ...meta, pagination: { ...meta.pagination, pageSize: 3 } })
+        }
+      >
+        3
+      </button>
+      <button
+        type="button"
+        className="rounded-lg border border-primary-500 bg-primary-500 px-3 py-1.5 text-center text-xs font-medium text-white shadow-sm transition-all hover:border-primary-700 hover:bg-primary-700 focus:ring focus:ring-primary-200 disabled:cursor-not-allowed disabled:border-primary-300 disabled:bg-primary-300 ml-2 mr-2"
+        onClick={() =>
+          setMeta({ ...meta, pagination: { ...meta.pagination, pageSize: 6 } })
+        }
+      >
+        6
+      </button>
+      <button
+        type="button"
+        className="rounded-lg border border-primary-500 bg-primary-500 px-3 py-1.5 text-center text-xs font-medium text-white shadow-sm transition-all hover:border-primary-700 hover:bg-primary-700 focus:ring focus:ring-primary-200 disabled:cursor-not-allowed disabled:border-primary-300 disabled:bg-primary-300 ml-2 mr-2"
+        onClick={() =>
+          setMeta({ ...meta, pagination: { ...meta.pagination, pageSize: 9 } })
+        }
+      >
+        9
+      </button>
     </div>
   );
 };

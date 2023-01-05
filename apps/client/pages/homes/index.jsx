@@ -13,8 +13,6 @@ export default function Page({ fallback }) {
     <SWRConfig value={{ fallbackData: fallback }}>
       <Breadcrumb />
 
-      <HomesFilter meta={meta} />
-
       <h4 className="smallHeroText text-center">Cheap Baltimore Houses</h4>
 
       <Homes />
@@ -25,7 +23,7 @@ export default function Page({ fallback }) {
 export const getStaticProps = async () => {
   const response = await homesCalls.get.allHomesPaginated({
     page: 1,
-    pageSize: 2,
+    pageSize: 9,
   });
 
   return {
