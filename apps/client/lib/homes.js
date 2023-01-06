@@ -3,9 +3,7 @@ import useSWR from "swr";
 import { getStrapiURL } from "./api";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const recentHomes = async (limit) => {
-  return await fetchAPI(
-    `/homes?populate=*&pagination[pageSize]=${limit}&sort=id:DESC`
-  );
+  return await fetchAPI(`/homes?populate=*&pagination[pageSize]=${limit}&sort=id:DESC`);
 };
 const allHomesPaginated = async ({ page, pageSize }) => {
   return await fetchAPI(
@@ -27,12 +25,7 @@ function useSWRAllHomesPaginated({ page, pageSize }) {
   };
 }
 
-function useSWRAllHomesByZipcodePaginated({
-  zipcode,
-  page,
-  pageSize,
-  shouldFetch,
-}) {
+function useSWRAllHomesByZipcodePaginated({ zipcode, page, pageSize, shouldFetch }) {
   const { data, error, isLoading } = useSWR(
     shouldFetch
       ? `${getStrapiURL(

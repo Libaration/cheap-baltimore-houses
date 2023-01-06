@@ -8,24 +8,14 @@ import { useEffect, useRef } from "react";
 import { useChangeNotchColor } from "../lib/useCustomHooks";
 import Link from "next/link";
 import Head from "next/head";
-import {
-  useResizeEffect,
-  useInViewStateAndEffect,
-} from "../lib/useCustomHooks";
-const GlbHomeRender = dynamic(() =>
-  import("../components/homes/GlbHomeRender")
-);
+import { useResizeEffect, useInViewStateAndEffect } from "../lib/useCustomHooks";
+const GlbHomeRender = dynamic(() => import("../components/homes/GlbHomeRender"));
 const Index = (props) => {
   const recentHomesRef = useRef(null);
   const { notchColor, setNotchColor } = useChangeNotchColor();
-  const { ref: newsletterRef, isVisible: newsletterVisible } =
-    useInViewStateAndEffect(0.1, "news");
-  const { ref: heroRef, isVisible: heroVisible } = useInViewStateAndEffect(
-    0.1,
-    "hero"
-  );
-  const { ref: contentRef, isVisible: contentVisible } =
-    useInViewStateAndEffect(0.1, "content");
+  const { ref: newsletterRef, isVisible: newsletterVisible } = useInViewStateAndEffect(0.1, "news");
+  const { ref: heroRef, isVisible: heroVisible } = useInViewStateAndEffect(0.1, "hero");
+  const { ref: contentRef, isVisible: contentVisible } = useInViewStateAndEffect(0.1, "content");
 
   useResizeEffect();
   useEffect(() => {
@@ -47,10 +37,7 @@ const Index = (props) => {
     <>
       <Head>
         <meta name="theme-color" content={notchColor.theme} />
-        <meta
-          name="apple-mobile-web-app-status-bar-style"
-          content={notchColor.style}
-        />
+        <meta name="apple-mobile-web-app-status-bar-style" content={notchColor.style} />
       </Head>
       <div ref={heroRef}>
         <Hero recentHomesRef={recentHomesRef} />
@@ -89,18 +76,14 @@ const Index = (props) => {
             </Link>
           </Button>
         </div>
-        <div className="recent-homes-container">
-          {renderRecentHomes(props.homes)}
-        </div>
+        <div className="recent-homes-container">{renderRecentHomes(props.homes)}</div>
       </div>
     </>
   );
 };
 export const getStaticProps = async () => {
   const { data } = await homesCalls.get.recentHomes(3);
-  const response = await fetch(
-    "https://assets3.lottiefiles.com/packages/lf20_wbhpdrhp.json"
-  );
+  const response = await fetch("https://assets3.lottiefiles.com/packages/lf20_wbhpdrhp.json");
   const animationData = await response.json();
 
   return {

@@ -15,11 +15,7 @@ const Newsletter = (props, ref) => {
       }}
     >
       <div ref={ref}>
-        <div
-          className={`newsletter-icon ${
-            props.visible ? "scale-in" : "scale-out"
-          }`}
-        >
+        <div className={`newsletter-icon ${props.visible ? "scale-in" : "scale-out"}`}>
           <Lottie
             options={{
               animationData: props.animationData,
@@ -35,11 +31,7 @@ const Newsletter = (props, ref) => {
           />
         </div>
       </div>
-      <div
-        className={`newsletter-text p-5  ${
-          props.visible ? "scale-in" : "scale-out"
-        }`}
-      >
+      <div className={`newsletter-text p-5  ${props.visible ? "scale-in" : "scale-out"}`}>
         {translatedCopy("components.landing.newsletter.heading")}
       </div>
       <div className="newsletter-sign-up-form">

@@ -76,8 +76,7 @@ const Breadcrumb = (props) => {
           <Link href={href}>
             <span className="text-primary-500 hover:text-secondary-800 cursor-pointer">
               {props.customTitle
-                ? props.customTitle.charAt(0).toUpperCase() +
-                  props.customTitle.slice(1)
+                ? props.customTitle.charAt(0).toUpperCase() + props.customTitle.slice(1)
                 : path.charAt(0).toUpperCase() + path.slice(1)}
             </span>
           </Link>

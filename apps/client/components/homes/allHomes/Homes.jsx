@@ -17,12 +17,7 @@ import HomesFilter from "../HomesFilter";
 */
 const skeleton = () => {
   return Array.from({ length: 9 }).map((_, i) => (
-    <ContentLoader
-      key={uuidv4()}
-      viewBox="0 0 500 280"
-      height={430}
-      width={445}
-    >
+    <ContentLoader key={uuidv4()} viewBox="0 0 500 280" height={430} width={445}>
       <rect x="50" y="3" rx="10" ry="10" width="390" height="180" />
       <rect x="55" y="190" rx="0" ry="0" width="292" height="20" />
       <rect x="65" y="215" rx="0" ry="0" width="239" height="20" />
@@ -50,9 +45,7 @@ const Homes = () => {
     if (isLoading || isLoadingByZipcode || !data || !data.data) {
       return skeleton();
     } else if (shouldFetchByZipcode && dataByZipcode && dataByZipcode.data) {
-      return dataByZipcode.data.map((home) => (
-        <Home key={home.id} home={home} />
-      ));
+      return dataByZipcode.data.map((home) => <Home key={home.id} home={home} />);
     } else if (data && data.data && !shouldFetchByZipcode && !zipcode) {
       return data.data.map((home) => <Home key={home.id} home={home} />);
     }
@@ -75,9 +68,7 @@ const Homes = () => {
         setZipcode={setZipcode}
         zipcode={zipcode}
       />
-      <div className="flex flex-row flex-wrap justify-center">
-        {renderHomes()}
-      </div>
+      <div className="flex flex-row flex-wrap justify-center">{renderHomes()}</div>
       <HomesPagination
         meta={shouldFetchByZipcode ? dataByZipcode.meta : data.meta}
         setMeta={setMeta}
