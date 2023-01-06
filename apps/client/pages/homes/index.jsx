@@ -1,6 +1,5 @@
 import { homesCalls } from "../../lib/homes";
 import Breadcrumb from "../../components/Breadcrumb";
-import HomesFilter from "../../components/homes/HomesFilter";
 import { SWRConfig } from "swr";
 import dynamic from "next/dynamic";
 const Homes = dynamic(() => import("../../components/homes/allHomes/Homes"), {

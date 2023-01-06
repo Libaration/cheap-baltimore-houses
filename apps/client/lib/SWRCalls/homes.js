@@ -105,29 +105,21 @@ export function useAllHomes(options = {}) {
  *   haystack: 'zip'
  * });
  *
- * // Output: 'http://example.com/api/homes?populate=cover_image&pagination[page]=1&pagination[pageSize]=10&filters[zip][$contains]=22902'
+ * // Output: 'http://example.com/api/homes?populate=cover_image&sort=id:DESC&pagination[page]=1&pagination[pageSize]=10&filters[zip][$contains]=22902'
  *
  * @memberof homeAPI
  */
 
-function getURL({
-  paginated,
-  page,
-  pageSize,
-  filterByContains,
-  needle,
-  haystack,
-}) {
+function getURL({ paginated, page, pageSize, filterByContains, needle, haystack }) {
   const baseURL = `${getStrapiURL("/api/homes")}`;
   const url = new URL(baseURL);
 
   url.searchParams.set("populate", "cover_image");
+  url.searchParams.set("sort", "id:DESC");
 
   if (paginated) {
     if (!page || !pageSize) {
-      throw new Error(
-        "The 'page' and 'pageSize' options are required when 'paginated' is true"
-      );
+      throw new Error("The 'page' and 'pageSize' options are required when 'paginated' is true");
     }
     url.searchParams.set("pagination[page]", page);
     url.searchParams.set("pagination[pageSize]", pageSize);

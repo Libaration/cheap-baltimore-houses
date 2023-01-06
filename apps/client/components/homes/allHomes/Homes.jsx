@@ -2,6 +2,7 @@ import { useAllHomes } from "../../../lib/SWRCalls/homes";
 import { useState } from "react";
 import LoadingSkeleton from "./LoadingSkeleton";
 import Home from "../Home";
+import { Accordion, FilterZipcodeInput, PageSizeDropdown } from "./allHomesFilter";
 function Homes() {
   const [zipcode, setZipcode] = useState("");
   const [page, setPage] = useState(1);
@@ -12,16 +13,30 @@ function Homes() {
         pagination: {
           paginated: true,
           page: 1,
-          pageSize: 3,
+          pageSize: 9,
         },
       };
   const { homes, isLoading, isError } = useAllHomes(options);
-  const renderHomes = isLoading ? (
-    <LoadingSkeleton />
-  ) : (
-    homes.data.map((home) => <Home key={home.id} home={home} />)
-  );
+  const renderHomes = () => {
+    if (isLoading) return <LoadingSkeleton />;
+    if (isError) return <p>There was an error loading the homes.</p>;
+    return (
+      <div className="flex flex-row flex-wrap justify-center">
+        {homes.data.map((home) => (
+          <Home key={home.id} home={home} />
+        ))}
+      </div>
+    );
+  };
 
-  return <div className="flex flex-row flex-wrap justify-center">{renderHomes}</div>;
+  return (
+    <>
+      <Accordion>
+        <FilterZipcodeInput setZipcode={setZipcode} />
+        <PageSizeDropdown />
+      </Accordion>
+      {renderHomes()}
+    </>
+  );
 }
 export default Homes;
