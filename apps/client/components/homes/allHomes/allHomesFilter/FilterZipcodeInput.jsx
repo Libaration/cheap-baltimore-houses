@@ -2,7 +2,7 @@
 import { Input } from "@nextui-org/react";
 import { debounce } from "lodash";
 import { useMemo, useEffect } from "react";
-const FilterZipcodeInput = ({ setZipcode }) => {
+const FilterZipcodeInput = ({ setZipcode, setPage }) => {
   const debouncedSetZipcode = useMemo(() => debounce(setZipcode, 1500), []);
   useEffect(() => {
     return () => {
@@ -12,6 +12,10 @@ const FilterZipcodeInput = ({ setZipcode }) => {
   const onZipcodeChange = (changeEvent) => {
     changeEvent.target.value = changeEvent.target.value.replace(/[^0-9]/g, "");
     debouncedSetZipcode(changeEvent.target.value);
+    if (changeEvent.target.value === "" || changeEvent.target.value.length === 5) {
+      setPage(1);
+      debouncedSetZipcode.flush();
+    }
   };
   return (
     <Input
