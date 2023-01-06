@@ -24,10 +24,7 @@ function MyApp({ Component, pageProps }) {
           name="viewport"
           content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
-        <meta
-          name="apple-mobile-web-app-title"
-          content="CheapBaltimoreHouses"
-        />
+        <meta name="apple-mobile-web-app-title" content="CheapBaltimoreHouses" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
       </Head>
       <ParallaxProvider>

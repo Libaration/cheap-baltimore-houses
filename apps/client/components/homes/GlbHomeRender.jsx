@@ -15,11 +15,7 @@ const GlbHomeRender = () => {
       <ambientLight intensity={0.25} />
       <Suspense fallback={null}>
         <Stage environment={"night"} shadows={"contact"} intensity={0.5}>
-          <OrbitControls
-            autoRotate={true}
-            enablePan={false}
-            enableZoom={false}
-          />
+          <OrbitControls autoRotate={true} enablePan={false} enableZoom={false} />
           <Model />
         </Stage>
       </Suspense>

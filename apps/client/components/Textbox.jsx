@@ -21,12 +21,7 @@ const Textbox = (props) => {
   const onChange = (e) => setValue(e.target.value);
 
   return (
-    <InputText
-      type="text"
-      value={value}
-      onChange={onChange}
-      placeholder={props.placeholder}
-    />
+    <InputText type="text" value={value} onChange={onChange} placeholder={props.placeholder} />
   );
 };
 
