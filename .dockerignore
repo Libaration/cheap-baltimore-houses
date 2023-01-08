@@ -16,3 +16,6 @@ npm-debug.log
 README.md
 .env.local
 node_modules
+.docs/
+/apps/client/docs/
+/apps/client/docs/*
