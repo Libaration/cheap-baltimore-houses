@@ -1,41 +1,45 @@
 import { useAllHomes } from "../../../lib/SWRCalls/homes";
-import { useState } from "react";
 import LoadingSkeleton from "./LoadingSkeleton";
 import Home from "../Home";
-import { Accordion, FilterZipcodeInput, PageSizeDropdown } from "./allHomesFilter";
-function Homes() {
-  const [zipcode, setZipcode] = useState("");
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(9);
+import { Accordion, FilterZipcodeInput, PagePagination, PageSizeSelector } from "./allHomesFilter";
+function Homes({ page, setPage, pageSize, setPageSize, zipcode, setZipcode }) {
   const options = zipcode
-    ? { filter: { filterByContains: true, needle: zipcode, haystack: "zip" } }
+    ? {
+        pagination: { paginated: true, page: page, pageSize: pageSize },
+        filter: { filterByContains: true, needle: zipcode, haystack: "zip" },
+      }
     : {
-        pagination: {
-          paginated: true,
-          page: 1,
-          pageSize: 9,
-        },
+        pagination: { paginated: true, page: page, pageSize: pageSize },
       };
   const { homes, isLoading, isError } = useAllHomes(options);
   const renderHomes = () => {
-    if (isLoading) return <LoadingSkeleton />;
+    if (isLoading || !homes) return <LoadingSkeleton />;
     if (isError) return <p>There was an error loading the homes.</p>;
-    return (
-      <div className="flex flex-row flex-wrap justify-center">
-        {homes.data.map((home) => (
-          <Home key={home.id} home={home} />
-        ))}
-      </div>
-    );
+    // if(homes && homes.meta.pagination.pageCount < page) return <p>There are no more homes to display.</p>
+    if (homes && homes.data) {
+      return (
+        <div className="flex flex-row flex-wrap justify-center">
+          {homes.data.map((home) => (
+            <Home key={home.id} home={home} />
+          ))}
+        </div>
+      );
+    }
   };
 
   return (
     <>
       <Accordion>
-        <FilterZipcodeInput setZipcode={setZipcode} />
-        <PageSizeDropdown />
+        <FilterZipcodeInput setZipcode={setZipcode} setPage={setPage} />
+        <PageSizeSelector
+          {...homes}
+          pageSize={pageSize}
+          setPageSize={setPageSize}
+          setPage={setPage}
+        />
       </Accordion>
       {renderHomes()}
+      <PagePagination {...homes} page={page} setPage={setPage} />
     </>
   );
 }
