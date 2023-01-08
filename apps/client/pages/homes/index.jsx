@@ -2,17 +2,31 @@ import { homesCalls } from "../../lib/homes";
 import Breadcrumb from "../../components/Breadcrumb";
 import { SWRConfig } from "swr";
 import dynamic from "next/dynamic";
+import { useState } from "react";
 const Homes = dynamic(() => import("../../components/homes/allHomes/Homes"), {
   ssr: false,
 });
 export default function Page({ fallback }) {
+  const [page, setPage] = useState(fallback.meta.pagination.page);
+  const [pageSize, setPageSize] = useState(fallback.meta.pagination.pageSize);
+  const [zipcode, setZipcode] = useState("");
   return (
     <SWRConfig value={{ fallbackData: fallback }}>
       <Breadcrumb />
 
       <h4 className="smallHeroText text-center">Cheap Baltimore Houses</h4>
 
-      <Homes />
+      <Homes
+        page={page}
+        setPage={setPage}
+        pageSize={pageSize}
+        setPageSize={setPageSize}
+        zipcode={zipcode}
+        setZipcode={setZipcode}
+      />
+      <div style={{ display: "none" }}>
+        <Homes page={page + 1} pageSize={pageSize} zipcode={zipcode} setZipcode={setZipcode} />
+      </div>
     </SWRConfig>
   );
 }
@@ -22,7 +36,6 @@ export const getStaticProps = async () => {
     page: 1,
     pageSize: 9,
   });
-
   return {
     props: {
       fallback: {
