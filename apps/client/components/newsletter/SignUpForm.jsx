@@ -24,11 +24,13 @@ const SignUpForm = (props) => {
   };
 
   const helper = React.useMemo(() => {
-    if (!value)
+    if (!value) {
+      setIsDisabled("disabled");
       return {
         text: "",
         color: "",
       };
+    }
     const isValid = validateEmail(value);
     if (isValid) {
       return {
@@ -51,27 +53,25 @@ const SignUpForm = (props) => {
 
   return (
     <div className="mx-auto relative max-w-xl">
-      <form action="" className="space-y-5">
-        <div className="mb-10">
-          <Input
-            {...bindings}
-            status={helper.color}
-            color={helper.color}
-            helperColor={helper.color}
-            helperText={helper.text}
-            size="xl"
-            type="email"
-            label="Email"
-            placeholder="Enter your email"
-            width="100%"
-          />
-        </div>
-        <div className="flex justify-center">
-          <Button color="warning" size="sm" onClick={handleButtonClick} disabled={isDisabled}>
-            Sign Up
-          </Button>
-        </div>
-      </form>
+      <div className="mb-10">
+        <Input
+          {...bindings}
+          status={helper.color}
+          color={helper.color}
+          helperColor={helper.color}
+          helperText={helper.text}
+          size="xl"
+          type="email"
+          label="Email"
+          placeholder="Enter your email"
+          width="100%"
+        />
+      </div>
+      <div className="flex justify-center">
+        <Button color="warning" size="sm" onClick={handleButtonClick} disabled={isDisabled}>
+          Sign Up
+        </Button>
+      </div>
       <span className="text-sm">or</span> <br />
       <div className="flex justify-center">
         <Button color="success" size="md" disabled={isDisabled}>
