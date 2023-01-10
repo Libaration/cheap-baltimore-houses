@@ -17,6 +17,7 @@ const theme = createTheme({
 });
 
 function MyApp({ Component, pageProps }) {
+  const getLayout = Component.getLayout || ((page) => page);
   return (
     <NextUIProvider theme={theme}>
       <Head>
@@ -27,9 +28,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="apple-mobile-web-app-title" content="CheapBaltimoreHouses" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
       </Head>
-      <ParallaxProvider>
-        <Component {...pageProps} />
-      </ParallaxProvider>
+      <ParallaxProvider>{getLayout(<Component {...pageProps} />)}</ParallaxProvider>
     </NextUIProvider>
   );
 }
