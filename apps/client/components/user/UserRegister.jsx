@@ -3,16 +3,20 @@ import Lottie from "react-lottie-player";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { checkPasswordStrength } from "./utils/passwordStrength";
+import { useCheckEmail } from "../../lib/SWRCalls/user";
 const UserRegister = ({ animationData }) => {
   const router = useRouter();
   const [isPlaying, setIsPlaying] = useState(true);
   const [password, setPassword] = useState("");
   const { passwordLabel, inputColor, score } = checkPasswordStrength(password);
   const [endTime, setEndTime] = useState(37.4985);
+  const [shouldCheck, setShouldCheck] = useState(false);
   const handleRegisterClick = () => {
     setEndTime(141);
     setIsPlaying(true);
+    setShouldCheck(true);
   };
+  const { data, isLoading } = useCheckEmail(shouldCheck, router.query.email);
   return (
     <Container>
       <Card>
@@ -30,7 +34,8 @@ const UserRegister = ({ animationData }) => {
                 }
               }}
               onComplete={() => {
-                console.log("complete");
+                setShouldCheck(false);
+                data.disposable ? console.log("disposable") : console.log("not disposable");
               }}
             />
           </Row>
@@ -53,7 +58,7 @@ const UserRegister = ({ animationData }) => {
               label={passwordLabel}
               initialValue={password}
               size="sm"
-              color={inputColor}
+              status={inputColor}
               rounded
               onChange={(e) => setPassword(e.target.value)}
             />
