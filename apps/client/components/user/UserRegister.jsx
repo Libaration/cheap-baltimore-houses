@@ -23,8 +23,8 @@ const UserRegister = ({ animationData }) => {
       password: password,
     };
     const r = await sendUserCreate(user);
-    if (r.data.token) {
-      localStorage.setItem("token", r.data.token);
+    if (r.jwt) {
+      localStorage.setItem("token", r.jwt);
       router.push("/user");
     } else {
       console.log(r);
