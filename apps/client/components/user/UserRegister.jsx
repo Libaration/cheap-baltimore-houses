@@ -3,27 +3,41 @@ import Lottie from "react-lottie-player";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { checkPasswordStrength } from "./utils/passwordStrength";
-import { useCheckEmail } from "../../lib/SWRCalls/user";
+import { useCheckEmail, sendUserCreate } from "../../lib/SWRCalls/user";
 const UserRegister = ({ animationData }) => {
   const router = useRouter();
   const [isPlaying, setIsPlaying] = useState(true);
   const [password, setPassword] = useState("");
   const { passwordLabel, inputColor, score } = checkPasswordStrength(password);
-  const [endTime, setEndTime] = useState(37.4985);
+  const [endTime, setEndTime] = useState(36.4985);
   const [shouldCheck, setShouldCheck] = useState(false);
+  const [disposable, setDisposable] = useState(false);
   const handleRegisterClick = () => {
     setEndTime(141);
     setIsPlaying(true);
     setShouldCheck(true);
   };
-  const { data, isLoading } = useCheckEmail(shouldCheck, router.query.email);
+  const registerUser = async () => {
+    const user = {
+      email: router.query.email,
+      password: password,
+    };
+    const r = await sendUserCreate(user);
+    if (r.data.token) {
+      localStorage.setItem("token", r.data.token);
+      router.push("/user");
+    } else {
+      console.log(r);
+    }
+  };
+  const { data } = useCheckEmail(shouldCheck, router.query.email);
   return (
     <Container>
       <Card>
         <Card.Body>
           <Row justify="center" align="center">
             <Lottie
-              speed={2}
+              speed={2.5}
               loop={false}
               play={isPlaying}
               animationData={animationData}
@@ -35,19 +49,18 @@ const UserRegister = ({ animationData }) => {
               }}
               onComplete={() => {
                 setShouldCheck(false);
-                data.disposable ? console.log("disposable") : console.log("not disposable");
+                data && data.disposable ? setDisposable(true) : registerUser();
               }}
             />
           </Row>
-
           <Row justify="center" align="center">
             <Text size={15} css={{ m: 0 }}></Text>
             <Input
               value={router.query.email || ""}
               readOnly
-              label="Email"
+              label={disposable ? "Disposable emails are not accepted." : "Email"}
               size="sm"
-              status="success"
+              status={disposable ? "error" : "success"}
               rounded
               width="10em"
             />
