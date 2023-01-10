@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useCheckEmail } from "../../lib/SWRCalls/user";
 import { Button, Input, useInput } from "@nextui-org/react";
-const SignUpForm = (props) => {
+import Router from "next/router";
+const SignUpForm = () => {
   const { value, reset, bindings } = useInput("");
   const [shouldCheck, setShouldCheck] = useState(false);
   const [isDisabled, setIsDisabled] = useState("disabled");
@@ -49,10 +50,12 @@ const SignUpForm = (props) => {
       helper.text = "Disposable emails are not allowed";
       setShouldCheck(false);
     } else if (data && !data.disposable) {
-      setIsValid(true);
-      helper.color = "success";
-      helper.text = "Correct email";
       setShouldCheck(false);
+      setIsValid(true);
+      Router.push({
+        pathname: "/user/register",
+        query: { email: value },
+      });
     }
   }, [data, helper]);
   const handleButtonClick = () => {
