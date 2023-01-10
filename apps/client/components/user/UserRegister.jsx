@@ -37,7 +37,9 @@ const UserRegister = ({ animationData }) => {
             <Input value={router.query.email || ""} />
           </Row>
           <Row justify="center" align="center" className="mt-5">
-            <Button onPress={handleRegisterClick}>Register</Button>
+            <Button onPress={handleRegisterClick} color="warning">
+              Register
+            </Button>
           </Row>
         </Card.Body>
       </Card>
