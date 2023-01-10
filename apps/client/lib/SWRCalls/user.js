@@ -1,5 +1,5 @@
 import useSWR from "swr";
-
+import { getStrapiURL } from "../api";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export function useCheckEmail(shouldCheck, email) {
   const { data, error, isLoading } = useSWR(
@@ -17,4 +17,18 @@ export function useCheckEmail(shouldCheck, email) {
     isLoading,
     isError: error,
   };
+}
+
+export function sendUserCreate(user) {
+  return fetcher(getStrapiURL("/api/auth/local/register"), {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: user.email,
+      email: user.email,
+      password: user.password,
+    }),
+  });
 }
