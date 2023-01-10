@@ -43,7 +43,8 @@
     "three": "^0.147.0",
     "uuid": "^9.0.0",
     "webpack": "latest",
-    "yet-another-react-lightbox": "^2.2.5"
+    "yet-another-react-lightbox": "^2.2.5",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
