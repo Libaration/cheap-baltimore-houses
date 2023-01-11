@@ -1,7 +1,6 @@
 import useSWR from "swr";
 import { getStrapiURL } from "../api";
 import { fetcher, fetcherWithAuth } from "./config";
-import { getAuthorizedHeaders } from "./config";
 
 export function useCheckEmail(shouldCheck, email) {
   const { data, error, isLoading } = useSWR(
@@ -23,15 +22,12 @@ export function useCheckEmail(shouldCheck, email) {
 
 export function useUser() {
   const url = `${getStrapiURL("/api/users/me")}`;
-  const { data, mutate, error } = useSWR(url, fetcherWithAuth);
-  const loading = !data && !error;
-  const loggedOut = error && error.status === 401;
+  const { data, error, isLoading } = useSWR(url, fetcherWithAuth);
   return {
     user: data,
-    isLoading: loading,
-    isError: error,
-    loggedOut,
-    mutate,
+    isLoading,
+    isError: error != null,
+    loggedOut: error?.status === 401,
   };
 }
 
