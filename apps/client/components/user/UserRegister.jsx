@@ -1,9 +1,10 @@
 import { Container, Card, Row, Text, Button, Input, Spacer } from "@nextui-org/react";
 import Lottie from "react-lottie-player";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { checkPasswordStrength } from "./utils/passwordStrength";
 import { useCheckEmail, sendUserCreate } from "../../lib/SWRCalls/user";
+import { loginWithTokenOrUser } from "../../lib/SWRCalls/session";
 const UserRegister = ({ animationData }) => {
   const router = useRouter();
   const [isPlaying, setIsPlaying] = useState(true);
@@ -12,22 +13,35 @@ const UserRegister = ({ animationData }) => {
   const [endTime, setEndTime] = useState(36.4985);
   const [shouldCheck, setShouldCheck] = useState(false);
   const [disposable, setDisposable] = useState(false);
+  const [error, setError] = useState("");
+  const lottieRef = useRef(null);
+  const [email, setEmail] = useState(router.query.email ? router.query.email : "");
   const handleRegisterClick = () => {
     setEndTime(141);
     setIsPlaying(true);
     setShouldCheck(true);
   };
   const registerUser = async () => {
-    const user = {
+    const inputs = {
       email: router.query.email,
       password: password,
     };
-    const r = await sendUserCreate(user);
-    if (r.jwt) {
-      localStorage.setItem("token", r.jwt);
-      router.push("/user");
+    const userResponse = await sendUserCreate(inputs);
+    console.log(userResponse);
+    if (userResponse.error) {
+      setError(userResponse.error.message);
+      setPassword("");
+      setEmail("");
+      setEndTime(36.4985);
+      lottieRef.current.goToAndPlay(0);
+      return;
+    }
+    if (userResponse.jwt) {
+      console.log(userResponse);
+      //   loginWithTokenOrUser(userResponse);
+      //   router.push("/user");
     } else {
-      console.log(r);
+      router.push("/user/register");
     }
   };
   const { data } = useCheckEmail(shouldCheck, router.query.email);
@@ -36,12 +50,18 @@ const UserRegister = ({ animationData }) => {
       <Card>
         <Card.Body>
           <Row justify="center" align="center">
+            <Text size={14} css={{ m: 0, color: "Red" }}>
+              {error}
+            </Text>
+          </Row>
+          <Row justify="center" align="center">
             <Lottie
               speed={2.5}
               loop={false}
               play={isPlaying}
               animationData={animationData}
               style={{ width: 200, height: 200 }}
+              ref={lottieRef}
               onEnterFrame={(e) => {
                 if (e.currentTime > endTime) {
                   setIsPlaying(false);
@@ -53,16 +73,18 @@ const UserRegister = ({ animationData }) => {
               }}
             />
           </Row>
+
           <Row justify="center" align="center">
             <Text size={15} css={{ m: 0 }}></Text>
             <Input
-              value={router.query.email || ""}
-              readOnly
+              value={email}
+              readOnly={error ? false : true}
               label={disposable ? "Disposable emails are not accepted." : "Email"}
               size="sm"
               status={disposable ? "error" : "success"}
               rounded
               width="10em"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </Row>
           <Spacer y={0.5} />
