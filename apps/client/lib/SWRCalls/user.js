@@ -1,30 +1,7 @@
 import useSWR from "swr";
 import { getStrapiURL } from "../api";
-const getTokenFromStorage = () => {
-  if (typeof window !== "undefined") {
-    window.localStorage.getItem("token");
-  } else {
-    return null;
-  }
-};
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-const authorizedFetcher =
-  (token) =>
-  (...args) =>
-    fetch(...args, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((res) => {
-      if (!res.ok) {
-        const error = new Error("An error occurred while fetching the data.");
-        error.info = res.json();
-        error.status = res.status;
-        throw error;
-      } else {
-        return res.json();
-      }
-    });
+import { fetcher, fetcherWithAuth } from "./config";
+import { getAuthorizedHeaders } from "./config";
 
 export function useCheckEmail(shouldCheck, email) {
   const { data, error, isLoading } = useSWR(
@@ -44,20 +21,37 @@ export function useCheckEmail(shouldCheck, email) {
   };
 }
 
-export function useUser(token) {
-  const { data, error, isLoading } = useSWR(
-    getStrapiURL("/api/users/me"),
-    authorizedFetcher(token)
-  );
+export function useUser() {
+  const url = `${getStrapiURL("/api/users/me")}`;
+  const { data, mutate, error } = useSWR(url, fetcherWithAuth);
+  const loading = !data && !error;
+  const loggedOut = error && error.status === 401;
   return {
     user: data,
-    isLoading,
+    isLoading: loading,
     isError: error,
+    loggedOut,
+    mutate,
   };
 }
 
-export function sendUserCreate(user) {
-  return fetcher(getStrapiURL("/api/auth/local/register"), {
+export async function sendUserCreate(user, mock = false) {
+  if (mock) {
+    return {
+      jwt: "abcefghijklmnopqrstuvwxyz",
+      user: {
+        id: 24,
+        username: "ok@ok.com",
+        email: "ok@ok.com",
+        provider: "local",
+        confirmed: true,
+        blocked: false,
+        createdAt: "2023-01-11T06:18:38.000Z",
+        updatedAt: "2023-01-11T06:18:38.000Z",
+      },
+    };
+  }
+  const response = await fetcher(getStrapiURL("/api/auth/local/register"), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -68,4 +62,5 @@ export function sendUserCreate(user) {
       password: user.password,
     }),
   });
+  return response;
 }

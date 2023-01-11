@@ -1,26 +1,17 @@
 import { useUser } from "../../lib/SWRCalls/user";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 const UserProfilePage = () => {
-  const router = useRouter();
-  const { user, isLoading, isError } = useUser(
-    typeof window !== "undefined" && localStorage.getItem("token")
-  );
-  useEffect(() => {
-    if (isError) {
-      router.push("/user/register");
-    }
-  }, [isError, router]);
-  return (
-    <div>
-      {!isLoading && (
+  const { data, isError, isLoading, mutate, loggedOut } = useUser();
+  const renderProfile = () => {
+    if (true) {
+      return (
         <div>
-          {console.log(user)}
           <h1>Profile</h1>
-          <p>{user.email}</p>
+          <p>testing123</p>
         </div>
-      )}
-    </div>
-  );
+      );
+    }
+  };
+  return <div>{renderProfile()}</div>;
 };
+
 export default UserProfilePage;
