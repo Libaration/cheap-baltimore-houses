@@ -17,6 +17,7 @@
     "@nextui-org/react": "^1.0.0-beta.11",
     "@react-three/drei": "^9.46.5",
     "@react-three/fiber": "^8.9.1",
+    "cookies-next": "^2.1.1",
     "dayjs": "^1.11.5",
     "install": "^0.13.0",
     "lodash": "^4.17.21",
@@ -30,6 +31,7 @@
     "react-headroom": "^3.2.1",
     "react-intersection-observer": "^9.4.1",
     "react-lottie": "^1.2.3",
+    "react-lottie-player": "^1.5.4",
     "react-markdown": "^8.0.3",
     "react-photo-album": "^2.0.0",
     "react-photo-gallery": "^8.0.0",
@@ -42,7 +44,8 @@
     "three": "^0.147.0",
     "uuid": "^9.0.0",
     "webpack": "latest",
-    "yet-another-react-lightbox": "^2.2.5"
+    "yet-another-react-lightbox": "^2.2.5",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
