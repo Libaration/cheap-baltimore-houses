@@ -1,4 +1,4 @@
-import { getCookie, setCookie } from "cookies-next";
+import { getCookie, setCookie, deleteCookie } from "cookies-next";
 
 export const isLoggedIn = ({ req = "", res = "" }) => {
   const token = getCookie("token", { req, res });
@@ -11,4 +11,8 @@ export const loginWithTokenOrUser = async ({ jwt, user: { username, email } }) =
   } else {
     console.log("logging in with user");
   }
+};
+
+export const logout = ({ req = "", res = "" }) => {
+  deleteCookie("token", { req, res });
 };
