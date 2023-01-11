@@ -3,7 +3,7 @@ import Lottie from "react-lottie-player";
 import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { checkPasswordStrength } from "./utils/passwordStrength";
-import { useCheckEmail, sendUserCreate } from "../../lib/SWRCalls/user";
+import { useCheckEmail, sendUserCreate, sendUserLogin } from "../../lib/SWRCalls/user";
 import { loginWithTokenOrUser } from "../../lib/SWRCalls/session";
 const UserRegister = ({ animationData }) => {
   const router = useRouter();
@@ -23,7 +23,7 @@ const UserRegister = ({ animationData }) => {
   };
   const registerUser = async () => {
     const inputs = {
-      email: router.query.email,
+      email: router.query.email ? router.query.email : email,
       password: password,
     };
     const userResponse = await sendUserCreate(inputs);
@@ -34,6 +34,28 @@ const UserRegister = ({ animationData }) => {
       setEmail("");
       setEndTime(36.4985);
       lottieRef.current.goToAndPlay(0);
+      return;
+    }
+    if (userResponse.jwt) {
+      console.log(userResponse);
+      loginWithTokenOrUser(userResponse);
+      router.push("/user");
+    } else {
+      router.push("/user/register");
+    }
+  };
+
+  const handleLoginClick = async () => {
+    const inputs = {
+      email: router.query.email || email,
+      password: password,
+    };
+    const userResponse = await sendUserLogin(inputs);
+    if (userResponse.error) {
+      setError(userResponse.error.message);
+      setPassword("");
+      setEmail("");
+      setEndTime(36.4985);
       return;
     }
     if (userResponse.jwt) {
@@ -78,7 +100,6 @@ const UserRegister = ({ animationData }) => {
             <Text size={15} css={{ m: 0 }}></Text>
             <Input
               value={email}
-              readOnly={error ? false : true}
               label={disposable ? "Disposable emails are not accepted." : "Email"}
               size="sm"
               status={disposable ? "error" : "success"}
@@ -101,6 +122,11 @@ const UserRegister = ({ animationData }) => {
           <Row justify="center" align="center" className="mt-5">
             <Button onPress={handleRegisterClick} color="warning" disabled={score < 2}>
               Register
+            </Button>
+          </Row>
+          <Row justify="center" align="center" className="mt-5">
+            <Button onPress={handleLoginClick} color="success" size="sm">
+              Login
             </Button>
           </Row>
         </Card.Body>

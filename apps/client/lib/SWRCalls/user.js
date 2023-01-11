@@ -60,3 +60,18 @@ export async function sendUserCreate(user, mock = false) {
   });
   return response;
 }
+
+export async function sendUserLogin(user, mock = false) {
+  const response = await fetcher(getStrapiURL("/api/auth/local"), {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      identifier: user.email,
+      password: user.password,
+    }),
+  });
+
+  return response;
+}
