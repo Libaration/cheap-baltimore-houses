@@ -26,7 +26,7 @@ const UserRegister = ({ animationData }) => {
       email: router.query.email,
       password: password,
     };
-    const userResponse = await sendUserCreate(inputs, true);
+    const userResponse = await sendUserCreate(inputs);
     console.log(userResponse);
     if (userResponse.error) {
       setError(userResponse.error.message);
@@ -39,7 +39,7 @@ const UserRegister = ({ animationData }) => {
     if (userResponse.jwt) {
       console.log(userResponse);
       loginWithTokenOrUser(userResponse);
-      //   router.push("/user");
+      router.push("/user");
     } else {
       router.push("/user/register");
     }
