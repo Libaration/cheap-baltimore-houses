@@ -1,11 +1,12 @@
 import { useUser } from "../../lib/SWRCalls/user";
+import { isLoggedIn, logout } from "../../lib/SWRCalls/session";
 const UserProfilePage = () => {
-  const { user, isError, isLoading, loggedOut } = useUser();
+  const { user, isError, isLoading, NotAuthorized } = useUser();
   const renderProfile = () => {
-    if (loggedOut) {
-      return <div>You are not logged in.</div>;
+    if (NotAuthorized) {
+      return <div>401 Not Authorized</div>;
     }
-    if (!user || !isLoading) {
+    if (!user || isLoading) {
       return <div>Loading...</div>;
     } else {
       return (
@@ -23,6 +24,20 @@ const UserProfilePage = () => {
     }
   };
   return <div>{renderProfile()}</div>;
+};
+
+export const getServerSideProps = async (ctx) => {
+  if (!isLoggedIn(ctx)) {
+    return {
+      redirect: {
+        destination: "/user/register",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
 };
 
 export default UserProfilePage;
