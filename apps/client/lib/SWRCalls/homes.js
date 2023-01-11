@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import { getStrapiURL } from "../api";
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+import { fetcher } from "./config";
 export function useAllHomes(options = {}) {
   const defaultOptions = {
     pagination: {
