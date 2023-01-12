@@ -1,6 +1,4 @@
 import { render, screen, act, debug } from "@testing-library/react";
-import { server } from "../../../mocks/server.js";
-import { rest } from "msw";
 import { waitFor, waitForElementToBeRemoved } from "@testing-library/dom";
 import UserProfilePage from "../../../pages/user/index.jsx";
 import { SWRConfig } from "swr";
@@ -8,7 +6,7 @@ import { fetcherWithAuth } from "../../../lib/SWRCalls/config.js";
 import { loginWithTokenOrUser } from "../../../lib/SWRCalls/session.js";
 import { USER_MOCK, JWT } from "../../../mocks/user.js";
 
-describe("UserProfilePage No Bearer Token", () => {
+describe("UserProfilePage Bad Auth", () => {
   it("renders a 401 error when JWT token is invalid", async () => {
     loginWithTokenOrUser({ jwt: "INVALID_TOKEN" });
     act(() => {
@@ -23,7 +21,7 @@ describe("UserProfilePage No Bearer Token", () => {
     });
   });
 });
-describe("UserProfilePage With Bearer Token", () => {
+describe("UserProfilePage Good Auth", () => {
   beforeEach(() => {
     loginWithTokenOrUser({ jwt: JWT });
     act(() => {
