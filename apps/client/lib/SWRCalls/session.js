@@ -5,7 +5,7 @@ export const isLoggedIn = ({ req = "", res = "" }) => {
   return !!token;
 };
 
-export const loginWithTokenOrUser = async ({ jwt, user: { username, email } }) => {
+export const loginWithTokenOrUser = async ({ jwt, user = {} }) => {
   if (jwt) {
     setCookie("token", jwt);
   } else {
