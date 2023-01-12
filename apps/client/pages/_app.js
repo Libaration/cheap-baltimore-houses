@@ -6,8 +6,7 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import Head from "next/head";
 import { NextUIProvider, createTheme } from "@nextui-org/react";
 import initMocks from "../mocks";
-
-if (process.env.NEXT_PUBLIC_ENABLE_MOCK) {
+if (process.env.NEXT_PUBLIC_ENABLE_MOCK === "true") {
   require("../mocks");
   await initMocks();
 }

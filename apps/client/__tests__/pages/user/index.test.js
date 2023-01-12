@@ -6,10 +6,11 @@ import UserProfilePage from "../../../pages/user/index.jsx";
 import { SWRConfig } from "swr";
 import { fetcherWithAuth } from "../../../lib/SWRCalls/config.js";
 import { loginWithTokenOrUser } from "../../../lib/SWRCalls/session.js";
-import { USER_MOCK } from "../../../mocks/user.js";
+import { USER_MOCK, JWT } from "../../../mocks/user.js";
 
 describe("UserProfilePage No Bearer Token", () => {
-  it("renders a 401 error when no JWT is in the header", async () => {
+  it("renders a 401 error when JWT token is invalid", async () => {
+    loginWithTokenOrUser({ jwt: "INVALID_TOKEN" });
     act(() => {
       render(
         <SWRConfig value={{ fetcherWithAuth, provider: () => new Map(), dedupingInterval: 0 }}>
@@ -24,7 +25,7 @@ describe("UserProfilePage No Bearer Token", () => {
 });
 describe("UserProfilePage With Bearer Token", () => {
   beforeEach(() => {
-    loginWithTokenOrUser({ jwt: "TOKEN_TEST_8675309" });
+    loginWithTokenOrUser({ jwt: JWT });
     act(() => {
       render(
         <SWRConfig value={{ fetcherWithAuth, provider: () => new Map(), dedupingInterval: 0 }}>

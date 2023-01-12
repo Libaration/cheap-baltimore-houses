@@ -11,7 +11,7 @@ export const getAuthorizedHeaders = ({ req = "", res = "" }) => {
 
 export const fetcherWithAuth = async (...args) => {
   const response = await fetch(...args, {
-    headers: getAuthorizedHeaders({}),
+    headers: getAuthorizedHeaders(...args),
   });
   if (!response.ok) {
     const error = new Error("An error occurred while fetching the data.");
