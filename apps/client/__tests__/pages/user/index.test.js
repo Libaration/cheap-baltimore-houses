@@ -1,32 +1,52 @@
 import { render, screen, act, debug } from "@testing-library/react";
 import { waitFor, waitForElementToBeRemoved } from "@testing-library/dom";
-import UserProfilePage from "../../../pages/user/index.jsx";
+import UserProfilePage, { getServerSideProps } from "../../../pages/user/index.jsx";
 import { SWRConfig } from "swr";
-import { fetcherWithAuth } from "../../../lib/SWRCalls/config.js";
-import { loginWithTokenOrUser } from "../../../lib/SWRCalls/session.js";
-import { USER_MOCK, JWT } from "../../../mocks/user.js";
+import { JWT, USER_MOCK } from "../../../mocks/user.js";
+import { loginWithTokenOrUser, logout } from "../../../lib/SWRCalls/session.js";
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
+beforeEach(() => {
+  jest.resetModules();
+});
 
 describe("UserProfilePage Bad Auth", () => {
-  it("renders a 401 error when JWT token is invalid", async () => {
-    loginWithTokenOrUser({ jwt: "INVALID_TOKEN" });
+  it("redirects when not logged in", async () => {
     act(() => {
       render(
-        <SWRConfig value={{ fetcherWithAuth, provider: () => new Map(), dedupingInterval: 0 }}>
+        <SWRConfig value={{ provider: () => new Map(), dedupingInterval: 0 }}>
           <UserProfilePage />
         </SWRConfig>
       );
     });
-    await waitFor(() => {
+    await waitFor(async () => {
+      const response = await getServerSideProps({});
+      expect(response).toEqual({ redirect: { destination: "/user/register", permanent: false } });
+    });
+  });
+  it("renders a 401 error when JWT token is invalid", async () => {
+    loginWithTokenOrUser({ jwt: "INVALID_TOKEN" });
+    act(() => {
+      render(
+        <SWRConfig value={{ provider: () => new Map(), dedupingInterval: 0 }}>
+          <UserProfilePage />
+        </SWRConfig>
+      );
+    });
+    await waitFor(async () => {
       expect(screen.queryByText("401 Not Authorized")).toBeInTheDocument();
     });
   });
 });
+
 describe("UserProfilePage Good Auth", () => {
   beforeEach(() => {
     loginWithTokenOrUser({ jwt: JWT });
     act(() => {
       render(
-        <SWRConfig value={{ fetcherWithAuth, provider: () => new Map(), dedupingInterval: 0 }}>
+        <SWRConfig value={{ provider: () => new Map(), dedupingInterval: 0 }}>
           <UserProfilePage />
         </SWRConfig>
       );
