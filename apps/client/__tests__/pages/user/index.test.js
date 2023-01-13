@@ -1,9 +1,16 @@
-import { render, screen, act, debug } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import { waitFor, waitForElementToBeRemoved } from "@testing-library/dom";
 import UserProfilePage, { getServerSideProps } from "../../../pages/user/index.jsx";
 import { SWRConfig } from "swr";
 import { JWT, USER_MOCK } from "../../../mocks/user.js";
 import { loginWithTokenOrUser, logout } from "../../../lib/SWRCalls/session.js";
+jest.mock("next/router", () => ({
+  useRouter() {
+    return {
+      pathname: "",
+    };
+  },
+}));
 
 afterEach(() => {
   jest.clearAllMocks();
