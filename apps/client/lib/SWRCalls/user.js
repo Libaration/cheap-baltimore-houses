@@ -26,7 +26,7 @@ export function useUser() {
   return {
     user: data,
     isLoading,
-    isError: error,
+    isError: error != null,
     NotAuthorized: error?.status === 401,
   };
 }
