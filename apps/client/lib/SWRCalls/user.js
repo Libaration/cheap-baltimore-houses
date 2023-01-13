@@ -21,7 +21,7 @@ export function useCheckEmail(shouldCheck, email) {
 }
 
 export function useUser() {
-  const url = `${getStrapiURL("/api/users/me")}`;
+  const url = `${getStrapiURL("/api/users/me?populate[bids][populate][0]=cover_image")}`;
   const { data, error, isLoading } = useSWR(url, fetcherWithAuth);
   return {
     user: data,

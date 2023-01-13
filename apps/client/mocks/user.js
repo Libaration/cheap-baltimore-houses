@@ -8,4 +8,4 @@ export const USER_MOCK = {
   createdAt: "2023-01-11T06:18:38.000Z",
   updatedAt: "2023-01-11T06:18:38.000Z",
 };
-export const JWT = "TOKEN_TEST_8675309";
+export const JWT = "TEST_TOKEN_8675309";
