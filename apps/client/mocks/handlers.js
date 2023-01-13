@@ -52,7 +52,7 @@ const imagesHandler = rest.get(
   `https://res.cloudinary.com/libaration/image/upload/*`,
   async (req, res, ctx) => {
     const image = await fetch(
-      `https://source.unsplash.com/500x500/?${
+      `https://source.unsplash.com/300x300/?${
         searchTerms[Math.floor(Math.random() * searchTerms.length)]
       }`
     ).then((res) => res.arrayBuffer());
