@@ -3,10 +3,14 @@ import "primereact/resources/themes/rhea/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { ParallaxProvider } from "react-scroll-parallax";
-import { builder } from "@builder.io/react";
-import "@builder.io/widgets/dist/lib/builder-widgets-async";
 import Head from "next/head";
 import { NextUIProvider, createTheme } from "@nextui-org/react";
+import initMocks from "../mocks";
+if (process.env.NEXT_PUBLIC_ENABLE_MOCK === "true") {
+  require("../mocks");
+  await initMocks();
+}
+
 const theme = createTheme({
   type: "light", // it could be "light" or "dark"
   theme: {

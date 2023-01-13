@@ -1,5 +1,7 @@
 import { useUser } from "../../lib/SWRCalls/user";
 import { isLoggedIn, logout } from "../../lib/SWRCalls/session";
+import ContentLayout from "../../components/ContentLayout";
+
 const UserProfilePage = () => {
   const { user, isError, isLoading, NotAuthorized } = useUser();
   const renderProfile = () => {
@@ -10,7 +12,7 @@ const UserProfilePage = () => {
       return <div>Loading...</div>;
     } else {
       return (
-        <div>
+        <div className="text-center">
           <h1>Profile</h1>
           <p>Username: {user.username}</p>
           <p>Email: {user.email}</p>
@@ -23,7 +25,7 @@ const UserProfilePage = () => {
       );
     }
   };
-  return <div>{renderProfile()}</div>;
+  return <ContentLayout>{renderProfile()}</ContentLayout>;
 };
 
 export const getServerSideProps = async (ctx) => {

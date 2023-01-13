@@ -19,3 +19,4 @@ node_modules
 .docs/
 /apps/client/docs/
 /apps/client/docs/*
+/apps/client/public/mockServiceWorker.js
