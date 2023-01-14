@@ -28,20 +28,16 @@ const userHandler = rest.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, 
 });
 
 const homesHandler = rest.get(`${process.env.NEXT_PUBLIC_API_URL}/api/homes`, (req, res, ctx) => {
-  const total = faker.datatype.number({ max: 25 });
+  const total = req.url.searchParams.get("pagination[pageSize]");
   return res(
     ctx.json({
-      data: Array(total)
-        .fill()
-        .map(() => {
-          return generateHomeMock();
-        }),
+      data: Array.from({ length: total }, () => generateHomeMock()),
       meta: {
         pagination: {
           page: 1,
-          pageSize: 25,
-          pageCount: 1,
-          total: total,
+          pageSize: total,
+          pageCount: 6,
+          total: total * 2,
         },
       },
     })
