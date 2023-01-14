@@ -30,7 +30,7 @@ describe("UserProfilePage Bad Auth", () => {
     });
     await waitFor(async () => {
       const response = await getServerSideProps({});
-      expect(response).toEqual({ redirect: { destination: "/user/rsegister", permanent: false } });
+      expect(response).toEqual({ redirect: { destination: "/user/register", permanent: false } });
     });
   });
   it("renders a 401 error when JWT token is invalid", async () => {
