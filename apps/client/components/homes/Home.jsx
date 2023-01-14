@@ -63,12 +63,16 @@ const Home = ({ home }) => {
               {/* <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
                 Recently Listed
               </span> */}
-              <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                {pluralize("Bed", bedrooms, true)}
-              </span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                {pluralize("Bath", bathrooms, true)}
-              </span>
+              {bedrooms ? (
+                <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+                  {pluralize("Bed", bedrooms, true)}
+                </span>
+              ) : null}
+              {bathrooms ? (
+                <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+                  {pluralize("Bath", bathrooms, true)}
+                </span>
+              ) : null}
             </div>
           </div>
         </div>
