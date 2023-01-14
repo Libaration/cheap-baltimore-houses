@@ -43,7 +43,7 @@ const homesHandler = rest.get(`${process.env.NEXT_PUBLIC_API_URL}/api/homes`, (r
     })
   );
 });
-const searchTerms = ["modern home", "apartment upscale"];
+
 const imagesHandler = rest.get(
   `https://res.cloudinary.com/libaration/image/upload/*`,
   async (req, res, ctx) => {
