@@ -38,8 +38,12 @@ function Homes({ page, setPage, pageSize, setPageSize, zipcode, setZipcode }) {
           setPage={setPage}
         />
       </Accordion>
-      {renderHomes()}
-      <PagePagination {...homes} page={page} setPage={setPage} />
+      {homes.data.length <= 0 ? (
+        <p className="text-center pt-5">No listings found.</p>
+      ) : (
+        renderHomes()
+      )}
+      {homes.data.length > 0 && <PagePagination {...homes} page={page} setPage={setPage} />}
     </>
   );
 }
