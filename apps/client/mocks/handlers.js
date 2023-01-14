@@ -44,6 +44,14 @@ const homesHandler = rest.get(`${process.env.NEXT_PUBLIC_API_URL}/api/homes`, (r
   );
 });
 
+const homeHandler = rest.get(`${process.env.NEXT_PUBLIC_API_URL}/api/homes/*`, (req, res, ctx) => {
+  return res(
+    ctx.json({
+      home: generateHomeMock(),
+    })
+  );
+});
+
 const imagesHandler = rest.get(
   `https://res.cloudinary.com/libaration/image/upload/*`,
   async (req, res, ctx) => {
@@ -58,4 +66,4 @@ const imagesHandler = rest.get(
   }
 );
 
-export const handlers = [userHandler, homesHandler, imagesHandler];
+export const handlers = [userHandler, homesHandler, imagesHandler, homeHandler];
