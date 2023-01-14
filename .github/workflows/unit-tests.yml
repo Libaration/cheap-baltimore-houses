@@ -1,6 +1,10 @@
 name: Unit Tests CI
 on: [pull_request]
-
+env:
+  BASE_URL: ${{ env.BASE_URL }}
+  API_URL: ${{ env.API_URL }}
+  NEXT_PUBLIC_API_URL: ${{ env.API_URL }}
+  NEXT_PUBLIC_ENABLE_MOCK: true
 jobs:
   unit_tests:
     runs-on: ubuntu-latest
