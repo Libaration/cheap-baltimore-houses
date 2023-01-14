@@ -32,11 +32,14 @@ afterEach(() => {
 });
 
 describe("Homes Index Page", () => {
-  it("should always initially render 9 homes", async () => {
+  beforeEach(async () => {
     await act(async () => {
       const response = await getStaticProps({});
-      render(<Page {...response.props} />);
+      const pageRender = <Page {...response.props} />;
+      render(pageRender);
     });
+  });
+  it("should always initially render 9 homes", async () => {
     await waitForElementToBeRemoved(() => screen.queryAllByText("Loading..."));
     const homes = screen.queryAllByRole("homeContainer");
     expect(homes.length).toBe(9);
