@@ -51,11 +51,9 @@ const searchTerms = ["modern home", "apartment upscale"];
 const imagesHandler = rest.get(
   `https://res.cloudinary.com/libaration/image/upload/*`,
   async (req, res, ctx) => {
-    const image = await fetch(
-      `https://source.unsplash.com/300x300/?${
-        searchTerms[Math.floor(Math.random() * searchTerms.length)]
-      }`
-    ).then((res) => res.arrayBuffer());
+    const image = await fetch(`/mock_images/${faker.datatype.number({ max: 100 })}.jpeg`).then(
+      (res) => res.arrayBuffer()
+    );
     return res(
       ctx.set("Content-Length", image.byteLength.toString()),
       ctx.set("Content-Type", "image/png"),
