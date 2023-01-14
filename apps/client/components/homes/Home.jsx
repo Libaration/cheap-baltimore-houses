@@ -3,6 +3,7 @@ import { cloudinaryLoader } from "../../lib/cloudinaryLoader";
 import { useEffect, useState } from "react";
 import { generateMarkdown } from "../../lib/markDownMaker";
 import Link from "next/link";
+import pluralize from "pluralize";
 const Home = ({ home }) => {
   const coverImage = home.attributes.cover_image.data.attributes.provider_metadata.public_id;
   const date = new Date(home.attributes.createdAt).toLocaleDateString("en-US", {
@@ -14,6 +15,9 @@ const Home = ({ home }) => {
     home.attributes.street2 ? home.attributes.street2 : ""
   } ${home.attributes.city}, ${home.attributes.state} ${home.attributes.zip}`;
   const description = home.attributes.description;
+  const available = home.attributes.available;
+  const bedrooms = home.attributes.bedrooms;
+  const bathrooms = home.attributes.bathrooms;
   const [descriptionState, setDescriptionState] = useState(description);
   useEffect(() => {
     setDescriptionState(generateMarkdown(description));
@@ -47,20 +51,23 @@ const Home = ({ home }) => {
             <h3 className="text-xl font-medium text-gray-900 text-center">{address}</h3>
             <div className="mt-1 text-gray-700 text-xs line-clamp">{descriptionState}</div>
             <div className="mt-4 flex gap-2 justify-center">
-              <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                Available
+              <span
+                className={`inline-flex items-center gap-1 rounded-full ${
+                  available ? "bg-blue-50" : "bg-red-50"
+                }  px-2 py-1 text-xs font-semibold ${
+                  available ? "text-blue-600" : "text-red-600"
+                } `}
+              >
+                {available ? "Available" : "Sold"}
               </span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
+              {/* <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
                 Recently Listed
+              </span> */}
+              <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+                {pluralize("Bed", bedrooms, true)}
               </span>
               <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                3 Beds
-              </span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                3 Baths
-              </span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                2 Levels
+                {pluralize("Bath", bathrooms, true)}
               </span>
             </div>
           </div>

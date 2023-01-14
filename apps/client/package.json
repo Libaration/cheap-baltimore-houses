@@ -26,6 +26,7 @@
     "install": "^0.13.0",
     "lodash": "^4.17.21",
     "next": "^12.2.6",
+    "pluralize": "^8.0.0",
     "primeicons": "^6.0.1",
     "primereact": "8.7.0",
     "qs": "^6.11.0",
