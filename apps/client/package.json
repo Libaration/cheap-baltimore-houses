@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "generate-docs": "jsdoc --configure jsdoc.json --verbose",
-    "test": "jest --watch ",
+    "test": "FORCE_COLOR=true jest",
     "test:ci": "jest --coverage",
     "test:debug": "node --nolazy --inspect-brk ../../node_modules/jest/bin/jest.js --runInBand --colors --verbose --no-cache --watch"
   },
