@@ -29,15 +29,16 @@ const userHandler = rest.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, 
 
 const homesHandler = rest.get(`${process.env.NEXT_PUBLIC_API_URL}/api/homes`, (req, res, ctx) => {
   const total = req.url.searchParams.get("pagination[pageSize]");
+  const homes = Array.from({ length: total }, () => generateHomeMock());
   return res(
     ctx.json({
-      data: Array.from({ length: total }, () => generateHomeMock()),
+      data: homes,
       meta: {
         pagination: {
           page: 1,
           pageSize: total,
           pageCount: 6,
-          total: total * 2,
+          total: total,
         },
       },
     })

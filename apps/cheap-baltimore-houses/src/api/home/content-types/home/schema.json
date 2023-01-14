@@ -113,6 +113,13 @@
       ],
       "required": true,
       "default": "MD"
+    },
+    "bathrooms": {
+      "type": "integer",
+      "default": 0
+    },
+    "bedrooms": {
+      "type": "integer"
     }
   }
 }
