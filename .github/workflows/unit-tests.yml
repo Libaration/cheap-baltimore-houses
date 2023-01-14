@@ -1,5 +1,5 @@
 name: Unit Tests CI
-on: [pull_request, push]
+on: [pull_request]
 
 jobs:
   run_jest:
