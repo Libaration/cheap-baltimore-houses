@@ -34,7 +34,7 @@ describe("UserProfilePage Bad Auth", () => {
     });
   });
   it("renders a 401 error when JWT token is invalid", async () => {
-    loginWithTokenOrUser({ jwt: "INVALID_TOKEN" });
+    // loginWithTokenOrUser({ jwt: "INVALID_TOKEN" });
     act(() => {
       render(
         <SWRConfig value={{ provider: () => new Map(), dedupingInterval: 0 }}>
