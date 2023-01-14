@@ -24,7 +24,7 @@ const Home = ({ home }) => {
   }, [description]);
   return (
     <>
-      <div className="text-white p-5 max-w-md max-h-fit">
+      <div className="text-white p-5 max-w-md max-h-fit" role="homeContainer">
         <div className="mx-auto overflow-hidden rounded-lg bg-white shadow">
           <Link href={`homes/${home.id}`}>
             <div className="relative aspect-video">
