@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { generateMarkdown } from "../../lib/markDownMaker";
 import Link from "next/link";
 import pluralize from "pluralize";
+import { isLoggedIn } from "../../lib/SWRCalls/session";
 const Home = ({ home }) => {
   const coverImage = home.attributes.cover_image.data.attributes.provider_metadata.public_id;
   const date = new Date(home.attributes.createdAt).toLocaleDateString("en-US", {
@@ -19,9 +20,36 @@ const Home = ({ home }) => {
   const bedrooms = home.attributes.bedrooms;
   const bathrooms = home.attributes.bathrooms;
   const [descriptionState, setDescriptionState] = useState(description);
+  const [liked, setLiked] = useState(false);
   useEffect(() => {
     setDescriptionState(generateMarkdown(description));
   }, [description]);
+  const handleLike = () => {
+    setLiked(!liked);
+  };
+  const renderHeart = () => {
+    if (isLoggedIn({})) {
+      return liked ? (
+        <Image
+          src={"/liked.png"}
+          width={24}
+          height={24}
+          alt="like heart"
+          style={{ verticalAlign: "middle", cursor: "pointer" }}
+          onClick={handleLike}
+        />
+      ) : (
+        <Image
+          src={"/unliked.png"}
+          width={24}
+          height={24}
+          alt="like heart"
+          style={{ verticalAlign: "middle", cursor: "pointer" }}
+          onClick={handleLike}
+        />
+      );
+    }
+  };
   return (
     <>
       <div className="text-white p-5 max-w-md max-h-fit" role="homeContainer">
@@ -73,6 +101,9 @@ const Home = ({ home }) => {
                   {pluralize("Bath", bathrooms, true)}
                 </span>
               ) : null}
+              <div className="flex-1 text-end align-items-center justify-content-center ">
+                {renderHeart()}
+              </div>
             </div>
           </div>
         </div>
