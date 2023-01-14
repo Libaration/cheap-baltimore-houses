@@ -1,0 +1,13 @@
+name: Unit Tests CI
+on: [pull_request, push]
+
+jobs:
+  run_jest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@v3
+      - name: Setup Node 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
