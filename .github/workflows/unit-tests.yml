@@ -2,7 +2,7 @@ name: Unit Tests CI
 on: [pull_request]
 
 jobs:
-  run_jest:
+  unit_tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Branch
@@ -11,5 +11,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18"
-      - run: yarn install
+      - name: Run Jest
+        run: yarn install
       - run: yarn client:test
