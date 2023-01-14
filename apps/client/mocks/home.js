@@ -15,8 +15,8 @@ export const generateHomeMock = () => {
       updatedAt: faker.datatype.datetime({ min: prevDate.getTime(), max: today.getTime() }),
       price: faker.commerce.price(100000, 999999, 0),
       city: faker.address.cityName(),
-      bedrooms: faker.datatype.number({ min: 1, max: 5 }),
-      bathrooms: faker.datatype.number({ min: 1, max: 5 }),
+      bedrooms: faker.datatype.number({ min: 0, max: 5 }),
+      bathrooms: faker.datatype.number({ min: 0, max: 5 }),
       available: faker.datatype.boolean(),
       additional_images: {
         data: Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }, () => {
