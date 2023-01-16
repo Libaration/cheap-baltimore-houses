@@ -1,8 +1,7 @@
 import useSWR from "swr";
 import { getStrapiURL } from "../api";
-import { fetcher, fetcherWithAuth } from "./config";
+import { fetcher, fetcherWithAuth, fetchWithToken, getToken } from "./config";
 import { isLoggedIn } from "./session";
-import { getCookie } from "cookies-next";
 import { getAuthorizedHeaders } from "./config";
 
 export function useCheckEmail(shouldCheck, email) {
@@ -24,8 +23,11 @@ export function useCheckEmail(shouldCheck, email) {
 }
 
 export function useUser() {
+  const token = getToken();
   const url = `${getStrapiURL("/api/users/me?populate[liked_homes][fields][0]=id")}`;
-  const { data, error, isLoading, mutate } = useSWR(isLoggedIn({}) ? url : null, fetcherWithAuth);
+  const { data, error, isLoading, mutate } = useSWR([url, token], ([url, token]) =>
+    isLoggedIn({}) ? fetchWithToken(url, token) : null
+  );
   return {
     user: data,
     isLoading,
@@ -81,11 +83,9 @@ export async function sendUserLogin(user, mock = false) {
 }
 
 export async function userToggleLike(homeId) {
-  const response = await fetcher(getStrapiURL(`/api/user/toggleLike/${homeId}`), {
+  const token = getToken();
+  const response = await fetchWithToken(getStrapiURL(`/api/user/toggleLike/${homeId}`), token, {
     method: "POST",
-    headers: {
-      ...getAuthorizedHeaders(),
-    },
   });
   return response;
 }
