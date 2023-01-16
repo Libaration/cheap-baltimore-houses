@@ -8,13 +8,18 @@ export const getAuthorizedHeaders = ({ req = "", res = "" }) => {
     Authorization: `bearer ${token}`,
   };
 };
-
+//TODO FIX THIS
 export const fetcherWithAuth = async (...args) => {
   const response = await fetch(...args, {
-    headers: getAuthorizedHeaders(...args),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `bearer ${getCookie("token")}`,
+    },
   });
+
   if (!response.ok) {
     const error = new Error("An error occurred while fetching the data.");
+    console.log(response);
     // Attach extra info to the error object.
     error.info = await response.json();
     error.status = response.status;
