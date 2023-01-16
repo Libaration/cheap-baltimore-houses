@@ -3,6 +3,7 @@ import { getStrapiURL } from "../api";
 import { fetcher, fetcherWithAuth } from "./config";
 import { isLoggedIn } from "./session";
 import { getCookie } from "cookies-next";
+import { getAuthorizedHeaders } from "./config";
 
 export function useCheckEmail(shouldCheck, email) {
   const { data, error, isLoading } = useSWR(
@@ -80,11 +81,10 @@ export async function sendUserLogin(user, mock = false) {
 }
 
 export async function userToggleLike(homeId) {
-  const response = await fetch(getStrapiURL(`/api/user/toggleLike/${homeId}`), {
+  const response = await fetcher(getStrapiURL(`/api/user/toggleLike/${homeId}`), {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
-      Authorization: `bearer ${getCookie("token")}`,
+      ...getAuthorizedHeaders(),
     },
   });
   return response;
