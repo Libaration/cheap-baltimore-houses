@@ -5,6 +5,8 @@ import { generateMarkdown } from "../../lib/markDownMaker";
 import Link from "next/link";
 import pluralize from "pluralize";
 import { isLoggedIn } from "../../lib/SWRCalls/session";
+import { useUser, userToggleLike } from "../../lib/SWRCalls/user";
+import { flatMap } from "lodash";
 const Home = ({ home }) => {
   const coverImage = home.attributes.cover_image.data.attributes.provider_metadata.public_id;
   const date = new Date(home.attributes.createdAt).toLocaleDateString("en-US", {
@@ -20,16 +22,20 @@ const Home = ({ home }) => {
   const bedrooms = home.attributes.bedrooms;
   const bathrooms = home.attributes.bathrooms;
   const [descriptionState, setDescriptionState] = useState(description);
-  const [liked, setLiked] = useState(false);
+
+  const { user, isAuthorized, mutate } = useUser();
+  const user_likes =
+    (user && user.liked_homes && flatMap(user.liked_homes, (like) => like.id)) || [];
   useEffect(() => {
     setDescriptionState(generateMarkdown(description));
   }, [description]);
-  const handleLike = () => {
-    setLiked(!liked);
+  const handleLike = async () => {
+    await userToggleLike(home.id);
+    mutate();
   };
   const renderHeart = () => {
     if (isLoggedIn({})) {
-      return liked ? (
+      return user_likes.includes(home.id) ? (
         <Image
           src={"/liked.png"}
           width={24}
@@ -74,20 +80,25 @@ const Home = ({ home }) => {
           </Link>
           <div className="p-4">
             <p className="mb-1 text-sm text-primary-500 text-center">
-              Chris Seaborn • <time>{date}</time>
+              Added • <time>{date}</time>
             </p>
             <h3 className="text-xl font-medium text-gray-900 text-center">{address}</h3>
-            <div className="mt-1 text-gray-700 text-xs line-clamp">{descriptionState}</div>
+            <div className="mt-1 text-gray-700 text-xs line-clamp homeDescription">
+              {descriptionState}
+            </div>
             <div className="mt-4 flex gap-2 justify-center">
-              <span
-                className={`inline-flex items-center gap-1 rounded-full ${
-                  available ? "bg-blue-50" : "bg-red-50"
-                }  px-2 py-1 text-xs font-semibold ${
-                  available ? "text-blue-600" : "text-red-600"
-                } `}
-              >
-                {available ? "Available" : "Sold"}
-              </span>
+              {available !== undefined && (
+                <span
+                  className={`inline-flex items-center gap-1 rounded-full ${
+                    available ? "bg-blue-50" : "bg-red-50"
+                  }  px-2 py-1 text-xs font-semibold ${
+                    available ? "text-blue-600" : "text-red-600"
+                  } `}
+                >
+                  {available ? "Available" : "Sold"}
+                </span>
+              )}
+
               {/* <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
                 Recently Listed
               </span> */}
@@ -101,9 +112,11 @@ const Home = ({ home }) => {
                   {pluralize("Bath", bathrooms, true)}
                 </span>
               ) : null}
-              <div className="flex-1 text-end align-items-center justify-content-center ">
-                {renderHeart()}
-              </div>
+              {isAuthorized && user_likes && (
+                <div className="flex-1 text-end align-items-center justify-content-center ">
+                  {renderHeart()}
+                </div>
+              )}
             </div>
           </div>
         </div>
