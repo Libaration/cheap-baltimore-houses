@@ -8,7 +8,7 @@ export const USER_MOCK = {
   blocked: false,
   createdAt: "2023-01-11T06:18:38.000Z",
   updatedAt: "2023-01-11T06:18:38.000Z",
-  bids: Array(10)
+  liked_homes: Array(10)
     .fill()
     .map(() => {
       return generateHomeMock();
