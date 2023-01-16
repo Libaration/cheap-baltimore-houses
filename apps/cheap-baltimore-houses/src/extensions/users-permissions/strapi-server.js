@@ -1,11 +1,4 @@
 const _ = require("lodash");
-const toggleHelper = (homeId, prev_liked_homes) => {
-  const isHomeLiked = !prev_liked_homes.includes(homeId);
-  return {
-    home_unliked: isHomeLiked ? null : homeId,
-    home_liked: isHomeLiked ? homeId : null,
-  };
-};
 
 module.exports = (plugin) => {
   plugin.controllers.user.updateMe = async (ctx) => {
@@ -60,7 +53,7 @@ module.exports = (plugin) => {
       (home) => home.id
     );
     let liked_homes = prev_liked_homes;
-    const { home_unliked, home_liked } = toggleHelper(homeId, prev_liked_homes);
+
     if (liked_homes.includes(homeId)) {
       liked_homes = liked_homes.filter((id) => id !== homeId);
     } else {
@@ -71,9 +64,15 @@ module.exports = (plugin) => {
       data: { liked_homes },
     });
     return ctx.send({
-      status: "success",
-      home_unliked,
-      home_liked,
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      provider: user.provider,
+      confirmed: user.confirmed,
+      blocked: user.blocked,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+      liked_homes: liked_homes.map((id) => ({ id })),
     });
   };
 
