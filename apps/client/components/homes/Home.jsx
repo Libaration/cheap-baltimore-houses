@@ -22,16 +22,15 @@ const Home = ({ home }) => {
   const bedrooms = home.attributes.bedrooms;
   const bathrooms = home.attributes.bathrooms;
   const [descriptionState, setDescriptionState] = useState(description);
-
   const { user, isAuthorized, mutate } = useUser();
   const user_likes =
     (user && user.liked_homes && flatMap(user.liked_homes, (like) => like.id)) || [];
+
   useEffect(() => {
     setDescriptionState(generateMarkdown(description));
   }, [description]);
   const handleLike = async () => {
-    await userToggleLike(home.id);
-    mutate();
+    mutate(userToggleLike(home.id), false);
   };
   const renderHeart = () => {
     if (isLoggedIn({})) {
