@@ -595,3 +595,8 @@ html {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.markdown a {
+  color: rgb(191, 137, 35);
+  font-style: italic;
+}
