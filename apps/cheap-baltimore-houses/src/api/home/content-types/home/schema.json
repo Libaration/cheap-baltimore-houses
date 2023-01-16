@@ -34,12 +34,6 @@
       "type": "integer",
       "required": false
     },
-    "bidders": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "bids"
-    },
     "cover_image": {
       "type": "media",
       "multiple": false,
@@ -120,6 +114,12 @@
     },
     "bedrooms": {
       "type": "integer"
+    },
+    "user_likes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "liked_homes"
     }
   }
 }
