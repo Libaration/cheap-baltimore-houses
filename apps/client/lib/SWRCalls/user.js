@@ -1,6 +1,8 @@
 import useSWR from "swr";
 import { getStrapiURL } from "../api";
 import { fetcher, fetcherWithAuth } from "./config";
+import { isLoggedIn } from "./session";
+import { getCookie } from "cookies-next";
 
 export function useCheckEmail(shouldCheck, email) {
   const { data, error, isLoading } = useSWR(
@@ -21,16 +23,17 @@ export function useCheckEmail(shouldCheck, email) {
 }
 
 export function useUser() {
-  const url = `${getStrapiURL("/api/users/me?populate[bids][populate][0]=cover_image")}`;
-  const { data, error, isLoading } = useSWR(url, fetcherWithAuth);
+  const url = `${getStrapiURL("/api/users/me?populate[liked_homes][fields][0]=id")}`;
+  const { data, error, isLoading, mutate } = useSWR(isLoggedIn({}) ? url : null, fetcherWithAuth);
   return {
     user: data,
     isLoading,
     isError: error != null,
-    NotAuthorized: error?.status === 401,
+    isAuthorized: error?.status === 401 ? false : true,
+    mutate,
   };
 }
-
+//TODO FIX THIS
 export async function sendUserCreate(user, mock = false) {
   if (mock) {
     return {
@@ -73,5 +76,16 @@ export async function sendUserLogin(user, mock = false) {
     }),
   });
 
+  return response;
+}
+
+export async function userToggleLike(homeId) {
+  const response = await fetch(getStrapiURL(`/api/user/toggleLike/${homeId}`), {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `bearer ${getCookie("token")}`,
+    },
+  });
   return response;
 }
