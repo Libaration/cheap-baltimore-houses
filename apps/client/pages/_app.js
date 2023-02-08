@@ -1,5 +1,4 @@
 import "../styles/global.css";
-import "../styles/HomePageDesign.css";
 import "primereact/resources/themes/rhea/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
