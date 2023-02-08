@@ -3,6 +3,12 @@ import { homesCalls } from "../lib/homes";
 import { renderRecentHomes } from "../components/homes/utils/renderRecentHomes";
 import dynamic from "next/dynamic";
 import Newsletter from "../components/landing/Newsletter";
+import HomeSection from "../components/landing/HomeSection";
+import CategoriesSection from "../components/landing/CategoriesSection";
+import HowItWorksSection from "../components/landing/HowItWorksSection";
+import EasySection from "../components/landing/EasySection";
+import ReviewSection from "../components/landing/ReviewSection";
+import MapSection from "../components/landing/MapSection";
 import { Button } from "@nextui-org/react";
 import { useEffect, useRef } from "react";
 import { useChangeNotchColor } from "../lib/useCustomHooks";
@@ -43,6 +49,31 @@ const Index = (props) => {
         <Hero recentHomesRef={recentHomesRef} />
         <div ref={contentRef} style={{ width: "1px", height: "1px" }} />
       </div>
+
+	  <div>
+		<HowItWorksSection />
+	  </div>
+
+	  <div>
+		<HomeSection />
+	  </div>
+
+	  <div>
+		<CategoriesSection />
+	  </div>
+
+	  <div>
+		<EasySection />
+	  </div>
+
+	  <div>
+		<ReviewSection />
+	  </div>
+
+	  <div>
+		<MapSection />
+	  </div>
+
       <div className="shrink center-safe">
         <Newsletter
           animationData={props.animationData}
