@@ -3,6 +3,9 @@ import { homesCalls } from "../lib/homes";
 import { renderRecentHomes } from "../components/homes/utils/renderRecentHomes";
 import dynamic from "next/dynamic";
 import Newsletter from "../components/landing/Newsletter";
+import CategoriesSection from "../components/landing/CategoriesSection";
+import HowItWorksSection from "../components/landing/HowItWorksSection";
+import HomeSection from "../components/landing/HomeSection";
 import { Button } from "@nextui-org/react";
 import { useEffect, useRef } from "react";
 import { useChangeNotchColor } from "../lib/useCustomHooks";
@@ -43,12 +46,25 @@ const Index = (props) => {
         <Hero recentHomesRef={recentHomesRef} />
         <div ref={contentRef} style={{ width: "1px", height: "1px" }} />
       </div>
+
       <div className="shrink center-safe">
         <Newsletter
           animationData={props.animationData}
           ref={newsletterRef}
           visible={newsletterVisible}
         />
+        
+      <div>
+        <HowItWorksSection />
+      </div>
+
+      <div>
+        <CategoriesSection />
+      </div>
+
+      <div>
+        <HomeSection />
+      </div>
 
         <div
           className="w-full overflow-visible"
