@@ -1,6 +1,8 @@
 import useSWR from "swr";
 import { getStrapiURL } from "../api";
-import { fetcher, fetcherWithAuth } from "./config";
+import { fetcher, fetcherWithAuth, fetchWithToken, getToken } from "./config";
+import { isLoggedIn } from "./session";
+import { getAuthorizedHeaders } from "./config";
 
 export function useCheckEmail(shouldCheck, email) {
   const { data, error, isLoading } = useSWR(
@@ -21,16 +23,20 @@ export function useCheckEmail(shouldCheck, email) {
 }
 
 export function useUser() {
-  const url = `${getStrapiURL("/api/users/me?populate[bids][populate][0]=cover_image")}`;
-  const { data, error, isLoading } = useSWR(url, fetcherWithAuth);
+  const token = getToken();
+  const url = `${getStrapiURL("/api/users/me?populate[liked_homes][fields][0]=id")}`;
+  const { data, error, isLoading, mutate } = useSWR([url, token], ([url, token]) =>
+    isLoggedIn({}) ? fetchWithToken(url, token) : null
+  );
   return {
     user: data,
     isLoading,
     isError: error != null,
-    NotAuthorized: error?.status === 401,
+    isAuthorized: error?.status === 401 ? false : true,
+    mutate,
   };
 }
-
+//TODO FIX THIS
 export async function sendUserCreate(user, mock = false) {
   if (mock) {
     return {
@@ -73,5 +79,13 @@ export async function sendUserLogin(user, mock = false) {
     }),
   });
 
+  return response;
+}
+
+export async function userToggleLike(homeId) {
+  const token = getToken();
+  const response = await fetchWithToken(getStrapiURL(`/api/user/toggleLike/${homeId}`), token, {
+    method: "POST",
+  });
   return response;
 }

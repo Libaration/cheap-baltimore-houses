@@ -1,17 +1,17 @@
 import { getCookie } from "cookies-next";
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export const getAuthorizedHeaders = ({ req = "", res = "" }) => {
-  const token = getCookie("token", { req, res });
-  return {
-    "Content-Type": "application/json",
-    Authorization: `bearer ${token}`,
-  };
+export const getToken = () => {
+  return getCookie("token", {});
 };
 
-export const fetcherWithAuth = async (...args) => {
-  const response = await fetch(...args, {
-    headers: getAuthorizedHeaders(...args),
+export const fetchWithToken = async (url, token, options = {}) => {
+  const response = await fetch(url, {
+    method: options.method || "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `bearer ${token}`,
+    },
   });
   if (!response.ok) {
     const error = new Error("An error occurred while fetching the data.");
