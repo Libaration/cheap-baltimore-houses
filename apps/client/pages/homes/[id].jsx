@@ -14,6 +14,7 @@ import { cloudinaryLoader } from "../../lib/cloudinaryLoader";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import pluralize from "pluralize";
+import { Button } from "@nextui-org/react";
 const HomeShow = ({ home }) => {
   const [index, setIndex] = useState(-1);
   const Gallery = useCallback(
@@ -141,7 +142,7 @@ const HomeShow = ({ home }) => {
 
       <div className="flex items-center justify-center ">
         <div className="text-black h-full p-5 max-w-full">
-          <div className="mt-4 mb-4 flex gap-2 justify-center">
+          <div className="mb-4 flex gap-2 justify-center">
             {available !== undefined && (
               <span
                 className={`inline-flex items-center gap-1 rounded-full ${
@@ -167,6 +168,11 @@ const HomeShow = ({ home }) => {
                 {pluralize("Bath", bathrooms, true)}
               </span>
             ) : null}
+          </div>
+          <div className="flex justify-center mb-4">
+            <Button size="sm" color="success">
+              Make an Offer
+            </Button>
           </div>
           <div className="mx-auto overflow-hidden rounded-lg bg-white shadow">
             <div className="relative">
@@ -196,6 +202,9 @@ const HomeShow = ({ home }) => {
               </p>
               <h3 className="text-xl font-medium text-gray-900 text-center">{address}</h3>
               <div className="mt-1 text-gray-700 text-xs homeDescription">{descriptionState}</div>
+            </div>
+            <div className="flex justify-center mb-4">
+              <Button color="success">Make an Offer</Button>
             </div>
           </div>
         </div>
