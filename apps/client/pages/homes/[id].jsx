@@ -14,8 +14,13 @@ import { cloudinaryLoader } from "../../lib/cloudinaryLoader";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import pluralize from "pluralize";
-import { Button } from "@nextui-org/react";
+import { Button, Modal, Input, Text } from "@nextui-org/react";
+import OfferModal from "../../components/homes/modals/OfferModal";
 const HomeShow = ({ home }) => {
+  const [visible, setVisible] = useState(false);
+  const handler = () => setVisible(true);
+  const closeHandler = () => setVisible(false);
+
   const [index, setIndex] = useState(-1);
   const Gallery = useCallback(
     ({ view, photos }) => (
@@ -170,7 +175,7 @@ const HomeShow = ({ home }) => {
             ) : null}
           </div>
           <div className="flex justify-center mb-4">
-            <Button size="sm" color="success">
+            <Button size="sm" shadow onPress={handler} color="success">
               Make an Offer
             </Button>
           </div>
@@ -204,8 +209,11 @@ const HomeShow = ({ home }) => {
               <div className="mt-1 text-gray-700 text-xs homeDescription">{descriptionState}</div>
             </div>
             <div className="flex justify-center mb-4">
-              <Button color="success">Make an Offer</Button>
+              <Button color="success" shadow onPress={handler}>
+                Make an Offer
+              </Button>
             </div>
+            <OfferModal visible={visible} closeHandler={closeHandler} />
           </div>
         </div>
       </div>
