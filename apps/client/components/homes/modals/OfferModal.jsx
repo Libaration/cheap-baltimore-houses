@@ -8,13 +8,13 @@ const OfferModal = ({ closeHandler, visible }) => {
         </Text>
       </Modal.Header>
       <Modal.Body>
-        <Input clearable bordered fullWidth color="primary" size="lg" placeholder="Email" />
-        <Input clearable bordered fullWidth color="primary" size="lg" placeholder="Offer Amount" />
+        <Input clearable bordered fullWidth color="warning" size="lg" placeholder="Email" />
+        <Input clearable bordered fullWidth color="warning" size="lg" placeholder="Offer Amount" />
         <Textarea
           clearable
           bordered
           fullWidth
-          color="primary"
+          color="warning"
           size="lg"
           placeholder="Further inquiries or comments"
         />
