@@ -13,13 +13,8 @@ const EasySection = (props) => {
 					</svg>
 				</div>
 				<div class="flex-grow">
-					<h2 class="text-gray-900 text-lg title-font font-medium mb-3">Shooting Stars</h2>
-					<p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-					<a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-						<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-							<path d="M5 12h14M12 5l7 7-7 7"></path>
-						</svg>
-					</a>
+					<h2 class="text-gray-900 text-lg title-font font-medium mb-3">Buying properties has never been easier</h2>
+					<p class="leading-relaxed text-base">Cheap Baltimore Houses is a unique platform that connects buyers like you with off-market properties in Baltimore that are available at a fraction of the cost of properties on the traditional market.</p>
 				</div>
 			</div>
 			<div class="flex flex-col mb-10 lg:items-start items-center">
@@ -31,13 +26,8 @@ const EasySection = (props) => {
 					</svg>
 				</div>
 				<div class="flex-grow">
-					<h2 class="text-gray-900 text-lg title-font font-medium mb-3">The Catalyzer</h2>
-					<p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-					<a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-						<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-							<path d="M5 12h14M12 5l7 7-7 7"></path>
-						</svg>
-					</a>
+					<h2 class="text-gray-900 text-lg title-font font-medium mb-3">Cut out the fees</h2>
+					<p class="leading-relaxed text-base">Are you tired of paying high fees and commissions to real estate agents when you want to buy a property? Do you want to avoid the hassle of dealing with the traditional real estate market and find off-market properties in the Baltimore area at affordable prices?</p>
 				</div>
 			</div>
 			<div class="flex flex-col mb-10 lg:items-start items-center">
@@ -48,8 +38,8 @@ const EasySection = (props) => {
 					</svg>
 				</div>
 				<div class="flex-grow">
-					<h2 class="text-gray-900 text-lg title-font font-medium mb-3">Neptune</h2>
-					<p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+					<h2 class="text-gray-900 text-lg title-font font-medium mb-3">Make your offer</h2>
+					<p class="leading-relaxed text-base">Make a quick and easy offer online! We handle the settlement process, and make sure that you settle on your property in 30 days or less.</p>
 					<a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
 						<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
 							<path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -59,7 +49,7 @@ const EasySection = (props) => {
 			</div>
 		</div>
 	</div>
-</section>
+	</section>
     )
     };
 export default EasySection;
