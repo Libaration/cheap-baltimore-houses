@@ -15,7 +15,7 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import pluralize from "pluralize";
 import { Button } from "@nextui-org/react";
-import OfferModal from "../../components/homes/modals/offerModal";
+import OfferModal from "../../components/homes/modals/OfferModal";
 const HomeShow = ({ home }) => {
   const [visible, setVisible] = useState(false);
   const handler = () => setVisible(true);
