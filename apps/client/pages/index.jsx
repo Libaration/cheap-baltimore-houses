@@ -51,6 +51,10 @@ const Index = (props) => {
         <div ref={contentRef} style={{ width: "1px", height: "1px" }} />
       </div>
 
+      <div>
+        <HowItWorksSection />
+      </div>
+
       <div className="shrink center-safe">
         <Newsletter
           animationData={props.animationData}
@@ -58,8 +62,8 @@ const Index = (props) => {
           visible={newsletterVisible}
         />
 
-      <div>
-        <HowItWorksSection />
+<div>
+        <CategoriesSection />
       </div>
 
       <div className="px-5 py-0 mx-auto recent-text" ref={recentHomesRef}>
@@ -80,10 +84,6 @@ const Index = (props) => {
           </Button>
         </div>
 
-      </div>
-
-      <div>
-        <CategoriesSection />
       </div>
 
       <div>
