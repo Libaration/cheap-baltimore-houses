@@ -7682,6 +7682,7 @@ __metadata:
     react-intersection-observer: ^9.4.1
     react-lottie: ^1.2.3
     react-lottie-player: ^1.5.4
+    react-mailto.js: ^3.0.3
     react-markdown: ^8.0.3
     react-photo-album: ^2.0.0
     react-photo-gallery: ^8.0.0
@@ -18355,6 +18356,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-mailto.js@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "react-mailto.js@npm:3.0.3"
+  dependencies:
+    window-or-global: ^1.0.1
+  peerDependencies:
+    "@babel/runtime": 7.x
+    react: 16.x || 17.x || 18.x
+  checksum: e74bb3785d9a16af432fd37fd567487788d160e89063bbd89516c52c868b7b3301082125a7e0e245bb4378eae1eec522ecf1be1a50a5e1fcd65384558072c7a2
+  languageName: node
+  linkType: hard
+
 "react-markdown@npm:^8.0.3":
   version: 8.0.4
   resolution: "react-markdown@npm:8.0.4"
@@ -22419,6 +22432,13 @@ __metadata:
   version: 2.0.0
   resolution: "wildcard@npm:2.0.0"
   checksum: 1f4fe4c03dfc492777c60f795bbba597ac78794f1b650d68f398fbee9adb765367c516ebd4220889b6a81e9626e7228bbe0d66237abb311573c2ee1f4902a5ad
+  languageName: node
+  linkType: hard
+
+"window-or-global@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "window-or-global@npm:1.0.1"
+  checksum: 19272a9589dedf790389376015b7a92e9b987d1c9b15457840f65a3829c5173a8cecce72111944624d98c2120799168d26b38e6b911fff77b4828a2322a8a02e
   languageName: node
   linkType: hard
 
