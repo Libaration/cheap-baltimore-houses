@@ -3,9 +3,9 @@ import { isLoggedIn, logout } from "../../lib/SWRCalls/session";
 import ContentLayout from "../../components/ContentLayout";
 
 const UserProfilePage = () => {
-  const { user, isError, isLoading, NotAuthorized } = useUser();
+  const { user, isError, isLoading, isAuthorized } = useUser();
   const renderProfile = () => {
-    if (NotAuthorized) {
+    if (!isAuthorized) {
       return <div>401 Not Authorized</div>;
     }
     if (!user || isLoading) {

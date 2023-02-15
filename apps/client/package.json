@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -37,6 +37,7 @@
     "react-intersection-observer": "^9.4.1",
     "react-lottie": "^1.2.3",
     "react-lottie-player": "^1.5.4",
+    "react-mailto.js": "^3.0.3",
     "react-markdown": "^8.0.3",
     "react-photo-album": "^2.0.0",
     "react-photo-gallery": "^8.0.0",

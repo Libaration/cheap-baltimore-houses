@@ -2,8 +2,8 @@ import { Button } from "primereact/button";
 import { useRef } from "react";
 import { useParallax } from "react-scroll-parallax";
 import Image from "next/future/image";
-import cityOverlay from "../public/city.png";
-import skyOverlay from "../public/sky.png";
+import cityOverlay from "../public/city.webp";
+import skyOverlay from "../public/sky.webp";
 const Hero = (props) => {
   const target = useRef(null);
   const text = useParallax({

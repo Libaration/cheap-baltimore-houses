@@ -63,17 +63,17 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "bids": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::home.home",
-      "mappedBy": "bidders"
-    },
     "token": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::token.token",
       "inversedBy": "user"
+    },
+    "liked_homes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::home.home",
+      "inversedBy": "user_likes"
     }
   }
 }

@@ -38,7 +38,7 @@ function Homes({ page, setPage, pageSize, setPageSize, zipcode, setZipcode }) {
           setPage={setPage}
         />
       </Accordion>
-      {homes.data.length <= 0 ? (
+      {homes && homes.data.length <= 0 ? (
         <p className="text-center pt-5">No listings found.</p>
       ) : (
         renderHomes()
