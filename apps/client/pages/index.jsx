@@ -78,9 +78,7 @@ const Index = (props) => {
 
       <div className="flex justify-center px-5 py-24 mx-auto">
           <Button color="warning">
-            <Link href="/homes">
-              <a>View All Listings</a>
-            </Link>
+            <a href="/homes">View All Listings</a>
           </Button>
         </div>
 

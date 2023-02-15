@@ -9,9 +9,9 @@ const HomeSection = (props) => {
             <p className="mb-8 leading-relaxed">How do you buy real estate in Maryland? How do you sell real estate in Maryland? Get the answers to your Maryland real estate questions by reaching out to the team at Cheap Baltimore Houses. Start your journey.
             </p>
             <div className="flex justify-center">
-            <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">I Want to Buy
+            <button className="inline-flex text-grey bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-[#e49918] duration-300 rounded text-lg">I Want to Buy
             </button>
-            <button className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg">I Want to Sell
+            <button className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-[#e49918] duration-300 rounded text-lg">I Want to Sell
             </button>
             </div>
         </div>

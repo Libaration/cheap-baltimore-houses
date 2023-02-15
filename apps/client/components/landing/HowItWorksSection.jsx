@@ -19,7 +19,7 @@ const HowItWorksSection = (props) => {
 						<h2 class="text-gray-900 text-lg title-font font-medium">Find a Property.</h2>
 					</div>
 					<div class="flex-grow">
-						<p class="leading-relaxed text-base">Whether you're looking for a new home, an investment property, or a fixer-upper to flip, we can help you find the perfect property at an affordable price.</p>
+						<p class="leading-relaxed text-base">Whether you're looking for a new home, an investment property, or a fixer-upper, we can help you find the perfect property at an affordable price.</p>
 						<a href="https://cheapbaltimorehouses.cristiandeleon.dev/homes" class="mt-3 text-indigo-500 inline-flex items-center">Learn More
 							<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
 								<path d="M5 12h14M12 5l7 7-7 7"></path>
