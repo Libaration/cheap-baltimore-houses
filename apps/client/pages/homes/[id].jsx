@@ -14,8 +14,8 @@ import { cloudinaryLoader } from "../../lib/cloudinaryLoader";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import pluralize from "pluralize";
-import { Button, Modal, Input, Text } from "@nextui-org/react";
-import OfferModal from "../../components/homes/modals/OfferModal";
+import { Button } from "@nextui-org/react";
+import OfferModal from "../../components/homes/modals/offerModal";
 const HomeShow = ({ home }) => {
   const [visible, setVisible] = useState(false);
   const handler = () => setVisible(true);
@@ -213,7 +213,7 @@ const HomeShow = ({ home }) => {
                 Make an Offer
               </Button>
             </div>
-            <OfferModal visible={visible} closeHandler={closeHandler} />
+            <OfferModal visible={visible} closeHandler={closeHandler} address={address} />
           </div>
         </div>
       </div>

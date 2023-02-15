@@ -1,5 +1,27 @@
 import { Button, Modal, Input, Textarea, Text } from "@nextui-org/react";
-const OfferModal = ({ closeHandler, visible }) => {
+import { useState } from "react";
+import Mailto from "react-mailto.js";
+const OfferModal = ({ closeHandler, visible, address }) => {
+  const [offer, setOffer] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+    switch (name) {
+      case "email":
+        setEmail(value);
+        break;
+      case "offer":
+        setOffer(value);
+        break;
+      case "message":
+        setMessage(value);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <Modal closeButton aria-labelledby="modal-title" open={visible} onClose={closeHandler}>
       <Modal.Header>
@@ -8,8 +30,28 @@ const OfferModal = ({ closeHandler, visible }) => {
         </Text>
       </Modal.Header>
       <Modal.Body>
-        <Input clearable bordered fullWidth color="warning" size="lg" placeholder="Email" />
-        <Input clearable bordered fullWidth color="warning" size="lg" placeholder="Offer Amount" />
+        <Input
+          clearable
+          bordered
+          fullWidth
+          color="warning"
+          size="lg"
+          placeholder="Email"
+          value={email}
+          name="email"
+          onChange={changeHandler}
+        />
+        <Input
+          clearable
+          bordered
+          fullWidth
+          color="warning"
+          size="lg"
+          placeholder="Offer Amount"
+          value={offer}
+          name="offer"
+          onChange={changeHandler}
+        />
         <Textarea
           clearable
           bordered
@@ -17,6 +59,9 @@ const OfferModal = ({ closeHandler, visible }) => {
           color="warning"
           size="lg"
           placeholder="Further inquiries or comments"
+          value={message}
+          name="message"
+          onChange={changeHandler}
         />
       </Modal.Body>
       <Modal.Footer>
@@ -24,7 +69,14 @@ const OfferModal = ({ closeHandler, visible }) => {
           Close
         </Button>
         <Button auto onPress={closeHandler} color="success">
-          Send
+          <Mailto
+            secure={true}
+            to="seabornleads@gmail.com"
+            subject={`Offer of ${offer} on ${address}`}
+            body={message}
+          >
+            Send
+          </Mailto>
         </Button>
       </Modal.Footer>
     </Modal>

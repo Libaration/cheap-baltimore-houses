@@ -78,7 +78,8 @@ const SignUpForm = () => {
         />
       </div>
       <div className="flex justify-center">
-        <Button color="warning" size="sm" onClick={handleButtonClick} disabled={isDisabled}>
+        <Button color="warning" size="sm" onClick={handleButtonClick} disabled={true}>
+          {/* normally ^^^ isDisabled */}
           Sign Up
         </Button>
       </div>
