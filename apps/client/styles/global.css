@@ -199,7 +199,7 @@ html {
   background-image: linear-gradient(180deg, #151623, transparent 40%),
     linear-gradient(180deg, transparent, #151623 95%),
     linear-gradient(180deg, transparent, transparent),
-    url("https://assets.website-files.com/5ee8e894dfcfd4765c67b3cc/5f3178e90188e73d09f78318_pexels-alex-azabache-4039921%20(1).jpg");
+    url("https://res.cloudinary.com/duasomtlp/image/upload/v1675948759/originalcity_ld1mhp.webp");
 
   background-position: 0 0, 0 0, 0 0, 50% 50%;
   background-size: auto, auto, auto, cover;

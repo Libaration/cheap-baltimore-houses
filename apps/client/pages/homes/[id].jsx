@@ -13,7 +13,14 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import { cloudinaryLoader } from "../../lib/cloudinaryLoader";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import pluralize from "pluralize";
+import { Button } from "@nextui-org/react";
+import OfferModal from "../../components/homes/modals/offerModal";
 const HomeShow = ({ home }) => {
+  const [visible, setVisible] = useState(false);
+  const handler = () => setVisible(true);
+  const closeHandler = () => setVisible(false);
+
   const [index, setIndex] = useState(-1);
   const Gallery = useCallback(
     ({ view, photos }) => (
@@ -83,6 +90,9 @@ const HomeShow = ({ home }) => {
   } ${home.attributes.city}, ${home.attributes.state} ${home.attributes.zip}`;
   const description = home.attributes.description;
   const [descriptionState, setDescriptionState] = useState(description);
+  const available = home.attributes.available;
+  const bedrooms = home.attributes.bedrooms;
+  const bathrooms = home.attributes.bathrooms;
   useEffect(() => {
     setDescriptionState(generateMarkdown(description));
   }, [description]);
@@ -137,6 +147,38 @@ const HomeShow = ({ home }) => {
 
       <div className="flex items-center justify-center ">
         <div className="text-black h-full p-5 max-w-full">
+          <div className="mb-4 flex gap-2 justify-center">
+            {available !== undefined && (
+              <span
+                className={`inline-flex items-center gap-1 rounded-full ${
+                  available ? "bg-blue-50" : "bg-red-50"
+                }  px-2 py-1 text-xs font-semibold ${
+                  available ? "text-blue-600" : "text-red-600"
+                } `}
+              >
+                {available ? "Available" : "Sold"}
+              </span>
+            )}
+
+            {/* <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
+                Recently Listed
+              </span> */}
+            {bedrooms ? (
+              <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+                {pluralize("Bed", bedrooms, true)}
+              </span>
+            ) : null}
+            {bathrooms ? (
+              <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+                {pluralize("Bath", bathrooms, true)}
+              </span>
+            ) : null}
+          </div>
+          <div className="flex justify-center mb-4">
+            <Button size="sm" shadow onPress={handler} color="success">
+              Make an Offer
+            </Button>
+          </div>
           <div className="mx-auto overflow-hidden rounded-lg bg-white shadow">
             <div className="relative">
               <Gallery view={view} photos={photos} />
@@ -164,25 +206,14 @@ const HomeShow = ({ home }) => {
                 Added • <time>{date}</time>
               </p>
               <h3 className="text-xl font-medium text-gray-900 text-center">{address}</h3>
-              <div className="mt-1 text-gray-700 text-xs">{descriptionState}</div>
-              <div className="mt-4 flex gap-2 justify-center">
-                <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                  Available
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
-                  Recently Listed
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                  3 Beds
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                  3 Baths
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                  2 Levels
-                </span>
-              </div>
+              <div className="mt-1 text-gray-700 text-xs homeDescription">{descriptionState}</div>
             </div>
+            <div className="flex justify-center mb-4">
+              <Button color="success" shadow onPress={handler}>
+                Make an Offer
+              </Button>
+            </div>
+            <OfferModal visible={visible} closeHandler={closeHandler} address={address} />
           </div>
         </div>
       </div>
