@@ -62,7 +62,7 @@ const Index = (props) => {
           visible={newsletterVisible}
         />
 
-<div>
+      <div>
         <CategoriesSection />
       </div>
 
