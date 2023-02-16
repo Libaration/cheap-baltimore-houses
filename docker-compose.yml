@@ -9,7 +9,7 @@ services:
       - apps/cheap-baltimore-houses/.env
     ports:
       - 1337:1337
-    image: cbhregistry.azurecr.io/api:latest
+    image: cheapbmorehousesregistry.azurecr.io/api:latest
     restart: always
 
   nextjs:
@@ -23,7 +23,7 @@ services:
       - BASE_URL=http://api:1337
       - API_URL=http://api:1337
       - NEXT_SHARP_PATH=/tmp/node_modules/sharp
-    image: cbhregistry.azurecr.io/nextjs:latest
+    image: cheapbmorehousesregistry.azurecr.io/nextjs:latest
     restart: always
 
   nginx:
@@ -34,4 +34,4 @@ services:
     build: ./nginx
     ports:
       - 80:80
-    image: cbhregistry.azurecr.io/nginx:latest
+    image: cheapbmorehousesregistry.azurecr.io/nginx:latest
