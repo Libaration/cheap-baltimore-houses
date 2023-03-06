@@ -1,0 +1,257 @@
+diff --git a/node_modules/@strapi/admin/admin/src/pages/Admin/index.js b/node_modules/@strapi/admin/admin/src/pages/Admin/index.js
+index bdf50dc..f85ac8a 100644
+--- a/node_modules/@strapi/admin/admin/src/pages/Admin/index.js
++++ b/node_modules/@strapi/admin/admin/src/pages/Admin/index.js
+@@ -95,10 +95,10 @@ const Admin = () => {
+             <Route path="/content-manager" component={CM} />
+             {routes}
+             <Route path="/settings/:settingId" component={SettingsPage} />
+-            <Route path="/settings" component={SettingsPage} exact />
+             <Route path="/marketplace">
+               <MarketplacePage />
+             </Route>
++            <Route path="/settings" component={SettingsPage} exact />
+             <Route path="/list-plugins" exact>
+               <InstalledPluginsPage />
+             </Route>
+@@ -107,9 +107,6 @@ const Admin = () => {
+             <Route path="" component={NotFoundPage} />
+           </Switch>
+         </Suspense>
+-        <GuidedTourModal />
+-
+-        {showTutorials && <Onboarding />}
+       </AppLayout>
+     </DndProvider>
+   );
+diff --git a/node_modules/@strapi/admin/admin/src/pages/MarketplacePage/index.js b/node_modules/@strapi/admin/admin/src/pages/MarketplacePage/index.js
+index be08980..90b8b74 100644
+--- a/node_modules/@strapi/admin/admin/src/pages/MarketplacePage/index.js
++++ b/node_modules/@strapi/admin/admin/src/pages/MarketplacePage/index.js
+@@ -52,8 +52,115 @@ const matchSearch = (npmPackages, search) => {
+     baseSort: (a, b) => (a.index < b.index ? -1 : 1),
+   });
+ };
++const oldMarketPlace = () => {
++  return (
++    <>
++    <PageHeader isOnline={isOnline} npmPackageType={npmPackageType} />
++    <ContentLayout>
++      <Box width="25%" paddingBottom={4}>
++        <Searchbar
++          name="searchbar"
++          onClear={() => setSearchQuery('')}
++          value={searchQuery}
++          onChange={(e) => setSearchQuery(e.target.value)}
++          clearLabel={formatMessage({
++            id: 'admin.pages.MarketPlacePage.search.clear',
++            defaultMessage: 'Clear the search',
++          })}
++          placeholder={formatMessage({
++            id: 'admin.pages.MarketPlacePage.search.placeholder',
++            defaultMessage: 'Search',
++          })}
++        >
++          {formatMessage({
++            id: 'admin.pages.MarketPlacePage.search.placeholder',
++            defaultMessage: 'Search',
++          })}
++        </Searchbar>
++      </Box>
++      <TabGroup
++        label={formatMessage({
++          id: 'admin.pages.MarketPlacePage.tab-group.label',
++          defaultMessage: 'Plugins and Providers for Strapi',
++        })}
++        id="tabs"
++        variant="simple"
++        initialSelectedTabIndex={['plugin', 'provider'].indexOf(npmPackageType)}
++        onTabChange={handleTabChange}
++      >
++        <Box paddingBottom={4}>
++          <Tabs>
++            <Tab>
++              {formatMessage({
++                id: 'admin.pages.MarketPlacePage.plugins',
++                defaultMessage: 'Plugins',
++              })}{' '}
++              ({pluginSearchResults.length})
++            </Tab>
++            <Tab>
++              {formatMessage({
++                id: 'admin.pages.MarketPlacePage.providers',
++                defaultMessage: 'Providers',
++              })}{' '}
++              ({providerSearchResults.length})
++            </Tab>
++          </Tabs>
++        </Box>
++        <Flex paddingBottom={4} gap={2}>
++          <SortSelect
++            sortQuery={query?.sort || 'name:asc'}
++            handleSelectChange={handleSelectChange}
++          />
++          <NpmPackagesFilters
++            npmPackageType={npmPackageType}
++            possibleCollections={possibleCollections}
++            possibleCategories={possibleCategories}
++            query={query || {}}
++            handleSelectChange={handleSelectChange}
++            handleSelectClear={handleSelectClear}
++          />
++        </Flex>
+ 
+-const MarketPlacePage = () => {
++        <TabPanels>
++          {/* Plugins panel */}
++          <TabPanel>
++            {searchQuery.length > 0 && !pluginSearchResults.length ? (
++              <EmptyNpmPackageSearch content={emptySearchMessage} />
++            ) : (
++              <NpmPackagesGrid
++                npmPackages={pluginSearchResults}
++                installedPackageNames={installedPackageNames}
++                useYarn={useYarn}
++                isInDevelopmentMode={isInDevelopmentMode}
++                npmPackageType="plugin"
++                strapiAppVersion={strapiVersion}
++              />
++            )}
++          </TabPanel>
++          {/* Providers panel */}
++          <TabPanel>
++            {searchQuery.length > 0 && !providerSearchResults.length ? (
++              <EmptyNpmPackageSearch content={emptySearchMessage} />
++            ) : (
++              <NpmPackagesGrid
++                npmPackages={providerSearchResults}
++                installedPackageNames={installedPackageNames}
++                useYarn={useYarn}
++                isInDevelopmentMode={isInDevelopmentMode}
++                npmPackageType="provider"
++              />
++            )}
++          </TabPanel>
++        </TabPanels>
++      </TabGroup>
++      <Box paddingTop={7}>
++        <MissingPluginBanner />
++      </Box>
++    </ContentLayout>
++    </>
++  )
++}
++ const MarketPlacePage = () => {
+   const { formatMessage } = useIntl();
+   const { trackUsage } = useTracking();
+   const { notifyStatus } = useNotifyAT();
+@@ -235,108 +342,7 @@ const MarketPlacePage = () => {
+             defaultMessage: 'Marketplace - Plugins',
+           })}
+         />
+-        <PageHeader isOnline={isOnline} npmPackageType={npmPackageType} />
+-        <ContentLayout>
+-          <Box width="25%" paddingBottom={4}>
+-            <Searchbar
+-              name="searchbar"
+-              onClear={() => setSearchQuery('')}
+-              value={searchQuery}
+-              onChange={(e) => setSearchQuery(e.target.value)}
+-              clearLabel={formatMessage({
+-                id: 'admin.pages.MarketPlacePage.search.clear',
+-                defaultMessage: 'Clear the search',
+-              })}
+-              placeholder={formatMessage({
+-                id: 'admin.pages.MarketPlacePage.search.placeholder',
+-                defaultMessage: 'Search',
+-              })}
+-            >
+-              {formatMessage({
+-                id: 'admin.pages.MarketPlacePage.search.placeholder',
+-                defaultMessage: 'Search',
+-              })}
+-            </Searchbar>
+-          </Box>
+-          <TabGroup
+-            label={formatMessage({
+-              id: 'admin.pages.MarketPlacePage.tab-group.label',
+-              defaultMessage: 'Plugins and Providers for Strapi',
+-            })}
+-            id="tabs"
+-            variant="simple"
+-            initialSelectedTabIndex={['plugin', 'provider'].indexOf(npmPackageType)}
+-            onTabChange={handleTabChange}
+-          >
+-            <Box paddingBottom={4}>
+-              <Tabs>
+-                <Tab>
+-                  {formatMessage({
+-                    id: 'admin.pages.MarketPlacePage.plugins',
+-                    defaultMessage: 'Plugins',
+-                  })}{' '}
+-                  ({pluginSearchResults.length})
+-                </Tab>
+-                <Tab>
+-                  {formatMessage({
+-                    id: 'admin.pages.MarketPlacePage.providers',
+-                    defaultMessage: 'Providers',
+-                  })}{' '}
+-                  ({providerSearchResults.length})
+-                </Tab>
+-              </Tabs>
+-            </Box>
+-            <Flex paddingBottom={4} gap={2}>
+-              <SortSelect
+-                sortQuery={query?.sort || 'name:asc'}
+-                handleSelectChange={handleSelectChange}
+-              />
+-              <NpmPackagesFilters
+-                npmPackageType={npmPackageType}
+-                possibleCollections={possibleCollections}
+-                possibleCategories={possibleCategories}
+-                query={query || {}}
+-                handleSelectChange={handleSelectChange}
+-                handleSelectClear={handleSelectClear}
+-              />
+-            </Flex>
+-
+-            <TabPanels>
+-              {/* Plugins panel */}
+-              <TabPanel>
+-                {searchQuery.length > 0 && !pluginSearchResults.length ? (
+-                  <EmptyNpmPackageSearch content={emptySearchMessage} />
+-                ) : (
+-                  <NpmPackagesGrid
+-                    npmPackages={pluginSearchResults}
+-                    installedPackageNames={installedPackageNames}
+-                    useYarn={useYarn}
+-                    isInDevelopmentMode={isInDevelopmentMode}
+-                    npmPackageType="plugin"
+-                    strapiAppVersion={strapiVersion}
+-                  />
+-                )}
+-              </TabPanel>
+-              {/* Providers panel */}
+-              <TabPanel>
+-                {searchQuery.length > 0 && !providerSearchResults.length ? (
+-                  <EmptyNpmPackageSearch content={emptySearchMessage} />
+-                ) : (
+-                  <NpmPackagesGrid
+-                    npmPackages={providerSearchResults}
+-                    installedPackageNames={installedPackageNames}
+-                    useYarn={useYarn}
+-                    isInDevelopmentMode={isInDevelopmentMode}
+-                    npmPackageType="provider"
+-                  />
+-                )}
+-              </TabPanel>
+-            </TabPanels>
+-          </TabGroup>
+-          <Box paddingTop={7}>
+-            <MissingPluginBanner />
+-          </Box>
+-        </ContentLayout>
++      ... Not yet implemented
+       </Main>
+     </Layout>
+   );

@@ -20,7 +20,7 @@
     "client:test": "yarn workspace client test"
   },
   "dependencies": {
-    "patch-package": "^6.4.7",
+    "patch-package": "^6.5.1",
     "postinstall-postinstall": "^2.1.0"
   },
   "packageManager": "yarn@3.2.4"
