@@ -25,7 +25,7 @@ index bdf50dc..f85ac8a 100644
      </DndProvider>
    );
 diff --git a/node_modules/@strapi/admin/admin/src/pages/MarketplacePage/index.js b/node_modules/@strapi/admin/admin/src/pages/MarketplacePage/index.js
-index be08980..90b8b74 100644
+index be08980..1b2c1e7 100644
 --- a/node_modules/@strapi/admin/admin/src/pages/MarketplacePage/index.js
 +++ b/node_modules/@strapi/admin/admin/src/pages/MarketplacePage/index.js
 @@ -52,8 +52,115 @@ const matchSearch = (npmPackages, search) => {
@@ -251,7 +251,7 @@ index be08980..90b8b74 100644
 -            <MissingPluginBanner />
 -          </Box>
 -        </ContentLayout>
-+      ... Not yet implemented
++      <center><span style={{color:"white"}}>... Not yet implemented</span></center>
        </Main>
      </Layout>
    );
