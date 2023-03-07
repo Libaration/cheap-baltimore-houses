@@ -1,3 +1,20 @@
+diff --git a/node_modules/@strapi/admin/admin/src/components/AuthenticatedApp/utils/checkLatestStrapiVersion.js b/node_modules/@strapi/admin/admin/src/components/AuthenticatedApp/utils/checkLatestStrapiVersion.js
+index b1f91b0..e4c7038 100644
+--- a/node_modules/@strapi/admin/admin/src/components/AuthenticatedApp/utils/checkLatestStrapiVersion.js
++++ b/node_modules/@strapi/admin/admin/src/components/AuthenticatedApp/utils/checkLatestStrapiVersion.js
+@@ -1,9 +1,9 @@
+ import semver from 'semver';
+ 
+ const checkLatestStrapiVersion = (currentPackageVersion, latestPublishedVersion) => {
+-  if (!semver.valid(currentPackageVersion) || !semver.valid(latestPublishedVersion)) {
+-    return false;
+-  }
++  // if (!semver.valid(currentPackageVersion) || !semver.valid(latestPublishedVersion)) {
++  //   return false;
++  // }
+ 
+   return semver.lt(currentPackageVersion, latestPublishedVersion);
+ };
 diff --git a/node_modules/@strapi/admin/admin/src/pages/Admin/index.js b/node_modules/@strapi/admin/admin/src/pages/Admin/index.js
 index bdf50dc..f85ac8a 100644
 --- a/node_modules/@strapi/admin/admin/src/pages/Admin/index.js
@@ -24,8 +41,236 @@ index bdf50dc..f85ac8a 100644
        </AppLayout>
      </DndProvider>
    );
+diff --git a/node_modules/@strapi/admin/admin/src/pages/HomePage/ContentBlocks.js b/node_modules/@strapi/admin/admin/src/pages/HomePage/ContentBlocks.js
+index 17d63fe..cffcfd9 100644
+--- a/node_modules/@strapi/admin/admin/src/pages/HomePage/ContentBlocks.js
++++ b/node_modules/@strapi/admin/admin/src/pages/HomePage/ContentBlocks.js
+@@ -20,83 +20,7 @@ const ContentBlocks = () => {
+ 
+   return (
+     <Stack spacing={5}>
+-      <CloudBox />
+-      <BlockLink
+-        href="https://strapi.io/resource-center"
+-        target="_blank"
+-        rel="noopener noreferrer nofollow"
+-        onClick={() => handleClick('didClickonReadTheDocumentationSection')}
+-      >
+-        <ContentBox
+-          title={formatMessage({
+-            id: 'global.documentation',
+-            defaultMessage: 'Documentation',
+-          })}
+-          subtitle={formatMessage({
+-            id: 'app.components.BlockLink.documentation.content',
+-            defaultMessage: 'Discover the essential concepts, guides and instructions.',
+-          })}
+-          icon={<InformationSquare />}
+-          iconBackground="primary100"
+-        />
+-      </BlockLink>
+-      <BlockLink
+-        href="https://strapi.io/starters"
+-        target="_blank"
+-        rel="noopener noreferrer nofollow"
+-        onClick={() => handleClick('didClickonCodeExampleSection')}
+-      >
+-        <ContentBox
+-          title={formatMessage({
+-            id: 'app.components.BlockLink.code',
+-            defaultMessage: 'Code example',
+-          })}
+-          subtitle={formatMessage({
+-            id: 'app.components.BlockLink.code.content',
+-            defaultMessage: 'Learn by using ready-made starters for your projects.',
+-          })}
+-          icon={<CodeSquare />}
+-          iconBackground="warning100"
+-        />
+-      </BlockLink>
+-      <BlockLink
+-        href="https://strapi.io/blog/categories/tutorials"
+-        target="_blank"
+-        rel="noopener noreferrer nofollow"
+-        onClick={() => handleClick('didClickonTutorialSection')}
+-      >
+-        <ContentBox
+-          title={formatMessage({
+-            id: 'app.components.BlockLink.tutorial',
+-            defaultMessage: 'Tutorials',
+-          })}
+-          subtitle={formatMessage({
+-            id: 'app.components.BlockLink.tutorial.content',
+-            defaultMessage: 'Follow step-by-step instructions to use and customize Strapi.',
+-          })}
+-          icon={<PlaySquare />}
+-          iconBackground="secondary100"
+-        />
+-      </BlockLink>
+-      <BlockLink
+-        href="https://strapi.io/blog"
+-        target="_blank"
+-        rel="noopener noreferrer nofollow"
+-        onClick={() => handleClick('didClickonBlogSection')}
+-      >
+-        <ContentBox
+-          title={formatMessage({
+-            id: 'app.components.BlockLink.blog',
+-            defaultMessage: 'Blog',
+-          })}
+-          subtitle={formatMessage({
+-            id: 'app.components.BlockLink.blog.content',
+-            defaultMessage: 'Read the latest news about Strapi and the ecosystem.',
+-          })}
+-          icon={<FeatherSquare />}
+-          iconBackground="alternative100"
+-        />
+-      </BlockLink>
++      
+     </Stack>
+   );
+ };
+diff --git a/node_modules/@strapi/admin/admin/src/pages/HomePage/HomeHeader.js b/node_modules/@strapi/admin/admin/src/pages/HomePage/HomeHeader.js
+index a6eaebb..123d209 100644
+--- a/node_modules/@strapi/admin/admin/src/pages/HomePage/HomeHeader.js
++++ b/node_modules/@strapi/admin/admin/src/pages/HomePage/HomeHeader.js
+@@ -42,24 +42,9 @@ const HomeHeader = ({ hasCreatedContentType, onCreateCT }) => {
+               : formatMessage({
+                   id: 'app.components.HomePage.welcomeBlock.content',
+                   defaultMessage:
+-                    'Congrats! You are logged as the first administrator. To discover the powerful features provided by Strapi, we recommend you to create your first Content type!',
++                    'Congrats! You are logged as the first administrator. To discover the powerful features provided by CheapBaltimoreHouses, we recommend you to create your first Content type!',
+                 })}
+           </WordWrap>
+-          {hasCreatedContentType ? (
+-            <Link isExternal href="https://strapi.io/blog">
+-              {formatMessage({
+-                id: 'app.components.HomePage.button.blog',
+-                defaultMessage: 'See more on the blog',
+-              })}
+-            </Link>
+-          ) : (
+-            <Button size="L" onClick={onCreateCT} endIcon={<ArrowRight />}>
+-              {formatMessage({
+-                id: 'app.components.HomePage.create',
+-                defaultMessage: 'Create your first Content type',
+-              })}
+-            </Button>
+-          )}
+         </StackCustom>
+       </Box>
+     </div>
+diff --git a/node_modules/@strapi/admin/admin/src/pages/HomePage/SocialLinks.js b/node_modules/@strapi/admin/admin/src/pages/HomePage/SocialLinks.js
+index 148e931..2b5cb1e 100644
+--- a/node_modules/@strapi/admin/admin/src/pages/HomePage/SocialLinks.js
++++ b/node_modules/@strapi/admin/admin/src/pages/HomePage/SocialLinks.js
+@@ -64,49 +64,10 @@ const StyledDiscourse = styled(Discourse)`
+ const socialLinks = [
+   {
+     name: { id: 'app.components.HomePage.community.links.github', defaultMessage: 'Github' },
+-    link: 'https://github.com/strapi/strapi/',
++    link: 'https://github.com/Libaration/cheap-baltimore-houses',
+     icon: <Github fill="#7289DA" />,
+     alt: 'github',
+   },
+-  {
+-    name: { id: 'app.components.HomePage.community.links.discord', defaultMessage: 'Discord' },
+-    link: 'https://discord.strapi.io/',
+-    icon: <StyledDiscord />,
+-    alt: 'discord',
+-  },
+-  {
+-    name: { id: 'app.components.HomePage.community.links.reddit', defaultMessage: 'Reddit' },
+-    link: 'https://www.reddit.com/r/Strapi/',
+-    icon: <StyledReddit />,
+-    alt: 'reddit',
+-  },
+-  {
+-    name: { id: 'app.components.HomePage.community.links.twitter', defaultMessage: 'Twitter' },
+-    link: 'https://twitter.com/strapijs',
+-    icon: <StyledTwitter />,
+-    alt: 'twitter',
+-  },
+-  {
+-    name: { id: 'app.components.HomePage.community.links.forum', defaultMessage: 'Forum' },
+-    link: 'https://forum.strapi.io',
+-    icon: <StyledDiscourse />,
+-    alt: 'forum',
+-  },
+-  {
+-    name: { id: 'app.components.HomePage.community.links.blog', defaultMessage: 'Blog' },
+-    link: 'https://strapi.io/blog?utm_source=referral&utm_medium=admin&utm_campaign=career%20page',
+-    icon: <StyledStrapi />,
+-    alt: 'blog',
+-  },
+-  {
+-    name: {
+-      id: 'app.components.HomePage.community.links.career',
+-      defaultMessage: 'We are hiring!',
+-    },
+-    link: 'https://strapi.io/careers?utm_source=referral&utm_medium=admin&utm_campaign=blog',
+-    icon: <StyledStrapi />,
+-    alt: 'career',
+-  },
+ ];
+ 
+ const LinkCustom = styled(LinkButton)`
+@@ -135,16 +96,7 @@ const SocialLinks = () => {
+ 
+   const socialLinksExtended = [
+     ...socialLinks,
+-    {
+-      icon: <StyledStrapi />,
+-      link: communityEdition
+-        ? 'https://discord.strapi.io'
+-        : 'https://support.strapi.io/support/home',
+-      name: {
+-        id: 'Settings.application.get-help',
+-        defaultMessage: 'Get help',
+-      },
+-    },
++   
+   ];
+ 
+   return (
+@@ -162,12 +114,6 @@ const SocialLinks = () => {
+       <Box paddingBottom={7}>
+         <Stack spacing={5}>
+           <Stack spacing={3}>
+-            <Typography variant="delta" as="h2" id="join-the-community">
+-              {formatMessage({
+-                id: 'app.components.HomePage.community',
+-                defaultMessage: 'Join the community',
+-              })}
+-            </Typography>
+             <Typography textColor="neutral600">
+               {formatMessage({
+                 id: 'app.components.HomePage.community.content',
+@@ -176,7 +122,7 @@ const SocialLinks = () => {
+               })}
+             </Typography>
+           </Stack>
+-          <Link href="https://feedback.strapi.io/" isExternal endIcon={<ExternalLink />}>
++          <Link href="https://app.clickup.com/9003076645/v/li/900301002572" isExternal endIcon={<ExternalLink />}>
+             {formatMessage({
+               id: 'app.components.HomePage.roadmap',
+               defaultMessage: 'See our road map',
+diff --git a/node_modules/@strapi/admin/admin/src/pages/HomePage/index.js b/node_modules/@strapi/admin/admin/src/pages/HomePage/index.js
+index 72836a4..fcd72c6 100644
+--- a/node_modules/@strapi/admin/admin/src/pages/HomePage/index.js
++++ b/node_modules/@strapi/admin/admin/src/pages/HomePage/index.js
+@@ -35,8 +35,7 @@ const HomePage = () => {
+   const { guidedTourState, isGuidedTourVisible, isSkipped } = useGuidedTour();
+   useLicenseLimitNotification();
+ 
+-  const showGuidedTour =
+-    !isGuidedTourCompleted(guidedTourState) && isGuidedTourVisible && !isSkipped;
++  const showGuidedTour = false
+ 
+   const { push } = useHistory();
+   const handleClick = (e) => {
 diff --git a/node_modules/@strapi/admin/admin/src/pages/MarketplacePage/index.js b/node_modules/@strapi/admin/admin/src/pages/MarketplacePage/index.js
-index be08980..1b2c1e7 100644
+index be08980..676671e 100644
 --- a/node_modules/@strapi/admin/admin/src/pages/MarketplacePage/index.js
 +++ b/node_modules/@strapi/admin/admin/src/pages/MarketplacePage/index.js
 @@ -52,8 +52,115 @@ const matchSearch = (npmPackages, search) => {
@@ -251,7 +496,253 @@ index be08980..1b2c1e7 100644
 -            <MissingPluginBanner />
 -          </Box>
 -        </ContentLayout>
-+      <center><span style={{color:"white"}}>... Not yet implemented</span></center>
++        <ContentLayout><center><span style={{color:"white", paddingTop: "2rem"}}>... Not yet implemented</span></center></ContentLayout>
        </Main>
      </Layout>
    );
+diff --git a/node_modules/@strapi/admin/admin/src/pages/SettingsPage/pages/ApplicationInfosPage/index.js b/node_modules/@strapi/admin/admin/src/pages/SettingsPage/pages/ApplicationInfosPage/index.js
+index 2ce5f8a..5b21041 100644
+--- a/node_modules/@strapi/admin/admin/src/pages/SettingsPage/pages/ApplicationInfosPage/index.js
++++ b/node_modules/@strapi/admin/admin/src/pages/SettingsPage/pages/ApplicationInfosPage/index.js
+@@ -39,9 +39,9 @@ const ApplicationInfosPage = () => {
+   const queryClient = useQueryClient();
+   useFocusWhenNavigate();
+   const appInfos = useAppInfos();
+-  const { latestStrapiReleaseTag, shouldUpdateStrapi, strapiVersion } = appInfos;
++  const { latestStrapiReleaseTag, strapiVersion } = appInfos;
+   const { updateProjectSettings } = useConfigurations();
+-
++  const shouldUpdateStrapi = false;
+   const {
+     allowedActions: { canRead, canUpdate },
+   } = useRBAC(adminPermissions.settings['project-settings']);
+@@ -137,7 +137,7 @@ const ApplicationInfosPage = () => {
+                     <Typography variant="sigma" textColor="neutral600" as="dt">
+                       {formatMessage({
+                         id: 'Settings.application.strapiVersion',
+-                        defaultMessage: 'strapi version',
++                        defaultMessage: 'CheapBaltimoreHouses version',
+                       })}
+                     </Typography>
+                     <Flex gap={3} direction="column" alignItems="start" as="dd">
+@@ -164,26 +164,18 @@ const ApplicationInfosPage = () => {
+                       })}
+                     </Typography>
+                     <Flex gap={3} direction="column" alignItems="start" as="dd">
+-                      <Typography>
++                    <Typography>
+                         {formatMessage(
+                           {
+                             id: 'Settings.application.ee-or-ce',
+                             defaultMessage:
+-                              '{communityEdition, select, true {Community Edition} other {Enterprise Edition}}',
++                              'Limited Support Contact EstateSolutions through Robert Huie for upgrade options',
+                           },
+-                          { communityEdition: appInfos.communityEdition }
+                         )}
+                       </Typography>
+-                      <Link
+-                        href="https://strapi.io/pricing-self-hosted"
+-                        isExternal
+-                        endIcon={<ExternalLink />}
+-                      >
+-                        {formatMessage({
+-                          id: 'Settings.application.link-pricing',
+-                          defaultMessage: 'See all pricing plans',
+-                        })}
+-                      </Link>
++                      
++                      
++                    
+                     </Flex>
+                   </GridItem>
+ 
+diff --git a/node_modules/@strapi/admin/admin/src/translations/en.json b/node_modules/@strapi/admin/admin/src/translations/en.json
+index 26b5e42..f1f9d4a 100644
+--- a/node_modules/@strapi/admin/admin/src/translations/en.json
++++ b/node_modules/@strapi/admin/admin/src/translations/en.json
+@@ -8,7 +8,7 @@
+   "Auth.form.button.go-home": "GO BACK HOME",
+   "Auth.form.button.login": "Login",
+   "Auth.form.button.login.providers.error": "We cannot connect you through the selected provider.",
+-  "Auth.form.button.login.strapi": "Log in via Strapi",
++  "Auth.form.button.login.strapi": "Log in via CheapBaltimoreHouses",
+   "Auth.form.button.password-recovery": "Password Recovery",
+   "Auth.form.button.register": "Let's start",
+   "Auth.form.confirmPassword.label": "Confirm Password",
+@@ -40,12 +40,12 @@
+   "Auth.form.password.hint": "Must be at least 8 characters, 1 uppercase, 1 lowercase & 1 number",
+   "Auth.form.password.show-password": "Show password",
+   "Auth.form.register.news.label": "Keep me updated about new features & upcoming improvements (by doing this you accept the {terms} and the {policy}).",
+-  "Auth.form.register.subtitle": "Credentials are only used to authenticate in Strapi. All saved data will be stored in your database.",
++  "Auth.form.register.subtitle": "Credentials are only used to authenticate in CheapBaltimoreHouses. All saved data will be stored in your database.",
+   "Auth.form.rememberMe.label": "Remember me",
+   "Auth.form.username.label": "Username",
+   "Auth.form.username.placeholder": "e.g. Kai_Doe",
+-  "Auth.form.welcome.subtitle": "Log in to your Strapi account",
+-  "Auth.form.welcome.title": "Welcome to Strapi!",
++  "Auth.form.welcome.subtitle": "Log in to your CheapBaltimoreHouses account",
++  "Auth.form.welcome.title": "Welcome to CheapBaltimoreHouses!",
+   "Auth.link.forgot-password": "Forgot your password?",
+   "Auth.link.ready": "Ready to sign in?",
+   "Auth.link.signin": "Sign in",
+@@ -64,7 +64,7 @@
+   "HomePage.helmet.title": "Homepage",
+   "HomePage.roadmap": "See our roadmap",
+   "HomePage.welcome.congrats": "Congrats!",
+-  "HomePage.welcome.congrats.content": "You are logged in as the first administrator. To discover the powerful features provided by Strapi,",
++  "HomePage.welcome.congrats.content": "You are logged in as the first administrator. To discover the powerful features provided by CheapBaltimoreHouses,",
+   "HomePage.welcome.congrats.content.bold": "we recommend you to create your first Collection-Type.",
+   "Media Library": "Media Library",
+   "New entry": "New entry",
+@@ -164,13 +164,13 @@
+   "Settings.application.customization.size-details": "Max dimension: {dimension}×{dimension}, Max file size: {size}KB",
+   "Settings.application.description": "Administration panel’s global information",
+   "Settings.application.edition-title": "current plan",
+-  "Settings.application.ee-or-ce": "{communityEdition, select, true {Community Edition} other {Enterprise Edition}}",
++  "Settings.application.ee-or-ce": "Limited Support Contact EstateSolutions through Robert Huie for upgrade options",
+   "Settings.application.get-help": "Get help",
+   "Settings.application.link-pricing": "See all pricing plans",
+   "Settings.application.link-upgrade": "Upgrade your admin panel",
+   "Settings.application.node-version": "node version",
+-  "Settings.application.strapi-version": "Strapi version",
+-  "Settings.application.strapiVersion": "Strapi version",
++  "Settings.application.strapi-version": "CheapBaltimoreHouses version",
++  "Settings.application.strapiVersion": "CheapBaltimoreHouses version",
+   "Settings.application.title": "Overview",
+   "Settings.error": "Error",
+   "Settings.global": "Global Settings",
+@@ -231,7 +231,7 @@
+   "Settings.permissions.users.form.sso.description": "When enabled (ON), users can login via SSO",
+   "Settings.permissions.users.inactive": "Inactive",
+   "Settings.permissions.users.lastname": "Lastname",
+-  "Settings.permissions.users.listview.header.subtitle": "All the users who have access to the Strapi admin panel",
++  "Settings.permissions.users.listview.header.subtitle": "All the users who have access to the CheapBaltimoreHouses admin panel",
+   "Settings.permissions.users.roles": "Roles",
+   "Settings.permissions.users.strapi-author": "Author",
+   "Settings.permissions.users.strapi-editor": "Editor",
+@@ -327,7 +327,7 @@
+   "admin.pages.MarketPlacePage.helmet": "Marketplace — Plugins",
+   "admin.pages.MarketPlacePage.missingPlugin.description": "Tell us what plugin you are looking for and we'll let our community plugin developers know in case they are in search for inspiration!",
+   "admin.pages.MarketPlacePage.missingPlugin.title": "Missing a plugin?",
+-  "admin.pages.MarketPlacePage.offline.subtitle": "You need to be connected to the Internet to access Strapi Market.",
++  "admin.pages.MarketPlacePage.offline.subtitle": "You need to be connected to the Internet to access CheapBaltimoreHouses Market.",
+   "admin.pages.MarketPlacePage.offline.title": "You are offline",
+   "admin.pages.MarketPlacePage.plugin.copy": "Copy install command",
+   "admin.pages.MarketPlacePage.plugin.copy.success": "Install command ready to be pasted in your terminal",
+@@ -337,10 +337,10 @@
+   "admin.pages.MarketPlacePage.plugin.info.label": "Learn more about {pluginName}",
+   "admin.pages.MarketPlacePage.plugin.info.text": "More",
+   "admin.pages.MarketPlacePage.plugin.installed": "Installed",
+-  "admin.pages.MarketPlacePage.plugin.tooltip.madeByStrapi": "Made by Strapi",
+-  "admin.pages.MarketPlacePage.plugin.tooltip.verified": "Plugin verified by Strapi",
+-  "admin.pages.MarketPlacePage.plugin.version": "Update your Strapi version: \"{strapiAppVersion}\" to: \"{versionRange}\"",
+-  "admin.pages.MarketPlacePage.plugin.version.null": "Unable to verify compatibility with your Strapi version: \"{strapiAppVersion}\"",
++  "admin.pages.MarketPlacePage.plugin.tooltip.madeByStrapi": "Made by CheapBaltimoreHouses",
++  "admin.pages.MarketPlacePage.plugin.tooltip.verified": "Plugin verified by CheapBaltimoreHouses",
++  "admin.pages.MarketPlacePage.plugin.version": "Update your CheapBaltimoreHouses version: \"{strapiAppVersion}\" to: \"{versionRange}\"",
++  "admin.pages.MarketPlacePage.plugin.version.null": "Unable to verify compatibility with your CheapBaltimoreHouses version: \"{strapiAppVersion}\"",
+   "admin.pages.MarketPlacePage.plugins": "Plugins",
+   "admin.pages.MarketPlacePage.provider.downloads": "This provider has {downloadsCount} weekly downloads",
+   "admin.pages.MarketPlacePage.provider.githubStars": "This provider was starred {starsCount} on GitHub",
+@@ -358,8 +358,8 @@
+   "admin.pages.MarketPlacePage.sort.npmDownloads.selected": "Sort by npm downloads",
+   "admin.pages.MarketPlacePage.submit.plugin.link": "Submit plugin",
+   "admin.pages.MarketPlacePage.submit.provider.link": "Submit provider",
+-  "admin.pages.MarketPlacePage.subtitle": "Get more out of Strapi",
+-  "admin.pages.MarketPlacePage.tab-group.label": "Plugins and Providers for Strapi",
++  "admin.pages.MarketPlacePage.subtitle": "Get more out of CheapBaltimoreHouses",
++  "admin.pages.MarketPlacePage.tab-group.label": "Plugins and Providers for CheapBaltimoreHouses",
+   "anErrorOccurred": "Woops! Something went wrong. Please, try again.",
+   "app.component.CopyToClipboard.label": "Copy to clipboard",
+   "app.component.search.label": "Search for {target}",
+@@ -369,13 +369,13 @@
+   "app.component.table.select.one-entry": "Select {target}",
+   "app.component.table.view": "{target} details",
+   "app.components.BlockLink.blog": "Blog",
+-  "app.components.BlockLink.blog.content": "Read the latest news about Strapi and the ecosystem.",
++  "app.components.BlockLink.blog.content": "Read the latest news about CheapBaltimoreHouses and the ecosystem.",
+   "app.components.BlockLink.code": "Code examples",
+   "app.components.BlockLink.code.content": "Learn by testing real projects developed the community.",
+   "app.components.BlockLink.documentation.content": "Discover the essential concepts, guides and instructions.",
+   "app.components.BlockLink.tutorial": "Tutorials",
+-  "app.components.BlockLink.tutorial.content": "Follow step-by-step instructions to use and customize Strapi.",
+-  "app.components.BlockLink.cloud": "Strapi Cloud",
++  "app.components.BlockLink.tutorial.content": "Follow step-by-step instructions to use and customize CheapBaltimoreHouses.",
++  "app.components.BlockLink.cloud": "CheapBaltimoreHouses Cloud",
+   "app.components.BlockLink.cloud.content": "A fully composable, and collaborative platform to boost your team velocity.",
+   "app.components.Button.cancel": "Cancel",
+   "app.components.Button.confirm": "Confirm",
+@@ -417,8 +417,8 @@
+   "app.components.HomePage.roadmap": "See our roadmap",
+   "app.components.HomePage.welcome": "Welcome on board 👋",
+   "app.components.HomePage.welcome.again": "Welcome 👋",
+-  "app.components.HomePage.welcomeBlock.content": "Congrats! You are logged as the first administrator. To discover the powerful features provided by Strapi, we recommend you to create your first Content type!",
+-  "app.components.HomePage.welcomeBlock.content.again": "We hope you are making progress on your project! Feel free to read the latest news about Strapi. We are giving our best to improve the product based on your feedback.",
++  "app.components.HomePage.welcomeBlock.content": "Congrats! You are logged as the first administrator. To discover the powerful features provided by CheapBaltimoreHouses, we recommend you to create your first Content type!",
++  "app.components.HomePage.welcomeBlock.content.again": "We hope you are making progress on your project! Feel free to read the latest news about CheapBaltimoreHouses. We are giving our best to improve the product based on your feedback.",
+   "app.components.HomePage.welcomeBlock.content.issues": "issues.",
+   "app.components.HomePage.welcomeBlock.content.raise": " or raise ",
+   "app.components.ImgPreview.hint": "Drag & drop your file into this area or {browse} for a file to upload",
+@@ -436,7 +436,7 @@
+   "app.components.LeftMenu.general": "General",
+   "app.components.LeftMenu.logo.alt": "Application logo",
+   "app.components.LeftMenu.logout": "Logout",
+-  "app.components.LeftMenu.navbrand.title": "Strapi Dashboard",
++  "app.components.LeftMenu.navbrand.title": "CheapBaltimoreHouses Dashboard",
+   "app.components.LeftMenu.navbrand.workplace": "Workplace",
+   "app.components.LeftMenu.plugins": "Plugins",
+   "app.components.LeftMenuFooter.help": "Help",
+@@ -453,8 +453,8 @@
+   "app.components.ListPluginsPage.helmet.title": "List plugins",
+   "app.components.Logout.logout": "Logout",
+   "app.components.Logout.profile": "Profile",
+-  "app.components.MarketplaceBanner": "Discover plugins built by the community, and many more awesome things to kickstart your project, on Strapi Marketplace.",
+-  "app.components.MarketplaceBanner.image.alt": "A Strapi rocket logo",
++  "app.components.MarketplaceBanner": "Discover plugins built by the community, and many more awesome things to kickstart your project, on CheapBaltimoreHouses Marketplace.",
++  "app.components.MarketplaceBanner.image.alt": "A CheapBaltimoreHouses rocket logo",
+   "app.components.MarketplaceBanner.link": "Check it out now",
+   "app.components.NotFoundPage.back": "Back to homepage",
+   "app.components.NotFoundPage.description": "Not Found",
+@@ -481,8 +481,8 @@
+   "app.components.UpgradePlanModal.limit-reached": "You have reached the limit",
+   "app.components.UpgradePlanModal.text-ce": "Community Edition",
+   "app.components.UpgradePlanModal.text-ee": "Enterprise Edition",
+-  "app.components.UpgradePlanModal.text-power": "Unlock the full power of Strapi by upgrading your plan to the Enterprise Edition",
+-  "app.components.UpgradePlanModal.text-strapi": "of Strapi by upgrading your plan to the",
++  "app.components.UpgradePlanModal.text-power": "Unlock the full power of CheapBaltimoreHouses by upgrading your plan to the Enterprise Edition",
++  "app.components.UpgradePlanModal.text-strapi": "of CheapBaltimoreHouses by upgrading your plan to the",
+   "app.components.Users.MagicLink.connect": "Copy and share this link to give access to this user",
+   "app.components.Users.MagicLink.connect.sso": "Send this link to the user, the first login can be made via a SSO provider",
+   "app.components.Users.ModalCreateBody.block-title.details": "User details",
+@@ -532,7 +532,7 @@
+   "clearLabel": "Clear",
+   "coming.soon": "This content is currently under construction and will be back in a few weeks!",
+   "component.Input.error.validation.integer": "The value must be an integer",
+-  "components.AutoReloadBlocker.description": "Run Strapi with one of the following commands:",
++  "components.AutoReloadBlocker.description": "Run CheapBaltimoreHouses with one of the following commands:",
+   "components.AutoReloadBlocker.header": "Reload feature is required for this plugin.",
+   "components.ErrorBoundary.title": "Something went wrong...",
+   "components.FilterOptions.FILTER_TYPES.$contains": "contains (case sensitive)",
+@@ -850,7 +850,7 @@
+   "global.plugins.i18n": "Internationalization",
+   "global.plugins.i18n.description": "This plugin enables to create, to read and to update content in different languages, both from the Admin Panel and from the API.",
+   "global.plugins.sentry": "Sentry",
+-  "global.plugins.sentry.description": "Send Strapi error events to Sentry.",
++  "global.plugins.sentry.description": "Send CheapBaltimoreHouses error events to Sentry.",
+   "global.plugins.upload": "Media Library",
+   "global.plugins.upload.description": "Media file management.",
+   "global.plugins.users-permissions": "Roles & Permissions",
+@@ -884,10 +884,10 @@
+   "notification.success.transfertokencreated": "Transfer Token successfully created",
+   "notification.success.transfertokenedited": "Transfer Token successfully edited",
+   "notification.error.tokennamenotunique": "Name already assigned to another token",
+-  "notification.version.update.message": "A new version of Strapi is available!",
++  "notification.version.update.message": "A new version of CheapBaltimoreHouses is available!",
+   "notification.warning.title": "Warning:",
+   "notification.warning.404": "404 - Not found",
+-  "notification.ee.warning.over-.message": "Add seats to {licenseLimitStatus, select, OVER_LIMIT {invite} AT_LIMIT {re-enable}} Users. If you already did it but it's not reflected in Strapi yet, make sure to restart your app.",
++  "notification.ee.warning.over-.message": "Add seats to {licenseLimitStatus, select, OVER_LIMIT {invite} AT_LIMIT {re-enable}} Users. If you already did it but it's not reflected in CheapBaltimoreHouses yet, make sure to restart your app.",
+   "notification.ee.warning.at-seat-limit.title": "{licenseLimitStatus, select, OVER_LIMIT {Over} AT_LIMIT {At}} seat limit ({currentUserCount}/{permittedSeats})",
+   "or": "OR",
+   "request.error.model.unknown": "This model doesn't exist",
