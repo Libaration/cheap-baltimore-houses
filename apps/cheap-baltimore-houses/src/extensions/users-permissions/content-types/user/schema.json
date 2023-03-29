@@ -73,7 +73,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::home.home",
-      "inversedBy": "user_likes"
+      "mappedBy": "user_likes"
     }
   }
 }

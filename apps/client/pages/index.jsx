@@ -44,11 +44,11 @@ const Index = (props) => {
         <div ref={contentRef} style={{ width: "1px", height: "1px" }} />
       </div>
       <div className="shrink center-safe">
-        <Newsletter
+        {/* <Newsletter
           animationData={props.animationData}
           ref={newsletterRef}
           visible={newsletterVisible}
-        />
+        /> */}
 
         <div
           className="w-full overflow-visible"
