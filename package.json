@@ -15,12 +15,12 @@
     "lint": "turbo run lint",
     "dbbackup": "cp apps/cheap-baltimore-houses/.tmp/data.db $HOME/Desktop/db",
     "dev": "turbo run dev --parallel --no-cache",
-    "clean": "rm -rf apps/cheap-baltimore-houses/.cache && rm -rf apps/cheap-baltimore-houses/build && yarn cache clean && yarn && yarn build --no-cache",
+    "clean": "rm -rf apps/cheap-baltimore-houses/.cache && rm -rf apps/cheap-baltimore-houses/build && yarn cache clean && yarn && yarn build --no-cache --force",
     "postinstall": "patch-package",
     "client:test": "yarn workspace client test"
   },
   "dependencies": {
-    "patch-package": "^6.4.7",
+    "patch-package": "^6.5.1",
     "postinstall-postinstall": "^2.1.0"
   },
   "packageManager": "yarn@3.2.4"
