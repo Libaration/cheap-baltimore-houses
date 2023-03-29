@@ -501,7 +501,7 @@ index be08980..676671e 100644
      </Layout>
    );
 diff --git a/node_modules/@strapi/admin/admin/src/pages/SettingsPage/pages/ApplicationInfosPage/index.js b/node_modules/@strapi/admin/admin/src/pages/SettingsPage/pages/ApplicationInfosPage/index.js
-index 2ce5f8a..5b21041 100644
+index 2ce5f8a..44cbc9b 100644
 --- a/node_modules/@strapi/admin/admin/src/pages/SettingsPage/pages/ApplicationInfosPage/index.js
 +++ b/node_modules/@strapi/admin/admin/src/pages/SettingsPage/pages/ApplicationInfosPage/index.js
 @@ -39,9 +39,9 @@ const ApplicationInfosPage = () => {
@@ -516,7 +516,7 @@ index 2ce5f8a..5b21041 100644
    const {
      allowedActions: { canRead, canUpdate },
    } = useRBAC(adminPermissions.settings['project-settings']);
-@@ -137,7 +137,7 @@ const ApplicationInfosPage = () => {
+@@ -137,23 +137,11 @@ const ApplicationInfosPage = () => {
                      <Typography variant="sigma" textColor="neutral600" as="dt">
                        {formatMessage({
                          id: 'Settings.application.strapiVersion',
@@ -525,7 +525,23 @@ index 2ce5f8a..5b21041 100644
                        })}
                      </Typography>
                      <Flex gap={3} direction="column" alignItems="start" as="dd">
-@@ -164,26 +164,18 @@ const ApplicationInfosPage = () => {
+                       <Typography>v{strapiVersion}</Typography>
+-                      {shouldUpdateStrapi && (
+-                        <Link
+-                          href={`https://github.com/strapi/strapi/releases/tag/${latestStrapiReleaseTag}`}
+-                          isExternal
+-                          endIcon={<ExternalLink />}
+-                        >
+-                          {formatMessage({
+-                            id: 'Settings.application.link-upgrade',
+-                            defaultMessage: 'Upgrade your admin panel',
+-                          })}
+-                        </Link>
+-                      )}
+                     </Flex>
+                   </GridItem>
+                   <GridItem col={6} s={12}>
+@@ -164,26 +152,18 @@ const ApplicationInfosPage = () => {
                        })}
                      </Typography>
                      <Flex gap={3} direction="column" alignItems="start" as="dd">
