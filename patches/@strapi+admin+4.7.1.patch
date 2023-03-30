@@ -1,3 +1,20 @@
+diff --git a/node_modules/@strapi/admin/admin/src/StrapiApp.js b/node_modules/@strapi/admin/admin/src/StrapiApp.js
+index 9484f77..7b665a0 100644
+--- a/node_modules/@strapi/admin/admin/src/StrapiApp.js
++++ b/node_modules/@strapi/admin/admin/src/StrapiApp.js
+@@ -32,10 +32,10 @@ class StrapiApp {
+       head: { favicon },
+       locales: ['en'],
+       menuLogo: Logo,
+-      notifications: { releases: true },
++      notifications: { releases: false },
+       themes: { light: lightTheme, dark: darkTheme },
+       translations: {},
+-      tutorials: true,
++      tutorials: false,
+     };
+     this.appPlugins = appPlugins || {};
+     this.library = library;
 diff --git a/node_modules/@strapi/admin/admin/src/components/AuthenticatedApp/utils/checkLatestStrapiVersion.js b/node_modules/@strapi/admin/admin/src/components/AuthenticatedApp/utils/checkLatestStrapiVersion.js
 index b1f91b0..e4c7038 100644
 --- a/node_modules/@strapi/admin/admin/src/components/AuthenticatedApp/utils/checkLatestStrapiVersion.js
@@ -41,6 +58,19 @@ index bdf50dc..f85ac8a 100644
        </AppLayout>
      </DndProvider>
    );
+diff --git a/node_modules/@strapi/admin/admin/src/pages/AuthPage/components/Login/BaseLogin.js b/node_modules/@strapi/admin/admin/src/pages/AuthPage/components/Login/BaseLogin.js
+index f31576f..4611f3d 100644
+--- a/node_modules/@strapi/admin/admin/src/pages/AuthPage/components/Login/BaseLogin.js
++++ b/node_modules/@strapi/admin/admin/src/pages/AuthPage/components/Login/BaseLogin.js
+@@ -59,7 +59,7 @@ const Login = ({ onSubmit, schema, children }) => {
+                   <Typography variant="epsilon" textColor="neutral600">
+                     {formatMessage({
+                       id: 'Auth.form.welcome.subtitle',
+-                      defaultMessage: 'Log in to your Strapi account',
++                      defaultMessage: 'Log in to your CheapBaltimoreHouses account',
+                     })}
+                   </Typography>
+                 </Box>
 diff --git a/node_modules/@strapi/admin/admin/src/pages/HomePage/ContentBlocks.js b/node_modules/@strapi/admin/admin/src/pages/HomePage/ContentBlocks.js
 index 17d63fe..cffcfd9 100644
 --- a/node_modules/@strapi/admin/admin/src/pages/HomePage/ContentBlocks.js
@@ -762,3 +792,16 @@ index 26b5e42..f1f9d4a 100644
    "notification.ee.warning.at-seat-limit.title": "{licenseLimitStatus, select, OVER_LIMIT {Over} AT_LIMIT {At}} seat limit ({currentUserCount}/{permittedSeats})",
    "or": "OR",
    "request.error.model.unknown": "This model doesn't exist",
+diff --git a/node_modules/@strapi/admin/index.html b/node_modules/@strapi/admin/index.html
+index a00a161..f412cc3 100644
+--- a/node_modules/@strapi/admin/index.html
++++ b/node_modules/@strapi/admin/index.html
+@@ -6,7 +6,7 @@
+     <!-- Make the page mobile compatible -->
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <meta name="mobile-web-app-capable" content="yes" />
+-    <title>Strapi Admin</title>
++    <title>CheapBaltimoreHouses : Admin</title>
+   </head>
+   <body>
+     <!-- The app hooks into this div -->
