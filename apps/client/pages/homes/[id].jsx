@@ -224,7 +224,7 @@ export async function getStaticPaths() {
   const res = await homesCalls.get.allHomes();
   const homes = res.data;
   const paths = homes.map((home) => `/homes/${home.id}`);
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 export async function getStaticProps(context) {
   const res = await homesCalls.get.getHome(context.params.id);
