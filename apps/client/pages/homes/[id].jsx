@@ -33,12 +33,12 @@ const HomeShow = ({ home }) => {
     ),
     []
   );
-  const coverImage = home.attributes.cover_image.data.attributes.provider_metadata.public_id;
-  const coverImageHeight = home.attributes.cover_image.data.attributes.height;
-  const coverImageWidth = home.attributes.cover_image.data.attributes.width;
+  const coverImage = home.attributes?.cover_image.data.attributes.provider_metadata.public_id;
+  const coverImageHeight = home.attributes?.cover_image.data.attributes.height;
+  const coverImageWidth = home.attributes?.cover_image.data.attributes.width;
   const additionalImages =
-    home.attributes.additional_images.data &&
-    home.attributes.additional_images.data.map((image, index) => {
+    home.attributes?.additional_images.data &&
+    home.attributes?.additional_images.data.map((image, index) => {
       return {
         src: image.attributes.provider_metadata.public_id,
         width: image.attributes.width,
@@ -77,7 +77,7 @@ const HomeShow = ({ home }) => {
     ],
   }));
   const [view, setView] = useState(additionalImages ? "columns" : "rows");
-  const date = new Date(home.attributes.createdAt).toLocaleDateString("en-US", {
+  const date = new Date(home.attributes?.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -85,14 +85,14 @@ const HomeShow = ({ home }) => {
   const handleViewChange = (e) => {
     setView(e.target.name);
   };
-  const address = `${home.attributes.street} ${
-    home.attributes.street2 ? home.attributes.street2 : ""
-  } ${home.attributes.city}, ${home.attributes.state} ${home.attributes.zip}`;
-  const description = home.attributes.description;
+  const address = `${home.attributes?.street} ${
+    home.attributes?.street2 ? home.attributes?.street2 : ""
+  } ${home.attributes?.city}, ${home.attributes?.state} ${home.attributes?.zip}`;
+  const description = home.attributes?.description;
   const [descriptionState, setDescriptionState] = useState(description);
-  const available = home.attributes.available;
-  const bedrooms = home.attributes.bedrooms;
-  const bathrooms = home.attributes.bathrooms;
+  const available = home.attributes?.available;
+  const bedrooms = home.attributes?.bedrooms;
+  const bathrooms = home.attributes?.bathrooms;
   useEffect(() => {
     setDescriptionState(generateMarkdown(description));
   }, [description]);
