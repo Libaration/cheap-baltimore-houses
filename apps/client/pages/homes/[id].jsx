@@ -16,7 +16,9 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import pluralize from "pluralize";
 import { Button } from "@nextui-org/react";
 import OfferModal from "../../components/homes/modals/OfferModal";
-const HomeShow = ({ home, error }) => {
+import { useRouter } from "next/router";
+const HomeShow = ({ home }) => {
+  const router = useRouter();
   let description;
   let additionalImages = [];
   const [descriptionState, setDescriptionState] = useState("");
@@ -39,13 +41,12 @@ const HomeShow = ({ home, error }) => {
     []
   );
   const [view, setView] = useState(additionalImages ? "columns" : "rows");
-  if (error || !home) {
-    return <div>An Error Occured</div>;
+  if (router.isFallback) {
+    return <h1>Loading...</h1>;
   }
   description = home.attributes?.description;
   const handler = () => setVisible(true);
   const closeHandler = () => setVisible(false);
-
   const coverImage = home.attributes?.cover_image.data.attributes.provider_metadata.public_id;
   const coverImageHeight = home.attributes?.cover_image.data.attributes.height;
   const coverImageWidth = home.attributes?.cover_image.data.attributes.width;
@@ -240,13 +241,10 @@ export async function getStaticProps(context) {
     const res = await homesCalls.get.getHome(context.params.id);
     const home = res.data;
     return { props: { home }, revalidate: 300 };
-  } catch (error) {
+  } catch (e) {
     return {
-      props: {
-        error: {
-          message: error.message,
-        },
-      },
+      notFound: true,
+      revalidate: 3,
     };
   }
 }
