@@ -3,6 +3,12 @@ import { homesCalls } from "../lib/homes";
 import { renderRecentHomes } from "../components/homes/utils/renderRecentHomes";
 import dynamic from "next/dynamic";
 import Newsletter from "../components/landing/Newsletter";
+import CategoriesSection from "../components/landing/CategoriesSection";
+import HowItWorksSection from "../components/landing/HowItWorksSection";
+import HomeSection from "../components/landing/HomeSection";
+import EasySection from "../components/landing/EasySection";
+import MapSection from "../components/landing/MapSection";
+import ReviewSection from "../components/landing/ReviewSection";
 import { Button } from "@nextui-org/react";
 import { useEffect, useRef } from "react";
 import { useChangeNotchColor } from "../lib/useCustomHooks";
@@ -39,44 +45,45 @@ const Index = (props) => {
         <meta name="theme-color" content={notchColor.theme} />
         <meta name="apple-mobile-web-app-status-bar-style" content={notchColor.style} />
       </Head>
+
       <div ref={heroRef}>
         <Hero recentHomesRef={recentHomesRef} />
         <div ref={contentRef} style={{ width: "1px", height: "1px" }} />
       </div>
+
       <div className="shrink center-safe">
         {/* <Newsletter
           animationData={props.animationData}
           ref={newsletterRef}
           visible={newsletterVisible}
         /> */}
+        <HowItWorksSection />
+        <CategoriesSection />
 
         <div
-          className="w-full overflow-visible"
-          style={{
-            position: "relative",
-            zIndex: 1,
-            height: "600px",
-            marginTop: "-100px",
-          }}
+          className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900"
+          ref={recentHomesRef}
         >
-          <GlbHomeRender />
-        </div>
-
-        <div className="recent-text" ref={recentHomesRef}>
           Recent Listings
         </div>
         <div
-          className="pt-5 pb-5"
+          className="py-5 mx-auto lg:w-1/2 w-full leading-relaxed text-base"
           style={{ width: "100%", textAlign: "center", margin: "auto" }}
         >{`Looking for a new home in Baltimore? Check out our recent auction listings to see some of the best properties on the market today. With a variety of homes available in different neighborhoods and at competitive prices, you're sure to find something that fits your needs. Don't miss out on these great opportunities, start browsing our listings now!`}</div>
-        <div className="flex justify-center">
+
+        <div className="recent-homes-container">{renderRecentHomes(props.homes)}</div>
+
+        <div className="flex justify-center px-5 pt-5 pb-20 mx-auto">
           <Button color="warning">
-            <Link href="/homes">
-              <a>View All Listings</a>
-            </Link>
+            <a href="/homes">View All Listings</a>
           </Button>
         </div>
-        <div className="recent-homes-container">{renderRecentHomes(props.homes)}</div>
+
+        <div className="additionalContent">
+          <HomeSection />
+          <ReviewSection />
+          <EasySection />
+        </div>
       </div>
     </>
   );
