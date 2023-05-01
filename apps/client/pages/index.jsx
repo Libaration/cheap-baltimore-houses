@@ -56,11 +56,11 @@ const Index = (props) => {
       </div>
 
       <div className="shrink center-safe">
-        <Newsletter
+        {/* <Newsletter
           animationData={props.animationData}
           ref={newsletterRef}
           visible={newsletterVisible}
-        />
+        /> */}
 
       <div>
         <CategoriesSection />
