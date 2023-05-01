@@ -40,7 +40,7 @@ export function useAllHomes(options = {}) {
 function getURL({ paginated, page, pageSize, filterByContains, needle, haystack }) {
   const baseURL = `${getStrapiURL("/api/homes")}`;
   const url = new URL(baseURL);
-  url.searchParams.set("populate", "cover_image");
+  url.searchParams.set("populate", "cover_image,additional_images");
   url.searchParams.set("sort", "id:DESC");
   if (!paginated && !filterByContains) return url.toString();
   if (paginated) {

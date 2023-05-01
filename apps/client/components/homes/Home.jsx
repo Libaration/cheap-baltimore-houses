@@ -1,5 +1,5 @@
 import Image from "next/future/image";
-import { cloudinaryLoader } from "../../lib/cloudinaryLoader";
+import { cloudinaryLoader, cloudinaryThumbnailTransform } from "../../lib/cloudinaryLoader";
 import { useEffect, useState } from "react";
 import { generateMarkdown } from "../../lib/markDownMaker";
 import Link from "next/link";
@@ -55,6 +55,7 @@ const Home = ({ home }) => {
       );
     }
   };
+
   return (
     <>
       <div className="text-white p-5 max-w-md max-h-fit" role="homeContainer">
@@ -64,7 +65,14 @@ const Home = ({ home }) => {
               <a>
                 <Image
                   src={coverImage}
-                  loader={cloudinaryLoader}
+                  loader={(props) => {
+                    return home.attributes?.additional_images?.data.length > 2
+                      ? cloudinaryThumbnailTransform(
+                          props,
+                          home.attributes?.additional_images?.data
+                        )
+                      : cloudinaryLoader(props);
+                  }}
                   fill
                   sizes="(max-width: 576px) 100vw,
                           (max-width: 768px) 50vw,
