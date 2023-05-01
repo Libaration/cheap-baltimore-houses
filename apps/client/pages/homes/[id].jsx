@@ -20,7 +20,7 @@ import { useRouter } from "next/router";
 const HomeShow = ({ home }) => {
   const router = useRouter();
   let description;
-  let additionalImages = [];
+  let additionalImages;
   const [descriptionState, setDescriptionState] = useState("");
   useEffect(() => {
     if (!description) return;
@@ -40,7 +40,7 @@ const HomeShow = ({ home }) => {
     ),
     []
   );
-  const [view, setView] = useState(additionalImages ? "columns" : "rows");
+  const [view, setView] = useState("rows");
   if (router.isFallback) {
     return <h1>Loading...</h1>;
   }
