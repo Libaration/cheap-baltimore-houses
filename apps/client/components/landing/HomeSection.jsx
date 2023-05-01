@@ -1,3 +1,4 @@
+import Image from "next/future/image";
 const HomeSection = () => {
   return (
     <>
@@ -24,10 +25,14 @@ const HomeSection = () => {
             </div>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-            <img
+            <Image
               className="object-cover object-center rounded"
-              alt="hero"
-              src="https://dummyimage.com/720x600/edf2f7/a5afbd"
+              alt="placeholder"
+              src={"https://dummyimage.com/720x600/edf2f7/a5afbd"}
+              width={720}
+              height={600}
+              blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8v4qhHgAGgwIqdX7cjgAAAABJRU5ErkJggg"
+              placeholder="blur"
             />
           </div>
         </div>

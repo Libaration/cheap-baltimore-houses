@@ -1,13 +1,10 @@
 import Hero from "../components/Hero";
 import { homesCalls } from "../lib/homes";
 import { renderRecentHomes } from "../components/homes/utils/renderRecentHomes";
-import dynamic from "next/dynamic";
-import Newsletter from "../components/landing/Newsletter";
 import CategoriesSection from "../components/landing/CategoriesSection";
 import HowItWorksSection from "../components/landing/HowItWorksSection";
 import HomeSection from "../components/landing/HomeSection";
 import EasySection from "../components/landing/EasySection";
-import MapSection from "../components/landing/MapSection";
 import ReviewSection from "../components/landing/ReviewSection";
 import { Button } from "@nextui-org/react";
 import { useEffect, useRef } from "react";
@@ -15,7 +12,6 @@ import { useChangeNotchColor } from "../lib/useCustomHooks";
 import Link from "next/link";
 import Head from "next/head";
 import { useResizeEffect, useInViewStateAndEffect } from "../lib/useCustomHooks";
-const GlbHomeRender = dynamic(() => import("../components/homes/GlbHomeRender"));
 const Index = (props) => {
   const recentHomesRef = useRef(null);
   const { notchColor, setNotchColor } = useChangeNotchColor();
@@ -75,7 +71,7 @@ const Index = (props) => {
 
         <div className="flex justify-center px-5 pt-5 pb-20 mx-auto">
           <Button color="warning">
-            <a href="/homes">View All Listings</a>
+            <Link href={"/homes"}>View All Listings</Link>
           </Button>
         </div>
 

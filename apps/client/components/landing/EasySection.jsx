@@ -1,12 +1,17 @@
+import Image from "next/future/image";
 const EasySection = () => {
   return (
     <section className="text-gray-700 body-font border-t border-gray-200">
       <div className="container px-5 pb-20 mx-auto flex flex-wrap">
         <div className="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
-          <img
-            alt="feature"
+          <Image
             className="object-cover object-center h-full w-full"
-            src="https://dummyimage.com/600x600/edf2f7/a5afbd"
+            alt="placeholder"
+            src={"https://dummyimage.com/600x600/edf2f7/a5afbd"}
+            width={600}
+            height={600}
+            blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8v4qhHgAGgwIqdX7cjgAAAABJRU5ErkJggg"
+            placeholder="blur"
           />
         </div>
         <div className="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center">

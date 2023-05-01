@@ -11,7 +11,13 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ["res.cloudinary.com"],
+    domains: [
+      "res.cloudinary.com",
+      "cheapbaltimorehouses.com",
+      "localhost",
+      "api.cheapbaltimorehouses.com",
+      "dummyimage.com",
+    ],
     // remotePatterns: [
     //   {
     //     protocol: "https",
