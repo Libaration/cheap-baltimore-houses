@@ -16,11 +16,16 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import pluralize from "pluralize";
 import { Button } from "@nextui-org/react";
 import OfferModal from "../../components/homes/modals/OfferModal";
-const HomeShow = ({ home }) => {
-  const [visible, setVisible] = useState(false);
-  const handler = () => setVisible(true);
-  const closeHandler = () => setVisible(false);
+const HomeShow = ({ home, error }) => {
+  let description;
+  let additionalImages = [];
+  const [descriptionState, setDescriptionState] = useState("");
+  useEffect(() => {
+    if (!description) return;
+    setDescriptionState(generateMarkdown(description));
+  }, [description]);
 
+  const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(-1);
   const Gallery = useCallback(
     ({ view, photos }) => (
@@ -33,10 +38,18 @@ const HomeShow = ({ home }) => {
     ),
     []
   );
+  const [view, setView] = useState(additionalImages ? "columns" : "rows");
+  if (error || !home) {
+    return <div>An Error Occured</div>;
+  }
+  description = home.attributes?.description;
+  const handler = () => setVisible(true);
+  const closeHandler = () => setVisible(false);
+
   const coverImage = home.attributes?.cover_image.data.attributes.provider_metadata.public_id;
   const coverImageHeight = home.attributes?.cover_image.data.attributes.height;
   const coverImageWidth = home.attributes?.cover_image.data.attributes.width;
-  const additionalImages =
+  additionalImages =
     home.attributes?.additional_images.data &&
     home.attributes?.additional_images.data.map((image, index) => {
       return {
@@ -76,7 +89,7 @@ const HomeShow = ({ home }) => {
       },
     ],
   }));
-  const [view, setView] = useState(additionalImages ? "columns" : "rows");
+
   const date = new Date(home.attributes?.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -88,14 +101,10 @@ const HomeShow = ({ home }) => {
   const address = `${home.attributes?.street} ${
     home.attributes?.street2 ? home.attributes?.street2 : ""
   } ${home.attributes?.city}, ${home.attributes?.state} ${home.attributes?.zip}`;
-  const description = home.attributes?.description;
-  const [descriptionState, setDescriptionState] = useState(description);
   const available = home.attributes?.available;
   const bedrooms = home.attributes?.bedrooms;
   const bathrooms = home.attributes?.bathrooms;
-  useEffect(() => {
-    setDescriptionState(generateMarkdown(description));
-  }, [description]);
+
   return (
     <>
       <Head>
@@ -227,8 +236,18 @@ export async function getStaticPaths() {
   return { paths, fallback: true };
 }
 export async function getStaticProps(context) {
-  const res = await homesCalls.get.getHome(context.params.id);
-  const home = res.data;
-  return { props: { home }, revalidate: 300 };
+  try {
+    const res = await homesCalls.get.getHome(context.params.id);
+    const home = res.data;
+    return { props: { home }, revalidate: 300 };
+  } catch (error) {
+    return {
+      props: {
+        error: {
+          message: error.message,
+        },
+      },
+    };
+  }
 }
 export default HomeShow;
