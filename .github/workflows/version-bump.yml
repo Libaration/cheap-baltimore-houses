@@ -1,6 +1,7 @@
 name: Version NPM package
 
 on:
+  push:
   pull_request:
     types: [closed]
     branches: [main]

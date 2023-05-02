@@ -1,6 +1,8 @@
 name: Unit Tests CI
 on:
   pull_request:
+    branches:
+      - development
   push:
     branches:
       - development
