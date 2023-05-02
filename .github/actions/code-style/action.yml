@@ -1,10 +1,10 @@
 name: "Check code style"
 description: "Check code style with prettier"
 inputs:
-  working-directory:
-    description: "Working directory"
+  artifact:
+    description: "The app to check code style for"
     required: true
-    default: "."
+    default: "client"
 runs:
   using: composite
   steps:
@@ -16,7 +16,7 @@ runs:
         persist-credentials: false
     - name: Prettify code
       uses: creyD/prettier_action@v4.3
-      working-directory: ./apps/${{ inputs.app }}
+      working-directory: ./apps/${{ inputs.artifact }}
       with:
         prettier_options: --check --config ./.prettierrc
         only_changed: True

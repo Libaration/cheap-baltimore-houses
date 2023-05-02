@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app: [client, cheap-baltimore-houses]
+        artifact: [client, cheap-baltimore-houses]
     steps:
       - uses: actions/checkout@v3
       - name: Check Code Style
         uses: ./.github/actions/code-style
         with:
-          app: ${{ matrix.app }}
+          app: ${{ matrix.artifact }}
 
   linter:
     runs-on: ubuntu-latest
