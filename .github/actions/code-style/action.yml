@@ -16,9 +16,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Check current directory
-      run: pwd
-      shell: bash
     - name: Prettify code
       uses: creyD/prettier_action@v4.3
       with:
@@ -27,27 +24,10 @@ runs:
         dry: True
         github_token: ${{ inputs.github_token }}
 
-    # - name: Prettify code
-    #   uses: creyD/prettier_action@v4.3
-    #   with:
-    #     prettier_options: --check --config ./.prettierrc
-    #     only_changed: True
-    #     dry: True
-    #     github_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-# jobs:
-#   prettier:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Check out the repository
-#         uses: actions/checkout@v3
-#         with:
-#           ref: ${{ github.head_ref }}
-#           fetch-depth: 0
-#           persist-credentials: false
-#       - name: Prettify code
-#         uses: creyD/prettier_action@v4.3
-#         with:
-#           prettier_options: --write /home/runner/work/cheap-baltimore-houses/cheap-baltimore-houses/apps/**/*.{js,jsx,ts,tsx} --check --config ./.prettierrc
-#           only_changed: True
-#           dry: True
-#           github_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+    - name: Install dependencies
+      run: yarn workspace ${{ inputs.app }} install
+      shell: bash
+
+    - name: Lint code
+      run: yarn workspace ${{ inputs.app }} lint
+      shell: bash
