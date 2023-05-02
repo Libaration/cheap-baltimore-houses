@@ -1,5 +1,5 @@
-name: "Check code style"
-description: "Check code style with prettier"
+name: "Check code style and Lint"
+description: "Check code style with prettier and lint with eslint"
 inputs:
   working-directory:
     description: "The working directory to run prettier in"
@@ -22,4 +22,10 @@ runs:
         prettier_options: --write /home/runner/work/cheap-baltimore-houses/cheap-baltimore-houses/${{ inputs.working-directory }}/**/*.{js,jsx,ts,tsx}  --check
         only_changed: True
         dry: True
-        github_token: ${{ inputs.github_token }}
+        github_token:
+          ${{ inputs.github_token }}
+          # TODO: Add linter for api
+    - if: ${{ matrix.app  == 'client'}}
+      name: Lint
+      run: yarn workspace ${{ matrix.app }} install && yarn workspace ${{ matrix.app }} lint
+      shell: bash
