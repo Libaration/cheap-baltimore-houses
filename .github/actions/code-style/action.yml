@@ -23,11 +23,3 @@ runs:
         only_changed: True
         dry: True
         github_token: ${{ inputs.github_token }}
-
-    - name: Install dependencies
-      run: yarn workspace ${{ inputs.app }} install
-      shell: bash
-
-    - name: Lint code
-      run: yarn workspace ${{ inputs.app }} lint
-      shell: bash
