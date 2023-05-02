@@ -11,7 +11,6 @@ RUN apk update
 WORKDIR /app
 RUN yarn global add turbo
 COPY . .
-RUN SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm_config_arch=x64 npm_config_platform=linux yarn workspace client add sharp
 RUN turbo prune --scope=client --docker
 
 FROM --platform=linux/amd64 node:16-alpine AS installer
@@ -26,7 +25,8 @@ RUN yarn install --timeout 1000000
 COPY --from=builder /app/out/full/ .
 COPY turbo.json turbo.json
 RUN yarn turbo run build --filter=client...
-RUN rm -rf node_modules
+RUN rm -rf node_modules/.yarn-integrity
+RUN SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm_config_arch=x64 npm_config_platform=linux yarn workspace client add sharp
 RUN yarn install --production --frozen-lockfile --ignore-scripts --prefer-offline
 
 
