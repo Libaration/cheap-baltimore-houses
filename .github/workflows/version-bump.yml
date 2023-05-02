@@ -16,12 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Version Label
-        uses: actions/action-release-label@latest
+        uses: actions-ecosystem/action-release-label@v1.2.0
         id: version-label
         with:
           label_prefix: version-
 
-      - uses: AutoModality/action-clean@latest
+      - uses: AutoModality/action-clean@v1.1.1
 
       - uses: actions/checkout@v3
         if: ${{ steps.version-label.outputs.level != null }}
