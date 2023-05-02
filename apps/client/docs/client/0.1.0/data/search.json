@@ -1,1 +1,15 @@
-{"list":[{"title":"homeAPI","link":"<a href=\"homeAPI.html\">homeAPI</a>"},{"title":"fetchAPI","link":"<a href=\"global.html#fetchAPI\">fetchAPI</a>","description":"<p>Helper to make GET requests to Strapi API endpoints</p>"},{"title":"getStrapiURL","link":"<a href=\"global.html#getStrapiURL\">getStrapiURL</a>","description":"<p>Get full Strapi URL from path</p>"}]}
+{
+  "list": [
+    { "title": "homeAPI", "link": "<a href=\"homeAPI.html\">homeAPI</a>" },
+    {
+      "title": "fetchAPI",
+      "link": "<a href=\"global.html#fetchAPI\">fetchAPI</a>",
+      "description": "<p>Helper to make GET requests to Strapi API endpoints</p>"
+    },
+    {
+      "title": "getStrapiURL",
+      "link": "<a href=\"global.html#getStrapiURL\">getStrapiURL</a>",
+      "description": "<p>Get full Strapi URL from path</p>"
+    }
+  ]
+}

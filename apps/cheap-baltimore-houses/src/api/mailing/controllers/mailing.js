@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 /**
  * mailing controller
  */
 
-const { createCoreController } = require('@strapi/strapi').factories;
+const { createCoreController } = require("@strapi/strapi").factories;
 
-module.exports = createCoreController('api::mailing.mailing');
+module.exports = createCoreController("api::mailing.mailing");

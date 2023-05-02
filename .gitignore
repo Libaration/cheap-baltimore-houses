@@ -152,3 +152,4 @@ cheap-baltimore-houses/build
 cheap-baltimore-houses/.strapi-updater.json
 .DS_Store
 apps/client/.turbo/turbo-build.log
+apps/client/.turbo/turbo-lint.log

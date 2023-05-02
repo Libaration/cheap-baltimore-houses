@@ -1,5 +1,9 @@
 name: Unit Tests CI
-on: [pull_request]
+on:
+  pull_request:
+  push:
+    branches:
+      - development
 env:
   BASE_URL: ${{ secrets.BASE_URL }}
   API_URL: ${{ secrets.API_URL }}

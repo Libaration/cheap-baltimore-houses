@@ -1,0 +1,26 @@
+name: Code Quality
+on:
+  pull_request:
+  push:
+    branches:
+      - development
+
+jobs:
+  code-style-check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [client, cheap-baltimore-houses]
+        include:
+          - app: client
+            working-directory: apps/client
+          - app: cheap-baltimore-houses
+            working-directory: apps/cheap-baltimore-houses
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check Code Style
+        uses: ./.github/actions/code-style
+        with:
+          working-directory: ${{ matrix.working-directory }}
+          app: ${{ matrix.app }}
+          github_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
