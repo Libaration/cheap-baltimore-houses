@@ -5,6 +5,10 @@ inputs:
     description: "The working directory to run prettier in"
     required: true
     default: "./apps/client"
+  app:
+    description: "The app to run prettier in"
+    required: true
+    default: "client"
 runs:
   using: composite
   steps:
