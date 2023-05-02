@@ -12,7 +12,7 @@ inputs:
   github_token:
     description: "The github token to use for authentication"
     required: true
-    default: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+    default: ""
 runs:
   using: composite
   steps:
