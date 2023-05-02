@@ -22,11 +22,10 @@ runs:
     - name: Prettify code
       uses: creyD/prettier_action@v4.3
       with:
-        prettier_options: --write **/*.{js,md} --check --config ./.prettierrc
+        prettier_options: --write /home/runner/work/cheap-baltimore-houses/cheap-baltimore-houses/apps/${{ inputs.working-directory }}/*.{js,jsx,ts,tsx}  --check --config ./.prettierrc
         only_changed: True
         dry: True
         github_token: ${{ inputs.github_token }}
-        working_directory: ${{ inputs.working-directory }}
 
     # - name: Prettify code
     #   uses: creyD/prettier_action@v4.3
