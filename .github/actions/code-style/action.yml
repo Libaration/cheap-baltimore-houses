@@ -1,0 +1,31 @@
+name: "Check code style and Lint"
+description: "Check code style with prettier and lint with eslint"
+inputs:
+  working-directory:
+    description: "The working directory to run prettier in"
+    required: true
+    default: "/apps/client"
+  app:
+    description: "The app to run prettier in"
+    required: true
+    default: "client"
+  github_token:
+    description: "The github token to use for authentication"
+    required: true
+    default: ""
+runs:
+  using: composite
+  steps:
+    - name: Prettify code
+      uses: creyD/prettier_action@v4.3
+      with:
+        prettier_options: --write /home/runner/work/cheap-baltimore-houses/cheap-baltimore-houses/${{ inputs.working-directory }}/**/*.{js,jsx,ts,tsx}  --check
+        only_changed: True
+        dry: True
+        github_token:
+          ${{ inputs.github_token }}
+          # TODO: Add linter for api
+    - if: ${{ inputs.app  == 'client'}}
+      name: Lint
+      run: yarn workspace ${{ inputs.app }} install && yarn workspace ${{ inputs.app }} lint
+      shell: bash
