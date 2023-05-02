@@ -16,19 +16,17 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Set working directory
-      run: cd ${{ inputs.working-directory }}
-      shell: bash
     - name: Check current directory
       run: pwd
       shell: bash
     - name: Prettify code
       uses: creyD/prettier_action@v4.3
       with:
-        prettier_options: --check --config ./.prettierrc
+        prettier_options: --write **/*.{js,md} --check --config ./.prettierrc
         only_changed: True
         dry: True
         github_token: ${{ inputs.github_token }}
+        working-directory: ${{ inputs.working-directory }}
 
     # - name: Prettify code
     #   uses: creyD/prettier_action@v4.3
