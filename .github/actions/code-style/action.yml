@@ -25,7 +25,7 @@ runs:
         github_token:
           ${{ inputs.github_token }}
           # TODO: Add linter for api
-    - if: ${{ matrix.app  == 'client'}}
+    - if: ${{ inputs.app  == 'client'}}
       name: Lint
-      run: yarn workspace ${{ matrix.app }} install && yarn workspace ${{ matrix.app }} lint
+      run: yarn workspace ${{ inputs.app }} install && yarn workspace ${{ inputs.app }} lint
       shell: bash
