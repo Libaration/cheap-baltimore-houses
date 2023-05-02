@@ -18,7 +18,7 @@ runs:
         node-version: 18
     - name: Check current directory
       run: pwd
-      shell: zsh
+      shell: bash
 
     # - name: Prettify code
     #   uses: creyD/prettier_action@v4.3
