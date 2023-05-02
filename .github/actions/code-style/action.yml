@@ -11,12 +11,12 @@ runs:
     - name: Check out the repository
       uses: actions/checkout@v3
       with:
+        working-directory: ${{ working-directory }}
         ref: ${{ github.head_ref }}
         fetch-depth: 0
         persist-credentials: false
     - name: Prettify code
       uses: creyD/prettier_action@v4.3
-      working-directory: ${{ working-directory }}
       with:
         prettier_options: --check --config ./.prettierrc
         only_changed: True
