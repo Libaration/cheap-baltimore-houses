@@ -6,7 +6,7 @@ on:
       - development
 
 jobs:
-  code-quality:
+  prettier:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
@@ -15,8 +15,6 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
           persist-credentials: false
-      - name: List directory contents
-        run: ls -R
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
         with:
@@ -24,3 +22,18 @@ jobs:
           only_changed: True
           dry: True
           github_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install Node.js dependencies
+        run: yarn install --frozen-lockfile
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
