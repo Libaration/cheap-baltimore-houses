@@ -2,7 +2,7 @@ name: Unit Tests CI
 on:
   pull_request:
     branches:
-      - development
+      - main
   push:
     branches:
       - development
