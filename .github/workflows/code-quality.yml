@@ -22,44 +22,11 @@ jobs:
           only_changed: True
           dry: True
           github_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-    permissions:
-      checks: write
-      contents: write
-
-  build:
-    # Name the Job
-    name: Lint Code Base
-    # Set the agent to run on
+  linter:
     runs-on: ubuntu-latest
-
-    ############################################
-    # Grant status permission for MULTI_STATUS #
-    ############################################
-    permissions:
-      contents: read
-      packages: read
-      statuses: write
-
-    ##################
-    # Load all steps #
-    ##################
     steps:
-      ##########################
-      # Checkout the code base #
-      ##########################
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        with:
-          # Full git history is needed to get a proper
-          # list of changed files within `super-linter`
-          fetch-depth: 0
-
-      ################################
-      # Run Linter against code base #
-      ################################
-      - name: Lint Code Base
-        uses: github/super-linter@v5
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: development
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn
+      - name: Run ESLint
+        run: eslint . --ext .js,.jsx,.ts,.tsx
