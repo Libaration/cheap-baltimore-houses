@@ -5,7 +5,6 @@
     "apps/*"
   ],
   "devDependencies": {
-    "eslint": "^8.39.0",
     "mini-css-extract-plugin": "^2.6.1",
     "turbo": "^1.6.2"
   },
