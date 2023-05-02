@@ -35,7 +35,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: Install Node.js dependencies
-        run: yarn install --frozen-lockfile --production=false
+        run: yarn install --frozen-lockfile --dev --ignore-scripts
       - name: Run linters
         uses: wearerequired/lint-action@v2
         with:
