@@ -16,7 +16,7 @@ runs:
         persist-credentials: false
     - name: Prettify code
       uses: creyD/prettier_action@v4.3
-      working-directory: "./apps/${{ inputs.app }}"
+      working-directory: ./apps/${{ inputs.app }}
       with:
         prettier_options: --check --config ./.prettierrc
         only_changed: True
