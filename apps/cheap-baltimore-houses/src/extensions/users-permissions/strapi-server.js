@@ -48,10 +48,7 @@ module.exports = (plugin) => {
         },
       }
     );
-    const prev_liked_homes = _.flatMap(
-      prevHomes.liked_homes,
-      (home) => home.id
-    );
+    const prev_liked_homes = _.flatMap(prevHomes.liked_homes, (home) => home.id);
     let liked_homes = prev_liked_homes;
 
     if (liked_homes.includes(homeId)) {
