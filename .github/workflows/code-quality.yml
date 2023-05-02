@@ -22,11 +22,8 @@ jobs:
           only_changed: True
           dry: True
           github_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-  linter:
+  eslint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install modules
-        run: yarn
-      - name: Run ESLint
-        run: eslint . --ext .js,.jsx,.ts,.tsx
+      - uses: bradennapier/eslint-plus-action@v3.4.2
