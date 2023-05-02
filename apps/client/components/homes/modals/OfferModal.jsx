@@ -1,7 +1,6 @@
 import { Button, Modal, Input, Textarea, Text } from "@nextui-org/react";
 import { useState } from "react";
-import Mailto from "react-mailto.js";
-const OfferModal = ({ closeHandler, visible, address }) => {
+const OfferModal = ({ closeHandler, visible, address, cover_image, homeId }) => {
   const [offer, setOffer] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -68,15 +67,21 @@ const OfferModal = ({ closeHandler, visible, address }) => {
         <Button auto flat color="error" onPress={closeHandler}>
           Close
         </Button>
-        <Button auto onPress={closeHandler} color="success">
-          <Mailto
-            secure={true}
-            to="seabornleads@gmail.com"
-            subject={`Offer of ${offer} on ${address}`}
-            body={message}
-          >
-            Send
-          </Mailto>
+        <Button
+          auto
+          onPress={async () => {
+            fetch("/api/sendOfferEmail", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ offer, email, message, address, cover_image, homeId }),
+            });
+            closeHandler();
+          }}
+          color="success"
+        >
+          Send
         </Button>
       </Modal.Footer>
     </Modal>

@@ -223,7 +223,13 @@ const HomeShow = ({ home }) => {
                 Make an Offer
               </Button>
             </div>
-            <OfferModal visible={visible} closeHandler={closeHandler} address={address} />
+            <OfferModal
+              visible={visible}
+              closeHandler={closeHandler}
+              address={address}
+              cover_image={cloudinaryLoader({ src: coverImage, width: 600 })}
+              homeId={home.id}
+            />
           </div>
         </div>
       </div>
