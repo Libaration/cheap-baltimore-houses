@@ -29,6 +29,6 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v3
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn workspace client install
       - name: Lint
         run: yarn lint
