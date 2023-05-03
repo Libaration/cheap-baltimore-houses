@@ -1,0 +1,75 @@
+name: Deploy To Production
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      app_name:
+        type: choice
+        description: "App Name"
+        required: true
+        options:
+          - api
+          - nextjs
+          - nginx
+          - all
+        default: "nextjs"
+jobs:
+  build-and-push-api:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.app_name == 'api' || github.event.inputs.app_name == 'all' }}
+    steps:
+      - name: "Checkout Github Action"
+        uses: actions/checkout@v3
+      - name: "Login via Azure CLI"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: azure/docker-login@v1
+        with:
+          login-server: cheapbmorehousesregistry.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: "Build and Push Docker Image"
+        run: |
+          docker build -t cheapbmorehousesregistry.azurecr.io/api:latest . -f Dockerfile.api
+          docker push cheapbmorehousesregistry.azurecr.io/api:latest
+
+  build-and-push-client:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.app_name == 'nextjs' || github.event.inputs.app_name == 'all' }}
+    steps:
+      - name: "Checkout Github Action"
+        uses: actions/checkout@v3
+      - name: "Login via Azure CLI"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: azure/docker-login@v1
+        with:
+          login-server: cheapbmorehousesregistry.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: "Build and Push Docker Image"
+        run: |
+          docker build -t cheapbmorehousesregistry.azurecr.io/nextjs:latest . -f Dockerfile
+          docker push cheapbmorehousesregistry.azurecr.io/nextjs:latest
+  build-and-push-ngnix:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.app_name == 'nginx' || github.event.inputs.app_name == 'all' }}
+    steps:
+      - name: "Checkout Github Action"
+        uses: actions/checkout@v3
+      - name: "Login via Azure CLI"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: azure/docker-login@v1
+        with:
+          login-server: cheapbmorehousesregistry.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: "Build and Push Docker Image"
+        run: |
+          docker build -t cheapbmorehousesregistry.azurecr.io/nginx:latest . -f ./nginx/Dockerfile
+          docker push cheapbmorehousesregistry.azurecr.io/nginx:latest
