@@ -1,45 +1,19 @@
-name: Version NPM package
-
+name: Main CI
 on:
   push:
-  pull_request:
-    types: [closed]
-    branches: [main]
-    paths-ignore:
-      - "README.md"
-      - "package-lock.json"
-      - "package.json"
-      - "CHANGELOG.md"
+    branches:
+      - main
 jobs:
-  version:
-    name: Version NPM package
-    if: ${{ github.event.pull_request.merged }}
+  bump-tag-version:
+    name: Bump and Tag Version
     runs-on: ubuntu-latest
     steps:
-      - name: Get Version Label
-        uses: actions-ecosystem/action-release-label@v1.2.0
-        id: version-label
+      - uses: actions/checkout@v2
+      - uses: jefflinse/pr-semver-bump@v1
+        name: Bump and Tag Version
         with:
-          label_prefix: version-
-
-      - uses: AutoModality/action-clean@v1.1.0
-
-      - uses: actions/checkout@v3
-        if: ${{ steps.version-label.outputs.level != null }}
-        with:
-          token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-
-      - uses: actions/setup-node@v3
-        if: ${{ steps.version-label.outputs.level != null }}
-        with:
-          node-version: "18"
-
-      - name: Bump NPM Version and Push
-        id: bumpversion
-        if: ${{ steps.version-label.outputs.level != null }}
-        run: |
-          git config --global --replace-all user.name "$GITHUB_ACTOR"
-          git config --global --replace-all user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git fetch --tags -f
-          npm version ${{ steps.version-label.outputs.level }} -m "Bump version to %s"
-          git push origin main --follow-tags
+          mode: bump
+          repo-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+          major-label: version-major
+          minor-label: version-minor
+          patch-label: version-patch
