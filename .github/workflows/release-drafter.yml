@@ -3,9 +3,7 @@ name: Release Drafter
 on:
   push:
     branches:
-      - maain
-  pull_request:
-    types: [opened, reopened, synchronize]
+      - main
 
 permissions:
   contents: read
@@ -18,5 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@v5
+        with:
+          commitish: main
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}

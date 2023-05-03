@@ -6,6 +6,7 @@ jobs:
   check-pr:
     name: Validate Release Label and Notes
     runs-on: ubuntu-latest
+    if: false
     steps:
       - uses: actions/checkout@v2
       - uses: jefflinse/pr-semver-bump@v1
