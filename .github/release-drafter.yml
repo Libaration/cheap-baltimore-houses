@@ -34,8 +34,10 @@ version-resolver:
       - 'patch'
       - 'version-patch'
   default: patch
-exclude-labels:
-  - 'skip-changelog'
+include-labels:
+  - 'version-major'
+  - 'version-minor'
+  - 'version-patch'
 template: |
   ## Changes
 
