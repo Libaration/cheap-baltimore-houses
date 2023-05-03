@@ -1,42 +1,40 @@
-name-template: 'v$RESOLVED_VERSION 🌈'
-tag-template: 'v$RESOLVED_VERSION'
+name-template: "v$RESOLVED_VERSION 🌈"
+tag-template: "v$RESOLVED_VERSION"
 categories:
-  - title: '🚀 Features'
+  - title: "🚀 Features"
     labels:
-      - 'feature'
-      - 'enhancement'
-      - 'feat'
-  - title: '🐛 Bug Fixes'
+      - "feature"
+      - "enhancement"
+      - "feat"
+  - title: "🐛 Bug Fixes"
     labels:
-      - 'fix'
-      - 'bugfix'
-      - 'bug'
-      - 'hotfix'
-      - 'issue'
-  - title: '🧰 Maintenance'
-    label: 'chore'
-  - title: '👷 CI'
-    label: 'workflows'
-change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
-change-title-escapes: '\<*_&' 
+      - "fix"
+      - "bugfix"
+      - "bug"
+      - "hotfix"
+      - "issue"
+  - title: "🧰 Maintenance"
+    label: "chore"
+  - title: "👷 CI"
+    label: "workflows"
+change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
+change-title-escapes: '\<*_&'
 version-resolver:
   major:
     labels:
-      - 'major'
-      - 'breaking'
-      - 'version-major'
+      - "major"
+      - "breaking"
+      - "version-major"
   minor:
     labels:
-      - 'minor'
-      - 'version-minor'
+      - "minor"
+      - "version-minor"
   patch:
     labels:
-      - 'patch'
-      - 'version-patch'
-include-labels:
-  - 'version-major'
-  - 'version-minor'
-  - 'version-patch'
+      - "patch"
+      - "version-patch"
+exclude-labels:
+  - "skip-changelog"
 template: |
   ## Changes
 
