@@ -65,7 +65,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2.2.9 # This action triggers an App restart in Azure App Service
         with:
-          app-name: "multi-container-app"
+          app-name: "cheapbmorehouses"
           configuration-file: "docker-compose.yml"
 
       - name: Update deployment status
