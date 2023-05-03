@@ -1,0 +1,65 @@
+name: Build and Deploy
+inputs:
+  app:
+    description: The app to build
+    required: true
+    default: "nextjs"
+  AZURE_CREDENTIALS:
+    description: Azure credentials
+    required: true
+    default: ""
+  REGISTRY_USERNAME:
+    description: Azure Container Registry username
+    required: true
+    default: ""
+  REGISTRY_PASSWORD:
+    description: Azure Container Registry password
+    required: true
+    default: ""
+
+description: Build Docker Image for ${{ inputs.app }}
+runs:
+  using: "composite"
+  steps:
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ inputs.AZURE_CREDENTIALS }}
+    - name: Login to Azure Container Registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: "cheapbaltimorehouses.azurecr.io"
+        username: ${{ inputs.REGISTRY_USERNAME }}
+        password: ${{ inputs.REGISTRY_PASSWORD }}
+
+    - name: Build ${{inputs.app}} Docker Image
+      if: ${{ inputs.app == 'api' || inputs.app == 'all' }}
+      run: |
+        docker build -t cheapbmorehousesregistry.azurecr.io/api:latest . -f Dockerfile.api
+      shell: bash
+
+    - name: Build ${{inputs.app}} Docker Image
+      if: ${{ inputs.app == 'nginx' || inputs.app == 'all' }}
+      run: |
+        cd nginx
+        docker build -t cheapbmorehousesregistry.azurecr.io/nginx:latest . -f Dockerfile
+        cd ..
+      shell: bash
+
+    - name: Build ${{inputs.app}} Docker Image
+      if: ${{ inputs.app == 'nextjs' || inputs.app == 'all' }}
+      run: |
+        docker build -t cheapbmorehousesregistry.azurecr.io/nextjs:latest . -f Dockerfile
+      shell: bash
+    - name: Deploy ${{ inputs.app }} Docker Image to Production
+      run: |
+        docker push cheapbmorehousesregistry.azurecr.io/${{ inputs.app }}:latest
+      shell: bash
+
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2 # This action triggers an App restart in Azure App Service
+      with:
+        app-name: "cheapbmorehouses"
+        slot-name: "production"
+        configuration-file: "docker-compose.yml"
