@@ -11,4 +11,5 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
+      - run: echo "Workflow triggered"
       - uses: actions/labeler@v4
