@@ -14,3 +14,5 @@ jobs:
       - run: echo "where am i"
       - run: pwd
       - uses: actions/labeler@v4
+        with:
+          sync-labels: true

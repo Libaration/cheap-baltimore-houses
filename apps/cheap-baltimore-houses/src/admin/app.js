@@ -12,3 +12,4 @@ export default {
   config,
   bootstrap,
 };
+const idk = {};
