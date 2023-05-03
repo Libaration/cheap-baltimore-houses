@@ -48,7 +48,7 @@ jobs:
           login-server: "cheapbaltimorehouses.azurecr.io"
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-      - run: pwd
+      - run: docker image list
       - run: ls -la
     #   - uses: actions/download-artifact@v3
     #     with:
