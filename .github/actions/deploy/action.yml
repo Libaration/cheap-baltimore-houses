@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build Push and Deploy Docker Image
 inputs:
   app:
     description: The app to build
@@ -17,7 +17,7 @@ inputs:
     required: true
     default: ""
 
-description: Build Docker Image for ${{ inputs.app }}
+description: Build Push and Deploy Docker Image
 runs:
   using: "composite"
   steps:

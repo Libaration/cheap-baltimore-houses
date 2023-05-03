@@ -23,7 +23,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: start deployment
+      - name: Trigger deployment status
         uses: bobheadxi/deployments@v1
         id: deployment
         with:
@@ -34,7 +34,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build and push Docker images
+      - name: Begin deployment
         uses: ./.github/actions/deploy
         with:
           app: ${{ github.event.inputs.app_name }}
@@ -42,7 +42,7 @@ jobs:
           REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: update deployment status
+      - name: Update deployment status
         uses: bobheadxi/deployments@v1
         if: always()
         with:
