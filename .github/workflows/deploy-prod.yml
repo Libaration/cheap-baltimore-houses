@@ -20,7 +20,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  start-deployment:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger deployment status
@@ -34,20 +34,32 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Begin deployment
-        uses: ./.github/actions/deploy
+      - name: Build Docker Images
+        uses: ./.github/actions/build
         with:
           app: ${{ github.event.inputs.app_name }}
-          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-          REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
-          REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Update deployment status
-        uses: bobheadxi/deployments@v1
-        if: always()
+      - name: Authenticate with Registry and Push Docker Images
+        uses: azure/login@v1
         with:
-          step: finish
-          token: ${{ secrets.GITHUB_TOKEN }}
-          status: ${{ job.status }}
-          env: ${{ steps.deployment.outputs.env }}
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: azure/docker-login@v1
+        with:
+          login-server: "cheapbaltimorehouses.azurecr.io"
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: pwd
+      - run: ls -la
+    #   - uses: actions/download-artifact@v3
+    #     with:
+    #       name: docker-image-artifacts
+
+    #   - name: Update deployment status
+    #     uses: bobheadxi/deployments@v1
+    #     dif: always()
+    #     with:
+    #       step: finish
+    #       token: ${{ secrets.GITHUB_TOKEN }}
+    #       status: ${{ job.status }}
+    #       env: ${{ steps.deployment.outputs.env }}
+    #       deployment_id: ${{ steps.deployment.outputs.deployment_id }}
