@@ -50,13 +50,14 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: Push All Docker Images
-        if: ${{ github.event.inputs.app_name == 'all' }}
         run: |
           if [ ${{ inputs.app_name }} == 'all' ]; then
+          echo "Pushing all images..."
           docker push cheapbmorehousesregistry.azurecr.io/api:latest
           docker push cheapbmorehousesregistry.azurecr.io/nginx:latest
           docker push cheapbmorehousesregistry.azurecr.io/nextjs:latest
           else
+          echo "Pushing ${{ inputs.app_name }} Docker image..."
           docker push cheapbaltimorehouses.azurecr.io/cheapbaltimorehouses-${{ inputs.app_name }}:latest
           fi
         shell: bash
