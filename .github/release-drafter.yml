@@ -33,7 +33,6 @@ version-resolver:
     labels:
       - 'patch'
       - 'version-patch'
-  default: patch
 include-labels:
   - 'version-major'
   - 'version-minor'
