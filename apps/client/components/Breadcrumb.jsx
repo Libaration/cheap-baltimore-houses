@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
 import React from "react";
 const Breadcrumb = (props) => {
-  console.log("testlabel");
   const router = useRouter();
   const paths = router.pathname
     .split("/")
