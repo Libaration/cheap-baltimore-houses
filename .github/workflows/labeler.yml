@@ -11,4 +11,6 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
+      - run: echo "where am i"
+      - run: pwd
       - uses: actions/labeler@v4
