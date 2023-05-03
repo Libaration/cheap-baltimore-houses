@@ -1,2 +1,2 @@
 frontend:
-- any: ['apps/client/**/*.js']
+- any: ['/apps/client/**/*.js']
