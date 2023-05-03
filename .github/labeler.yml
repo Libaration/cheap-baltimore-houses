@@ -1,0 +1,6 @@
+frontend:
+- any: ['apps/client/**/*']
+backend:
+- any: ['apps/cheap-baltimore-houses/**/*']
+workflows:
+- any: ['**/.github/**/**/*']
