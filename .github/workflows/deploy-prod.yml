@@ -2,6 +2,7 @@ name: Deploy To Production
 on:
   release:
     types: [published]
+
   workflow_dispatch:
     inputs:
       app_name:
@@ -14,65 +15,68 @@ on:
           - nginx
           - all
         default: "nextjs"
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
-  build-and-push-api:
+  start-deployment:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.app_name == 'api' || github.event.inputs.app_name == 'all' }}
     steps:
-      - name: "Checkout Github Action"
+      - name: Trigger deployment status
+        uses: bobheadxi/deployments@v1
+        id: deployment
+        with:
+          step: start
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: production
+
+      - name: Checkout
         uses: actions/checkout@v3
-      - name: "Login via Azure CLI"
+
+      - name: Build Docker Images
+        uses: ./.github/actions/build
+        with:
+          app: ${{ github.event.inputs.app_name }}
+
+      - name: Authenticate with Registry and Push Docker Images
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - uses: azure/docker-login@v1
         with:
-          login-server: cheapbmorehousesregistry.azurecr.io
+          login-server: "cheapbaltimorehouses.azurecr.io"
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-      - name: "Build and Push Docker Image"
+
+      - name: Push All Docker Images
         run: |
-          docker build -t cheapbmorehousesregistry.azurecr.io/api:latest . -f Dockerfile.api
+          if [ ${{ inputs.app_name }} == 'all' ]; then
+          echo "Pushing all images..."
           docker push cheapbmorehousesregistry.azurecr.io/api:latest
-
-  build-and-push-client:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.app_name == 'nextjs' || github.event.inputs.app_name == 'all' }}
-    steps:
-      - name: "Checkout Github Action"
-        uses: actions/checkout@v3
-      - name: "Login via Azure CLI"
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - uses: azure/docker-login@v1
-        with:
-          login-server: cheapbmorehousesregistry.azurecr.io
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
-      - name: "Build and Push Docker Image"
-        run: |
-          docker build -t cheapbmorehousesregistry.azurecr.io/nextjs:latest . -f Dockerfile
-          docker push cheapbmorehousesregistry.azurecr.io/nextjs:latest
-
-  build-and-push-ngnix:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.app_name == 'nginx' || github.event.inputs.app_name == 'all' }}
-    steps:
-      - name: "Checkout Github Action"
-        uses: actions/checkout@v3
-      - name: "Login via Azure CLI"
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - uses: azure/docker-login@v1
-        with:
-          login-server: cheapbmorehousesregistry.azurecr.io
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
-      - name: "Build and Push Docker Image"
-        run: |
-          cd nginx
-          docker build -t cheapbmorehousesregistry.azurecr.io/nginx:latest . -f Dockerfile
           docker push cheapbmorehousesregistry.azurecr.io/nginx:latest
-          cd ..
+          docker push cheapbmorehousesregistry.azurecr.io/nextjs:latest
+          echo "All images pushed!"
+          else
+          echo "Pushing ${{ inputs.app_name }} Docker image..."
+          docker push cheapbaltimorehouses.azurecr.io/${{ inputs.app_name }}:latest
+          echo "${{ inputs.app_name }} Docker image pushed!"
+          fi
+        shell: bash
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2.2.9 # This action triggers an App restart in Azure App Service
+        with:
+          app-name: "cheapbmorehouses"
+          configuration-file: "docker-compose.yml"
+
+      - name: Update deployment status
+        uses: bobheadxi/deployments@v1
+        if: always()
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          env: ${{ steps.deployment.outputs.env }}
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
