@@ -29,8 +29,8 @@ runs:
       if: ${{ inputs.app == 'nextjs' || inputs.app == 'all' }}
       run: |
         docker build \
-          --build-arg BASE_URL=${{ secrets.BASE_URL }} \
-          --build-arg API_URL=${{ secrets.API_URL }} \
+          --build-arg BASE_URL=${{ env.BASE_URL }} \
+          --build-arg API_URL=${{ env.API_URL }} \
           -t cheapbmorehousesregistry.azurecr.io/nextjs:latest . -f Dockerfile
         echo "Built nextjs Docker image"
       shell: bash

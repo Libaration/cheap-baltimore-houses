@@ -36,6 +36,9 @@ jobs:
 
       - name: Build Docker Images
         uses: ./.github/actions/build
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          API_URL: ${{ secrets.API_URL }}
         with:
           app: ${{ github.event.inputs.app_name }}
 
