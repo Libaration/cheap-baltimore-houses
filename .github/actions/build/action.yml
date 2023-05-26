@@ -31,6 +31,7 @@ runs:
         docker build \
           --build-arg BASE_URL=${{ env.BASE_URL }} \
           --build-arg API_URL=${{ env.API_URL }} \
+          --build-arg NEXT_PUBLIC_API_URL=${{ env.NEXT_PUBLIC_API_URL }} \
           -t cheapbmorehousesregistry.azurecr.io/nextjs:latest . -f Dockerfile
         echo "Built nextjs Docker image"
       shell: bash
