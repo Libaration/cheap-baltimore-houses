@@ -63,7 +63,7 @@ jobs:
           echo "All images pushed!"
           else
           echo "Pushing ${{ inputs.app_name }} Docker image..."
-          docker push cheapbaltimorehouses.azurecr.io/${{ inputs.app_name }}:latest
+          docker push cheapbmorehousesregistry.azurecr.io/${{ inputs.app_name }}:latest
           echo "${{ inputs.app_name }} Docker image pushed!"
           fi
         shell: bash
