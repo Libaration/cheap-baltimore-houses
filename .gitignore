@@ -26,8 +26,6 @@ client/yarn-debug.log*
 client/yarn-error.log*
 
 # local env files
-client/.env*.local
-client/.env 
 cheap-baltimore-houses/.env
 # vercel
 client/.vercel
@@ -47,8 +45,7 @@ _dev
 .next
 node_modules
 
-.env
-.env*.local
+
 ############################
 # OS X
 ############################
