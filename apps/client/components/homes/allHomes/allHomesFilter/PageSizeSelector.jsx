@@ -1,29 +1,41 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 const PageSizeSelector = ({ setPage, setPageSize, pageSize }) => {
+  const [clickedButton, setClickedButton] = useState(null);
   const onPageSizeChange = (eventChange) => {
     setPage(1);
     setPageSize(parseInt(eventChange.target.innerText));
+    setClickedButton(eventChange.target);
   };
+  useEffect(() => {
+    if (clickedButton) {
+      clickedButton.classList.add("pagination-button-clicked");
+
+      setTimeout(() => {
+        clickedButton.classList.remove("pagination-button-clicked");
+        setClickedButton(null);
+      }, 500);
+    }
+  }, [clickedButton]);
   return (
     <>
       <div className="flex flex-row">
         <button
           type="button"
-          className="rounded-lg border border-primary-500 bg-primary-500 px-3 py-1.5 text-center text-xs font-medium text-white shadow-sm transition-all hover:border-primary-700 hover:bg-primary-700 focus:ring focus:ring-primary-200 disabled:cursor-not-allowed disabled:border-primary-300 disabled:bg-primary-300 ml-2 mr-2"
+          className="rounded-lg border px-3 py-1.5 text-center text-xs font-medium shadow-sm transition-all ml-2 mr-2 pagination-button"
           onClick={onPageSizeChange}
         >
           3
         </button>
         <button
           type="button"
-          className="rounded-lg border border-primary-500 bg-primary-500 px-3 py-1.5 text-center text-xs font-medium text-white shadow-sm transition-all hover:border-primary-700 hover:bg-primary-700 focus:ring focus:ring-primary-200 disabled:cursor-not-allowed disabled:border-primary-300 disabled:bg-primary-300 ml-2 mr-2"
+          className="rounded-lg border px-3 py-1.5 text-center text-xs font-medium shadow-sm transition-all ml-2 mr-2 pagination-button"
           onClick={onPageSizeChange}
         >
           6
         </button>
         <button
           type="button"
-          className="rounded-lg border border-primary-500 bg-primary-500 px-3 py-1.5 text-center text-xs font-medium text-white shadow-sm transition-all hover:border-primary-700 hover:bg-primary-700 focus:ring focus:ring-primary-200 disabled:cursor-not-allowed disabled:border-primary-300 disabled:bg-primary-300 ml-2 mr-2"
+          className="rounded-lg border px-3 py-1.5 text-center text-xs font-medium shadow-sm transition-all ml-2 mr-2 pagination-button"
           onClick={onPageSizeChange}
         >
           9
