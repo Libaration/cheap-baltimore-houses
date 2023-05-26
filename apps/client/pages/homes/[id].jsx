@@ -5,7 +5,6 @@ import Breadcrumb from "../../components/Breadcrumb";
 import Head from "next/head";
 import PhotoAlbum from "react-photo-album";
 import NextJsImage from "../../components/homes/NextJsImage";
-import Image from "next/future/image";
 import Lightbox from "yet-another-react-lightbox";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import "yet-another-react-lightbox/styles.css";
@@ -17,7 +16,9 @@ import pluralize from "pluralize";
 import { Button } from "@nextui-org/react";
 import OfferModal from "../../components/homes/modals/OfferModal";
 import { useRouter } from "next/router";
+import ImageViewToggle from "../../components/pages/homes/imageViewToggle";
 const HomeShow = ({ home }) => {
+  const [hover, setHover] = useState(false);
   const router = useRouter();
   let description;
   let additionalImages;
@@ -40,7 +41,7 @@ const HomeShow = ({ home }) => {
     ),
     []
   );
-  const [view, setView] = useState("rows");
+  const [view, setView] = useState("columns");
   if (router.isFallback) {
     return <h1>Loading...</h1>;
   }
@@ -112,84 +113,48 @@ const HomeShow = ({ home }) => {
         <meta name="theme-color" content="#fafafa" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#fafafa" />
       </Head>
-      <Breadcrumb customTitle={address} />
-      <h4 className="smallHeroText text-center">Cheap Baltimore Houses</h4>
-      <h1 id="small-address-hero-text" className="text-center">
-        {address}
-      </h1>
-      <div className="flex justify-center">
-        <ol>
-          <li className="float-left mr-2 ml-2">
-            <Image
-              src="/column.png"
-              height="24"
-              width="24"
-              alt="column-view"
-              name="columns"
-              className="object-cover cursor-pointer"
-              onClick={handleViewChange}
-            />
-          </li>
-          <li className="float-left ml-2 mr-2">
-            <Image
-              src="/row.png"
-              height="24"
-              width="24"
-              alt="row-view"
-              name="rows"
-              className="object-cover cursor-pointer"
-              onClick={handleViewChange}
-            />
-          </li>
-          <li className="float-left mr-2 ml-2">
-            <Image
-              src="/masonry.png"
-              height="24"
-              width="24"
-              alt="masonry-view"
-              name="masonry"
-              className="object-cover cursor-pointer"
-              onClick={handleViewChange}
-            />
-          </li>
-        </ol>
+
+      <div className="pages-home-id-top-bar">
+        <Breadcrumb customTitle={address} />
+        <div className="image-view-toggle">
+          <ImageViewToggle handleViewChange={handleViewChange} />
+        </div>
       </div>
+      <h4 className="smallHeroText text-center">Cheap Baltimore Houses</h4>
 
-      <div className="flex items-center justify-center ">
-        <div className="text-black h-full p-5 max-w-full">
-          <div className="mb-4 flex gap-2 justify-center">
-            {available !== undefined && (
-              <span
-                className={`inline-flex items-center gap-1 rounded-full ${
-                  available ? "bg-blue-50" : "bg-red-50"
-                }  px-2 py-1 text-xs font-semibold ${
-                  available ? "text-blue-600" : "text-red-600"
-                } `}
-              >
-                {available ? "Available" : "Sold"}
-              </span>
-            )}
+      <div className="gradient-text">
+        <h1 id="small-address-hero-text" className="text-center m-4">
+          {address}
+        </h1>
+      </div>
+      <div className="flex justify-center home-detail-tags">
+        {available !== undefined && (
+          <span
+            className={`inline-flex items-center gap-1 rounded-full ${
+              available ? "bg-blue-50" : "bg-red-50"
+            }  px-2 py-1 text-xs font-semibold ${available ? "text-blue-600" : "text-red-600"} `}
+          >
+            {available ? "Available" : "Sold"}
+          </span>
+        )}
 
-            {/* <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
+        {/* <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
                 Recently Listed
               </span> */}
-            {bedrooms ? (
-              <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                {pluralize("Bed", bedrooms, true)}
-              </span>
-            ) : null}
-            {bathrooms ? (
-              <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                {pluralize("Bath", bathrooms, true)}
-              </span>
-            ) : null}
-          </div>
-          <div className="flex justify-center mb-4">
-            <Button size="sm" shadow onPress={handler} color="success">
-              Make an Offer
-            </Button>
-          </div>
-          <div className="mx-auto overflow-hidden rounded-lg bg-white shadow">
+        {bedrooms ? (
+          <span className="inline-flex items-center gap-1 rounded-full px-2 py-1">
+            {pluralize("Bed", bedrooms, true)}
+          </span>
+        ) : null}
+        {bathrooms ? (
+          <span className="inline-flex items-center gap-1 rounded-full px-2 py-1">
+            {pluralize("Bath", bathrooms, true)}
+          </span>
+        ) : null}
+      </div>
+      <div className="flex items-center justify-center">
+        <div className="text-black h-full p-5 max-w-full">
+          <div className="mx-auto rounded-lg bg-white shadow p-4">
             <div className="relative">
               <Gallery view={view} photos={photos} />
               <Lightbox
@@ -211,31 +176,36 @@ const HomeShow = ({ home }) => {
                 plugins={[Fullscreen, Thumbnails, Zoom]}
               />
             </div>
-            <div className="p-4">
-              <p className="mb-1 text-sm text-primary-500 text-center">
-                Added • <time>{date}</time>
-              </p>
-              <h3 className="text-xl font-medium text-gray-900 text-center">{address}</h3>
-              <div className="mt-1 text-gray-700 text-xs homeDescription">{descriptionState}</div>
+            <div className="background-elements">
+              <div className="p-4">
+                <p className="mb-1 text-sm text-primary-500 text-center">
+                  Added • <time>{date}</time>
+                </p>
+
+                <h3 className="text-xl font-medium text-gray-900 text-center">{address}</h3>
+                <div className="mt-1 text-gray-700 text-xs homeDescription">{descriptionState}</div>
+              </div>
+              <div className="flex justify-center">
+                <Button color="success" shadow onPress={handler}>
+                  Make an Offer
+                </Button>
+              </div>
+
+              <OfferModal
+                visible={visible}
+                closeHandler={closeHandler}
+                address={address}
+                cover_image={cloudinaryLoader({ src: coverImage, width: 600 })}
+                homeId={home.id}
+              />
             </div>
-            <div className="flex justify-center mb-4">
-              <Button color="success" shadow onPress={handler}>
-                Make an Offer
-              </Button>
-            </div>
-            <OfferModal
-              visible={visible}
-              closeHandler={closeHandler}
-              address={address}
-              cover_image={cloudinaryLoader({ src: coverImage, width: 600 })}
-              homeId={home.id}
-            />
           </div>
         </div>
       </div>
     </>
   );
 };
+
 export async function getStaticPaths() {
   const res = await homesCalls.get.allHomes();
   const homes = res.data;

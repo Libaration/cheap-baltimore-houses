@@ -10,11 +10,14 @@ export default function Page({ fallback }) {
   const [page, setPage] = useState(fallback.meta.pagination.page);
   const [pageSize, setPageSize] = useState(fallback.meta.pagination.pageSize);
   const [zipcode, setZipcode] = useState("");
+  const [address, setAddress] = useState("");
   return (
     <SWRConfig value={{ fallbackData: fallback }}>
       <Breadcrumb />
 
-      <h4 className="smallHeroText text-center">Cheap Baltimore Houses</h4>
+      <h4 className="smallHeroText text-center" style={{ color: "#333333" }}>
+        Cheap Baltimore Houses
+      </h4>
 
       <Homes
         page={page}
