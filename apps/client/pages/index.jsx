@@ -12,6 +12,8 @@ import { useChangeNotchColor } from "../lib/useCustomHooks";
 import Link from "next/link";
 import Head from "next/head";
 import { useResizeEffect, useInViewStateAndEffect } from "../lib/useCustomHooks";
+import { Fade, Slide } from "react-awesome-reveal";
+import { Parallax } from "react-scroll-parallax";
 const Index = (props) => {
   const recentHomesRef = useRef(null);
   const { notchColor, setNotchColor } = useChangeNotchColor();
@@ -31,7 +33,7 @@ const Index = (props) => {
       (newsletterVisible && !contentVisible && !heroVisible) ||
       (!newsletterVisible && !contentVisible && !heroVisible)
     ) {
-      setNotchColor({ theme: "#cb9040", style: "translucent" });
+      setNotchColor({ theme: "#ef4444", style: "translucent" });
     }
   }, [newsletterVisible, heroVisible, contentVisible, setNotchColor]);
 
@@ -44,7 +46,11 @@ const Index = (props) => {
 
       <div ref={heroRef}>
         <Hero recentHomesRef={recentHomesRef} />
-        <div ref={contentRef} style={{ width: "1px", height: "1px" }} />
+        <div ref={contentRef} style={{ width: "1px", height: "0px" }} />
+      </div>
+
+      <div className="bg-red-500 items-center justify-center pt-8" style={{ height: "100vh" }}>
+        <HomeSection />
       </div>
 
       <div className="shrink center-safe">
@@ -53,30 +59,41 @@ const Index = (props) => {
           ref={newsletterRef}
           visible={newsletterVisible}
         /> */}
-        <HowItWorksSection />
-        <CategoriesSection />
 
-        <div
-          className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900"
-          ref={recentHomesRef}
-        >
-          Recent Listings
-        </div>
-        <div
-          className="py-5 mx-auto lg:w-1/2 w-full leading-relaxed text-base"
-          style={{ width: "100%", textAlign: "center", margin: "auto" }}
-        >{`Looking for a new home in Baltimore? Check out our recent auction listings to see some of the best properties on the market today. With a variety of homes available in different neighborhoods and at competitive prices, you're sure to find something that fits your needs. Don't miss out on these great opportunities, start browsing our listings now!`}</div>
+        <Slide direction="left" triggerOnce>
+          <HowItWorksSection />
+        </Slide>
 
-        <div className="recent-homes-container">{renderRecentHomes(props.homes)}</div>
+        {/* <Slide direction="right" triggerOnce>
+          <CategoriesSection />
+        </Slide> */}
+        <Slide direction="right" triggerOnce cascade damping={0.1}>
+          <div
+            className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"
+            ref={recentHomesRef}
+          >
+            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
+              Recent Listings
+            </h1>
+          </div>
 
-        <div className="flex justify-center px-5 pt-5 pb-20 mx-auto">
-          <Button color="warning">
-            <Link href={"/homes"}>View All Listings</Link>
-          </Button>
-        </div>
+          <p className="mb-8 leading-relaxed">{`Looking for a new home in Baltimore? Check out our recent auction listings to see some of the best properties on the market today. With a variety of homes available in different neighborhoods and at competitive prices, you're sure to find something that fits your needs. Don't miss out on these great opportunities, start browsing our listings now!`}</p>
 
+          <div className="recent-homes-container">
+            <Fade cascade damping={0.3} triggerOnce>
+              {renderRecentHomes(props.homes)}
+            </Fade>
+          </div>
+
+          <div className="flex justify-center px-5 pt-5 pb-20 mx-auto">
+            <Button css={{ color: "white" }}>
+              <Link href={"/homes"}>
+                <span>View All Listings</span>
+              </Link>
+            </Button>
+          </div>
+        </Slide>
         <div className="additionalContent">
-          <HomeSection />
           <ReviewSection />
           <EasySection />
         </div>
