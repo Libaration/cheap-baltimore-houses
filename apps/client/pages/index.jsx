@@ -13,7 +13,6 @@ import Link from "next/link";
 import Head from "next/head";
 import { useResizeEffect, useInViewStateAndEffect } from "../lib/useCustomHooks";
 import { Fade, Slide } from "react-awesome-reveal";
-import { Parallax } from "react-scroll-parallax";
 const Index = (props) => {
   const recentHomesRef = useRef(null);
   const { notchColor, setNotchColor } = useChangeNotchColor();
@@ -67,11 +66,9 @@ const Index = (props) => {
         {/* <Slide direction="right" triggerOnce>
           <CategoriesSection />
         </Slide> */}
+        <div ref={recentHomesRef}></div>
         <Slide direction="right" triggerOnce cascade damping={0.1}>
-          <div
-            className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"
-            ref={recentHomesRef}
-          >
+          <div className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
               Recent Listings
             </h1>

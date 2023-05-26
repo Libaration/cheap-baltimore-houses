@@ -54,7 +54,7 @@ const homeHandler = rest.get(`${process.env.NEXT_PUBLIC_API_URL}/api/homes/*`, (
 });
 
 const imagesHandler = rest.get(
-  `https://res.cloudinary.com/libaration/image/upload/*`,
+  `https://res.cloudinary.com/*/image/upload/*`,
   async (req, res, ctx) => {
     const image = await fetch(`/mock_images/${faker.datatype.number({ max: 100 })}.jpeg`).then(
       (res) => res.arrayBuffer()

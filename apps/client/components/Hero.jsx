@@ -26,12 +26,14 @@ const Hero = (props) => {
               <span style={{ color: "#00b0ff" }}> easier.</span>
             </h1>
 
-            <div className="mt-5">
+            <div className="mt-5 see-properties-container">
               <Button
-                className="button"
+                className="seeOurPropertiesButton"
                 label="See our properties"
                 onClick={() => {
+                  console.log("out");
                   if (props.recentHomesRef.current) {
+                    console.log("sdsdsdsdsds");
                     props.recentHomesRef.current.scrollIntoView({
                       behavior: "smooth",
                     });

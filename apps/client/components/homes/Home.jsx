@@ -73,16 +73,7 @@ const Home = ({ home }) => {
           }`}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          onClick={(e) => {
-            e.currentTarget.classList.add("loading");
-            e.currentTarget.querySelector("a").click();
-            e.currentTarget.querySelector(".spinner").classList.remove("opacity-0");
-            e.currentTarget.querySelector(".spinner").classList.add("opacity-100");
-          }}
         >
-          <div class="loading-overlay opacity">
-            <div class="spinner opacity-0"></div>
-          </div>
           <Link href={`homes/${home.id}`}>
             <div className="relative aspect-video">
               <a>
@@ -102,27 +93,10 @@ const Home = ({ home }) => {
             </div>
           </Link>
           <div className="p-4">
-            <p className="mb-1 text-sm text-primary-500 text-center">
+            <p className="mb-1 text-sm text-center" style={{ color: "#ff4081" }}>
               Added • <time>{date}</time>
             </p>
-            <h3 className="text-xl font-medium text-gray-900 text-center">{address}</h3>
-            <div className="mt-1 text-gray-700 text-xs homeDescription overflow-hidden">
-              <div className="relative overflow-hidden h-32 p-1">
-                {descriptionState}
-                <div
-                  className="ellipsis"
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    right: 0,
-                    left: 0,
-                    height: "1.2em",
-                    background: "linear-gradient(transparent, #fff)",
-                  }}
-                />
-              </div>
-            </div>
-            <div className="mt-4 flex gap-2 justify-center">
+            <div className="flex justify-center home-detail-tags">
               {available !== undefined && (
                 <span
                   className={`inline-flex items-center gap-1 rounded-full ${
@@ -139,15 +113,24 @@ const Home = ({ home }) => {
                 Recently Listed
               </span> */}
               {bedrooms ? (
-                <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+                <span className="inline-flex items-center gap-1 rounded-full px-2 py-1">
                   {pluralize("Bed", bedrooms, true)}
                 </span>
               ) : null}
               {bathrooms ? (
-                <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+                <span className="inline-flex items-center gap-1 rounded-full px-2 py-1">
                   {pluralize("Bath", bathrooms, true)}
                 </span>
               ) : null}
+            </div>
+            <h3 className="text-xl font-medium text-center" style={{ color: "#333333" }}>
+              {address}
+            </h3>
+            <div className="mt-1 text-xs homeDescription ">
+              <div className="relative h-32 p-1">{descriptionState}</div>
+            </div>
+            <div className="mt-4 flex gap-2 justify-center">
+              <div className="fade-text" />
               {isAuthorized && user_likes && (
                 <div className="flex-1 text-end align-items-center justify-content-center ">
                   {renderHeart()}

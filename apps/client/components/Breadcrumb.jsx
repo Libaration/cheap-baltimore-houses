@@ -17,7 +17,7 @@ const Breadcrumb = (props) => {
       <React.Fragment key={uuidv4()}>
         <li className="inline-flex items-center ">
           <Link href={href}>
-            <span className="text-secondary-500 hover:text-secondary-300 cursor-pointer">
+            <span className="hover:text-secondary-300 cursor-pointer" style={{ color: "#333333" }}>
               {path.charAt(0).toUpperCase() + path.slice(1)}
             </span>
           </Link>
@@ -32,7 +32,7 @@ const Breadcrumb = (props) => {
       <React.Fragment key={uuidv4()}>
         <li className="inline-flex items-center">
           <Link href="/">
-            <span className="text-secondary-500 hover:text-secondary-300 cursor-pointer">
+            <span className="hover:text-secondary-300 cursor-pointer" style={{ color: "#333333" }}>
               Landing
             </span>
           </Link>
@@ -47,7 +47,7 @@ const Breadcrumb = (props) => {
     return (
       <React.Fragment key={uuidv4()}>
         <svg
-          className="h-6 w-6 text-gray-400"
+          className="h-6 w-6 "
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +74,7 @@ const Breadcrumb = (props) => {
       <React.Fragment key={uuidv4()}>
         <li className="inline-flex items-center space-x-4" aria-current="page">
           <Link href={href}>
-            <span className="text-primary-500 hover:text-secondary-800 cursor-pointer">
+            <span className="hover:text-secondary-800 cursor-pointer" style={{ color: "#00b0ff" }}>
               {props.customTitle
                 ? props.customTitle.charAt(0).toUpperCase() + props.customTitle.slice(1)
                 : path.charAt(0).toUpperCase() + path.slice(1)}
