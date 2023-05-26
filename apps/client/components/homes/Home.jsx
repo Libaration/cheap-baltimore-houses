@@ -8,6 +8,7 @@ import { isLoggedIn } from "../../lib/SWRCalls/session";
 import { useUser, userToggleLike } from "../../lib/SWRCalls/user";
 import { flatMap } from "lodash";
 const Home = ({ home }) => {
+  const [hovered, setHovered] = useState(false);
   const coverImage = home.attributes.cover_image.data.attributes.provider_metadata.public_id;
   const date = new Date(home.attributes.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
@@ -55,10 +56,33 @@ const Home = ({ home }) => {
       );
     }
   };
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
   return (
     <>
-      <div className="text-white p-5 max-w-md max-h-fit" role="homeContainer">
-        <div className="mx-auto overflow-hidden rounded-lg bg-white shadow">
+      <div className="text-white p-5 max-w-md max-h-fit m-1" role="homeContainer">
+        <div
+          className={`text-white p-1 max-w-md max-h-fit m-1 rounded-lg home_component_card ${
+            hovered ? "shadow-lg" : "shadow"
+          }`}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={(e) => {
+            e.currentTarget.classList.add("loading");
+            e.currentTarget.querySelector("a").click();
+            e.currentTarget.querySelector(".spinner").classList.remove("opacity-0");
+            e.currentTarget.querySelector(".spinner").classList.add("opacity-100");
+          }}
+        >
+          <div class="loading-overlay opacity">
+            <div class="spinner opacity-0"></div>
+          </div>
           <Link href={`homes/${home.id}`}>
             <div className="relative aspect-video">
               <a>
@@ -82,8 +106,21 @@ const Home = ({ home }) => {
               Added • <time>{date}</time>
             </p>
             <h3 className="text-xl font-medium text-gray-900 text-center">{address}</h3>
-            <div className="mt-1 text-gray-700 text-xs line-clamp homeDescription">
-              {descriptionState}
+            <div className="mt-1 text-gray-700 text-xs homeDescription overflow-hidden">
+              <div className="relative overflow-hidden h-32 p-1">
+                {descriptionState}
+                <div
+                  className="ellipsis"
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    right: 0,
+                    left: 0,
+                    height: "1.2em",
+                    background: "linear-gradient(transparent, #fff)",
+                  }}
+                />
+              </div>
             </div>
             <div className="mt-4 flex gap-2 justify-center">
               {available !== undefined && (

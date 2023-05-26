@@ -602,3 +602,96 @@ html {
   color: rgb(191, 137, 35);
   font-style: italic;
 }
+
+.home_component_card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.home_component_card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.home_component_card .aspect-video img {
+  transition: opacity 0.3s ease;
+}
+
+
+
+.home_component_card {
+  transition: transform 0.3s ease;
+}
+
+.home_component_card:active {
+  transform: scale(1.05); /* Adjust the scale factor as needed */
+}
+
+
+.home_component_card:active {
+  background-color: #f1f1f1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-container {
+  display: flex;
+  overflow-x: hidden;
+}
+
+
+
+
+.home_component_card .loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(135deg, #FF4500 0%, #FFA500 100%);
+  opacity: 0;
+}
+
+.home_component_card.loading .loading-overlay {
+  opacity: 0.5;
+  transition: opacity 0.5s ease-in-out; 
+}
+
+.home_component_card .spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateZ(0deg);
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ffffff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateZ(360deg);
+  }
+}
+
+.home_component_card h3,
+.home_component_card p {
+  opacity: 0;
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
