@@ -7,7 +7,9 @@ const EasySection = () => {
           <Image
             className="object-cover object-center h-full w-full"
             alt="placeholder"
-            src={"https://dummyimage.com/600x600/edf2f7/a5afbd"}
+            src={
+              "https://images.photowall.com/interiors/51208/landscape/wallpaper/room41.jpg?w=2000&q=80"
+            }
             width={600}
             height={600}
             blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8v4qhHgAGgwIqdX7cjgAAAABJRU5ErkJggg"
@@ -16,7 +18,10 @@ const EasySection = () => {
         </div>
         <div className="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center">
           <div className="flex flex-col mb-10 lg:items-start items-center">
-            <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5">
+            <div
+              className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 mb-5"
+              style={{ color: "#ff4081" }}
+            >
               <svg
                 fill="none"
                 stroke="currentColor"
@@ -41,7 +46,10 @@ const EasySection = () => {
             </div>
           </div>
           <div className="flex flex-col mb-10 lg:items-start items-center">
-            <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5">
+            <div
+              className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 mb-5"
+              style={{ color: "#00b0ff" }}
+            >
               <svg
                 fill="none"
                 stroke="currentColor"
@@ -69,7 +77,10 @@ const EasySection = () => {
             </div>
           </div>
           <div className="flex flex-col mb-10 lg:items-start items-center">
-            <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5">
+            <div
+              className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 mb-5"
+              style={{ color: "#e3af5b" }}
+            >
               <svg
                 fill="none"
                 stroke="currentColor"
@@ -89,7 +100,7 @@ const EasySection = () => {
                 Make a quick and easy offer online! We handle the settlement process, and make sure
                 that you settle on your property in 30 days or less.
               </p>
-              <a className="mt-3 text-indigo-500 inline-flex items-center">
+              <a className="mt-3 inline-flex items-center">
                 Learn More
                 <svg
                   fill="none"

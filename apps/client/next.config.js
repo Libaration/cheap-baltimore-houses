@@ -18,6 +18,14 @@ const nextConfig = {
       "api.cheapbaltimorehouses.com",
       "dummyimage.com",
     ],
+    remotePatterns: [
+      {
+        // The `src` property hostname must end with `.example.com`,
+        // otherwise the API will respond with 400 Bad Request.
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
     // remotePatterns: [
     //   {
     //     protocol: "https",
