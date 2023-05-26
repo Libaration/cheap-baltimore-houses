@@ -19,7 +19,10 @@ const ReviewSection = () => {
               that occurred. When other relatives or friends seek to vacate the city life, I will
               certainly be recommending you. Thanks again & Happy New Year to you & family.
             </p>
-            <span className="inline-block h-1 w-10 rounded bg-indigo-500 mt-8 mb-6"></span>
+            <span
+              className="inline-block h-1 w-10 rounded mt-8 mb-6"
+              style={{ backgroundColor: "#ff4081" }}
+            ></span>
             <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">LINDA</h2>
             <p className="text-gray-500">North Carolina</p>
           </div>

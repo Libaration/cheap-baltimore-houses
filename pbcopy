@@ -1,0 +1,1079 @@
+diff --git a/apps/client/components/ContentLayout.jsx b/apps/client/components/ContentLayout.jsx
+index ef6b1f9..813f127 100644
+--- a/apps/client/components/ContentLayout.jsx
++++ b/apps/client/components/ContentLayout.jsx
+@@ -3,7 +3,7 @@ export default function ContentLayout({ children }) {
+   return (
+     <>
+       <Breadcrumb />
+-      <h4 className="smallHeroText text-center">Cheap Baltimore Houses</h4>
++      <h4 className="smallHeroText text-center font-black">Cheap Baltimore Houses</h4>
+       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+         <div className="max-w-3xl mx-auto">{children}</div>
+       </div>
+diff --git a/apps/client/components/Hero.jsx b/apps/client/components/Hero.jsx
+index 2f78368..516c976 100644
+--- a/apps/client/components/Hero.jsx
++++ b/apps/client/components/Hero.jsx
+@@ -10,53 +10,25 @@ const Hero = (props) => {
+     speed: 10,
+     target: target.current,
+   });
+-  const sky = useParallax({
+-    opacity: [0, 1],
+-    shouldAlwaysCompleteAnimation: true,
+-    startScroll: 0,
+-    endScroll: 200,
+-    easing: "easeInOutCirc",
+-  });
+ 
+-  const city = useParallax({
+-    opacity: [0, 1],
+-    shouldAlwaysCompleteAnimation: true,
+-    startScroll: 0,
+-    endScroll: 400,
+-    easing: "easeInOutSine",
+-  });
+   return (
+     <>
+       <div className="main">
+-        <div ref={sky.ref} className="sky">
+-          <Image
+-            src={skyOverlay}
+-            alt=""
+-            fill={true}
+-            style={{ objectFit: "cover" }}
+-            priority={true}
+-          />
+-        </div>
+-        <div ref={city.ref} className="city">
+-          <Image
+-            src={cityOverlay}
+-            alt=""
+-            fill={true}
+-            style={{ objectFit: "cover" }}
+-            priority={true}
+-          />
+-        </div>
+-
+         <div className="section">
+-          <div className="text-center" ref={text.ref} style={{ zIndex: 3 }}>
+-            <h4 className="smallHeroText" ref={target}>
++          <div ref={text.ref} style={{ zIndex: 3 }}>
++            <h4 className="smallHeroText " ref={target} style={{ color: "white" }}>
+               Cheap Baltimore Houses
+             </h4>
+             <h1 className="heroText">Buying property</h1>
+-            <h1 className="heroText">has never been easier.</h1>
++            <h1 className="heroText">
++              has <span style={{ color: "#ff4081" }}>never </span>
++              <span style={{ color: "#e3af5b" }}>been</span>
++              <span style={{ color: "#00b0ff" }}> easier.</span>
++            </h1>
++
+             <div className="mt-5">
+               <Button
+-                className="seeOurPropertiesButton"
++                className="button"
+                 label="See our properties"
+                 onClick={() => {
+                   if (props.recentHomesRef.current) {
+diff --git a/apps/client/components/homes/HomeCard.jsx b/apps/client/components/homes/HomeCard.jsx
+index 872eacb..ebc6cc1 100644
+--- a/apps/client/components/homes/HomeCard.jsx
++++ b/apps/client/components/homes/HomeCard.jsx
+@@ -1,6 +1,5 @@
+ import { Card, Text } from "@nextui-org/react";
+ import Image from "next/future/image";
+-import { Button } from "primereact/button";
+ import Link from "next/link";
+ import { cloudinaryLoader } from "../../lib/cloudinaryLoader";
+ const HomeCard = ({ home }) => {
+@@ -9,45 +8,28 @@ const HomeCard = ({ home }) => {
+   } ${home.attributes.city}, ${home.attributes.state} ${home.attributes.zip}`;
+   return (
+     <div className="home-card p-3">
+-      <Card css={{ maxHeight: "480px" }}>
++      <Card
++        css={{ maxHeight: "480px", backgroundColor: "transparent" }}
++        variant="flat"
++        isPressable
++        isHoverable
++      >
+         <Card.Header>
+           <Link href={`/homes/${encodeURIComponent(home.id)}`} passHref>
+-            <a>
+-              <Image
+-                loader={cloudinaryLoader}
+-                src={`${home.attributes.cover_image.data.attributes.provider_metadata.public_id}`}
+-                width={400}
+-                height={300}
+-                alt="home"
+-                style={{ cursor: "pointer" }}
+-              />
+-            </a>
++            <div style={{ width: "100%" }}>
++              <a>
++                <Image
++                  loader={cloudinaryLoader}
++                  src={`${home.attributes.cover_image.data.attributes.provider_metadata.public_id}`}
++                  width={400}
++                  height={300}
++                  alt="home"
++                  style={{ cursor: "pointer" }}
++                />
++              </a>
++            </div>
+           </Link>
+         </Card.Header>
+-        <Card.Body>
+-          <Text
+-            css={{
+-              fontWeight: "bold",
+-              margin: "auto",
+-              fontSize: "medium",
+-            }}
+-          >
+-            {address}
+-          </Text>
+-          <Text
+-            css={{
+-              fontWeight: "normal",
+-              fontSize: "small",
+-              color: "gray",
+-              verticalAlign: "middle",
+-            }}
+-          ></Text>
+-        </Card.Body>
+-        <Card.Footer css={{ justifyContent: "center" }}>
+-          <Link href={`/homes/${encodeURIComponent(home.id)}`}>
+-            <Button className="make-an-offer-button">More Info</Button>
+-          </Link>
+-        </Card.Footer>
+       </Card>
+     </div>
+   );
+diff --git a/apps/client/components/landing/EasySection.jsx b/apps/client/components/landing/EasySection.jsx
+index 0fa0565..aed3ddc 100644
+--- a/apps/client/components/landing/EasySection.jsx
++++ b/apps/client/components/landing/EasySection.jsx
+@@ -7,7 +7,9 @@ const EasySection = () => {
+           <Image
+             className="object-cover object-center h-full w-full"
+             alt="placeholder"
+-            src={"https://dummyimage.com/600x600/edf2f7/a5afbd"}
++            src={
++              "https://images.photowall.com/interiors/51208/landscape/wallpaper/room41.jpg?w=2000&q=80"
++            }
+             width={600}
+             height={600}
+             blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8v4qhHgAGgwIqdX7cjgAAAABJRU5ErkJggg"
+@@ -16,7 +18,10 @@ const EasySection = () => {
+         </div>
+         <div className="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center">
+           <div className="flex flex-col mb-10 lg:items-start items-center">
+-            <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5">
++            <div
++              className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 mb-5"
++              style={{ color: "#ff4081" }}
++            >
+               <svg
+                 fill="none"
+                 stroke="currentColor"
+@@ -41,7 +46,10 @@ const EasySection = () => {
+             </div>
+           </div>
+           <div className="flex flex-col mb-10 lg:items-start items-center">
+-            <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5">
++            <div
++              className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 mb-5"
++              style={{ color: "#00b0ff" }}
++            >
+               <svg
+                 fill="none"
+                 stroke="currentColor"
+@@ -69,7 +77,10 @@ const EasySection = () => {
+             </div>
+           </div>
+           <div className="flex flex-col mb-10 lg:items-start items-center">
+-            <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5">
++            <div
++              className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 mb-5"
++              style={{ color: "#e3af5b" }}
++            >
+               <svg
+                 fill="none"
+                 stroke="currentColor"
+@@ -89,7 +100,7 @@ const EasySection = () => {
+                 Make a quick and easy offer online! We handle the settlement process, and make sure
+                 that you settle on your property in 30 days or less.
+               </p>
+-              <a className="mt-3 text-indigo-500 inline-flex items-center">
++              <a className="mt-3 inline-flex items-center">
+                 Learn More
+                 <svg
+                   fill="none"
+diff --git a/apps/client/components/landing/HomeSection.jsx b/apps/client/components/landing/HomeSection.jsx
+index bc2cd32..ed49315 100644
+--- a/apps/client/components/landing/HomeSection.jsx
++++ b/apps/client/components/landing/HomeSection.jsx
+@@ -1,11 +1,14 @@
+ import Image from "next/future/image";
++import { Slide } from "react-awesome-reveal";
++import { useParallax } from "react-scroll-parallax";
++import { useRef } from "react";
+ const HomeSection = () => {
+   return (
+     <>
+-      <section className="text-gray-700 body-font">
++      <section className="text-gray-700 body-font landing-home-section">
+         <div className="container mx-auto flex pb-20 md:flex-row flex-col items-center">
+           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+-            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
++            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white mt-4">
+               Buy and Sell Real Estate in Maryland.
+               <br className="hidden lg:inline-block" />
+               Find Cheap Baltimore Houses.
+@@ -15,26 +18,32 @@ const HomeSection = () => {
+               the answers to your Maryland real estate questions by reaching out to the team at
+               Cheap Baltimore Houses. Start your journey.
+             </p>
++
+             <div className="flex justify-center">
+-              <button className="inline-flex text-grey bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-[#e49918] duration-300 rounded text-lg">
++              <button className="inline-flex text-grey bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-[#00b0ff] duration-300 rounded text-lg">
+                 I Want to Buy
+               </button>
+-              <button className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-[#e49918] duration-300 rounded text-lg">
++              <button className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-[#00b0ff] duration-300 rounded text-lg">
+                 I Want to Sell
+               </button>
+             </div>
+           </div>
+-          <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+-            <Image
+-              className="object-cover object-center rounded"
+-              alt="placeholder"
+-              src={"https://dummyimage.com/720x600/edf2f7/a5afbd"}
+-              width={720}
+-              height={600}
+-              blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8v4qhHgAGgwIqdX7cjgAAAABJRU5ErkJggg"
+-              placeholder="blur"
+-            />
+-          </div>
++
++          <Slide direction="right" triggerOnce>
++            <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 shrink center-safe how-it-works-image">
++              <Image
++                className="object-cover object-center rounded mt-12"
++                alt="placeholder"
++                src={
++                  "https://www.decorilla.com/online-decorating/wp-content/uploads/2022/03/Minimalist-modern-home-interior-design-with-a-patio.jpeg"
++                }
++                width={720}
++                height={600}
++                blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8v4qhHgAGgwIqdX7cjgAAAABJRU5ErkJggg"
++                placeholder="blur"
++              />
++            </div>
++          </Slide>
+         </div>
+       </section>
+     </>
+diff --git a/apps/client/components/landing/HowItWorksSection.jsx b/apps/client/components/landing/HowItWorksSection.jsx
+index 6f723b2..6661e00 100644
+--- a/apps/client/components/landing/HowItWorksSection.jsx
++++ b/apps/client/components/landing/HowItWorksSection.jsx
+@@ -1,21 +1,25 @@
+ const HowItWorksSection = () => {
+   return (
+     <>
+-      <section className="text-gray-700 body-font border-t border-gray-200">
++      <section className="body-font border-t border-gray-200">
+         <div className="container px-5 py-24 mx-auto">
+           <div className="flex flex-col text-center w-full mb-20">
+-            <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">
++            <h2
++              className="text-xs tracking-widest font-medium title-font mb-1"
++              style={{ color: "#00b0ff" }}
++            >
+               CHEAP BALTIMORE HOUSES
+             </h2>
+-            <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+-              How It Works
+-            </h1>
++            <h1 className="sm:text-3xl text-2xl font-medium title-font">How It Works</h1>
+           </div>
+-          <div className="flex flex-wrap -m-4">
++          <div className="flex flex-wrap -m-4 text-gray-900">
+             <div className="p-4 md:w-1/3">
+               <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
+                 <div className="flex items-center mb-3">
+-                  <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
++                  <div
++                    className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full flex-shrink-0"
++                    style={{ color: "#00b0ff" }}
++                  >
+                     <svg
+                       fill="none"
+                       stroke="currentColor"
+@@ -37,7 +41,7 @@ const HowItWorksSection = () => {
+                   </p>
+                   <a
+                     href="https://cheapbaltimorehouses.com/homes"
+-                    className="mt-3 text-indigo-500 inline-flex items-center"
++                    className="mt-3  inline-flex items-center"
+                   >
+                     Learn More
+                     <svg
+@@ -58,7 +62,10 @@ const HowItWorksSection = () => {
+             <div className="p-4 md:w-1/3">
+               <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
+                 <div className="flex items-center mb-3">
+-                  <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
++                  <div
++                    className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full  text-white flex-shrink-0"
++                    style={{ color: "#00b0ff" }}
++                  >
+                     <svg
+                       fill="none"
+                       stroke="currentColor"
+@@ -81,7 +88,7 @@ const HowItWorksSection = () => {
+                   </p>
+                   <a
+                     href="https://cheapbaltimorehouses.com/homes"
+-                    className="mt-3 text-indigo-500 inline-flex items-center"
++                    className="mt-3  inline-flex items-center"
+                   >
+                     Learn More
+                     <svg
+@@ -102,7 +109,10 @@ const HowItWorksSection = () => {
+             <div className="p-4 md:w-1/3">
+               <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
+                 <div className="flex items-center mb-3">
+-                  <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
++                  <div
++                    className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full text-white flex-shrink-0"
++                    style={{ color: "#00b0ff" }}
++                  >
+                     <svg
+                       fill="none"
+                       stroke="currentColor"
+@@ -126,7 +136,7 @@ const HowItWorksSection = () => {
+                   </p>
+                   <a
+                     href="https://cheapbaltimorehouses.com/homes"
+-                    className="mt-3 text-indigo-500 inline-flex items-center"
++                    className="mt-3  inline-flex items-center"
+                   >
+                     Learn More
+                     <svg
+diff --git a/apps/client/components/landing/ReviewSection.jsx b/apps/client/components/landing/ReviewSection.jsx
+index 321c9b6..44f9bf9 100644
+--- a/apps/client/components/landing/ReviewSection.jsx
++++ b/apps/client/components/landing/ReviewSection.jsx
+@@ -19,7 +19,10 @@ const ReviewSection = () => {
+               that occurred. When other relatives or friends seek to vacate the city life, I will
+               certainly be recommending you. Thanks again & Happy New Year to you & family.
+             </p>
+-            <span className="inline-block h-1 w-10 rounded bg-indigo-500 mt-8 mb-6"></span>
++            <span
++              className="inline-block h-1 w-10 rounded mt-8 mb-6"
++              style={{ backgroundColor: "#ff4081" }}
++            ></span>
+             <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">LINDA</h2>
+             <p className="text-gray-500">North Carolina</p>
+           </div>
+diff --git a/apps/client/next.config.js b/apps/client/next.config.js
+index 16d55cb..5e3edce 100644
+--- a/apps/client/next.config.js
++++ b/apps/client/next.config.js
+@@ -18,6 +18,14 @@ const nextConfig = {
+       "api.cheapbaltimorehouses.com",
+       "dummyimage.com",
+     ],
++    remotePatterns: [
++      {
++        // The `src` property hostname must end with `.example.com`,
++        // otherwise the API will respond with 400 Bad Request.
++        protocol: "https",
++        hostname: "**",
++      },
++    ],
+     // remotePatterns: [
+     //   {
+     //     protocol: "https",
+diff --git a/apps/client/package.json b/apps/client/package.json
+index 9477894..15c57b0 100644
+--- a/apps/client/package.json
++++ b/apps/client/package.json
+@@ -14,7 +14,7 @@
+   },
+   "dependencies": {
+     "@azure/communication-email": "^1.0.0",
+-    "@emotion/react": "11.10.5",
++    "@emotion/react": "^11.11.0",
+     "@emotion/server": "^11.10.0",
+     "@nextui-org/react": "^1.0.0-beta.11",
+     "@react-three/drei": "^9.46.5",
+@@ -30,6 +30,7 @@
+     "primereact": "8.7.0",
+     "qs": "^6.11.0",
+     "react": "^18.2.0",
++    "react-awesome-reveal": "^4.2.3",
+     "react-content-loader": "^6.2.0",
+     "react-dom": "^18.2.0",
+     "react-headroom": "^3.2.1",
+diff --git a/apps/client/pages/index.jsx b/apps/client/pages/index.jsx
+index 355dea7..302ed8b 100644
+--- a/apps/client/pages/index.jsx
++++ b/apps/client/pages/index.jsx
+@@ -12,6 +12,8 @@ import { useChangeNotchColor } from "../lib/useCustomHooks";
+ import Link from "next/link";
+ import Head from "next/head";
+ import { useResizeEffect, useInViewStateAndEffect } from "../lib/useCustomHooks";
++import { Fade, Slide } from "react-awesome-reveal";
++import { Parallax } from "react-scroll-parallax";
+ const Index = (props) => {
+   const recentHomesRef = useRef(null);
+   const { notchColor, setNotchColor } = useChangeNotchColor();
+@@ -31,7 +33,7 @@ const Index = (props) => {
+       (newsletterVisible && !contentVisible && !heroVisible) ||
+       (!newsletterVisible && !contentVisible && !heroVisible)
+     ) {
+-      setNotchColor({ theme: "#cb9040", style: "translucent" });
++      setNotchColor({ theme: "#ef4444", style: "translucent" });
+     }
+   }, [newsletterVisible, heroVisible, contentVisible, setNotchColor]);
+ 
+@@ -44,7 +46,11 @@ const Index = (props) => {
+ 
+       <div ref={heroRef}>
+         <Hero recentHomesRef={recentHomesRef} />
+-        <div ref={contentRef} style={{ width: "1px", height: "1px" }} />
++        <div ref={contentRef} style={{ width: "1px", height: "0px" }} />
++      </div>
++
++      <div className="bg-red-500 items-center justify-center pt-8" style={{ height: "100vh" }}>
++        <HomeSection />
+       </div>
+ 
+       <div className="shrink center-safe">
+@@ -53,30 +59,41 @@ const Index = (props) => {
+           ref={newsletterRef}
+           visible={newsletterVisible}
+         /> */}
+-        <HowItWorksSection />
+-        <CategoriesSection />
+ 
+-        <div
+-          className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900"
+-          ref={recentHomesRef}
+-        >
+-          Recent Listings
+-        </div>
+-        <div
+-          className="py-5 mx-auto lg:w-1/2 w-full leading-relaxed text-base"
+-          style={{ width: "100%", textAlign: "center", margin: "auto" }}
+-        >{`Looking for a new home in Baltimore? Check out our recent auction listings to see some of the best properties on the market today. With a variety of homes available in different neighborhoods and at competitive prices, you're sure to find something that fits your needs. Don't miss out on these great opportunities, start browsing our listings now!`}</div>
++        <Slide direction="left" triggerOnce>
++          <HowItWorksSection />
++        </Slide>
+ 
+-        <div className="recent-homes-container">{renderRecentHomes(props.homes)}</div>
++        {/* <Slide direction="right" triggerOnce>
++          <CategoriesSection />
++        </Slide> */}
++        <Slide direction="right" triggerOnce cascade damping={0.1}>
++          <div
++            className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"
++            ref={recentHomesRef}
++          >
++            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
++              Recent Listings
++            </h1>
++          </div>
+ 
+-        <div className="flex justify-center px-5 pt-5 pb-20 mx-auto">
+-          <Button color="warning">
+-            <Link href={"/homes"}>View All Listings</Link>
+-          </Button>
+-        </div>
++          <p className="mb-8 leading-relaxed">{`Looking for a new home in Baltimore? Check out our recent auction listings to see some of the best properties on the market today. With a variety of homes available in different neighborhoods and at competitive prices, you're sure to find something that fits your needs. Don't miss out on these great opportunities, start browsing our listings now!`}</p>
++
++          <div className="recent-homes-container">
++            <Fade cascade damping={0.3} triggerOnce>
++              {renderRecentHomes(props.homes)}
++            </Fade>
++          </div>
+ 
++          <div className="flex justify-center px-5 pt-5 pb-20 mx-auto">
++            <Button css={{ color: "white" }}>
++              <Link href={"/homes"}>
++                <span>View All Listings</span>
++              </Link>
++            </Button>
++          </div>
++        </Slide>
+         <div className="additionalContent">
+-          <HomeSection />
+           <ReviewSection />
+           <EasySection />
+         </div>
+diff --git a/apps/client/styles/global.css b/apps/client/styles/global.css
+index 072f160..14c8d06 100644
+--- a/apps/client/styles/global.css
++++ b/apps/client/styles/global.css
+@@ -1,3 +1,99 @@
++@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;700&display=swap');
++@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
++body {
++  font-family: 'Montserrat', sans-serif;
++  background-color: #f8f8f8 !important;
++  color: #333333 !important;
++  margin: 0;
++  /* font-size: 20px;
++  line-height: 32px; */
++  overflow-x: hidden;
++ 
++}
++
++html {
++  height: var(--app-height);
++  -ms-text-size-adjust: 100%;
++  -webkit-text-size-adjust: 100%;
++  overflow-x: hidden !important;
++ 
++}
++.no-shrink{
++ 
++}
++
++
++
++h1 {
++  font-size: 48px;
++  line-height: 1.2;
++  font-weight: 700 !important;
++ 
++}
++
++h2 {
++  font-size: 42px;
++  line-height: 1.3;
++
++  font-weight: 500 !important;
++}
++
++h3 {
++  font-size: 36px;
++  line-height: 1.4;
++  color: #333 !important;
++  font-weight: 200 !important;
++}
++
++p {
++  font-size: 18px;
++  line-height: 1.6;
++  font-family: 'Poppins', sans-serif;
++  color: #333333 !important;
++}
++
++a {
++  color: #00b0ff;
++  text-decoration: none;
++  transition: color 0.3s ease;
++}
++
++
++
++.landing-home-section {
++ 
++  height: 100%;
++}
++
++.how-it-works-image img {
++  height: 95vh;
++}
++
++
++
++@media (max-width: 767px) {
++  .how-it-works-image img {
++    height: auto;
++    max-height: 55vh;
++  }
++}
++
++ul, li {
++  list-style: none;
++  padding: 0;
++  margin: 0;
++}
++
++
++
++
++
++
++
++
++
++
++
+ @supports (padding: max(0px)) {
+   body,
+   header,
+@@ -7,16 +103,16 @@
+   }
+ }
+ @media only screen and (orientation: portrait) {
+-  body .shrink {
++  body :not(.no-shrink) .shrink {
+     width: 95%;
+   }
+ }
+ @media only screen and (orientation: landscape) {
+-  body .shrink {
++  body :not(.no-shrink) .shrink {
+     width: 90%;
+   }
+ }
+-.center-safe {
++.center-safe  {
+   text-align: center;
+   margin: 0 auto;
+ }
+@@ -113,59 +209,9 @@ video {
+   vertical-align: baseline;
+ }
+ /* HTML5 display-role reset for older browsers */
+-article,
+-aside,
+-details,
+-figcaption,
+-figure,
+-footer,
+-header,
+-hgroup,
+-menu,
+-nav,
+-section {
+-  display: block;
+-}
+-body {
+-  line-height: 1;
+-}
+-ol,
+-ul {
+-  list-style: none;
+-}
+-blockquote,
+-q {
+-  quotes: none;
+-}
+-blockquote:before,
+-blockquote:after,
+-q:before,
+-q:after {
+-  content: "";
+-  content: none;
+-}
+-table {
+-  border-collapse: collapse;
+-  border-spacing: 0;
+-}
+ 
+-body {
+-  margin: 0;
+-  font-family: "Karla", sans-serif;
+-  color: rgb(24, 24, 24);
+-  font-size: 20px;
+-  line-height: 32px;
+-}
+-body,
+-html {
+-  height: var(--app-height);
+-  background-color: #fafafa;
+-}
+-html {
+-  font-family: "Karla", sans-serif;
+-  -ms-text-size-adjust: 100%;
+-  -webkit-text-size-adjust: 100%;
+-}
++
++
+ .main {
+   overflow-x: hidden !important;
+   height: auto;
+@@ -205,39 +251,16 @@ html {
+   background-size: auto, auto, auto, cover;
+ }
+ 
+-@media screen and (max-width: 479px) {
+-  .section {
+-    padding-top: 2em;
+-  }
+-}
+-@media screen and (max-width: 767px) {
+-  .section {
+-    padding-right: 2%;
+-    padding-left: 2%;
+-  }
+-}
+-@media screen and (max-width: 991px) {
+-  .section {
+-    padding-top: 4em;
+-    padding-bottom: 4em;
+-  }
+-}
+-.section {
+-  position: relative;
+-  padding: 4em 4%;
+-  background-color: #fff;
+-}
++
+ .heroText {
+-  font-family: "Playfair Display", sans-serif;
++  font-family: 'Poppins', sans-serif;
+   font-weight: 700;
+   color: white;
+-  font-size: 40px;
+   line-height: 40px;
+   overflow-wrap: break-word;
+ }
+ .smallHeroText {
+-  font-family: "Karla", sans-serif;
+-  color: #e3af5b;
++  font-family: 'Montserrat', sans-serif;
+   margin-top: 24px;
+   margin-bottom: 8px;
+   font-weight: 700;
+@@ -253,8 +276,8 @@ html {
+ }
+ @media screen and (min-width: 300px) {
+   .heroText {
+-    font-size: 4vh;
+-    line-height: 4vh;
++    font-size: 2vh;
++    line-height: 2vh;
+   }
+ }
+ .seeOurPropertiesButton {
+@@ -270,6 +293,7 @@ html {
+   font-size: 1.5vh;
+ }
+ .sky {
++  opacity: 0 !important;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+@@ -303,6 +327,7 @@ html {
+   width: 100%;
+ }
+ .city {
++  opacity: 0 !important;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+@@ -338,7 +363,7 @@ html {
+ }
+ 
+ .builder-section {
+-  font-family: "Karla", sans-serif;
++
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+@@ -365,7 +390,7 @@ html {
+ .make-an-offer-button {
+   font-size: small !important;
+   margin-bottom: 10px !important;
+-  font-family: Karla, sans-serif !important;
++
+   background-color: #8b949a !important;
+ 
+   border: none !important;
+@@ -397,7 +422,7 @@ html {
+ }
+ .home-content {
+   grid-area: home-content;
+-  font-family: "Karla", sans-serif;
++
+   height: auto;
+   width: 100%;
+   position: relative;
+@@ -432,17 +457,18 @@ html {
+ .home-card {
+   max-width: 500px;
+   margin: auto;
++  border: none;
+ }
+ .home-card img {
+   width: 100%;
+   object-fit: cover;
+   display: block;
+   margin: auto;
+-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
++  
+ }
+ 
+ .recent-text {
+-  font-family: "Karla", sans-serif;
++
+   color: #e3af5b;
+   margin-top: 24px;
+   margin-bottom: 8px;
+diff --git a/yarn.lock b/yarn.lock
+index e5f65f2..ca32eeb 100644
+--- a/yarn.lock
++++ b/yarn.lock
+@@ -1945,6 +1945,25 @@ __metadata:
+   languageName: node
+   linkType: hard
+ 
++"@emotion/babel-plugin@npm:^11.11.0":
++  version: 11.11.0
++  resolution: "@emotion/babel-plugin@npm:11.11.0"
++  dependencies:
++    "@babel/helper-module-imports": ^7.16.7
++    "@babel/runtime": ^7.18.3
++    "@emotion/hash": ^0.9.1
++    "@emotion/memoize": ^0.8.1
++    "@emotion/serialize": ^1.1.2
++    babel-plugin-macros: ^3.1.0
++    convert-source-map: ^1.5.0
++    escape-string-regexp: ^4.0.0
++    find-root: ^1.1.0
++    source-map: ^0.5.7
++    stylis: 4.2.0
++  checksum: 6b363edccc10290f7a23242c06f88e451b5feb2ab94152b18bb8883033db5934fb0e421e2d67d09907c13837c21218a3ac28c51707778a54d6cd3706c0c2f3f9
++  languageName: node
++  linkType: hard
++
+ "@emotion/cache@npm:^11.10.5, @emotion/cache@npm:^11.4.0":
+   version: 11.10.5
+   resolution: "@emotion/cache@npm:11.10.5"
+@@ -1958,6 +1977,19 @@ __metadata:
+   languageName: node
+   linkType: hard
+ 
++"@emotion/cache@npm:^11.11.0":
++  version: 11.11.0
++  resolution: "@emotion/cache@npm:11.11.0"
++  dependencies:
++    "@emotion/memoize": ^0.8.1
++    "@emotion/sheet": ^1.2.2
++    "@emotion/utils": ^1.2.1
++    "@emotion/weak-memoize": ^0.3.1
++    stylis: 4.2.0
++  checksum: 8eb1dc22beaa20c21a2e04c284d5a2630a018a9d51fb190e52de348c8d27f4e8ca4bbab003d68b4f6cd9cc1c569ca747a997797e0f76d6c734a660dc29decf08
++  languageName: node
++  linkType: hard
++
+ "@emotion/hash@npm:^0.9.0":
+   version: 0.9.0
+   resolution: "@emotion/hash@npm:0.9.0"
+@@ -1965,6 +1997,13 @@ __metadata:
+   languageName: node
+   linkType: hard
+ 
++"@emotion/hash@npm:^0.9.1":
++  version: 0.9.1
++  resolution: "@emotion/hash@npm:0.9.1"
++  checksum: 716e17e48bf9047bf9383982c071de49f2615310fb4e986738931776f5a823bc1f29c84501abe0d3df91a3803c80122d24e28b57351bca9e01356ebb33d89876
++  languageName: node
++  linkType: hard
++
+ "@emotion/is-prop-valid@npm:^0.8.8":
+   version: 0.8.8
+   resolution: "@emotion/is-prop-valid@npm:0.8.8"
+@@ -1988,7 +2027,35 @@ __metadata:
+   languageName: node
+   linkType: hard
+ 
+-"@emotion/react@npm:11.10.5, @emotion/react@npm:^11.8.1":
++"@emotion/memoize@npm:^0.8.1":
++  version: 0.8.1
++  resolution: "@emotion/memoize@npm:0.8.1"
++  checksum: a19cc01a29fcc97514948eaab4dc34d8272e934466ed87c07f157887406bc318000c69ae6f813a9001c6a225364df04249842a50e692ef7a9873335fbcc141b0
++  languageName: node
++  linkType: hard
++
++"@emotion/react@npm:^11.11.0":
++  version: 11.11.0
++  resolution: "@emotion/react@npm:11.11.0"
++  dependencies:
++    "@babel/runtime": ^7.18.3
++    "@emotion/babel-plugin": ^11.11.0
++    "@emotion/cache": ^11.11.0
++    "@emotion/serialize": ^1.1.2
++    "@emotion/use-insertion-effect-with-fallbacks": ^1.0.1
++    "@emotion/utils": ^1.2.1
++    "@emotion/weak-memoize": ^0.3.1
++    hoist-non-react-statics: ^3.3.1
++  peerDependencies:
++    react: ">=16.8.0"
++  peerDependenciesMeta:
++    "@types/react":
++      optional: true
++  checksum: 2653e7c3de7b6fd5b0e18dea15621a9886104cc7c8cd5522ca69e52bd547ef6f13644193f8e0a906eea1e29a4f1d8167cdfa4667572fb7fafe0c62ab30fbaab6
++  languageName: node
++  linkType: hard
++
++"@emotion/react@npm:^11.8.1":
+   version: 11.10.5
+   resolution: "@emotion/react@npm:11.10.5"
+   dependencies:
+@@ -2025,6 +2092,19 @@ __metadata:
+   languageName: node
+   linkType: hard
+ 
++"@emotion/serialize@npm:^1.1.2":
++  version: 1.1.2
++  resolution: "@emotion/serialize@npm:1.1.2"
++  dependencies:
++    "@emotion/hash": ^0.9.1
++    "@emotion/memoize": ^0.8.1
++    "@emotion/unitless": ^0.8.1
++    "@emotion/utils": ^1.2.1
++    csstype: ^3.0.2
++  checksum: 413c352e657f1b5e27ea6437b3ef7dcc3860669b7ae17fd5c18bfbd44e033af1acc56b64d252284a813ca4f3b3e1b0841c42d3fb08e02d2df56fd3cd63d72986
++  languageName: node
++  linkType: hard
++
+ "@emotion/server@npm:^11.10.0":
+   version: 11.10.0
+   resolution: "@emotion/server@npm:11.10.0"
+@@ -2049,6 +2129,13 @@ __metadata:
+   languageName: node
+   linkType: hard
+ 
++"@emotion/sheet@npm:^1.2.2":
++  version: 1.2.2
++  resolution: "@emotion/sheet@npm:1.2.2"
++  checksum: d973273c9c15f1c291ca2269728bf044bd3e92a67bca87943fa9ec6c3cd2b034f9a6bfe95ef1b5d983351d128c75b547b43ff196a00a3875f7e1d269793cecfe
++  languageName: node
++  linkType: hard
++
+ "@emotion/stylis@npm:^0.8.4":
+   version: 0.8.5
+   resolution: "@emotion/stylis@npm:0.8.5"
+@@ -2070,6 +2157,13 @@ __metadata:
+   languageName: node
+   linkType: hard
+ 
++"@emotion/unitless@npm:^0.8.1":
++  version: 0.8.1
++  resolution: "@emotion/unitless@npm:0.8.1"
++  checksum: 385e21d184d27853bb350999471f00e1429fa4e83182f46cd2c164985999d9b46d558dc8b9cc89975cb337831ce50c31ac2f33b15502e85c299892e67e7b4a88
++  languageName: node
++  linkType: hard
++
+ "@emotion/use-insertion-effect-with-fallbacks@npm:^1.0.0":
+   version: 1.0.0
+   resolution: "@emotion/use-insertion-effect-with-fallbacks@npm:1.0.0"
+@@ -2079,6 +2173,15 @@ __metadata:
+   languageName: node
+   linkType: hard
+ 
++"@emotion/use-insertion-effect-with-fallbacks@npm:^1.0.1":
++  version: 1.0.1
++  resolution: "@emotion/use-insertion-effect-with-fallbacks@npm:1.0.1"
++  peerDependencies:
++    react: ">=16.8.0"
++  checksum: 700b6e5bbb37a9231f203bb3af11295eed01d73b2293abece0bc2a2237015e944d7b5114d4887ad9a79776504aa51ed2a8b0ddbc117c54495dd01a6b22f93786
++  languageName: node
++  linkType: hard
++
+ "@emotion/utils@npm:^1.2.0":
+   version: 1.2.0
+   resolution: "@emotion/utils@npm:1.2.0"
+@@ -2086,6 +2189,13 @@ __metadata:
+   languageName: node
+   linkType: hard
+ 
++"@emotion/utils@npm:^1.2.1":
++  version: 1.2.1
++  resolution: "@emotion/utils@npm:1.2.1"
++  checksum: e0b44be0705b56b079c55faff93952150be69e79b660ae70ddd5b6e09fc40eb1319654315a9f34bb479d7f4ec94be6068c061abbb9e18b9778ae180ad5d97c73
++  languageName: node
++  linkType: hard
++
+ "@emotion/weak-memoize@npm:^0.3.0":
+   version: 0.3.0
+   resolution: "@emotion/weak-memoize@npm:0.3.0"
+@@ -2093,6 +2203,13 @@ __metadata:
+   languageName: node
+   linkType: hard
+ 
++"@emotion/weak-memoize@npm:^0.3.1":
++  version: 0.3.1
++  resolution: "@emotion/weak-memoize@npm:0.3.1"
++  checksum: b2be47caa24a8122622ea18cd2d650dbb4f8ad37b636dc41ed420c2e082f7f1e564ecdea68122b546df7f305b159bf5ab9ffee872abd0f052e687428459af594
++  languageName: node
++  linkType: hard
++
+ "@esbuild/android-arm64@npm:0.16.17":
+   version: 0.16.17
+   resolution: "@esbuild/android-arm64@npm:0.16.17"
+@@ -7720,7 +7837,7 @@ __metadata:
+   dependencies:
+     "@azure/communication-email": ^1.0.0
+     "@babel/core": ^7.20.12
+-    "@emotion/react": 11.10.5
++    "@emotion/react": ^11.11.0
+     "@emotion/server": ^11.10.0
+     "@faker-js/faker": ^7.6.0
+     "@nextui-org/react": ^1.0.0-beta.11
+@@ -7752,6 +7869,7 @@ __metadata:
+     primereact: 8.7.0
+     qs: ^6.11.0
+     react: ^18.2.0
++    react-awesome-reveal: ^4.2.3
+     react-content-loader: ^6.2.0
+     react-dom: ^18.2.0
+     react-headroom: ^3.2.1
+@@ -17378,6 +17496,19 @@ __metadata:
+   languageName: node
+   linkType: hard
+ 
++"react-awesome-reveal@npm:^4.2.3":
++  version: 4.2.3
++  resolution: "react-awesome-reveal@npm:4.2.3"
++  dependencies:
++    react-intersection-observer: ^9.4.1
++    react-is: ^18.2.0
++  peerDependencies:
++    "@emotion/react": ^11.0.0
++    react: ">=16.14.0"
++  checksum: 3edd5d8f616392755fc98f580ef44d87f70f7fe5eb35a72bc2563c3e30853f95458fe097cb904dea7db2cd7dda94cab6633a2cd9e895b4dcd1db6c8a04c99f85
++  languageName: node
++  linkType: hard
++
+ "react-composer@npm:^5.0.3":
+   version: 5.0.3
+   resolution: "react-composer@npm:5.0.3"
+@@ -17599,7 +17730,7 @@ __metadata:
+   languageName: node
+   linkType: hard
+ 
+-"react-is@npm:^18.0.0":
++"react-is@npm:^18.0.0, react-is@npm:^18.2.0":
+   version: 18.2.0
+   resolution: "react-is@npm:18.2.0"
+   checksum: e72d0ba81b5922759e4aff17e0252bd29988f9642ed817f56b25a3e217e13eea8a7f2322af99a06edb779da12d5d636e9fda473d620df9a3da0df2a74141d53e
+@@ -19804,6 +19935,13 @@ __metadata:
+   languageName: node
+   linkType: hard
+ 
++"stylis@npm:4.2.0":
++  version: 4.2.0
++  resolution: "stylis@npm:4.2.0"
++  checksum: 0eb6cc1b866dc17a6037d0a82ac7fa877eba6a757443e79e7c4f35bacedbf6421fadcab4363b39667b43355cbaaa570a3cde850f776498e5450f32ed2f9b7584
++  languageName: node
++  linkType: hard
++
+ "superagent@npm:3.7.0":
+   version: 3.7.0
+   resolution: "superagent@npm:3.7.0"

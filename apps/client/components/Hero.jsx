@@ -10,53 +10,25 @@ const Hero = (props) => {
     speed: 10,
     target: target.current,
   });
-  const sky = useParallax({
-    opacity: [0, 1],
-    shouldAlwaysCompleteAnimation: true,
-    startScroll: 0,
-    endScroll: 200,
-    easing: "easeInOutCirc",
-  });
 
-  const city = useParallax({
-    opacity: [0, 1],
-    shouldAlwaysCompleteAnimation: true,
-    startScroll: 0,
-    endScroll: 400,
-    easing: "easeInOutSine",
-  });
   return (
     <>
       <div className="main">
-        <div ref={sky.ref} className="sky">
-          <Image
-            src={skyOverlay}
-            alt=""
-            fill={true}
-            style={{ objectFit: "cover" }}
-            priority={true}
-          />
-        </div>
-        <div ref={city.ref} className="city">
-          <Image
-            src={cityOverlay}
-            alt=""
-            fill={true}
-            style={{ objectFit: "cover" }}
-            priority={true}
-          />
-        </div>
-
         <div className="section">
-          <div className="text-center" ref={text.ref} style={{ zIndex: 3 }}>
-            <h4 className="smallHeroText" ref={target}>
+          <div ref={text.ref} style={{ zIndex: 3 }}>
+            <h4 className="smallHeroText " ref={target} style={{ color: "white" }}>
               Cheap Baltimore Houses
             </h4>
             <h1 className="heroText">Buying property</h1>
-            <h1 className="heroText">has never been easier.</h1>
+            <h1 className="heroText">
+              has <span style={{ color: "#ff4081" }}>never </span>
+              <span style={{ color: "#e3af5b" }}>been</span>
+              <span style={{ color: "#00b0ff" }}> easier.</span>
+            </h1>
+
             <div className="mt-5">
               <Button
-                className="seeOurPropertiesButton"
+                className="button"
                 label="See our properties"
                 onClick={() => {
                   if (props.recentHomesRef.current) {
