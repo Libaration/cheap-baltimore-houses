@@ -52,19 +52,18 @@ jobs:
           login-server: "cheapbaltimorehouses.azurecr.io"
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-          run: |
-            if [ ${{ inputs.app_name }} == 'all' ]; then
-            echo "Pushing all images..."
-            docker push cheapbmorehousesregistry.azurecr.io/api:latest
-            docker push cheapbmorehousesregistry.azurecr.io/nginx:latest
-            docker push cheapbmorehousesregistry.azurecr.io/nextjs:latest
-            echo "All images pushed!"
-            else
-            echo "Pushing ${{ inputs.app_name }} Docker image..."
-            docker push cheapbmorehousesregistry.azurecr.io/${{ inputs.app_name }}:latest
-            echo "${{ inputs.app_name }} Docker image pushed!"
-            fi
-          shell: bash
+      - run: |
+          if [ ${{ inputs.app_name }} == 'all' ]; then
+          echo "Pushing all images..."
+          docker push cheapbmorehousesregistry.azurecr.io/api:latest
+          docker push cheapbmorehousesregistry.azurecr.io/nginx:latest
+          docker push cheapbmorehousesregistry.azurecr.io/nextjs:latest
+          echo "All images pushed!"
+          else
+          echo "Pushing ${{ inputs.app_name }} Docker image..."
+          docker push cheapbmorehousesregistry.azurecr.io/${{ inputs.app_name }}:latest
+          echo "${{ inputs.app_name }} Docker image pushed!"
+          fi
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
