@@ -18,7 +18,6 @@ import OfferModal from "../../components/homes/modals/OfferModal";
 import { useRouter } from "next/router";
 import ImageViewToggle from "../../components/pages/homes/imageViewToggle";
 const HomeShow = ({ home }) => {
-  const [hover, setHover] = useState(false);
   const router = useRouter();
   let description;
   let additionalImages;

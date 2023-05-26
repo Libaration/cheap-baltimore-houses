@@ -1,4 +1,3 @@
-import { Fade } from "react-awesome-reveal";
 const Accordion = ({ children }) => {
   return (
     <div className="flex justify-center mt-10">
@@ -37,9 +36,7 @@ const Accordion = ({ children }) => {
           </div>
         </summary>
 
-        <Fade cascade>
-          <div className="mt-2 text-secondary-200 text-xs">{children}</div>
-        </Fade>
+        <div className="mt-2 text-secondary-200 text-xs">{children}</div>
       </details>
     </div>
   );
