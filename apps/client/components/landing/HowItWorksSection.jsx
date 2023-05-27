@@ -1,7 +1,7 @@
 const HowItWorksSection = () => {
   return (
     <>
-      <section className="body-font border-t border-gray-200">
+      <section className="body-font border-t border-gray-200 how-it-works-section">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
             <h2
