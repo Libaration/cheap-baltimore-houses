@@ -7,22 +7,25 @@ const HomeSection = () => {
       <section className="text-gray-700 body-font landing-home-section">
         <div className="container mx-auto flex pb-20 md:flex-row flex-col items-center">
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center center-safe">
-            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white mt-4 ">
+            <h1
+              className="title-font sm:text-4xl text-3xl mb-4 font-medium mt-4 "
+              style={{ color: "#B3E5FC" }}
+            >
               Buy and Sell Real Estate in Maryland.
               <br className="hidden lg:inline-block" />
               Find Cheap Baltimore Houses.
             </h1>
-            <p className="mb-8 leading-relaxed">
+            <p className="mb-8 leading-relaxed text-white">
               How do you buy real estate in Maryland? How do you sell real estate in Maryland? Get
               the answers to your Maryland real estate questions by reaching out to the team at
               Cheap Baltimore Houses. Start your journey.
             </p>
 
-            <div className="flex justify-center center-safe">
-              <button className="inline-flex text-grey bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-[#333333] duration-300 rounded text-lg">
+            <div className="flex justify-center center-safe home-section-buttons">
+              <button className="inline-flex border-0 py-2 px-6 focus:outline-none hover:bg-[#333333] a:[text-black] duration-300 rounded text-lg bg-[#f8f8f8]">
                 <Link href={"/homes"}> I Want to Buy </Link>
               </button>
-              <button className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-[#333333] duration-300 rounded text-lg">
+              <button className="ml-4 inline-flex border-0 py-2 px-6 focus:outline-none hover:bg-[#333333] duration-300 rounded text-lg bg-[#f8f8f8]">
                 <Link href={"#"}> I Want to Sell </Link>
               </button>
             </div>

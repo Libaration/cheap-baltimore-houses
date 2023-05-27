@@ -340,11 +340,40 @@ video {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
+.home-section-buttons button:hover a {
+  color: #B3E5FC;
+}
 
+.home-section-buttons button a {
+  color: #333333;
+ 
+}
 
+.recent-homes-button {
+  color: #B3E5FC;
+  cursor: pointer;
+}
 
+.recent-homes-button button {
+  background-color: #333333;
+  cursor: pointer;
+}
 
+.recent-homes-button:hover button {
+  background-color: #b91c1c;
+}
 
+.recent-homes-button:hover {
+  color: white;
+}
+
+/* .recent-homes-button {
+  background-color: #333333;
+}
+
+.recent-homes-button:hover {
+  background-color: #B91C1C;
+} */
 
 
 
@@ -767,4 +796,30 @@ video {
   background-color: #00b0ff;
   color: #f8f8f8;
   animation: buttonClickAnimation 0.5s;
+}
+
+
+.svg-divide {
+    
+    position: absolute;
+    
+    width: 100%;
+    height: 100vh;
+    /* fill: #f8f8f8; */
+    fill: greenyellow;
+
+}
+
+
+
+
+
+.landing-home-section {
+  position: relative;
+  z-index: 1;
+}
+
+.how-it-works-section {
+  position: relative;
+  z-index: 1;
 }
