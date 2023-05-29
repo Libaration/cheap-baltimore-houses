@@ -16,7 +16,7 @@ export const sendOfferEmail = async (
         to: [
           {
             address: "<seabornleads@gmail.com>",
-            displayName: "Customer Name",
+            displayName: "Chris Seaborn",
           },
         ],
       },
