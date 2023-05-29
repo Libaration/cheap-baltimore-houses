@@ -16,7 +16,7 @@ import pluralize from "pluralize";
 import { Button } from "@nextui-org/react";
 import OfferModal from "../../components/homes/modals/OfferModal";
 import { useRouter } from "next/router";
-import ImageViewToggle from "../../components/pages/homes/imageViewToggle";
+import ImageViewToggle from "../../components/pages/homes/ImageViewToggle";
 const HomeShow = ({ home }) => {
   const router = useRouter();
   let description;
