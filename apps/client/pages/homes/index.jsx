@@ -10,11 +10,14 @@ export default function Page({ fallback }) {
   const [page, setPage] = useState(fallback.meta.pagination.page);
   const [pageSize, setPageSize] = useState(fallback.meta.pagination.pageSize);
   const [zipcode, setZipcode] = useState("");
+  const [address, setAddress] = useState("");
   return (
     <SWRConfig value={{ fallbackData: fallback }}>
       <Breadcrumb />
 
-      <h4 className="smallHeroText text-center">Cheap Baltimore Houses</h4>
+      <h4 className="smallHeroText text-center" style={{ color: "#333333" }}>
+        Cheap Baltimore Houses
+      </h4>
 
       <Homes
         page={page}
@@ -23,9 +26,18 @@ export default function Page({ fallback }) {
         setPageSize={setPageSize}
         zipcode={zipcode}
         setZipcode={setZipcode}
+        setAddress={setAddress}
+        address={address}
       />
       <div style={{ display: "none" }}>
-        <Homes page={page + 1} pageSize={pageSize} zipcode={zipcode} setZipcode={setZipcode} />
+        <Homes
+          page={page + 1}
+          pageSize={pageSize}
+          zipcode={zipcode}
+          address={address}
+          setZipcode={setZipcode}
+          setAddress={setAddress}
+        />
       </div>
     </SWRConfig>
   );

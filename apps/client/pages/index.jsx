@@ -33,7 +33,7 @@ const Index = (props) => {
       (newsletterVisible && !contentVisible && !heroVisible) ||
       (!newsletterVisible && !contentVisible && !heroVisible)
     ) {
-      setNotchColor({ theme: "#ef4444", style: "translucent" });
+      setNotchColor({ theme: "#B91C1C", style: "translucent" });
     }
   }, [newsletterVisible, heroVisible, contentVisible, setNotchColor]);
 
@@ -43,14 +43,18 @@ const Index = (props) => {
         <meta name="theme-color" content={notchColor.theme} />
         <meta name="apple-mobile-web-app-status-bar-style" content={notchColor.style} />
       </Head>
-
       <div ref={heroRef}>
         <Hero recentHomesRef={recentHomesRef} />
         <div ref={contentRef} style={{ width: "1px", height: "0px" }} />
       </div>
 
-      <div className="bg-red-500 items-center justify-center pt-8" style={{ height: "100vh" }}>
-        <HomeSection />
+      <div
+        className="items-center justify-center pt-8"
+        style={{ height: "100vh", backgroundColor: "#B91C1C" }}
+      >
+        <Parallax translateY={["0vh", "5vh"]}>
+          <HomeSection />
+        </Parallax>
       </div>
 
       <div className="shrink center-safe">
@@ -61,37 +65,41 @@ const Index = (props) => {
         /> */}
 
         <Slide direction="left" triggerOnce>
-          <HowItWorksSection />
+          <Parallax translateY={["-10vh", "0vh"]}>
+            <HowItWorksSection />
+          </Parallax>
         </Slide>
 
         {/* <Slide direction="right" triggerOnce>
           <CategoriesSection />
         </Slide> */}
+        <div ref={recentHomesRef}></div>
         <Slide direction="right" triggerOnce cascade damping={0.1}>
-          <div
-            className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"
-            ref={recentHomesRef}
-          >
-            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
-              Recent Listings
-            </h1>
-          </div>
+          <Parallax translateY={["-10vh", "5vh"]}>
+            <div className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
+                Recent Listings
+              </h1>
+            </div>
 
-          <p className="mb-8 leading-relaxed">{`Looking for a new home in Baltimore? Check out our recent auction listings to see some of the best properties on the market today. With a variety of homes available in different neighborhoods and at competitive prices, you're sure to find something that fits your needs. Don't miss out on these great opportunities, start browsing our listings now!`}</p>
+            <p className="mb-8 leading-relaxed">{`Looking for a new home in Baltimore? Check out our recent auction listings to see some of the best properties on the market today. With a variety of homes available in different neighborhoods and at competitive prices, you're sure to find something that fits your needs. Don't miss out on these great opportunities, start browsing our listings now!`}</p>
 
-          <div className="recent-homes-container">
-            <Fade cascade damping={0.3} triggerOnce>
-              {renderRecentHomes(props.homes)}
-            </Fade>
-          </div>
+            <div className="recent-homes-container">
+              <Fade cascade damping={0.3} triggerOnce>
+                {renderRecentHomes(props.homes)}
+              </Fade>
+            </div>
 
-          <div className="flex justify-center px-5 pt-5 pb-20 mx-auto">
-            <Button css={{ color: "white" }}>
-              <Link href={"/homes"}>
-                <span>View All Listings</span>
-              </Link>
-            </Button>
-          </div>
+            <div className="flex justify-center px-5 pt-5 pb-20 mx-auto">
+              <div className="recent-homes-button">
+                <Link href={"/homes"}>
+                  <button className="inline-flex border-0 py-2 px-6 focus:outline-none hover:bg-[#333333] a:[text-black] duration-300 rounded text-lg">
+                    View All Listings
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </Parallax>
         </Slide>
         <div className="additionalContent">
           <ReviewSection />
