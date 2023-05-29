@@ -1,16 +1,23 @@
 import { useAllHomes } from "../../../lib/SWRCalls/homes";
 import LoadingSkeleton from "./LoadingSkeleton";
 import Home from "../Home";
-import { Accordion, FilterZipcodeInput, PagePagination, PageSizeSelector } from "./allHomesFilter";
-function Homes({ page, setPage, pageSize, setPageSize, zipcode, setZipcode }) {
-  const options = zipcode
-    ? {
-        pagination: { paginated: true, page: page, pageSize: pageSize },
-        filter: { filterByContains: true, needle: zipcode, haystack: "zip" },
-      }
-    : {
-        pagination: { paginated: true, page: page, pageSize: pageSize },
-      };
+import {
+  Accordion,
+  FilterZipcodeInput,
+  PagePagination,
+  PageSizeSelector,
+  FilterAddress,
+} from "./allHomesFilter";
+function Homes({ page, setPage, pageSize, setPageSize, zipcode, setZipcode, setAddress, address }) {
+  const options = {
+    pagination: { paginated: true, page: page, pageSize: pageSize },
+    filter: {
+      filterByContains: zipcode || address ? true : false,
+      zip: { needle: zipcode, haystack: "zip" },
+      street: { needle: address, haystack: "street" },
+    },
+  };
+
   const { homes, isLoading, isError } = useAllHomes(options);
   const renderHomes = () => {
     if (isLoading || !homes) return <LoadingSkeleton />;
@@ -30,6 +37,7 @@ function Homes({ page, setPage, pageSize, setPageSize, zipcode, setZipcode }) {
   return (
     <>
       <Accordion>
+        <FilterAddress setPage={setPage} setAddress={setAddress} />
         <FilterZipcodeInput setZipcode={setZipcode} setPage={setPage} />
         <PageSizeSelector
           {...homes}

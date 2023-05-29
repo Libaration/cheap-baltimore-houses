@@ -26,9 +26,18 @@ export default function Page({ fallback }) {
         setPageSize={setPageSize}
         zipcode={zipcode}
         setZipcode={setZipcode}
+        setAddress={setAddress}
+        address={address}
       />
       <div style={{ display: "none" }}>
-        <Homes page={page + 1} pageSize={pageSize} zipcode={zipcode} setZipcode={setZipcode} />
+        <Homes
+          page={page + 1}
+          pageSize={pageSize}
+          zipcode={zipcode}
+          address={address}
+          setZipcode={setZipcode}
+          setAddress={setAddress}
+        />
       </div>
     </SWRConfig>
   );

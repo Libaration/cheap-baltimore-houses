@@ -18,12 +18,7 @@ const FilterZipcodeInput = ({ setZipcode, setPage }) => {
     }
   };
   return (
-    <Input
-      placeholder="Zipcode"
-      className="mt-5 mb-5"
-      aria-label="Zipcode"
-      onChange={onZipcodeChange}
-    />
+    <Input placeholder="Zipcode" className="mb-2" aria-label="Zipcode" onChange={onZipcodeChange} />
   );
 };
 export default FilterZipcodeInput;
