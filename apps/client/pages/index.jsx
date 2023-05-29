@@ -33,7 +33,7 @@ const Index = (props) => {
       (newsletterVisible && !contentVisible && !heroVisible) ||
       (!newsletterVisible && !contentVisible && !heroVisible)
     ) {
-      setNotchColor({ theme: "#ef4444", style: "translucent" });
+      setNotchColor({ theme: "#B91C1C", style: "translucent" });
     }
   }, [newsletterVisible, heroVisible, contentVisible, setNotchColor]);
 
